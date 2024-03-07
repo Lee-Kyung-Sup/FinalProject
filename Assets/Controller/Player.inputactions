@@ -1,5 +1,5 @@
 {
-    "name": "TopDownController2D",
+    "name": "Player",
     "maps": [
         {
             "name": "Player",
@@ -123,7 +123,7 @@
                 {
                     "name": "",
                     "id": "82b38931-75ac-4166-a7f0-67809a433522",
-                    "path": "<Mouse>/leftButton",
+                    "path": "<Keyboard>/f",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
