@@ -1,25 +1,26 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PotalMaker : MonoBehaviour
 {
-    PotalDataList potals;
-    private void Start()
+    List<GameObject> potals = new List<GameObject>(5);
+    public void MakePotal(params Poter[] poters)
     {
-        potals = Resources.Load<PotalDataList>("Potals");
-        MakePotal();
-    }
-    public void MakePotal()
-    {
-        for (int i = 0; i < potals.potalDatas.Count; i++)
+        foreach (var item in potals)
+        {
+            Destroy(item);
+        }
+        for (int i = 0; i < poters.Length; i++)
         {
             GameObject go = new GameObject();
-            PotalData temp = potals.potalDatas[i];
-            go.transform.position = temp.pos;
-            go.AddComponent<BoxCollider2D>().isTrigger = true;
-            go.GetComponent<BoxCollider2D>().size = temp.size;
-            go.AddComponent<Potal>();
+            go.AddComponent<BoxCollider2D>().size = poters[i].size;
+            go.transform.position = poters[i].pos;
+            go.AddComponent<Potal>().goIndex = poters[i].goMapIndex;
+            go.GetComponent<Potal>().targetPos = poters[i].targetPos;
+            potals.Add(go);
         }
     }
 }

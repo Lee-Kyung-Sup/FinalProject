@@ -2,19 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Potal : MonoBehaviour //ㅋㅍ 없으면 추가하는 기능이 있지않았나?
+public class Potal : MonoBehaviour
 {
-    Vector3 targetPos;
-    LayerMask pLayer;
-    private void Start()
+    public int goIndex;
+    public Vector3 targetPos;
+    LayerMask isPlayer;
+    private void Awake()
     {
-        pLayer = LayerMask.GetMask("Player");
+        isPlayer = LayerMask.GetMask("Player");
+        GetComponent<BoxCollider2D>().isTrigger = true;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (pLayer.value == (pLayer.value |(1<< collision.gameObject.layer)))
+        if (isPlayer.value == (isPlayer.value | (1 << collision.gameObject.layer)))
         {
-            collision.transform.position = targetPos;//choice 파워 초기화
+            MapMaker.i.MakeRoom(goIndex);
+            collision.transform.position = targetPos;
         }
     }
 }
