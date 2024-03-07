@@ -8,6 +8,10 @@ public class PotalMaker : MonoBehaviour
     private void Start()
     {
         potals = Resources.Load<PotalDataList>("Potals");
+        MakePotal();
+    }
+    public void MakePotal()
+    {
         for (int i = 0; i < potals.potalDatas.Count; i++)
         {
             GameObject go = new GameObject();
