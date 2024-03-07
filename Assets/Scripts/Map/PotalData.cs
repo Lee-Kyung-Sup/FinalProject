@@ -9,4 +9,5 @@ public class PotalData : ScriptableObject
     public int id;
     public Vector3 pos;
     public Vector3 targetPos;
+    public Vector2 size;
 }

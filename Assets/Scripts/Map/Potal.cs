@@ -5,12 +5,16 @@ using UnityEngine;
 public class Potal : MonoBehaviour //ㅋㅍ 없으면 추가하는 기능이 있지않았나?
 {
     Vector3 targetPos;
-    LayerMask pLayer = LayerMask.GetMask("Player");
+    LayerMask pLayer;
+    private void Start()
+    {
+        pLayer = LayerMask.GetMask("Player");
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (pLayer.value == (pLayer.value |(1<< collision.gameObject.layer)))
         {
-            collision.transform.position = targetPos;
+            collision.transform.position = targetPos;//choice 파워 초기화
         }
     }
 }
