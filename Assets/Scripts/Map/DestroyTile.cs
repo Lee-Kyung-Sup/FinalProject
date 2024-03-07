@@ -1,18 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class DestroyTile : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    Tilemap tile;
+    private void Start()
     {
-        
+        tile = GetComponent<Tilemap>();
     }
-
-    // Update is called once per frame
-    void Update()
+    public void MakeDot(Vector3 pos)
     {
-        
+        Vector3Int cellPosition = tile.WorldToCell(pos);
+        tile.SetTile(cellPosition, null);
     }
 }
