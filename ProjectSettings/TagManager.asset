@@ -1,9 +1,11 @@
-%YAML 1.1
+n%YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Monster
+  - MonsterHitBox
   layers:
   - Default
   - TransparentFX
@@ -18,6 +20,10 @@ TagManager:
   - Ground
   - HiddenBG
   - 
+  - 
+  - 
+  - Monster
+  - MonsterHitBox
   - 
   - 
   - 
