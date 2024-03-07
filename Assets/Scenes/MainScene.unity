@@ -487,7 +487,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: a58f82a06622d3644ae4b38d54c41f50, type: 3}
-  m_NotificationBehavior: 0
+  m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -498,7 +498,23 @@ MonoBehaviour:
   m_ControlsChangedEvent:
     m_PersistentCalls:
       m_Calls: []
-  m_ActionEvents: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f0b1a590-bdfe-4da6-b1d9-d46836d69cc0
+    m_ActionName: Player/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 77689788-7597-4f07-8b77-590237742e86
+    m_ActionName: Player/Look[/Mouse/position]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6e0b4139-dbf0-4e7d-ac18-c4be05906759
+    m_ActionName: Player/Fire[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2c21dba7-8d64-41da-83b3-0a340528edf4
+    m_ActionName: Player/Dash[/Keyboard/leftShift]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
