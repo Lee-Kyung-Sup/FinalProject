@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bff8b61ed0842854da2c9234392e5323, type: 3}
   m_Name: Potals
   m_EditorClassIdentifier: 
-  potalDatas: []
+  potalDatas:
+  - {fileID: 11400000, guid: f12ccfbacc75dda42b9862318222b1da, type: 2}
