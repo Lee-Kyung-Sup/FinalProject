@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     private float dashPower = 2f;
 
     private Rigidbody2D rb;
-    private bool isGrounded = true; // 점프 가능 여부, 땅인지
+    public bool IsGrounded { get; private set; } = true; // 점프 가능 여부, 땅인지
 
     private Vector2 inputVector; // 이동 입력 저장
 
@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (isGrounded)
+        if (IsGrounded)
         {
             Jump();
         }
@@ -42,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
     {
 
         rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
-        isGrounded = false; // 점프하면 땅이 아님
+        IsGrounded = false; // 점프하면 땅이 아님
     }
 
     public void Dash()
@@ -54,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground")) // Ground 태그랑 닿으면
         {
-            isGrounded = true;
+            IsGrounded = true;
         }
     }
 
@@ -62,7 +62,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            isGrounded = false;
+            IsGrounded = false;
         }
     }
 }

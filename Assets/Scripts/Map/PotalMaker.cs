@@ -7,7 +7,7 @@ using UnityEngine;
 public class PotalMaker : MonoBehaviour
 {
     List<GameObject> potals = new List<GameObject>(5);
-    public void MakePotal(params Poter[] poters)
+    public void MakePotal(Poter[] poters)
     {
         foreach (var item in potals)
         {
