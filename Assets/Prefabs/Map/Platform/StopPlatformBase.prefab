@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 7558949515944846948}
   - component: {fileID: 6705885736731230967}
   - component: {fileID: 3681117701164515282}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: StopPlatformBase
-  m_TagString: Ground
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
