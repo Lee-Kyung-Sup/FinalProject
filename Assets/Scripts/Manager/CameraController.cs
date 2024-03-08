@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraManager : MonoBehaviour
+public class CameraController : MonoBehaviour
 {
-    public static CameraManager i;
+    public static CameraController i;
     Camera _camera;
     WaitForSeconds mapMoveDark = new WaitForSeconds(0.2f);
     private void Awake()
