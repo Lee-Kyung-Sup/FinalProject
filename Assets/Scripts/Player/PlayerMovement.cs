@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    // ½ÇÁ¦ ÇÃ·¹ÀÌ¾î ÀÌµ¿ °ü·Ã ·ÎÁ÷ Å¬·¡½º
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½
 
     [SerializeField]
     private float speed = 5f;
@@ -14,22 +14,22 @@ public class PlayerMovement : MonoBehaviour
     private float dashPower = 2f;
 
     private Rigidbody2D rb;
-    private bool isGrounded = true; // Á¡ÇÁ °¡´É ¿©ºÎ, ¶¥ÀÎÁö
+    public bool IsGrounded { get; private set; } = true; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 
     void Awake()
     {
-        rb = GetComponent<Rigidbody2D>(); // ¸®Áöµå ¹Ùµð ÄÄÆ÷³ÍÆ® ÃÊ±âÈ­
+        rb = GetComponent<Rigidbody2D>(); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ùµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Ê±ï¿½È­
     }
 
     private void FixedUpdate()
     {
-            Move(rb.velocity); // ÀÌµ¿ Ã³¸®
+            Move(rb.velocity); // ï¿½Ìµï¿½ Ã³ï¿½ï¿½
     }
 
     public void Move(Vector2 inputVector)
     {
-        // ÀÔ·Â º¤ÅÍÀÇ xÃàÀ¸·Î¸¸ ÀÌµ¿
+        // ï¿½Ô·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ xï¿½ï¿½ï¿½ï¿½ï¿½Î¸ï¿½ ï¿½Ìµï¿½
         rb.velocity = new Vector2(inputVector.x * speed, rb.velocity.y);
     }
 
@@ -38,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
         if (isGrounded)
         {
             rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
-            isGrounded = false; // Á¡ÇÁÇÏ¸é ¶¥ÀÌ ¾Æ´Ô
+            isGrounded = false; // ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´ï¿½
         }
     }
 
@@ -49,9 +49,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Ground")) // Ground ÅÂ±×¶û ´êÀ¸¸é
+        if (collision.gameObject.CompareTag("Ground")) // Ground ï¿½Â±×¶ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         {
-            isGrounded = true;
+            IsGrounded = true;
         }
     }
 
@@ -59,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            isGrounded = false;
+            IsGrounded = false;
         }
     }
 }
