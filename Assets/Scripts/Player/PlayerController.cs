@@ -4,45 +4,46 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour, PlayerInputAction.IPlayerActions
-{
-    private PlayerInputAction inputAction;
-    private PlayerMovement movement;
-    private Vector2 inputVector; // 입력 저장용 변수
+
+{ // layerInputAction.IPlayerActions 인터페이스를 상속받아
+  // Input System에 정의된 입력 액션들을 제어
+
+    private PlayerInputAction inputAction; // 입력 액션들을 담고 있는 클래스 인스턴스
+    
+    //private PlayerMovement movement; // 플레이어 실제 움직임 구현 클래스
+    private Vector2 inputVector; // 플레이어의 움직임 입력을 저장하는 벡터
 
 
     void Awake()
     {
-        movement = GetComponent<PlayerMovement>();
-
+        inputAction = new PlayerInputAction();
+        inputAction.Player.SetCallbacks(this);
     }
 
     private void OnEnable()
     {
-        if (inputAction == null)
-            inputAction = new PlayerInputAction();
-
-        inputAction.Player.SetCallbacks(instance: this);
+        //인풋 시스템은
+        //Enable() 메서드를 호출하여 입력을 활성화해야만
+        //해당 입력에 대한 이벤트를 수신할 수 있다.
         inputAction.Player.Enable();
     }
 
     private void OnDisable()
     {
+        // 스크립트가 비활성화 되면 입력 이벤트를 더 이상 받지 않음 (오버헤드 방지)
         inputAction.Player.Disable();
     }
 
-
     public void OnMove(InputAction.CallbackContext context)
     {
-        // 입력 벡터를 읽어와서 PlayerMovement로 전달
-        inputVector = context.ReadValue<Vector2>(); // nomalized
+        // 입력 벡터를 읽어와서 PlayerMovement.c전달
+        inputVector = context.ReadValue<Vector2>();
     }
-
-    private void FixedUpdate()
+    void FixedUpdate()
     {
-        // inputVector를 사용하여 Move 메서드 호출
-        if (movement != null)
+        if (inputVector != Vector2.zero)
         {
-            movement.Move(inputVector); // 입력을 PlayerMovement.cs의 Move에 전달
+            SendMessage("Move", inputVector);
         }
     }
 
@@ -52,7 +53,7 @@ public class PlayerController : MonoBehaviour, PlayerInputAction.IPlayerActions
         if (context.performed) // 점프 버튼이 눌렸을 때만
         {
             Debug.Log("점프!");
-            movement.Jump();
+            SendMessage("Jump"); // 입력을 PlayerMovement.cs의 Jump에 전달
         }
     }
 
@@ -72,10 +73,6 @@ public class PlayerController : MonoBehaviour, PlayerInputAction.IPlayerActions
 
     }
 
-    public void OnLook(InputAction.CallbackContext context)
-    {
-
-    }
 
 
     public void OnInventory(InputAction.CallbackContext context)

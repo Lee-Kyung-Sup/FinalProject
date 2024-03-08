@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+   
+
     [SerializeField]
     private float speed = 5f;
     [SerializeField]
     private float jumpPower = 5f;
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
+=======
+>>>>>>> WJJ-/-Player
     [SerializeField]
     private Transform groundCheck; // í”Œë ˆì´ì–´ì˜ í•˜ë‹¨ì— ìœ„ì¹˜
     private float groundCheckRange = 1f; // ë•… ê°ì§€ ë²”ìœ„
@@ -18,28 +23,30 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private LayerMask groundLayer; // ë•…ìœ¼ë¡œ ê°„ì£¼í•  ë ˆì´ì–´
 
+<<<<<<< HEAD
 >>>>>>> Stashed changes
+=======
+
+>>>>>>> WJJ-/-Player
     private float dashPower = 2f;
-
     private Rigidbody2D rb;
-    public bool IsGrounded { get; private set; } = true; // Á¡ÇÁ °¡´É ¿©ºÎ, ¶¥ÀÎÁö
+    private int jumpCount = 0; // ì í”„ íšŸìˆ˜
+    public bool IsGrounded { get; private set; } = true; 
 
-    private Vector2 inputVector; // ÀÌµ¿ ÀÔ·Â ÀúÀå
 
     void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>(); 
     }
 
-    private void FixedUpdate()
+    void Update()
     {
+        // ë•…ì— ë‹¿ì•˜ëŠ”ì§€ í™•ì¸
+        IsGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRange, groundLayer);
         if (IsGrounded)
         {
-            Jump();
-        }
-        else
-        {
-            Move(inputVector); // ¿òÁ÷ÀÓ Ã³¸®
+            Debug.Log("ë•…ì…ë‹ˆë‹¤.");
+            jumpCount = 0; // ë•…ì— ë‹¿ìœ¼ë©´ ì í”„ íšŸìˆ˜ ì´ˆê¸°í™”
         }
     }
 
@@ -50,9 +57,12 @@ public class PlayerMovement : MonoBehaviour
 
     public void Jump()
     {
-
-        rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
-        IsGrounded = false; // Á¡ÇÁÇÏ¸é ¶¥ÀÌ ¾Æ´Ô
+        if (IsGrounded && jumpCount < 2)
+        {
+            rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+            jumpCount++; // ì í”„ íšŸìˆ˜ ì¦ê°€
+            IsGrounded = false;
+        }
     }
 
     public void Dash()
@@ -60,19 +70,13 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Ground")) // Ground ÅÂ±×¶û ´êÀ¸¸é
-        {
-            IsGrounded = true;
-        }
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            IsGrounded = false;
-        }
-    }
+    //private void oncollisionenter2d(collision2d collision)
+    //{
+    //    if (collision.gameobject.comparetag("ground"))
+    //    {
+    //        isgrounded = true;
+    //        jumpcount = 0; // ë•…ì— ë‹¿ìœ¼ë©´ ì í”„ íšŸìˆ˜ ì´ˆê¸°í™”
+    //        debug.log(" ë•…ì…ë‹ˆë‹¤. ");
+    //    }
+    //}
 }
