@@ -6,7 +6,7 @@ using UnityEngine;
 public class MapMaker : MonoBehaviour
 {
     public static MapMaker i;
-    int curMapId = 0;
+    [SerializeField]int curMapId = 0;
     GameObject curMap;
     MapData mapList;
     PotalMaker potalMaker;
