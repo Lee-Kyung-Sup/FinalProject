@@ -31,7 +31,7 @@ Transform:
   m_Children:
   - {fileID: 4847496858838738960}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1002021033415814800
 BoxCollider2D:
@@ -412,9 +412,9 @@ GameObject:
   - component: {fileID: 7895626012150702317}
   - component: {fileID: 7118871782812217380}
   - component: {fileID: 8301037636757494205}
-  m_Layer: 10
+  m_Layer: 8
   m_Name: Ground
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1014,9 +1014,9 @@ GameObject:
   - component: {fileID: 56315568123823483}
   - component: {fileID: 3391340690330242953}
   - component: {fileID: 5874412882827569568}
-  m_Layer: 10
+  m_Layer: 8
   m_Name: DestroyGrond
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
