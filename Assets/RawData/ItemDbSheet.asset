@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 8
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 745330af9d93bb7498cf1668c1ff1f38, type: 3}
+  m_Name: ItemDbSheet
+  m_EditorClassIdentifier: 
+  Entities:
+  - _id: 1
+    _name: "\uAC80"
+    _description: "\uD718\uB450\uB985\uB2C8\uB2E4"
+    _spritePath: Sprite/Item/Weapon/Sword_1
+    _value: 0
+  - _id: 2
+    _name: "\uB3C4\uB07C"
+    _description: "\uB358\uC9D1\uB2C8\uB2E4"
+    _spritePath: Sprite/Item/Weapon/Axe_1
+    _value: 0
+  - _id: 3
+    _name: "\uAC11\uC637"
+    _description: "\uAC11\uC637\uC785\uB2C8\uB2E4"
+    _spritePath: Sprite/Item/Armor/Armor_1
+    _value: 0
+  - _id: 4
+    _name: "\uD22C\uAD6C"
+    _description: "\uD22C\uAD6C\uC785\uB2C8\uB2E4"
+    _spritePath: Sprite/Item/Armor/Helmr_1
+    _value: 0
+  - _id: 5
+    _name: "\uBB3C\uC57D"
+    _description: "\uD68C\uBCF5\uD569\uB2C8\uB2E4"
+    _spritePath: Sprite/Item/Consume/Consume_1
+    _value: 0
