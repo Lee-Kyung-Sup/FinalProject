@@ -15,7 +15,7 @@ public class Monster : MonoBehaviour
     public bool MonsterDirRight;
 
     protected Rigidbody2D rb;
-    protected BoxCollider2D boxCollider;
+    protected CapsuleCollider2D capsuleCollider;
     public GameObject hitBoxCollider;
     public Animator Anim;
     public LayerMask layerMask;
@@ -24,7 +24,7 @@ public class Monster : MonoBehaviour
     protected void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        boxCollider = GetComponent<BoxCollider2D>();
+        capsuleCollider = GetComponent<CapsuleCollider2D>();
         Anim = GetComponent<Animator>();
 
         StartCoroutine(CalcCoolTime());
@@ -115,7 +115,8 @@ public class Monster : MonoBehaviour
     //바닥에 닿았는지 아닌지 체크
     protected void GroundCheck()
     {
-        if (Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.size, 0, Vector2.down, 0.05f, layerMask))
+        if (Physics2D.CapsuleCast(capsuleCollider.bounds.center, capsuleCollider.size, capsuleCollider.direction,
+            0, Vector2.down, 0.05f, layerMask))
         {
             isGround = true;
         }
