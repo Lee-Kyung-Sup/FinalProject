@@ -25,3 +25,23 @@ MonoBehaviour:
       pos: {x: 20, y: 0, z: 0}
       targetPos: {x: -15, y: 0, z: 0}
       size: {x: 1, y: 3}
+    - goMapIndex: 2
+      pos: {x: 12, y: 12, z: 0}
+      targetPos: {x: 14, y: -9, z: 0}
+      size: {x: 10, y: 1}
+    - goMapIndex: 3
+      pos: {x: -8, y: -7.5, z: 0}
+      targetPos: {x: 4, y: 22, z: 0}
+      size: {x: 1, y: 1}
+  - maps: {fileID: 7172120682923154786, guid: ed5d39d2f78a2494eb6c46d44065cf41, type: 3}
+    poter:
+    - goMapIndex: 1
+      pos: {x: 15, y: -11, z: 0}
+      targetPos: {x: 10.5, y: 9.5, z: 0}
+      size: {x: 3, y: 1}
+  - maps: {fileID: 6435681430885058701, guid: 5544171fab40df8448d265f19af0e316, type: 3}
+    poter:
+    - goMapIndex: 1
+      pos: {x: 4, y: 24, z: 0}
+      targetPos: {x: -8, y: -5.5, z: 0}
+      size: {x: 4, y: 1}
