@@ -11,11 +11,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float jumpPower = 5f;
 
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-=======
-=======
->>>>>>> WJJ-/-Player
     [SerializeField]
     private Transform groundCheck; // 플레이어의 하단에 위치
     private float groundCheckRange = 1f; // 땅 감지 범위
@@ -23,11 +18,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private LayerMask groundLayer; // 땅으로 간주할 레이어
 
-<<<<<<< HEAD
->>>>>>> Stashed changes
-=======
-
->>>>>>> WJJ-/-Player
     private float dashPower = 2f;
     private Rigidbody2D rb;
     private int jumpCount = 0; // 점프 횟수
