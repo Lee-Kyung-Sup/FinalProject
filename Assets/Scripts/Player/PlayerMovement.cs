@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    // 실제 플레이어 이동 관련 로직 클래스
+
     [SerializeField]
     private float speed = 5f;
     [SerializeField]
@@ -14,35 +16,30 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private bool isGrounded = true; // 점프 가능 여부, 땅인지
 
-    private Vector2 inputVector; // 이동 입력 저장
 
     void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>(); // 리지드 바디 컴포넌트 초기화
     }
 
     private void FixedUpdate()
     {
-        if (isGrounded)
-        {
-            Jump();
-        }
-        else
-        {
-            Move(inputVector); // 움직임 처리
-        }
+            Move(rb.velocity); // 이동 처리
     }
 
     public void Move(Vector2 inputVector)
     {
+        // 입력 벡터의 x축으로만 이동
         rb.velocity = new Vector2(inputVector.x * speed, rb.velocity.y);
     }
 
     public void Jump()
     {
-
-        rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
-        isGrounded = false; // 점프하면 땅이 아님
+        if (isGrounded)
+        {
+            rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+            isGrounded = false; // 점프하면 땅이 아님
+        }
     }
 
     public void Dash()
