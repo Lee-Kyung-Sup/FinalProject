@@ -61,13 +61,13 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    //private void OnCollisionEnter2D(Collision2D collision)
+    //private void oncollisionenter2d(collision2d collision)
     //{
-    //    if (collision.gameObject.CompareTag("Ground"))
+    //    if (collision.gameobject.comparetag("ground"))
     //    {
-    //        IsGrounded = true;
-    //        jumpCount = 0; // 땅에 닿으면 점프 횟수 초기화
-    //        Debug.Log(" 땅입니다. ");
+    //        isgrounded = true;
+    //        jumpcount = 0; // 땅에 닿으면 점프 횟수 초기화
+    //        debug.log(" 땅입니다. ");
     //    }
     //}
 }
