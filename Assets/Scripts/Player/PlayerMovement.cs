@@ -4,41 +4,55 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    // ���� �÷��̾� �̵� ���� ���� Ŭ����
+   
 
     [SerializeField]
     private float speed = 5f;
     [SerializeField]
     private float jumpPower = 5f;
 
-    private float dashPower = 2f;
+    [SerializeField]
+    private Transform groundCheck; // 플레이어의 하단에 위치
+    private float groundCheckRange = 1f; // 땅 감지 범위
 
+    [SerializeField]
+    private LayerMask groundLayer; // 땅으로 간주할 레이어
+
+
+    private float dashPower = 2f;
     private Rigidbody2D rb;
-    public bool IsGrounded { get; private set; } = true; // ���� ���� ����, ������
+    private int jumpCount = 0; // 점프 횟수
+    public bool IsGrounded { get; private set; } = true; 
 
 
     void Awake()
     {
-        rb = GetComponent<Rigidbody2D>(); // ������ �ٵ� ������Ʈ �ʱ�ȭ
+        rb = GetComponent<Rigidbody2D>(); 
     }
 
-    private void FixedUpdate()
+    void Update()
     {
-            Move(rb.velocity); // �̵� ó��
+        // 땅에 닿았는지 확인
+        IsGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRange, groundLayer);
+        if (IsGrounded)
+        {
+            Debug.Log("땅입니다.");
+            jumpCount = 0; // 땅에 닿으면 점프 횟수 초기화
+        }
     }
 
     public void Move(Vector2 inputVector)
     {
-        // �Է� ������ x�����θ� �̵�
         rb.velocity = new Vector2(inputVector.x * speed, rb.velocity.y);
     }
 
     public void Jump()
     {
-        if (isGrounded)
+        if (IsGrounded && jumpCount < 2)
         {
             rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
-            isGrounded = false; // �����ϸ� ���� �ƴ�
+            jumpCount++; // 점프 횟수 증가
+            IsGrounded = false;
         }
     }
 
@@ -47,19 +61,13 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Ground")) // Ground �±׶� ������
-        {
-            IsGrounded = true;
-        }
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            IsGrounded = false;
-        }
-    }
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Ground"))
+    //    {
+    //        IsGrounded = true;
+    //        jumpCount = 0; // 땅에 닿으면 점프 횟수 초기화
+    //        Debug.Log(" 땅입니다. ");
+    //    }
+    //}
 }
