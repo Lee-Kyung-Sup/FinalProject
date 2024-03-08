@@ -33,7 +33,7 @@ MonoBehaviour:
       pos: {x: -18, y: 8, z: 0}
       targetPos: {x: 14.5, y: -4, z: 0}
       size: {x: 1, y: 6}
-    - goMapIndex: 3
+    - goMapIndex: 4
       pos: {x: -8, y: -7.5, z: 0}
       targetPos: {x: 4, y: 22, z: 0}
       size: {x: 1, y: 1}
