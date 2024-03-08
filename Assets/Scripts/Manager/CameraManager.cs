@@ -4,15 +4,26 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public static CameraManager i;
+    Camera _camera;
+    WaitForSeconds mapMoveDark = new WaitForSeconds(0.2f);
+    private void Awake()
     {
-        
+        i = this;
+    }
+    private void Start()
+    {
+        _camera = GetComponent<Camera>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void CameraOFFON()
     {
-        
+        StartCoroutine(CameraOFF());
+    }
+    IEnumerator CameraOFF()
+    {
+        _camera.cullingMask = ~-1;
+        yield return mapMoveDark;
+        _camera.cullingMask = -1;
     }
 }
