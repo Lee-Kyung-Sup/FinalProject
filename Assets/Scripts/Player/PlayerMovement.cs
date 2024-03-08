@@ -9,6 +9,16 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float jumpPower = 5f;
 
+<<<<<<< Updated upstream
+=======
+    [SerializeField]
+    private Transform groundCheck; // 플레이어의 하단에 위치
+    private float groundCheckRange = 1f; // 땅 감지 범위
+
+    [SerializeField]
+    private LayerMask groundLayer; // 땅으로 간주할 레이어
+
+>>>>>>> Stashed changes
     private float dashPower = 2f;
 
     private Rigidbody2D rb;
