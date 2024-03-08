@@ -20,4 +20,8 @@ MonoBehaviour:
       targetPos: {x: 18, y: 0, z: 0}
       size: {x: 1, y: 10}
   - maps: {fileID: 2665213851882898004, guid: acf786b73e36fda4f87239220049de0a, type: 3}
-    poter: []
+    poter:
+    - goMapIndex: 0
+      pos: {x: 20, y: 0, z: 0}
+      targetPos: {x: -15, y: 0, z: 0}
+      size: {x: 1, y: 3}
