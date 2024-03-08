@@ -16,90 +16,90 @@ MonoBehaviour:
   - _id: 10001001
     _name: "\uAC80"
     _description: "\uD718\uB450\uB985\uB2C8\uB2E4"
-    _spritePath: Sprite/Item/Weapon/Sword_1
     _value: 10
+    _spritePath: Sprite/Item/Weapon/Sword_1
   - _id: 10001002
     _name: "\uACAC\uACE0\uD55C\uAC80"
     _description: "\uACAC\uACE0\uD558\uAC8C \uB9CC\uB4E0 \uAC80"
-    _spritePath: Sprite/Item/Weapon/Sword_2
     _value: 11
+    _spritePath: Sprite/Item/Weapon/Sword_2
   - _id: 10001003
     _name: "\uBA85\uAC80"
     _description: "\uC774\uB984\uB09C \uAC80"
-    _spritePath: Sprite/Item/Weapon/Sword_3
     _value: 12
+    _spritePath: Sprite/Item/Weapon/Sword_3
   - _id: 10001004
     _name: "\uD750\uC988\uBBC8\uB974\uADF8"
     _description: "\uC54C \uC218 \uC5C6\uB294 \uAC80\uC785\uB2C8\uB2E4"
-    _spritePath: Sprite/Item/Weapon/Sword_4
     _value: 13
+    _spritePath: Sprite/Item/Weapon/Sword_4
   - _id: 10002001
     _name: "\uB3C4\uB07C"
     _description: "\uB358\uC9D1\uB2C8\uB2E4"
-    _spritePath: Sprite/Item/Weapon/Axe_1
     _value: 10
+    _spritePath: Sprite/Item/Weapon/Axe_1
   - _id: 10002002
     _name: "\uACAC\uACE0\uD55C\uB3C4\uB07C"
     _description: "\uACAC\uACE0\uD558\uAC8C \uB9CC\uB4E0 \uB3C4\uB07C"
-    _spritePath: Sprite/Item/Weapon/Axe_2
     _value: 11
+    _spritePath: Sprite/Item/Weapon/Axe_2
   - _id: 10002003
     _name: "\uBA85\uD488\uB3C4\uB07C"
     _description: "\uC774\uB984\uB09C \uB3C4\uB07C"
-    _spritePath: Sprite/Item/Weapon/Axe_3
     _value: 12
+    _spritePath: Sprite/Item/Weapon/Axe_3
   - _id: 10002004
     _name: "\uC0BC\uAE00\uB3C4\uB07C"
     _description: "\uC0BC\uAE00\uC774 \uC4F0\uB358 \uB3C4\uB07C"
-    _spritePath: Sprite/Item/Weapon/Axe_4
     _value: 13
+    _spritePath: Sprite/Item/Weapon/Axe_4
   - _id: 20001001
     _name: "\uAC11\uC637"
     _description: "\uB450\uB835\uC2B5\uB2C8\uAE4C"
-    _spritePath: Sprite/Item/Armor/Armor_1
     _value: 10
+    _spritePath: Sprite/Item/Armor/Armor_1
   - _id: 20001002
     _name: "\uACAC\uACE0\uD55C\uAC11\uC637"
     _description: "\uACAC\uACE0\uD558\uAC8C \uB9CC\uB4E0 \uAC11\uC637"
-    _spritePath: Sprite/Item/Armor/Armor_2
     _value: 11
+    _spritePath: Sprite/Item/Armor/Armor_2
   - _id: 20001003
     _name: "\uBA85\uD488\uAC11\uC637"
     _description: "\uC774\uB984\uB09C \uAC11\uC637"
-    _spritePath: Sprite/Item/Armor/Armor_3
     _value: 12
+    _spritePath: Sprite/Item/Armor/Armor_3
   - _id: 20001004
     _name: "\uC624\uC2DC\uC637"
     _description: "\uC624\uC2DC\uAC00 \uC785\uB358 \uAC11\uC637"
-    _spritePath: Sprite/Item/Armor/Armor_4
     _value: 13
+    _spritePath: Sprite/Item/Armor/Armor_4
   - _id: 20002001
     _name: "\uD22C\uAD6C"
     _description: "\uBC94\uCE59\uAE08\uBC29\uC5B4\uC5D0 \uD6A8\uACFC\uC801"
-    _spritePath: Sprite/Item/Armor/Helmr_1
     _value: 6
+    _spritePath: Sprite/Item/Armor/Helmr_1
   - _id: 20002002
     _name: "\uACAC\uACE0\uD55C\uD22C\uAD6C"
     _description: "\uACAC\uACE0\uD558\uAC8C\uB9CC\uB4E0\uD22C\uAD6C"
-    _spritePath: Sprite/Item/Armor/Helmr_2
     _value: 7
+    _spritePath: Sprite/Item/Armor/Helmr_2
   - _id: 20002003
     _name: "\uC804\uB825\uD22C\uAD6C"
     _description: "\uC804\uB825\uC73C\uB85C\uB9CC\uB4E0\uD22C\uAD6C"
-    _spritePath: Sprite/Item/Armor/Helmr_3
     _value: 8
+    _spritePath: Sprite/Item/Armor/Helmr_3
   - _id: 70001001
     _name: "\uC0AC\uACFC"
     _description: "\uD68C\uBCF5\uD569\uB2C8\uB2E4"
-    _spritePath: Sprite/Item/Consume/Consume_1
     _value: 10
+    _spritePath: Sprite/Item/Consume/Consume_1
   - _id: 70001002
     _name: "\uBB3C\uC57D"
     _description: "\uAF64 \uD68C\uBCF5\uD569\uB2C8\uB2E4"
-    _spritePath: Sprite/Item/Consume/Consume_2
     _value: 11
+    _spritePath: Sprite/Item/Consume/Consume_2
   - _id: 70001003
     _name: "\uB9E5\uC8FC"
     _description: "\uC65C\uC778\uC9C0 \uD68C\uBCF5\uD569\uB2C8\uB2E4"
-    _spritePath: Sprite/Item/Consume/Consume_3
     _value: 12
+    _spritePath: Sprite/Item/Consume/Consume_3
