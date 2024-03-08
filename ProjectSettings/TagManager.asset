@@ -19,13 +19,14 @@ TagManager:
   - Monster
   - Ground
   - Platform
+  - MonsterHitBox
   - 
   - 
   - 
   - 
   - 
   - 
-  - Platform
+  - 
   - 
   - 
   - 
