@@ -16,8 +16,8 @@ public class PotalMaker : MonoBehaviour
         for (int i = 0; i < poters.Length; i++)
         {
             GameObject go = new GameObject();
-            go.AddComponent<BoxCollider2D>().size = poters[i].size;
-            go.transform.position = poters[i].pos;
+            go.AddComponent<BoxCollider2D>().size = poters[i].potalSize;
+            go.transform.position = poters[i].potalPos;
             go.AddComponent<Potal>().goIndex = poters[i].goMapIndex;
             go.GetComponent<Potal>().targetPos = poters[i].targetPos;
             potals.Add(go);

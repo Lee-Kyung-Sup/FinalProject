@@ -8,12 +8,12 @@ public class MapMaker : MonoBehaviour
     public static MapMaker i;
     [SerializeField]int curMapId = 0;
     GameObject curMap;
-    MapData mapList;
+    MapDatas mapList;
     PotalMaker potalMaker;
     private void Awake()
     {
         i = this;
-        mapList = Resources.Load<MapData>("MapDatas");
+        mapList = Resources.Load<MapDatas>("MapDatas");
     }
     private void Start()
     {
@@ -23,6 +23,7 @@ public class MapMaker : MonoBehaviour
     public void MakeRoom(int newMap)
     {
         Destroy(curMap);
+        curMapId = newMap;
         curMap = Instantiate(mapList.mapData[newMap].maps);
         potalMaker.MakePotal(mapList.mapData[newMap].poter);
     }
