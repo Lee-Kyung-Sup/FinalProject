@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8c7c44d0ff91854e94ae7bfd211f696, type: 3}
+  m_Name: MapDatas
+  m_EditorClassIdentifier: 
+  mapData:
+  - maps: {fileID: 79254780870877677, guid: 5d5e58e33a11ad64fbe0a3d1cd392333, type: 3}
+    poter:
+    - goMapIndex: 1
+      potalPos: {x: -16.95, y: 4.98, z: 0}
+      targetPos: {x: 18.1, y: -0.98, z: 0}
+      potalSize: {x: 1, y: 10}
+  - maps: {fileID: 2665213851882898004, guid: acf786b73e36fda4f87239220049de0a, type: 3}
+    poter:
+    - goMapIndex: 0
+      potalPos: {x: 19.79, y: -1.02, z: 0}
+      targetPos: {x: -15, y: 0, z: 0}
+      potalSize: {x: 1, y: 3}
+    - goMapIndex: 2
+      potalPos: {x: 12.6, y: 11.94, z: 0}
+      targetPos: {x: 14, y: -9, z: 0}
+      potalSize: {x: 10, y: 1}
+    - goMapIndex: 3
+      potalPos: {x: -17.77, y: 7.98, z: 0}
+      targetPos: {x: 14.5, y: -4, z: 0}
+      potalSize: {x: 1, y: 5}
+    - goMapIndex: 4
+      potalPos: {x: -7.9, y: -7.96, z: 0}
+      targetPos: {x: 4, y: 22, z: 0}
+      potalSize: {x: 1, y: 1}
+  - maps: {fileID: 7172120682923154786, guid: ed5d39d2f78a2494eb6c46d44065cf41, type: 3}
+    poter:
+    - goMapIndex: 1
+      potalPos: {x: 14.71, y: -11, z: 0}
+      targetPos: {x: 10.43, y: 10.11, z: 0}
+      potalSize: {x: 4, y: 1}
+    - goMapIndex: 5
+      potalPos: {x: -31.97, y: 0.18, z: 0}
+      targetPos: {x: 17.91, y: -4.63, z: 0}
+      potalSize: {x: 1, y: 15}
+  - maps: {fileID: 2932593804279798075, guid: aab4a8ba4e664904299328389945b799, type: 3}
+    poter:
+    - goMapIndex: 1
+      potalPos: {x: 16.13, y: -4.22, z: 0}
+      targetPos: {x: -16.23, y: 7.05, z: 0}
+      potalSize: {x: 1, y: 4}
+    - goMapIndex: 5
+      potalPos: {x: -14.31, y: 13.48, z: 0}
+      targetPos: {x: -14.52, y: -6.83, z: 0}
+      potalSize: {x: 10, y: 1}
+  - maps: {fileID: 6435681430885058701, guid: 5544171fab40df8448d265f19af0e316, type: 3}
+    poter:
+    - goMapIndex: 1
+      potalPos: {x: 3.92, y: 23.97, z: 0}
+      targetPos: {x: -8, y: -6, z: 0}
+      potalSize: {x: 6, y: 1}
+  - maps: {fileID: 213221576743005551, guid: dfc0353ef1b32324cbdddb7d5c791f2c, type: 3}
+    poter:
+    - goMapIndex: 3
+      potalPos: {x: -16.3, y: -9.12, z: 0}
+      targetPos: {x: -14.31, y: 10.64, z: 0}
+      potalSize: {x: 6, y: 1}
+    - goMapIndex: 2
+      potalPos: {x: 20.02, y: -3, z: 0}
+      targetPos: {x: -30.03, y: -6.83, z: 0}
+      potalSize: {x: 1, y: 6}
