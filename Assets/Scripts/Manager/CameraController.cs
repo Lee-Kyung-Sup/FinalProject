@@ -17,8 +17,9 @@ public class CameraController : SingletonBase<CameraController>
     float cameraHalfHeight;
     float cameraHalfWidth;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         _camera = GetComponent<Camera>();
     }
     private void Start()

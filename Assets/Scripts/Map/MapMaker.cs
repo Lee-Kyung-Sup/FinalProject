@@ -10,8 +10,9 @@ public class MapMaker : SingletonBase<MapMaker>
     MapDatas mapList;
     PotalMaker potalMaker;
     public MapEventChecker mapEventCheker { get; private set; }
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         mapList = Resources.Load<MapDatas>("MapDatas");
     }
     private void Start()
