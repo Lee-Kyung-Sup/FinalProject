@@ -2360,7 +2360,7 @@ TilemapCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_UsedByComposite: 1
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
@@ -2428,9 +2428,95 @@ CompositeCollider2D:
   m_GeometryType: 0
   m_GenerationType: 0
   m_EdgeRadius: 0
-  m_ColliderPaths: []
+  m_ColliderPaths:
+  - m_Collider: {fileID: 2591885788190821063}
+    m_ColliderPaths:
+    - - X: 180000000
+        Y: 20000000
+      - X: 170000000
+        Y: 20000000
+      - X: 170000000
+        Y: -60000000
+      - X: 160000000
+        Y: -60000000
+      - X: 160000000
+        Y: -100000000
+      - X: 180000000
+        Y: -100000000
+    - - X: 130000000
+        Y: -90000000
+      - X: 120000000
+        Y: -90000000
+      - X: 120000000
+        Y: -80000000
+      - X: -20000000
+        Y: -80000000
+      - X: -20000000
+        Y: -70000000
+      - X: -30000000
+        Y: -70000000
+      - X: -30000000
+        Y: -60000000
+      - X: -60000000
+        Y: -60000000
+      - X: -60000000
+        Y: -50000000
+      - X: -80000000
+        Y: -50000000
+      - X: -80000000
+        Y: -40000000
+      - X: -130000000
+        Y: -40000000
+      - X: -130000000
+        Y: -50000000
+      - X: -160000000
+        Y: -50000000
+      - X: -160000000
+        Y: -60000000
+      - X: -220000000
+        Y: -60000000
+      - X: -220000000
+        Y: -70000000
+      - X: -260000000
+        Y: -70000000
+      - X: -260000000
+        Y: -80000000
+      - X: -310000000
+        Y: -80000000
+      - X: -310000000
+        Y: -100000000
+      - X: 130000000
+        Y: -100000000
   m_CompositePaths:
-    m_Paths: []
+    m_Paths:
+    - - {x: 17.999971, y: -10}
+      - {x: 17.999971, y: 2}
+      - {x: 17, y: 1.9999708}
+      - {x: 16.999971, y: -6}
+      - {x: 16, y: -6.000029}
+      - {x: 16.000029, y: -10}
+    - - {x: 12.99997, y: -10}
+      - {x: 12.99997, y: -9}
+      - {x: 12, y: -8.99997}
+      - {x: 11.99997, y: -8}
+      - {x: -2, y: -7.9999704}
+      - {x: -2.0000293, y: -7}
+      - {x: -3, y: -6.9999704}
+      - {x: -3.0000293, y: -6}
+      - {x: -6, y: -5.9999704}
+      - {x: -6.000029, y: -5}
+      - {x: -8, y: -4.9999704}
+      - {x: -8.00003, y: -4}
+      - {x: -13, y: -4.000029}
+      - {x: -13.00003, y: -5}
+      - {x: -16, y: -5.000029}
+      - {x: -16.000029, y: -6}
+      - {x: -22, y: -6.000029}
+      - {x: -22.000029, y: -7}
+      - {x: -26, y: -7.0000296}
+      - {x: -26.000029, y: -8}
+      - {x: -31, y: -8.00003}
+      - {x: -30.999971, y: -10}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
@@ -2654,7 +2740,7 @@ TilemapCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_UsedByComposite: 1
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
@@ -2722,7 +2808,9 @@ CompositeCollider2D:
   m_GeometryType: 0
   m_GenerationType: 0
   m_EdgeRadius: 0
-  m_ColliderPaths: []
+  m_ColliderPaths:
+  - m_Collider: {fileID: 856503617815241436}
+    m_ColliderPaths: []
   m_CompositePaths:
     m_Paths: []
   m_VertexDistance: 0.0005
@@ -22114,7 +22202,7 @@ TilemapCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_UsedByComposite: 1
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
@@ -22175,14 +22263,16 @@ CompositeCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_GeometryType: 0
   m_GenerationType: 0
   m_EdgeRadius: 0
-  m_ColliderPaths: []
+  m_ColliderPaths:
+  - m_Collider: {fileID: 7864653610848931061}
+    m_ColliderPaths: []
   m_CompositePaths:
     m_Paths: []
   m_VertexDistance: 0.0005
@@ -22269,7 +22359,7 @@ Transform:
   m_Children:
   - {fileID: 6112014432341135773}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &5886521379891868404
 BoxCollider2D:
