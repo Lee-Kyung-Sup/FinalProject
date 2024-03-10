@@ -46,10 +46,10 @@ public class MapEvent : MonoBehaviour
         //위 연출이 끝나면 행동 on
         //all kill or end time
 
-        //카메라 해제
     }
     void ClearEvent()
     {
+        //카메라 돌려주기
         transform.GetChild(0).gameObject.SetActive(false);
         checker.isClear[this.gameObject] = true;
     }

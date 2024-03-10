@@ -25,6 +25,7 @@ public class MapMaker : MonoBehaviour
         Destroy(curMap);
         curMapId = newMap;
         curMap = Instantiate(mapList.mapData[newMap].maps);
+        CameraController.i.SetCameraArea(curMap.GetComponent<BoxCollider2D>());
         potalMaker.MakePotal(mapList.mapData[newMap].poter);
     }
 }
