@@ -2,14 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraController : MonoBehaviour
+public class CameraController : SingletonBase<CameraController>
 {
-    public static CameraController i;
     Camera _camera;
     WaitForSeconds mapMoveDark = new WaitForSeconds(0.2f);
 
-    GameObject player;
-    Vector3 target;
+    Transform target;
+    Vector3 cameraPos;
     float moveSpeed = 4;
 
     BoxCollider2D cameraArea;
@@ -18,22 +17,17 @@ public class CameraController : MonoBehaviour
     float cameraHalfHeight;
     float cameraHalfWidth;
 
-    bool viewMode;
     private void Awake()
     {
-        i = this;
         _camera = GetComponent<Camera>();
     }
     private void Start()
     {
-        player = FindObjectOfType<PlayerController>().gameObject;
+        target = FindObjectOfType<PlayerController>().gameObject.transform;
     }
     private void Update()
     {
-        if (!viewMode)
-        {
-            CameraMove();
-        }
+        CameraMove();
     }
     public void CameraOFFON()
     {
@@ -53,19 +47,15 @@ public class CameraController : MonoBehaviour
         cameraHalfHeight = _camera.orthographicSize;
         cameraHalfWidth = cameraHalfHeight * Screen.width / Screen.height;
     }
-    public void CameraViewZone(Vector3 viewPos)
+    public void CameraViewZone(Transform viewPos)
     {
-        viewMode = true;
-        transform.position = new Vector3(viewPos.x, viewPos.y, transform.position.z);
-    }
-    public void EndViewZone()
-    {
-        viewMode = false;
+        target = viewPos;
+        //transform.position = new Vector3(viewPos.x, viewPos.y, transform.position.z);
     }
     void CameraMove()
     {
-        target.Set(player.transform.position.x, player.transform.position.y, transform.position.z);
-        transform.position = Vector3.Lerp(transform.position, target, moveSpeed * Time.deltaTime);
+        cameraPos.Set(target.position.x, target.position.y, transform.position.z);
+        transform.position = Vector3.Lerp(transform.position, cameraPos, moveSpeed * Time.deltaTime);
         float clampedX = Mathf.Clamp(transform.position.x, minArea.x + cameraHalfWidth, maxArea.x - cameraHalfWidth);
         float clampedY = Mathf.Clamp(transform.position.y, minArea.y + cameraHalfHeight, maxArea.y - cameraHalfHeight);
         transform.position = new Vector3(clampedX, clampedY, transform.position.z);

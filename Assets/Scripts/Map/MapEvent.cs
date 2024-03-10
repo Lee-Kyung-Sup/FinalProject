@@ -8,6 +8,7 @@ public class MapEvent : MonoBehaviour
     MapEventChecker checker;
     BoxCollider2D col;
     LayerMask pLayer;
+    Transform playerTrans;
     private void Start()
     {
         pLayer = LayerMask.GetMask("Player");
@@ -16,7 +17,7 @@ public class MapEvent : MonoBehaviour
 
     private void OnEnable()
     {
-        checker = MapEventChecker.i;
+        checker = MapMaker.Instance.mapEventCheker;
         if (checker.isClear.ContainsKey(this.gameObject))
         {
             return;
@@ -31,6 +32,7 @@ public class MapEvent : MonoBehaviour
             col.enabled = false;
             if (!checker.isClear[this.gameObject])
             {
+                playerTrans = collision.transform;
                 StartEvent();
             }
         }
@@ -41,7 +43,7 @@ public class MapEvent : MonoBehaviour
 
         //플레이어 행동 멈추기
         transform.GetChild(0).gameObject.SetActive(true);//이 컴퍼넌트의 첫 자식은 타일맵임
-        CameraController.i.CameraViewZone(transform.GetChild(1).transform.position);
+        CameraController.Instance.CameraViewZone(transform.GetChild(1).transform);//두 번째 자식은 카메라 고정 위치
         //몬스터 생성
         //위 연출이 끝나면 행동 on
         //all kill or end time
@@ -49,7 +51,7 @@ public class MapEvent : MonoBehaviour
     }
     void ClearEvent()
     {
-        CameraController.i.EndViewZone();
+        CameraController.Instance.CameraViewZone(playerTrans);
         transform.GetChild(0).gameObject.SetActive(false);
         checker.isClear[this.gameObject] = true;
     }
