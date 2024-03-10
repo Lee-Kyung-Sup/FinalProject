@@ -41,7 +41,7 @@ public class MapEvent : MonoBehaviour
 
         //플레이어 행동 멈추기
         transform.GetChild(0).gameObject.SetActive(true);//이 컴퍼넌트의 첫 자식은 타일맵임
-        //카메라 가두기
+        CameraController.i.CameraViewZone(transform.GetChild(1).transform.position);
         //몬스터 생성
         //위 연출이 끝나면 행동 on
         //all kill or end time
@@ -49,7 +49,7 @@ public class MapEvent : MonoBehaviour
     }
     void ClearEvent()
     {
-        //카메라 돌려주기
+        CameraController.i.EndViewZone();
         transform.GetChild(0).gameObject.SetActive(false);
         checker.isClear[this.gameObject] = true;
     }

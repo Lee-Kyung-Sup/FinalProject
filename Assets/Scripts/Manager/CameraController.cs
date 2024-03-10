@@ -17,6 +17,8 @@ public class CameraController : MonoBehaviour
     Vector3 maxArea;
     float cameraHalfHeight;
     float cameraHalfWidth;
+
+    bool viewMode;
     private void Awake()
     {
         i = this;
@@ -28,12 +30,10 @@ public class CameraController : MonoBehaviour
     }
     private void Update()
     {
-        target.Set(player.transform.position.x, player.transform.position.y, transform.position.z);
-        transform.position = Vector3.Lerp(transform.position, target, moveSpeed * Time.deltaTime);
-        float clampedX = Mathf.Clamp(transform.position.x, minArea.x + cameraHalfWidth, maxArea.x - cameraHalfWidth);
-        float clampedY = Mathf.Clamp(transform.position.y, minArea.y + cameraHalfHeight, maxArea.y - cameraHalfHeight);
-        transform.position = new Vector3(clampedX, clampedY, transform.position.z);
-
+        if (!viewMode)
+        {
+            CameraMove();
+        }
     }
     public void CameraOFFON()
     {
@@ -52,5 +52,22 @@ public class CameraController : MonoBehaviour
         maxArea = cameraArea.bounds.max;
         cameraHalfHeight = _camera.orthographicSize;
         cameraHalfWidth = cameraHalfHeight * Screen.width / Screen.height;
+    }
+    public void CameraViewZone(Vector3 viewPos)
+    {
+        viewMode = true;
+        transform.position = new Vector3(viewPos.x, viewPos.y, transform.position.z);
+    }
+    public void EndViewZone()
+    {
+        viewMode = false;
+    }
+    void CameraMove()
+    {
+        target.Set(player.transform.position.x, player.transform.position.y, transform.position.z);
+        transform.position = Vector3.Lerp(transform.position, target, moveSpeed * Time.deltaTime);
+        float clampedX = Mathf.Clamp(transform.position.x, minArea.x + cameraHalfWidth, maxArea.x - cameraHalfWidth);
+        float clampedY = Mathf.Clamp(transform.position.y, minArea.y + cameraHalfHeight, maxArea.y - cameraHalfHeight);
+        transform.position = new Vector3(clampedX, clampedY, transform.position.z);
     }
 }
