@@ -26,7 +26,7 @@ public class CameraController : SingletonBase<CameraController>
     {
         target = FindObjectOfType<PlayerController>().gameObject.transform;
     }
-    private void FixedUpdate()
+    private void Update()
     {
         CameraMove();
     }
@@ -55,7 +55,7 @@ public class CameraController : SingletonBase<CameraController>
     void CameraMove()
     {
         cameraPos.Set(target.position.x, target.position.y, transform.position.z);
-        transform.position = Vector3.Lerp(transform.position, cameraPos, moveSpeed * Time.fixedDeltaTime);
+        transform.position = Vector3.Lerp(transform.position, cameraPos, moveSpeed * Time.deltaTime);
         float clampedX = Mathf.Clamp(transform.position.x, minArea.x + cameraHalfWidth, maxArea.x - cameraHalfWidth);
         float clampedY = Mathf.Clamp(transform.position.y, minArea.y + cameraHalfHeight, maxArea.y - cameraHalfHeight);
         transform.position = new Vector3(clampedX, clampedY, transform.position.z);
