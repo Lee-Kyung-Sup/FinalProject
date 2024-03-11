@@ -16,8 +16,8 @@ public class Potal : MonoBehaviour
     {
         if (isPlayer.value == (isPlayer.value | (1 << collision.gameObject.layer)))
         {
-            CameraController.i.CameraOFFON();
-            MapMaker.i.MakeRoom(goIndex);
+            CameraController.Instance.CameraOFFON();
+            MapMaker.Instance.MakeRoom(goIndex);
             collision.transform.position = targetPos;
         }
     }

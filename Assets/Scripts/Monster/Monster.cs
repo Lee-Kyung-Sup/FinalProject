@@ -21,6 +21,8 @@ public class Monster : MonoBehaviour
     public LayerMask layerMask;
 
 
+
+
     protected void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -143,4 +145,6 @@ public class Monster : MonoBehaviour
         //TakeDamage ( 0 );
         //}
     }
+
+  
 }
