@@ -10,6 +10,8 @@ public class PlayerMovement : MonoBehaviour
     private float speed = 5f;
     [SerializeField]
     private float jumpPower = 5f;
+    [SerializeField]
+    private int addJumpCount = 1; // 추가 점프 가능 횟수
 
     [SerializeField]
     private Transform groundCheck; // 플레이어의 하단에 위치
@@ -22,10 +24,6 @@ public class PlayerMovement : MonoBehaviour
     private int jumpCount = 0; // 점프 횟수
     public bool IsGrounded { get; private set; } = true;
 
-    private bool isDash;
-    private float dashSpeed;
-    public float defaltTime;
-    private float dashTime;
 
     void Awake()
     {
@@ -44,20 +42,23 @@ public class PlayerMovement : MonoBehaviour
 
     public void Move(float inputX)
     {
-        rb.velocity = new Vector2(inputX * speed, rb.velocity.y);
+            rb.velocity = new Vector2(inputX * speed, rb.velocity.y);
 
+            if (inputX == 0 && IsGrounded)
+            {
+                rb.velocity = new Vector2(0, rb.velocity.y); // 입력이 없고 땅에 있을 때는 속도를 0으로 설정
+            }
 
-        if (inputX == 0 && IsGrounded)
-        {
-            rb.velocity = new Vector2(0, rb.velocity.y); // 입력이 없고 땅에 있을 때는 속도를 0으로 설정
-        }
     }
 
-    public void Jump()
+        public void Jump()
     {
-        if (IsGrounded && jumpCount < 2)
+        if (jumpCount < addJumpCount)
         {
+            rb.velocity = new Vector2(rb.velocity.x, 0); // 수직 속도 초기화
+
             rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+
             jumpCount++; // 점프 횟수 증가
             IsGrounded = false;
         }
@@ -65,16 +66,9 @@ public class PlayerMovement : MonoBehaviour
 
     public void Dash()
     {
-        if (dashTime<=0)
-        {
-            isDash = true;
-        }
 
-        if( dashSpeed<=0)
-        {
-
-        }
     }
+
 
 
 

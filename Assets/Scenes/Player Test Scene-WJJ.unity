@@ -269,7 +269,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 8
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -643,7 +643,8 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
-  defaltTime: 0
+  dashSpeed: 30
+  dashTime: 0.1
 --- !u!114 &1643608736
 MonoBehaviour:
   m_ObjectHideFlags: 0
