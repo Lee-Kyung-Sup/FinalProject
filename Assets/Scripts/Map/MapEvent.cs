@@ -40,7 +40,6 @@ public class MapEvent : MonoBehaviour
 
     void StartEvent()
     {
-
         //플레이어 행동 멈추기
         transform.GetChild(0).gameObject.SetActive(true);//이 컴퍼넌트의 첫 자식은 타일맵임
         CameraController.Instance.CameraViewZone(transform.GetChild(1).transform);//두 번째 자식은 카메라 고정 위치
