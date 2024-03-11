@@ -26,10 +26,6 @@ public class CameraController : SingletonBase<CameraController>
     {
         target = FindObjectOfType<PlayerController>().gameObject.transform;
     }
-    private void Update()
-    {
-        //CameraMove();
-    }
     private void FixedUpdate()
     {
         CameraMove();
@@ -55,7 +51,6 @@ public class CameraController : SingletonBase<CameraController>
     public void CameraViewZone(Transform viewPos)
     {
         target = viewPos;
-        //transform.position = new Vector3(viewPos.x, viewPos.y, transform.position.z);
     }
     void CameraMove()
     {
