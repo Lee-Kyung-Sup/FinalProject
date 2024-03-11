@@ -3,27 +3,30 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class MapMaker : MonoBehaviour
+public class MapMaker : SingletonBase<MapMaker>
 {
-    public static MapMaker i;
     [SerializeField]int curMapId = 0;
     GameObject curMap;
-    MapData mapList;
+    MapDatas mapList;
     PotalMaker potalMaker;
-    private void Awake()
+    public MapEventChecker mapEventCheker { get; private set; }
+    protected override void Awake()
     {
-        i = this;
-        mapList = Resources.Load<MapData>("MapDatas");
+        base.Awake();
+        mapList = Resources.Load<MapDatas>("MapDatas");
     }
     private void Start()
     {
+        mapEventCheker = GetComponent<MapEventChecker>();
         potalMaker = GetComponent<PotalMaker>();
         MakeRoom(curMapId);
     }
     public void MakeRoom(int newMap)
     {
         Destroy(curMap);
+        curMapId = newMap;
         curMap = Instantiate(mapList.mapData[newMap].maps);
+        CameraController.Instance.SetCameraArea(curMap.GetComponent<BoxCollider2D>());
         potalMaker.MakePotal(mapList.mapData[newMap].poter);
     }
 }
