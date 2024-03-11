@@ -55,7 +55,10 @@ public class PlayerMovement : MonoBehaviour
     {
         if (jumpCount < addJumpCount)
         {
+            rb.velocity = new Vector2(rb.velocity.x, 0); // 수직 속도 초기화
+
             rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+
             jumpCount++; // 점프 횟수 증가
             IsGrounded = false;
         }
