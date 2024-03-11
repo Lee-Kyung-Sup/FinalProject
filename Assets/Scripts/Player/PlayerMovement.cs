@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-   
+
 
     [SerializeField]
     private float speed = 5f;
@@ -21,12 +21,12 @@ public class PlayerMovement : MonoBehaviour
     private float dashPower = 2f;
     private Rigidbody2D rb;
     private int jumpCount = 0; // 점프 횟수
-    public bool IsGrounded { get; private set; } = true; 
+    public bool IsGrounded { get; private set; } = true;
 
 
     void Awake()
     {
-        rb = GetComponent<Rigidbody2D>(); 
+        rb = GetComponent<Rigidbody2D>();
     }
 
     void Update()
@@ -42,7 +42,14 @@ public class PlayerMovement : MonoBehaviour
 
     public void Move(Vector2 inputVector)
     {
-        rb.velocity = new Vector2(inputVector.x * speed, rb.velocity.y);
+        if (inputVector.x != 0)
+        {
+            rb.velocity = new Vector2(inputVector.x * speed, rb.velocity.y);
+        }
+        else if (IsGrounded)
+        {
+            rb.velocity = new Vector2(0, rb.velocity.y);
+        }
     }
 
     public void Jump()
@@ -60,13 +67,16 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    //private void oncollisionenter2d(collision2d collision)
-    //{
-    //    if (collision.gameobject.comparetag("ground"))
+
+
+
+    //    private void oncollisionenter2d(collision2d collision)
     //    {
-    //        isgrounded = true;
-    //        jumpcount = 0; // 땅에 닿으면 점프 횟수 초기화
-    //        debug.log(" 땅입니다. ");
+    //        if (collision.gameobject.comparetag("ground"))
+    //        {
+    //            isgrounded = true;
+    //            jumpcount = 0; // 땅에 닿으면 점프 횟수 초기화
+    //            debug.log(" 땅입니다. ");
+    //        }
     //    }
-    //}
 }
