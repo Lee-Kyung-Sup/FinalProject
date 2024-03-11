@@ -17,8 +17,8 @@ public class MapMaker : SingletonBase<MapMaker>
     }
     private void Start()
     {
-        mapEventCheker = GetComponent<MapEventChecker>();
-        potalMaker = GetComponent<PotalMaker>();
+        mapEventCheker = gameObject.AddComponent<MapEventChecker>();
+        potalMaker = gameObject.AddComponent<PotalMaker>();
         MakeRoom(curMapId);
     }
     public void MakeRoom(int newMap)
