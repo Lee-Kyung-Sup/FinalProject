@@ -65,7 +65,15 @@ public class PlayerMovement : MonoBehaviour
 
     public void Dash()
     {
+        if (dashTime<=0)
+        {
+            isDash = true;
+        }
 
+        if( dashSpeed<=0)
+        {
+
+        }
     }
 
 
