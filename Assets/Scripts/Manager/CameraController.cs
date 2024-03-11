@@ -28,6 +28,10 @@ public class CameraController : SingletonBase<CameraController>
     }
     private void Update()
     {
+        //CameraMove();
+    }
+    private void FixedUpdate()
+    {
         CameraMove();
     }
     public void CameraOFFON()
@@ -56,7 +60,7 @@ public class CameraController : SingletonBase<CameraController>
     void CameraMove()
     {
         cameraPos.Set(target.position.x, target.position.y, transform.position.z);
-        transform.position = Vector3.Lerp(transform.position, cameraPos, moveSpeed * Time.deltaTime);
+        transform.position = Vector3.Lerp(transform.position, cameraPos, moveSpeed * Time.fixedDeltaTime);
         float clampedX = Mathf.Clamp(transform.position.x, minArea.x + cameraHalfWidth, maxArea.x - cameraHalfWidth);
         float clampedY = Mathf.Clamp(transform.position.y, minArea.y + cameraHalfHeight, maxArea.y - cameraHalfHeight);
         transform.position = new Vector3(clampedX, clampedY, transform.position.z);

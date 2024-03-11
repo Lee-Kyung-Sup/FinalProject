@@ -430,7 +430,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59d06293f199e6e499465c7597fd358b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curMapId: 3
+  curMapId: 5
 --- !u!114 &1322459613
 MonoBehaviour:
   m_ObjectHideFlags: 0
