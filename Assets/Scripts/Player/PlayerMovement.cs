@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-   
+
 
     [SerializeField]
     private float speed = 5f;
@@ -18,31 +18,39 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private LayerMask groundLayer; // 땅으로 간주할 레이어
 
-    private float dashPower = 2f;
     private Rigidbody2D rb;
     private int jumpCount = 0; // 점프 횟수
-    public bool IsGrounded { get; private set; } = true; 
+    public bool IsGrounded { get; private set; } = true;
 
+    private bool isDash;
+    private float dashSpeed;
+    public float defaltTime;
+    private float dashTime;
 
     void Awake()
     {
-        rb = GetComponent<Rigidbody2D>(); 
+        rb = GetComponent<Rigidbody2D>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         // 땅에 닿았는지 확인
         IsGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRange, groundLayer);
         if (IsGrounded)
         {
-            Debug.Log("땅입니다.");
             jumpCount = 0; // 땅에 닿으면 점프 횟수 초기화
         }
     }
 
-    public void Move(Vector2 inputVector)
+    public void Move(float inputX)
     {
-        rb.velocity = new Vector2(inputVector.x * speed, rb.velocity.y);
+        rb.velocity = new Vector2(inputX * speed, rb.velocity.y);
+
+
+        if (inputX == 0 && IsGrounded)
+        {
+            rb.velocity = new Vector2(0, rb.velocity.y); // 입력이 없고 땅에 있을 때는 속도를 0으로 설정
+        }
     }
 
     public void Jump()
@@ -57,16 +65,27 @@ public class PlayerMovement : MonoBehaviour
 
     public void Dash()
     {
+        if (dashTime<=0)
+        {
+            isDash = true;
+        }
 
+        if( dashSpeed<=0)
+        {
+
+        }
     }
 
-    //private void oncollisionenter2d(collision2d collision)
-    //{
-    //    if (collision.gameobject.comparetag("ground"))
+
+
+
+    //    private void oncollisionenter2d(collision2d collision)
     //    {
-    //        isgrounded = true;
-    //        jumpcount = 0; // 땅에 닿으면 점프 횟수 초기화
-    //        debug.log(" 땅입니다. ");
+    //        if (collision.gameobject.comparetag("ground"))
+    //        {
+    //            isgrounded = true;
+    //            jumpcount = 0; // 땅에 닿으면 점프 횟수 초기화
+    //            debug.log(" 땅입니다. ");
+    //        }
     //    }
-    //}
 }

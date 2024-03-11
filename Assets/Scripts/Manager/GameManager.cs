@@ -1,83 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+using UnityEngine.Rendering.Universal;
+using UnityEngine.Tilemaps;
 
 public class GameManager : MonoBehaviour
 {
-    private static GameManager _instance; //싱글톤
-
-    public Transform Player {  get; private set; }
-    [SerializeField] private string playerTag = "Player";
-    //private HealthSystem playerHealthSystem; //슬라이더 적용코드
-
-    [SerializeField] private TextMeshProUGUI waveText;
-    [SerializeField] private SliderJoint2D hpGaugeSlider;
-
-    public static GameManager Instance
-    {
-        get {
-
-            if(_instance == null)
-            {
-                _instance = FindObjectOfType(typeof(GameManager)) as GameManager;
-
-                if(_instance == null)
-                {
-                    GameObject gameManagerObject = new GameObject("GameManager");
-                    _instance = gameManagerObject.AddComponent<GameManager>();
-                }
-
-            }
-            return _instance; }
-    }
-
+    public static GameManager instance;
+    public GameObject player; // 플레이어 오브젝트 위치 추적
     private void Awake()
     {
-        if (_instance == null)
+        if (instance == null)
         {
-            _instance = this;
-            Player = GameObject.FindGameObjectWithTag(playerTag).transform;
-
-            //playerHealthSystem = Player.GetComponent<HealthSystem>();
-            //playerHealthSystem.OnDamage += UpdateHealthUI;
-            //playerHealthSystem.OnHeal += UpdateHealthUI;
-            //playerHealthSystem.OnDeath += GameOver;
-
-            //gameOverUI.SetActive(false);
-
-            //DontDestroyOnLoad(gameObject); //씬 전환시 파괴방지
+            instance = this;
+            DontDestroyOnLoad(gameObject);
         }
-        else
+        else if (instance != this)
         {
-            //Destroy(gameObject);
+            Destroy(gameObject);
         }
     }
 
-    private void UpdateHealthUI()
+    // Start is called before the first frame update
+    void Start()
     {
-        //hpGaugeSlider.value = playerHealthSystem.CurrentHealth / playerHealthSystem.MaxHealth;
+
     }
 
-    private void GameOver()
+    // Update is called once per frame
+    void Update()
     {
-        //gameOverUI.SetActive(true);
-    }
 
-    private void UpdateWaveUI()
-    {
-        //waveText.text;
     }
-
-    public void RestartGame()
+    public Vector3 GetPlayerPosition() // 플레이어 위치 추적용
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        return player.transform.position;
     }
-    public void ExitGame()
-    {
-        Application.Quit();
-    }
-
 }
