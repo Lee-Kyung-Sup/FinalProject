@@ -6,7 +6,7 @@ public class Bunny : Monster
     public Transform[] wallCheck;
     public float Move;
 
-    private void Awake()
+    protected override void Awake()
     {
         base.Awake();
         moveSpeed = 2f;
@@ -40,7 +40,7 @@ public class Bunny : Monster
     }
 
     
-    protected void OnTriggerEnter2D(Collider2D collision)
+    protected override void OnTriggerEnter2D(Collider2D collision)
     {
         base.OnTriggerEnter2D(collision);
         if (collision.transform.tag == ("PlayerHitBox"))

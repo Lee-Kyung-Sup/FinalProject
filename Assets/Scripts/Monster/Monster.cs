@@ -23,7 +23,7 @@ public class Monster : MonoBehaviour
 
 
 
-    protected void Awake()
+    protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         capsuleCollider = GetComponent<CapsuleCollider2D>();
@@ -138,7 +138,7 @@ public class Monster : MonoBehaviour
     }
 
     //특정태그에 따른 충돌 피해
-    protected void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         //if ( collision.transform.CompareTag ( ?? ) )
         //{

@@ -18,7 +18,7 @@ public class Frog : Monster
 
     WaitForSeconds Delay1000 = new WaitForSeconds( 1f );
 
-    private void Awake()
+    protected override void Awake()
     {
         base.Awake();
         moveSpeed = 1f;
