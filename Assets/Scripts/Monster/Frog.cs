@@ -15,6 +15,7 @@ public class Frog : Monster
     public Transform[] wallCheck;
     public Transform genPoint;
     public GameObject Bullet;
+    public float bulletLifetime = 3f;
 
     WaitForSeconds Delay1000 = new WaitForSeconds( 1f );
 
@@ -67,14 +68,14 @@ public class Frog : Monster
                 {
                     MonsterFlip();
                 }
-                //if (canAtk && IsPlayerDir())
-                //{
-                //    if (Vector2.Distance(transform.position, PlayerData.Instance.Player.transform.position) < 15f)
-                //    {
-                //        currentState = State.Attack;
-                //        break;
-                //    }
-                //}
+                if (canAtk && IsPlayerDir())
+                {
+                    if (Vector2.Distance(transform.position, GameManager.instance.GetPlayerPosition()) < 15f)
+                    {
+                        currentState = State.Attack;
+                        break;
+                    }
+                }
             }
             yield return null;
         }
@@ -104,11 +105,20 @@ public class Frog : Monster
         currentState = State.Idle;
     }
 
-    void Fire()
+    public void Fire()
     {
         GameObject bulletClone = Instantiate(Bullet, genPoint.position, transform.rotation);
         bulletClone.GetComponent<Rigidbody2D>().velocity = transform.right * -transform.localScale.x * 10f;
         bulletClone.transform.localScale = new Vector2(transform.localScale.x, 1f);
+
+        StartCoroutine(DestroyBulletAfterTime(bulletClone));
     }
+
+    IEnumerator DestroyBulletAfterTime(GameObject bullet)
+    {
+        yield return new WaitForSeconds(bulletLifetime);
+        Destroy(bullet);
+    }
+
 }
 

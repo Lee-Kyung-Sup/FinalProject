@@ -105,14 +105,14 @@ public class Monster : MonoBehaviour
     }
 
     //플레이어 위치값 받아와서 몬스터 방향조정
-    //protected bool IsPlayerDir()
-    //{
-    //    if (transform.position.x < PlayerData.Instance.Player.transform.position.x ? MonsterDirRight : !MonsterDirRight)
-    //    {
-    //        return true;
-    //    }
-    //    return false;
-    //}
+    protected bool IsPlayerDir()
+    {
+        if (transform.position.x < GameManager.instance.GetPlayerPosition().x ? MonsterDirRight : !MonsterDirRight)
+        {
+            return true;
+        }
+        return false;
+    }
 
     //바닥에 닿았는지 아닌지 체크
     protected void GroundCheck()
