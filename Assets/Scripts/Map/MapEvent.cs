@@ -18,11 +18,11 @@ public class MapEvent : MonoBehaviour
     private void OnEnable()
     {
         checker = MapMaker.Instance.mapEventCheker;
-        if (checker.isClear.ContainsKey(this.gameObject))
+        if (checker.isClear.ContainsKey(transform.parent.name))
         {
             return;
         }
-        checker.isClear.Add(this.gameObject,false);
+        checker.isClear.Add(transform.parent.name, false);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -30,7 +30,7 @@ public class MapEvent : MonoBehaviour
         if (pLayer.value == (pLayer.value |(1<< collision.gameObject.layer)))
         {
             col.enabled = false;
-            if (!checker.isClear[this.gameObject])
+            if (!checker.isClear[transform.parent.name])
             {
                 playerTrans = collision.transform;
                 StartEvent();
@@ -52,6 +52,6 @@ public class MapEvent : MonoBehaviour
     {
         CameraController.Instance.CameraViewZone(playerTrans);
         transform.GetChild(0).gameObject.SetActive(false);
-        checker.isClear[this.gameObject] = true;
+        checker.isClear[transform.parent.name] = true;
     }
 }
