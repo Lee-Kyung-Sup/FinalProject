@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
     private PlayerMovement _playerMovement; // PlayerMovement 스크립트 참조
     private Vector2 _inputVector; // 플레이어의 움직임 입력을 저장하는 벡터
 
+    Keyboard keyboard = Keyboard.current;
+
     void Awake()
     {
         _playerMovement = GetComponent<PlayerMovement>();
@@ -17,9 +19,16 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         _playerMovement.Move(_inputVector.x);
+
+        bool spacePressed = keyboard.spaceKey.isPressed;
+
+        if (spacePressed)
+        {
+            Debug.Log("Space눌리고있어요");
+        }
     }
 
-    public void OnMove(InputAction.CallbackContext context)
+        public void OnMove(InputAction.CallbackContext context)
     {
         // 입력 벡터를 업데이트
         float inputX = context.ReadValue<Vector2>().x;

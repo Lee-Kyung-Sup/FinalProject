@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float jumpPower = 5f;
     [SerializeField]
-    private int addJumpCount = 1; // 추가 점프 가능 횟수
+    private int maxJumpCount = 2; // 최대 점프 가능 횟수
 
     [SerializeField]
     private Transform groundCheck; // 플레이어의 하단에 위치
@@ -22,7 +22,11 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody2D rb;
     private int jumpCount = 0; // 점프 횟수
-    public bool IsGrounded { get; private set; } = true;
+    public bool IsGrounded { get; private set; } = false;
+
+    public float dashSpeed;
+
+
 
 
     void Awake()
@@ -34,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
     {
         // 땅에 닿았는지 확인
         IsGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRange, groundLayer);
-        if (IsGrounded)
+        if (IsGrounded && rb.velocity.y <= 0) // 땅이면서 y축 방향속도가 0일 때(땅에서 정지 상태) 
         {
             jumpCount = 0; // 땅에 닿으면 점프 횟수 초기화
         }
@@ -53,14 +57,13 @@ public class PlayerMovement : MonoBehaviour
 
         public void Jump()
     {
-        if (jumpCount < addJumpCount)
+        if (IsGrounded || jumpCount < maxJumpCount)
         {
             rb.velocity = new Vector2(rb.velocity.x, 0); // 수직 속도 초기화
 
             rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
 
             jumpCount++; // 점프 횟수 증가
-            IsGrounded = false;
         }
     }
 
