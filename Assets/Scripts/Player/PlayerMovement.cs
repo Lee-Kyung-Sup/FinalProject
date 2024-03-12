@@ -46,16 +46,22 @@ public class PlayerMovement : MonoBehaviour
 
     public void Move(float inputX)
     {
-            rb.velocity = new Vector2(inputX * speed, rb.velocity.y);
+        rb.velocity = new Vector2(inputX * speed, rb.velocity.y);
 
-            if (inputX == 0 && IsGrounded)
-            {
-                rb.velocity = new Vector2(0, rb.velocity.y); // 입력이 없고 땅에 있을 때는 속도를 0으로 설정
-            }
+        if (inputX != 0)
+        {
+            transform.localScale = new Vector3(inputX > 0 ? 1 : -1, 1, 1);
+            // 플레이어가 이동하는 방향에 따라 스프라이트 방향 반전 (Scale 조정)
+        }
+
+        if (inputX == 0 && IsGrounded)
+        {
+            rb.velocity = new Vector2(0, rb.velocity.y); // 입력이 없고 땅에 있을 때는 속도를 0으로 설정
+        }
 
     }
 
-        public void Jump()
+    public void Jump()
     {
         if (IsGrounded || jumpCount < maxJumpCount)
         {
