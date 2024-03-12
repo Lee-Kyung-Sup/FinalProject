@@ -18,7 +18,7 @@ public class Monster : MonoBehaviour
     protected CapsuleCollider2D capsuleCollider;
     public GameObject hitBoxCollider;
     public Animator Anim;
-    public LayerMask layerMask;
+    public LayerMask[] layerMask;
 
 
 
@@ -117,14 +117,17 @@ public class Monster : MonoBehaviour
     //바닥에 닿았는지 아닌지 체크
     protected void GroundCheck()
     {
-        if (Physics2D.CapsuleCast(capsuleCollider.bounds.center, capsuleCollider.size, capsuleCollider.direction,
-            0, Vector2.down, 0.05f, layerMask))
+        foreach(LayerMask mask in layerMask)
         {
-            isGround = true;
-        }
-        else
-        {
-            isGround = false;
+            if (Physics2D.CapsuleCast(capsuleCollider.bounds.center, capsuleCollider.size, capsuleCollider.direction,
+            0, Vector2.down, 0.05f, mask))
+            {
+                isGround = true;
+            }
+            else
+            {
+                isGround = false;
+            }
         }
     }
 

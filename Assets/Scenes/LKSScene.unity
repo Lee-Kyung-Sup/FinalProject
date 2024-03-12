@@ -1562,7 +1562,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1734313728}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.84, y: 3.61, z: 0}
+  m_LocalPosition: {x: -2.77, y: 3.74, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1695,8 +1695,10 @@ MonoBehaviour:
   hitBoxCollider: {fileID: 410773487}
   Anim: {fileID: 0}
   layerMask:
-    serializedVersion: 2
+  - serializedVersion: 2
     m_Bits: 512
+  - serializedVersion: 2
+    m_Bits: 256
   wallCheck:
   - {fileID: 597033915}
   - {fileID: 1302780268}
@@ -2168,12 +2170,17 @@ MonoBehaviour:
   hitBoxCollider: {fileID: 2006564454}
   Anim: {fileID: 1858388584}
   layerMask:
-    serializedVersion: 2
+  - serializedVersion: 2
     m_Bits: 512
+  - serializedVersion: 2
+    m_Bits: 256
   currentState: 0
   wallCheck:
   - {fileID: 987029564}
   - {fileID: 766938696}
+  - {fileID: 646913590}
+  - {fileID: 1390944970}
+  - {fileID: 772226645}
   genPoint: {fileID: 1972528935}
   Bullet: {fileID: 502197329397440078, guid: 3ff540c205fd498428596d1f570577a5, type: 3}
   bulletLifetime: 3

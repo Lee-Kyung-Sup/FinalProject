@@ -64,18 +64,22 @@ public class Frog : Monster
             {
                 rb.velocity = new Vector2(-transform.localScale.x * moveSpeed, rb.velocity.y);
 
-                if (Physics2D.OverlapCircle(wallCheck[1].position, 0.01f, layerMask))
+                foreach(LayerMask mask in layerMask)
                 {
-                    MonsterFlip();
-                }
-                if (canAtk && IsPlayerDir())
-                {
-                    if (Vector2.Distance(transform.position, GameManager.instance.GetPlayerPosition()) < 15f)
+                    if (Physics2D.OverlapCircle(wallCheck[1].position, 0.01f, mask))
                     {
-                        currentState = State.Attack;
-                        break;
+                        MonsterFlip();
+                    }
+                    if (canAtk && IsPlayerDir())
+                    {
+                        if (Vector2.Distance(transform.position, GameManager.instance.GetPlayerPosition()) < 15f)
+                        {
+                            currentState = State.Attack;
+                            break;
+                        }
                     }
                 }
+               
             }
             yield return null;
         }
