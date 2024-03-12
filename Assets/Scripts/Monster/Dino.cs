@@ -119,7 +119,7 @@ public class Dino : Monster
         {
             capsuleCollider.offset = capsuleColliderJumpOffset;
             canAtk = false;
-            rb.velocity = new Vector2(-transform.localScale.x * 10f, jumpPower/ 1.25f);
+            rb.velocity = new Vector2(-transform.localScale.x * 14f, jumpPower/ 1.25f);
             MyAnimSetTrigger("Attack");
 
             yield return Delay500;
