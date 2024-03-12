@@ -17,13 +17,6 @@ public class DestroyTile : MonoBehaviour
             return;
         }
     }
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            MakeDot(Vector3.zero);
-        }
-    }
     public void MakeDot(Vector3 pos)
     {
         Vector3Int cellPosition = tile.WorldToCell(pos);
