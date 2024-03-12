@@ -113,3 +113,13 @@ MonoBehaviour:
       potalPos: {x: 0.52, y: -12.95, z: 0}
       targetPos: {x: 21.2, y: 12.86, z: 0}
       potalSize: {x: 4, y: 1}
+    - goMapIndex: 10
+      potalPos: {x: -17.96, y: 0.32, z: 0}
+      targetPos: {x: 15.08, y: -5.96, z: 0}
+      potalSize: {x: 1, y: 4}
+  - maps: {fileID: 5480863785696760177, guid: 1ae9c0f1148df0146841306d73c1bbde, type: 3}
+    poter:
+    - goMapIndex: 9
+      potalPos: {x: 16.87, y: -4.9, z: 0}
+      targetPos: {x: -16.1, y: 0.07, z: 0}
+      potalSize: {x: 1, y: 4}
