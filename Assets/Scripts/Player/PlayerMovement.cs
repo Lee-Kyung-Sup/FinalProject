@@ -96,13 +96,19 @@ public class PlayerMovement : MonoBehaviour
 
     public void Jump()
     {
-        if (IsGrounded || jumpCount < maxJumpCount)
-        {
-            // 땅에 있거나 점프 횟수가 남아있을 때 점프 처리
 
+        if (IsGrounded && jumpCount == 0) // 땅에서 점프
+        {
             rb.velocity = new Vector2(rb.velocity.x, 0); // 수직 속도 초기화
             rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
-            jumpCount++; // 점프 횟수 증가
+            jumpCount++; // 점프 횟수 증가 (첫 번째 점프)
+        }
+        
+        else if (!IsGrounded && jumpCount > 0 && jumpCount < maxJumpCount)  // 공중에서 추가 점프
+        {
+            rb.velocity = new Vector2(rb.velocity.x, 0); // 수직 속도 초기화
+            rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+            jumpCount++; 
         }
     }
 
