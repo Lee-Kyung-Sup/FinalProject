@@ -219,9 +219,19 @@ MonoBehaviour:
       potalPos: {x: 17.08, y: -1.21, z: 0}
       targetPos: {x: -16.89, y: -1, z: 0}
       potalSize: {x: 1, y: 4}
+    - goMapIndex: 20
+      potalPos: {x: -5.03, y: 17.04, z: 0}
+      targetPos: {x: 4.12, y: -8.65, z: 0}
+      potalSize: {x: 7, y: 1}
   - maps: {fileID: 5830012468322922296, guid: e1eafb4ac0b569146996a5ed58b978cc, type: 3}
     poter:
     - goMapIndex: 12
       potalPos: {x: -9.82, y: -9.78, z: 0}
       targetPos: {x: -5.59, y: 10.99, z: 0}
+      potalSize: {x: 5, y: 1}
+  - maps: {fileID: 4036757607324104921, guid: 29dd461f1d7c18c42bad4bd0a684e65a, type: 3}
+    poter:
+    - goMapIndex: 18
+      potalPos: {x: 4.12, y: -10.82, z: 0}
+      targetPos: {x: -5.06, y: 14.92, z: 0}
       potalSize: {x: 5, y: 1}
