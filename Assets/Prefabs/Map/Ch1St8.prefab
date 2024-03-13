@@ -72,7 +72,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -11.494461, y: 2.081675}
+  m_Offset: {x: -11.019608, y: 2.0816746}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -83,7 +83,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 78.996185, y: 24.058601}
+  m_Size: {x: 78.04648, y: 24.058601}
   m_EdgeRadius: 0
 --- !u!1 &1353254132348610797
 GameObject:
@@ -32933,7 +32933,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 136
-      m_TileSpriteIndex: 83
+      m_TileSpriteIndex: 80
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -33893,7 +33893,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 0
-      m_TileSpriteIndex: 80
+      m_TileSpriteIndex: 81
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -33973,7 +33973,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 133
-      m_TileSpriteIndex: 81
+      m_TileSpriteIndex: 82
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -34373,7 +34373,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 130
-      m_TileSpriteIndex: 82
+      m_TileSpriteIndex: 83
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -34383,7 +34383,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 130
-      m_TileSpriteIndex: 82
+      m_TileSpriteIndex: 83
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -34453,7 +34453,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 133
-      m_TileSpriteIndex: 81
+      m_TileSpriteIndex: 82
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -34833,7 +34833,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 130
-      m_TileSpriteIndex: 82
+      m_TileSpriteIndex: 83
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -34843,7 +34843,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 130
-      m_TileSpriteIndex: 82
+      m_TileSpriteIndex: 83
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -36627,13 +36627,13 @@ Tilemap:
   - m_RefCount: 1
     m_Data: {fileID: 1793780143, guid: 03cf6a2aaea7bc24c8b02d2ee3afb5d9, type: 3}
   - m_RefCount: 1
+    m_Data: {fileID: 1789818667, guid: 03cf6a2aaea7bc24c8b02d2ee3afb5d9, type: 3}
+  - m_RefCount: 1
     m_Data: {fileID: 1359735137, guid: 03cf6a2aaea7bc24c8b02d2ee3afb5d9, type: 3}
   - m_RefCount: 2
     m_Data: {fileID: -1632869118, guid: 03cf6a2aaea7bc24c8b02d2ee3afb5d9, type: 3}
   - m_RefCount: 4
     m_Data: {fileID: -1785174122, guid: 03cf6a2aaea7bc24c8b02d2ee3afb5d9, type: 3}
-  - m_RefCount: 1
-    m_Data: {fileID: 1789818667, guid: 03cf6a2aaea7bc24c8b02d2ee3afb5d9, type: 3}
   m_TileMatrixArray:
   - m_RefCount: 1464
     m_Data:
@@ -37610,6 +37610,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7965607283631764}
     m_Modifications:
+    - target: {fileID: -4205762272147490645, guid: 29bcad30ab8ab5541a820fcdc2381471, type: 3}
+      propertyPath: jumpPower
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 1556171655258297842, guid: 29bcad30ab8ab5541a820fcdc2381471, type: 3}
       propertyPath: m_Name
       value: JumpBooster
