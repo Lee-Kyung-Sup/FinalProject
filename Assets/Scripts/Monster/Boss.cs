@@ -37,7 +37,7 @@ public class Boss : MonoBehaviour
         if(enemyName == "B")
         {
             health = 100;
-            Invoke("Stop", 2);
+            Invoke("Stop", 1);
         }
     }
 
@@ -51,7 +51,7 @@ public class Boss : MonoBehaviour
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         rb.velocity = Vector2.zero;
 
-        Invoke("Think", 2);
+        Invoke("Think", 1);
     }
 
     //패턴 케이스 로직
@@ -85,30 +85,30 @@ public class Boss : MonoBehaviour
         GameObject bulletR = objectManager.MakeObj("BulletBossA");
         bulletR.transform.position = transform.position + Vector3.right * 0.3f;
         GameObject bulletRR = objectManager.MakeObj("BulletBossA");
-        bulletR.transform.position = transform.position + Vector3.right * 0.45f;
+        bulletR.transform.position = transform.position + Vector3.right * 0.6f;
         GameObject bulletL = objectManager.MakeObj("BulletBossA");
-        bulletR.transform.position = transform.position + Vector3.right * 0.3f;
+        bulletR.transform.position = transform.position + Vector3.left * 0.3f;
         GameObject bulletLL = objectManager.MakeObj("BulletBossA");
-        bulletR.transform.position = transform.position + Vector3.right * 0.45f;
+        bulletR.transform.position = transform.position + Vector3.left * 0.6f;
 
-        Rigidbody2D rigidR = bulletR.GetComponent<Rigidbody2D>();
-        Rigidbody2D rigidRR = bulletRR.GetComponent<Rigidbody2D>();
-        Rigidbody2D rigidL = bulletL.GetComponent<Rigidbody2D>();
-        Rigidbody2D rigidLL = bulletLL.GetComponent<Rigidbody2D>();
+        Rigidbody2D rbR = bulletR.GetComponent<Rigidbody2D>();
+        Rigidbody2D rbRR = bulletRR.GetComponent<Rigidbody2D>();
+        Rigidbody2D rbL = bulletL.GetComponent<Rigidbody2D>();
+        Rigidbody2D rbLL = bulletLL.GetComponent<Rigidbody2D>();
 
-        rigidR.AddForce(Vector2.down * 8, ForceMode2D.Impulse);
-        rigidRR.AddForce(Vector2.down * 8, ForceMode2D.Impulse);
-        rigidL.AddForce(Vector2.down * 8, ForceMode2D.Impulse);
-        rigidLL.AddForce(Vector2.down * 8, ForceMode2D.Impulse);
+        rbR.AddForce(Vector2.down * 8, ForceMode2D.Impulse);
+        rbRR.AddForce(Vector2.down * 8, ForceMode2D.Impulse);
+        rbL.AddForce(Vector2.down * 8, ForceMode2D.Impulse);
+        rbLL.AddForce(Vector2.down * 8, ForceMode2D.Impulse);
         curPatternCount++;
         //패턴이 maxpattenrcount까지 가지 않았을 때 다시 실행
         if(curPatternCount < maxPatternCount[patternIndex])
         {
-            Invoke("FireForward", 2);
+            Invoke("FireForward", 1);
         }
         else
         {
-            Invoke("Think", 3);
+            Invoke("Think", 2);
         }
         
     }
@@ -116,33 +116,41 @@ public class Boss : MonoBehaviour
     void FireShot()
     {
         //Debug.Log("플레이어 방향으로 샷건.");
-        for(int index = 0; index < 5; index++)
+        for(int index = 0; index < 7; index++)
         {
             GameObject bullet = objectManager.MakeObj("BulletBossA");
             bullet.transform.position = transform.position;
 
-            Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
+            Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
             Vector2 dirVec = player.transform.position - transform.position;
             //위치가 겹치지 않게 랜덤벡터를 더하여 구현
-            Vector2 ranVec = new Vector2(Random.Range(-0.5f, 0.5f), Random.Range(0f, 2f))
-            rigid.AddForce(dirVec.normalized * 3, ForceMode2D.Impulse);
+            Vector2 ranVec = new Vector2(Random.Range(-4f, 4f), Random.Range(0f, 2f));
+            dirVec += ranVec;
+            rb.AddForce(dirVec.normalized * 6, ForceMode2D.Impulse);
         }
 
         curPatternCount++;
         //패턴이 maxpattenrcount까지 가지 않았을 때 다시 실행
         if (curPatternCount < maxPatternCount[patternIndex])
         {
-            Invoke("FireShot", 3.5f);
+            Invoke("FireShot", 2f);
         }
         else
         {
-            Invoke("Think", 3);
+            Invoke("Think", 2);
         }
     }
 
     void FireArc()
     {
-        Debug.Log("부채모양으로 발사.");
+        //Debug.Log("부채모양으로 발사.");
+        GameObject bullet = objectManager.MakeObj("BulletBossA");
+        bullet.transform.position = transform.position;
+        bullet.transform.rotation = Quaternion.identity;
+
+        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+        Vector2 dirVec = new Vector2(Mathf.Sin(Mathf.PI* 10 * curPatternCount / maxPatternCount[patternIndex]), -1);
+        rb.AddForce(dirVec.normalized * 5, ForceMode2D.Impulse);
 
         curPatternCount++;
         //패턴이 maxpattenrcount까지 가지 않았을 때 다시 실행

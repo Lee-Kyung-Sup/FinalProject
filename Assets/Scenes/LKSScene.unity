@@ -3567,6 +3567,14 @@ PrefabInstance:
       propertyPath: objectManager
       value: 
       objectReference: {fileID: 1712780571}
+    - target: {fileID: 1266215942943952612, guid: e9f6260a3fc5198478a65982e7a9409d, type: 3}
+      propertyPath: maxPatternCount.Array.data[0]
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1266215942943952612, guid: e9f6260a3fc5198478a65982e7a9409d, type: 3}
+      propertyPath: maxPatternCount.Array.data[1]
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 2355385529216811586, guid: e9f6260a3fc5198478a65982e7a9409d, type: 3}
       propertyPath: m_Name
       value: Eagle
