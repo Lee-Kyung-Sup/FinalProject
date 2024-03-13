@@ -162,9 +162,6 @@ MonoBehaviour:
   jumpPower: 20
   maxJumpCount: 2
   groundCheck: {fileID: 1540957869}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 256
   dashPower: 70
   dashTime: 0.1
   dashCooldown: 0.5
