@@ -104,9 +104,9 @@ MonoBehaviour:
       targetPos: {x: -21.11, y: -5.99, z: 0}
       potalSize: {x: 1, y: 8}
     - goMapIndex: 9
-      potalPos: {x: 20.8, y: 14.91, z: 0}
-      targetPos: {x: 0.52, y: -10.72, z: 0}
-      potalSize: {x: 6, y: 1}
+      potalPos: {x: 19.74, y: 14.91, z: 0}
+      targetPos: {x: 0.16, y: -10.72, z: 0}
+      potalSize: {x: 8, y: 1}
   - maps: {fileID: 1714167831414751197, guid: 0c79ca007f2a35948a32dad4a307d178, type: 3}
     poter:
     - goMapIndex: 8
@@ -168,6 +168,16 @@ MonoBehaviour:
   - maps: {fileID: 1785634223608494699, guid: 50f722f46e50c304396671789aded2cc, type: 3}
     poter:
     - goMapIndex: 12
-      potalPos: {x: -14.94, y: 3.7, z: 0}
+      potalPos: {x: -14.98, y: 3.34, z: 0}
       targetPos: {x: 23.11, y: -6, z: 0}
       potalSize: {x: 1, y: 10}
+    - goMapIndex: 15
+      potalPos: {x: 7.13, y: -8.95, z: 0}
+      targetPos: {x: 0, y: 12.18, z: 0}
+      potalSize: {x: 12, y: 1}
+  - maps: {fileID: 1567239557922277890, guid: 55b53b84d20d327449641d7e5c60a9b7, type: 3}
+    poter:
+    - goMapIndex: 7
+      potalPos: {x: 0, y: -10.12, z: 0}
+      targetPos: {x: 0, y: 9.86, z: 0}
+      potalSize: {x: 25, y: 1}
