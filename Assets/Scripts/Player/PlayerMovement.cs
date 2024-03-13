@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpPower = 5f;
     [SerializeField] private int maxJumpCount = 2; // 최대 점프 가능 횟수
     [SerializeField] private Transform groundCheck; // 플레이어의 하단에 위치
-    [SerializeField] private LayerMask groundLayer; // 땅으로 간주할 레이어
+    private LayerMask groundLayer; // 땅으로 간주할 레이어
     
     private float groundCheckRange = 0.3f; // 땅 감지 범위
     private int jumpCount = 0; // 점프 횟수
@@ -32,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         originalGravityScale = rb.gravityScale;
+        groundLayer = LayerMask.GetMask("Ground","Platform");
     }
 
     private void Update()
