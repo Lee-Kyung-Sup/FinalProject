@@ -99,11 +99,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private bool IsPlatformLayer()
-    {
-        RaycastHit2D hit = Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckRange, platformLayer);
-        return hit.collider != null;
-    }
+
 
     public void Jump()
     {
@@ -166,6 +162,11 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
+    private bool IsPlatformLayer()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckRange, platformLayer);
+        return hit.collider != null;
+    }
 
     public void DownPlatform()
     {
