@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 617f2a2815f938644b38605a2d606c46, type: 3}
-  m_Name: Gun
+  m_Name: Helm
   m_EditorClassIdentifier: 
-  displayName: "\uCD1D"
-  description: "\uAD34\uBB3C\uC744 \uC218\uD655\uD560\uB54C \uC0AC\uC6A9\uD569\uB2C8\uB2E4."
+  displayName: "\uC0BC\uB69D"
+  description: "\uB3D9\uBC29\uC5D0\uC11C \uC628 \uC774 \uAE30\uBB3C\uC740 \uADFC\uAC70\uB294
+    \uC5C6\uC9C0\uB9CC \uD798\uC774 \uC19F\uAD6C\uCE58\uAC8C \uD569\uB2C8\uB2E4."
   type: 1
-  icon: {fileID: 21300000, guid: 556def944fd02f54c98ac89a1fd817a7, type: 3}
+  icon: {fileID: 21300000, guid: b53db54545fcd5747b7ba5e450c07baf, type: 3}
   dropPrefab: {fileID: 0}
   canStack: 0
   maxStackAmount: 0

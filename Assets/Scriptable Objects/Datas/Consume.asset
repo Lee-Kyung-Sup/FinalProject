@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 617f2a2815f938644b38605a2d606c46, type: 3}
   m_Name: Consume
   m_EditorClassIdentifier: 
-  displayName: 
-  description: 
-  type: 0
+  displayName: "\uD3EC\uC158"
+  description: "\uCCB4\uB825\uACFC \uAC8C\uC774\uC9C0\uB97C \uD68C\uBCF5\uD569\uB2C8\uB2E4."
+  type: 2
   icon: {fileID: 0}
   dropPrefab: {fileID: 0}
-  canStack: 0
-  maxStackAmount: 0
+  canStack: 1
+  maxStackAmount: 12
   consumables: []
