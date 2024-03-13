@@ -18,7 +18,7 @@ public class MovePlatform : MonoBehaviour
         pLayer = LayerMask.GetMask("Player");
         mLayer = LayerMask.GetMask("Monster");
     }
-    private void FixedUpdate()
+    private void Update()
     {
         if (isUpDown)
         {
@@ -42,11 +42,11 @@ public class MovePlatform : MonoBehaviour
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (pLayer.value == (pLayer.value | (1 << collision.gameObject.layer)))
+        if (transform.root.gameObject.activeInHierarchy && pLayer.value == (pLayer.value | (1 << collision.gameObject.layer)))
         {
             collision.transform.SetParent(null);
         }
-        else if (mLayer.value == (mLayer.value | (1 << collision.gameObject.layer)))
+        else if (transform.root.gameObject.activeInHierarchy && mLayer.value == (mLayer.value | (1 << collision.gameObject.layer)))
         {
             collision.transform.SetParent(null);
         }
