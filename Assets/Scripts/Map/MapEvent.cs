@@ -58,7 +58,7 @@ public class MapEvent : MonoBehaviour
     }
     void StartEvent()
     {
-        playerAction.enabled = false;
+        playerAction.enabled = false;//알수 없지만 페이즈 설정을 하지 않으면 이곳에서 멈춤
         transform.GetChild(0).gameObject.SetActive(true);//이 컴퍼넌트의 첫 자식은 타일맵임
         CameraController.Instance.CameraViewZone(transform.GetChild(1).transform);//두 번째 자식은 카메라 고정 위치
         StartCoroutine(Eventing());
@@ -71,7 +71,7 @@ public class MapEvent : MonoBehaviour
             {
                 CallMonster(mapPhase[i].summonMonster[p], mapPhase[i].summonPos[p]);
             }
-            //연출이 끝날때까지 기달
+            //가두기 및 소환 연출이 끝날때까지 기달
             playerAction.enabled = true;
             yield return isAllDieMonster;
         }
@@ -79,6 +79,7 @@ public class MapEvent : MonoBehaviour
     }
     void CallMonster(GameObject m,Vector3 tra)
     {
+        //종료 연출
         monsters++;
         GameObject go = Instantiate(m, tra, Quaternion.identity);
         go.AddComponent<DieCount>().mapEvent = this;
