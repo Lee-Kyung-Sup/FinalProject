@@ -263,7 +263,7 @@ GameObject:
   m_Component:
   - component: {fileID: 211540578}
   - component: {fileID: 211540579}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MainSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -417,7 +417,7 @@ GameObject:
   - component: {fileID: 549985913}
   - component: {fileID: 549985912}
   - component: {fileID: 549985915}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -818,7 +818,7 @@ GameObject:
   - component: {fileID: 1643608736}
   - component: {fileID: 1643608735}
   - component: {fileID: 1643608742}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
@@ -1357,7 +1357,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1954396714}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GroundChecking
   m_TagString: Untagged
   m_Icon: {fileID: 0}
