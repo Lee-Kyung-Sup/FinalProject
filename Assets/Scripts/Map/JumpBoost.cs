@@ -20,7 +20,7 @@ public class JumpBoost : MonoBehaviour
                 pRigi = collision.gameObject.GetComponent<Rigidbody2D>();
             }
             pRigi.velocity = Vector2.zero;
-            pRigi.AddForce(Vector2.up * jumpPower,ForceMode2D.Impulse);
+            pRigi.AddForce(transform.up * jumpPower,ForceMode2D.Impulse);
         }
     }
 }
