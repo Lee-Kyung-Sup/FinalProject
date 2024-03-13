@@ -37,10 +37,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (isDashing)
-        {
-            return; // 대쉬 중에 다른 입력 x
-        }
+        //if (isDashing)
+        //{
+        //    return; // 대쉬 중에 다른 입력 x
+        //}
     }
 
     void FixedUpdate()
@@ -97,8 +97,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Jump()
     {
-
-        if (IsGrounded && jumpCount == 0) // 땅에서 점프
+        if ((IsGrounded || isDashing) && jumpCount < maxJumpCount) // 땅에서 점프
         {
             rb.velocity = new Vector2(rb.velocity.x, 0); // 수직 속도 초기화
             rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
@@ -122,6 +121,7 @@ public class PlayerMovement : MonoBehaviour
             canDash = false;
             isDashCooldownComplete = false;  // 쿨다운 재시작
             tr.emitting = true; // 대쉬 효과 
+            rb.velocity = new Vector2(transform.localScale.x * dashPower, rb.velocity.y);
             StartCoroutine(DashCooldown()); // 대쉬 쿨다운 코루틴
         }
     }
