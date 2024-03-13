@@ -11,26 +11,11 @@ public class PlayerAttacks : MonoBehaviour
     private float lastFireTime = 0; // 마지막 발사 시간
     
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-
-
-    }
-
     public void Fire()
     {
 
         if (Time.time - lastFireTime >= fireDelay)
         {
-            Debug.Log("발사");
             Vector3 direction = transform.right * transform.localScale.x; // 플레이어의 방향에 따라 발사 방향 결정
             GameObject bullet = Instantiate(bulletPref, transform.position + direction, Quaternion.identity);
 
