@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 
 {
     private PlayerMovement _playerMovement; // PlayerMovement 스크립트 참조
+    private PlayerAttacks _playerAttacks;
     private Vector2 _inputVector; // 플레이어의 움직임 입력을 저장하는 벡터
 
     //Keyboard keyboard = Keyboard.current;
@@ -14,6 +15,7 @@ public class PlayerController : MonoBehaviour
     void Awake()
     {
         _playerMovement = GetComponent<PlayerMovement>();
+        _playerAttacks = GetComponent<PlayerAttacks>();
     }
 
     void FixedUpdate()
@@ -46,7 +48,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnDash(InputAction.CallbackContext context)
     {
-        if (context.performed) // 점프 버튼이 눌렸을 때만
+        if (context.performed) // 대시 버튼이 눌렸을 때만
         {
             _playerMovement.Dash();
         }
@@ -55,7 +57,10 @@ public class PlayerController : MonoBehaviour
 
     public void OnFire(InputAction.CallbackContext context)
     {
-        
+        if (context.performed) // 발사 버튼이 눌렸을 때만
+        {
+            _playerAttacks.Fire();
+        }
     }
 
 
