@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     private PlayerAttacks _playerAttacks;
     private Vector2 _inputVector; // 플레이어의 움직임 입력을 저장하는 벡터
 
-    //Keyboard keyboard = Keyboard.current;
+
 
     void Awake()
     {
@@ -22,15 +22,9 @@ public class PlayerController : MonoBehaviour
     {
         _playerMovement.Move(_inputVector.x);
 
-        //bool spacePressed = keyboard.spaceKey.isPressed;
-
-        //if (spacePressed)
-        //{
-        //    Debug.Log("Space 눌리고있어요");
-        //}
     }
 
-        public void OnMove(InputAction.CallbackContext context)
+    public void OnMove(InputAction.CallbackContext context)
     {
         // 입력 벡터를 업데이트
         float inputX = context.ReadValue<Vector2>().x;
@@ -39,9 +33,8 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (context.performed) // 점프 버튼이 눌렸을 때만
+        if (context.performed)
         {
-            Debug.Log("점프!");
             _playerMovement.Jump();
         }
     }
@@ -69,14 +62,15 @@ public class PlayerController : MonoBehaviour
 
     }
 
-
-
-
-
     public void OnInventory(InputAction.CallbackContext context)
     {
 
     }
 
+    public void OnDown(InputAction.CallbackContext context)
+    {
+        bool isPressing = context.ReadValue<float>() > 0;
+        _playerMovement.SetIsPressingDown(isPressing);
+    }
 
 }

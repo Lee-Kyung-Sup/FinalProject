@@ -842,9 +842,6 @@ MonoBehaviour:
   jumpPower: 20
   maxJumpCount: 2
   groundCheck: {fileID: 1954396714}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 256
   dashPower: 70
   dashTime: 0.1
   dashCooldown: 0.5
@@ -984,6 +981,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 86f49578-74a2-41e6-a1bd-136dd9fb92ee
     m_ActionName: Player/Inventory[/Keyboard/tab]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1643608736}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnDown
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 110a9ca5-b90f-4390-974a-682d96a1728f
+    m_ActionName: Player/Down[/Keyboard/s]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -1170,6 +1183,71 @@ CircleCollider2D:
   m_Offset: {x: -0.1, y: -0.1}
   serializedVersion: 2
   m_Radius: 0.8
+--- !u!1001 &1913970486
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1913259181736246032, guid: a63bf4f81c2d6ca4394852af2bfbb2de, type: 3}
+      propertyPath: m_Name
+      value: MovePlatform 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2615808427967700961, guid: a63bf4f81c2d6ca4394852af2bfbb2de, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2615808427967700961, guid: a63bf4f81c2d6ca4394852af2bfbb2de, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.72
+      objectReference: {fileID: 0}
+    - target: {fileID: 2615808427967700961, guid: a63bf4f81c2d6ca4394852af2bfbb2de, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 7.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2615808427967700961, guid: a63bf4f81c2d6ca4394852af2bfbb2de, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2615808427967700961, guid: a63bf4f81c2d6ca4394852af2bfbb2de, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2615808427967700961, guid: a63bf4f81c2d6ca4394852af2bfbb2de, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2615808427967700961, guid: a63bf4f81c2d6ca4394852af2bfbb2de, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2615808427967700961, guid: a63bf4f81c2d6ca4394852af2bfbb2de, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2615808427967700961, guid: a63bf4f81c2d6ca4394852af2bfbb2de, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2615808427967700961, guid: a63bf4f81c2d6ca4394852af2bfbb2de, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2615808427967700961, guid: a63bf4f81c2d6ca4394852af2bfbb2de, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8435021216814041710, guid: a63bf4f81c2d6ca4394852af2bfbb2de, type: 3}
+      propertyPath: isUpDown
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a63bf4f81c2d6ca4394852af2bfbb2de, type: 3}
 --- !u!1 &1926145709
 GameObject:
   m_ObjectHideFlags: 0
