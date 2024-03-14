@@ -14,7 +14,7 @@ public class ObjectManager : MonoBehaviour
     void Awake()
     {
         enemyB = new GameObject[1];
-        bulletBossA = new GameObject[100];
+        bulletBossA = new GameObject[500];
 
         Generate();
     }
