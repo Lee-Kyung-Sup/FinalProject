@@ -7,7 +7,7 @@ public class Piston : CharacterEnterTrigger
     float upSpeed;
     float downSpeed;
     Rigidbody2D rigi;
-    List<Collider2D> Gfour = new List<Collider2D>();
+    List<Collider2D> Gfour = new List<Collider2D>(5);
     protected override void Awake()
     {
         base.Awake();
@@ -25,9 +25,11 @@ public class Piston : CharacterEnterTrigger
         }
         if (LayerMask.GetMask("Ground") == (LayerMask.GetMask("Ground") | (1 << collision.gameObject.layer)))
         {
-            // 최대 체력을 또한 인터페이스를 쓰는 수 밖에 없는건가? 다른 방법은?
-
-            //Gfour.getcom<Interface>().dmg(// maxhp * (3 / 5));
+            foreach (Collider2D item in Gfour)
+            {
+                //최대 체력을 쉽게 찾을 방법? 인터페이스로 똑같이?
+                //  item.getcom<dmg>().GiveDmg( 최대 체력 비례 );
+            }
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
