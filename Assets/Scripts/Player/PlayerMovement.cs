@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour,IsGroundable
 {
     private Rigidbody2D rb;
     [SerializeField] private TrailRenderer tr; // 대시 효과용 TrailRenderer
@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
 
     private float groundCheckRange = 0.3f; // 땅 감지 범위
     private int jumpCount = 0; // 점프 횟수
-    public bool IsGrounded { get; private set; } = false;
+    private bool _isGrounded = false;
 
     private bool canDash = true; // 대쉬 가능한지
     private bool isDashing; // 현재 대쉬 중인지
@@ -50,8 +50,8 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         RaycastHit2D hit = Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckRange, groundLayer);
-        IsGrounded = hit.collider != null;
-        if (IsGrounded)
+        _isGrounded = hit.collider != null;
+        if (_isGrounded)
         {
             if (!canDash && isDashCooldownComplete)
             {
@@ -91,7 +91,7 @@ public class PlayerMovement : MonoBehaviour
                 transform.localScale = new Vector3(inputX > 0 ? 1 : -1, 1, 1);
             }
 
-            if (inputX == 0 && IsGrounded)
+            if (inputX == 0 && _isGrounded)
             {
                 // 정지 상태
                 rb.velocity = new Vector2(0, rb.velocity.y);
@@ -109,14 +109,14 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        if ((IsGrounded || isDashing) && jumpCount < maxJumpCount) // 땅에서 점프
+        if ((_isGrounded || isDashing) && jumpCount < maxJumpCount) // 땅에서 점프
         {
             rb.velocity = new Vector2(rb.velocity.x, 0); // 수직 속도 초기화
             rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
             jumpCount++; // 점프 횟수 증가 (첫 번째 점프)
         }
 
-        else if (!IsGrounded && jumpCount > 0 && jumpCount < maxJumpCount)  // 공중에서 추가 점프
+        else if (!_isGrounded && jumpCount > 0 && jumpCount < maxJumpCount)  // 공중에서 추가 점프
         {
             rb.velocity = new Vector2(rb.velocity.x, 0); // 수직 속도 초기화
             rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
@@ -151,7 +151,7 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(dashCooldown);
 
         isDashCooldownComplete = true;  // 쿨다운 완료
-        if (IsGrounded)
+        if (_isGrounded)
         {
             canDash = true; // 땅에 있으면 대쉬 다시 가능
         }
@@ -189,5 +189,10 @@ public class PlayerMovement : MonoBehaviour
         {
             collider.enabled = true;
         }
+    }
+
+    public bool IsGround()
+    {
+        return _isGrounded;
     }
 }

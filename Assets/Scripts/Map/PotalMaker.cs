@@ -9,10 +9,8 @@ public class PotalMaker : MonoBehaviour
     List<GameObject> potals = new List<GameObject>(5);
     public void MakePotal(Poter[] poters)
     {
-        foreach (var item in potals)
-        {
-            Destroy(item);
-        }
+        DestroyPotals();
+        potals.Clear();
         for (int i = 0; i < poters.Length; i++)
         {
             GameObject go = new GameObject();
@@ -22,5 +20,13 @@ public class PotalMaker : MonoBehaviour
             go.GetComponent<Potal>().targetPos = poters[i].targetPos;
             potals.Add(go);
         }
+    }
+    void DestroyPotals()
+    {
+        foreach (var item in potals)
+        {
+            Destroy(item);
+        }
+        potals.Clear();
     }
 }
