@@ -52,7 +52,7 @@ public class CameraController : SingletonBase<CameraController>
     {
         target = viewPos;
     }
-    void CameraMove()
+    void CameraMove() //타겟과 멀리 떨어졌을때 가속 need
     {
         cameraPos.Set(target.position.x, target.position.y, transform.position.z);
         transform.position = Vector3.Lerp(transform.position, cameraPos, moveSpeed * Time.deltaTime);
