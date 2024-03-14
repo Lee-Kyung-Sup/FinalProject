@@ -71,21 +71,24 @@ public class MapEvent : MonoBehaviour
             {
                 CallMonster(mapPhase[i].summonMonster[p], mapPhase[i].summonPos[p]);
             }
-            //가두기 및 소환 연출이 끝날때까지 기달
-            playerAction.enabled = true;
+            if (i == 0)
+            {
+                //벽 및 몬스터 생성 연출 종료후
+                playerAction.enabled = true;
+            }
             yield return isAllDieMonster;
         }
         ClearEvent();
     }
     void CallMonster(GameObject m,Vector3 tra)
     {
-        //종료 연출
         monsters++;
         GameObject go = Instantiate(m, tra, Quaternion.identity);
         go.AddComponent<DieCount>().mapEvent = this;
     }
     void ClearEvent()
     {
+        //종료 연출
         CameraController.Instance.CameraViewZone(playerTrans);
         transform.GetChild(0).gameObject.SetActive(false);
         checker.isClear[transform.parent.name] = true;

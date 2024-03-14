@@ -24,7 +24,7 @@ public class CameraController : SingletonBase<CameraController>
     }
     private void Start()
     {
-        target = FindObjectOfType<PlayerController>().gameObject.transform;
+        target = FindObjectOfType<PlayerController>().gameObject.transform; //이후 게임 매니저로부터 모든게 만들어질때 같이 할당
     }
     private void Update()
     {
