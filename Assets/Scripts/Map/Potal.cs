@@ -14,7 +14,7 @@ public class Potal : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (isPlayer.value == (isPlayer.value | (1 << collision.gameObject.layer)))
+        if (isPlayer.value == (isPlayer.value | (1 << collision.gameObject.layer))) //ÃÑ¾Ë ¹× ÀÌÆåÆ® Áö¿ì±â need
         {
             CameraController.Instance.CameraOFFON();
             MapMaker.Instance.MakeRoom(goIndex);

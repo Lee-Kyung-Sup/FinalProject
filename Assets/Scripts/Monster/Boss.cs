@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Boss : MonoBehaviour
@@ -58,7 +59,24 @@ public class Boss : MonoBehaviour
     void Think()
     {
         //현재 패턴이 패턴 갯수를 넘기면 0으로 돌아오는 로직
-        patternIndex = patternIndex == 3 ? 0 : patternIndex + 1;
+        //patternIndex = patternIndex == 3 ? 0 : patternIndex + 1;
+
+        if (health > 70)
+        {
+            patternIndex = 0; // 체력이 80 이상이면 패턴 0 실행
+        }
+        else if (health > 40)
+        {
+            patternIndex = 1; // 체력이 50 이상이면 패턴 1 실행
+        }
+        else if(health > 10)
+        {
+            patternIndex = 2; // 체력이 15이상이면 패턴 2 실행
+        }
+        else
+        {
+            patternIndex = 3; // 나머지 패턴 실행
+        }
         curPatternCount = 0;
 
         switch(patternIndex)
@@ -83,23 +101,19 @@ public class Boss : MonoBehaviour
     {
         //Debug.Log("앞으로 4발 발사.");
         GameObject bulletR = objectManager.MakeObj("BulletBossA");
-        bulletR.transform.position = transform.position + Vector3.right * 0.3f;
-        GameObject bulletRR = objectManager.MakeObj("BulletBossA");
-        bulletR.transform.position = transform.position + Vector3.right * 0.6f;
-        GameObject bulletL = objectManager.MakeObj("BulletBossA");
-        bulletR.transform.position = transform.position + Vector3.left * 0.3f;
-        GameObject bulletLL = objectManager.MakeObj("BulletBossA");
-        bulletR.transform.position = transform.position + Vector3.left * 0.6f;
+        bulletR.transform.position = transform.position + Vector3.right * 0.1f;
+        //GameObject bulletL = objectManager.MakeObj("BulletBossA");
+        //bulletR.transform.position = transform.position + Vector3.right * 0.1f;
+  
 
         Rigidbody2D rbR = bulletR.GetComponent<Rigidbody2D>();
-        Rigidbody2D rbRR = bulletRR.GetComponent<Rigidbody2D>();
-        Rigidbody2D rbL = bulletL.GetComponent<Rigidbody2D>();
-        Rigidbody2D rbLL = bulletLL.GetComponent<Rigidbody2D>();
+        //Rigidbody2D rbL = bulletL.GetComponent<Rigidbody2D>();
+        
+        Vector2 dirVec = player.transform.position - transform.position;
 
-        rbR.AddForce(Vector2.down * 8, ForceMode2D.Impulse);
-        rbRR.AddForce(Vector2.down * 8, ForceMode2D.Impulse);
-        rbL.AddForce(Vector2.down * 8, ForceMode2D.Impulse);
-        rbLL.AddForce(Vector2.down * 8, ForceMode2D.Impulse);
+        rbR.AddForce(dirVec * 3, ForceMode2D.Impulse);
+        //rbL.AddForce(dirVec * 3, ForceMode2D.Impulse);
+      
         curPatternCount++;
         //패턴이 maxpattenrcount까지 가지 않았을 때 다시 실행
         if(curPatternCount < maxPatternCount[patternIndex])
@@ -149,7 +163,9 @@ public class Boss : MonoBehaviour
         bullet.transform.rotation = Quaternion.identity;
 
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+        //Vector2 dirVec = player.transform.position - transform.position;
         Vector2 dirVec = new Vector2(Mathf.Sin(Mathf.PI* 10 * curPatternCount / maxPatternCount[patternIndex]), -1);
+        //dirVec += ranVec;
         rb.AddForce(dirVec.normalized * 5, ForceMode2D.Impulse);
 
         curPatternCount++;
@@ -160,14 +176,28 @@ public class Boss : MonoBehaviour
         }
         else
         {
-            Invoke("Think", 3);
+            Invoke("Think", 2);
         }
     }
 
     void FireAround()
     {
-        Debug.Log("원 상태로 전체 공격.");
+        //Debug.Log("원 상태로 전체 공격.");
+        int roundNumA = 30;
+        int roundNumB = 20;
+        int roundNum = curPatternCount % 2 == 0 ? roundNumA : roundNumB;
+        
+        for(int index=0; index < roundNum; index++)
+        {
+            GameObject bullet = objectManager.MakeObj("BulletBossA");
+            bullet.transform.position = transform.position;
+            bullet.transform.rotation = Quaternion.identity;
 
+            Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+            Vector2 dirVec = new Vector2(Mathf.Sin(Mathf.PI * 2 * index/roundNum), Mathf.Cos(Mathf.PI * 2 * index / roundNum));
+            rb.AddForce(dirVec.normalized * 4, ForceMode2D.Impulse);
+        }
+       
         curPatternCount++;
         //패턴이 maxpattenrcount까지 가지 않았을 때 다시 실행
         if (curPatternCount < maxPatternCount[patternIndex])
@@ -176,16 +206,36 @@ public class Boss : MonoBehaviour
         }
         else
         {
-            Invoke("Think", 3);
+            Invoke("Think", 2);
         }
     }
 
+    private Vector2 _targetPosition; // 목표 위치
+    public float moveSpeed = 3f; // 이동 속도
+    void Start()
+    {
+        if(enemyName == "B")
+        {
+            InvokeRepeating("Patrol", 1f, 5f);
+        }
+    }
+
+    void Patrol()
+    {
+        float randomX = Random.Range(-7f, 4f); // 랜덤한 x 좌표 생성
+        float randomY = Random.Range(-3f, 4f); // 랜덤한 y 좌표 생성
+        _targetPosition = new Vector2(randomX, randomY); // 랜덤한 위치 벡터 생성
+    }
     void Update()
     {
         if (enemyName == "B")
+        {
+            transform.position = Vector2.Lerp(transform.position, _targetPosition, moveSpeed * Time.deltaTime);
+        }
             return;
-    }
 
+    }
+   
     public void OnHit(int dmg)
     {
         if(health <= 0)

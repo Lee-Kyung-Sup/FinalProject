@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class Bunny : Monster
 {
     public Transform[] wallCheck;
-    public float Move;
+    public float move;
 
     protected override void Awake()
     {
@@ -18,8 +18,8 @@ public class Bunny : Monster
     {
         if (!isHit)
         {
-            Move = -transform.localScale.x * moveSpeed;
-            rb.velocity = new Vector2(Move, rb.velocity.y); //몬스터 기본 움직임
+            move = -transform.localScale.x * moveSpeed;
+            rb.velocity = new Vector2(move, rb.velocity.y); //몬스터 기본 움직임
 
 
             if (!Physics2D.OverlapCircle(wallCheck[0].position, 0.35f, layerMask[1]) &&  //벽체크 0번 플랫폼이없고
