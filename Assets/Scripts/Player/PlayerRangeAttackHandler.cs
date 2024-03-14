@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerBulletController : MonoBehaviour
+public class PlayerRangeAttackHandler : MonoBehaviour
 {
     [SerializeField] private GameObject RangeHitEffect; // 히트 효과 프리팹
 

@@ -9,7 +9,18 @@ public class PlayerAttacks : MonoBehaviour
     [SerializeField] private float firePower = 15f; // 발사 힘
     [SerializeField] private float fireDelay = 0.1f; // 발사 딜레이
     private float lastFireTime = 0; // 마지막 발사 시간
-    
+
+
+    [SerializeField] private Collider2D meleeAttackCollider;
+    [SerializeField] private SpriteRenderer meleeAttackSprite;
+    [SerializeField] private Animator meleeAttackAnimator;
+
+    private void Start()
+    {
+        meleeAttackCollider.enabled = false;
+        meleeAttackSprite.enabled = false;
+    }
+
 
     public void Fire()
     {
@@ -29,4 +40,18 @@ public class PlayerAttacks : MonoBehaviour
         }
     }
 
+    public void Attack()
+    {
+        meleeAttackCollider.enabled = true;
+        meleeAttackSprite.enabled = true;
+        meleeAttackAnimator.SetTrigger("Attack");
+        Invoke("DisableAttack", 0.25f);
+    }
+
+    private void DisableAttack()
+    {
+        meleeAttackCollider.enabled = false;
+        meleeAttackSprite.enabled = false;
+        meleeAttackAnimator.ResetTrigger("Attack");
+    }
 }

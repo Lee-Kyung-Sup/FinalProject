@@ -56,6 +56,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void OnAttack(InputAction.CallbackContext context) // 근접 공격 임시
+    {
+        if (context.performed) 
+        {
+            _playerAttacks.Attack();
+        }
+    }
+
 
     public void OnInteraction(InputAction.CallbackContext context)
     {
