@@ -13,7 +13,7 @@ public interface IInteractable
 
 public class InteractionManager : MonoBehaviour
 {
-    public float checkRate = 0.05f;
+    public float checkRate = 0.001f;
     private float lastCheckTime;
     public float maxCheckDistance;
     public LayerMask layerMask;
@@ -23,7 +23,7 @@ public class InteractionManager : MonoBehaviour
 
     public TextMeshProUGUI promptText;
     private Camera camera;
-
+    Vector3 MousePosition;
 
     // Start is called before the first frame update
     void Start()
@@ -38,11 +38,14 @@ public class InteractionManager : MonoBehaviour
         {
             lastCheckTime = Time.time;
 
-            Ray ray = camera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
-            RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit, maxCheckDistance, layerMask))
+            if (Input.GetMouseButton(0))
             {
+                MousePosition =Input.mousePosition;
+                MousePosition = camera.ScreenToWorldPoint(MousePosition);
+
+                RaycastHit2D hit = Physics2D.Raycast(MousePosition, transform.forward, maxCheckDistance, layerMask);
+
                 if (hit.collider.gameObject != curInteractGameobject)
                 {
                     curInteractGameobject = hit.collider.gameObject;
@@ -56,6 +59,7 @@ public class InteractionManager : MonoBehaviour
                 curInteractable = null;
                 promptText.gameObject.SetActive(false);
             }
+
         }
     }
 
