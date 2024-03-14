@@ -13,7 +13,7 @@ public class MapMaker : SingletonBase<MapMaker>
     protected override void Awake()
     {
         base.Awake();
-        mapList = Resources.Load<MapDatas>("MapDatas");
+        mapList = Resources.Load<MapDatas>("Ch1MapDatas");
     }
     private void Start()
     {
