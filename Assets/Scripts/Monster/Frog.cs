@@ -14,7 +14,7 @@ public class Frog : Monster
 
     public Transform[] wallCheck;
     public Transform genPoint;
-    public GameObject Bullet;
+    public GameObject bullet;
     public float bulletLifetime = 3f;
 
     WaitForSeconds Delay1000 = new WaitForSeconds( 1f );
@@ -111,7 +111,7 @@ public class Frog : Monster
 
     public void Fire()
     {
-        GameObject bulletClone = Instantiate(Bullet, genPoint.position, transform.rotation);
+        GameObject bulletClone = Instantiate(bullet, genPoint.position, transform.rotation);
         bulletClone.GetComponent<Rigidbody2D>().velocity = transform.right * -transform.localScale.x * 10f;
         bulletClone.transform.localScale = new Vector2(transform.localScale.x, 1f);
 

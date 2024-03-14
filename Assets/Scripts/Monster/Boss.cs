@@ -210,7 +210,7 @@ public class Boss : MonoBehaviour
         }
     }
 
-    private Vector2 targetPosition; // 목표 위치
+    private Vector2 _targetPosition; // 목표 위치
     public float moveSpeed = 3f; // 이동 속도
     void Start()
     {
@@ -224,13 +224,13 @@ public class Boss : MonoBehaviour
     {
         float randomX = Random.Range(-7f, 4f); // 랜덤한 x 좌표 생성
         float randomY = Random.Range(-3f, 4f); // 랜덤한 y 좌표 생성
-        targetPosition = new Vector2(randomX, randomY); // 랜덤한 위치 벡터 생성
+        _targetPosition = new Vector2(randomX, randomY); // 랜덤한 위치 벡터 생성
     }
     void Update()
     {
         if (enemyName == "B")
         {
-            transform.position = Vector2.Lerp(transform.position, targetPosition, moveSpeed * Time.deltaTime);
+            transform.position = Vector2.Lerp(transform.position, _targetPosition, moveSpeed * Time.deltaTime);
         }
             return;
 
