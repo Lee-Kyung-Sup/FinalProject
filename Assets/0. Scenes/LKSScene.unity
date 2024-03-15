@@ -476,7 +476,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 500993570}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Edge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1119,7 +1119,7 @@ GameObject:
   m_Component:
   - component: {fileID: 985745239}
   - component: {fileID: 985745240}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Grid
   m_TagString: Platform
   m_Icon: {fileID: 0}
@@ -1262,7 +1262,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1049970046}
   - component: {fileID: 1049970047}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Edge
   m_TagString: Platform
   m_Icon: {fileID: 0}
@@ -1516,7 +1516,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1525350278}
   - component: {fileID: 1525350279}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Edge (1)
   m_TagString: Platform
   m_Icon: {fileID: 0}
@@ -1996,7 +1996,7 @@ GameObject:
   - component: {fileID: 1830562449}
   - component: {fileID: 1830562448}
   - component: {fileID: 1830562447}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Canvas
   m_TagString: Platform
   m_Icon: {fileID: 0}
@@ -2312,7 +2312,7 @@ GameObject:
   - component: {fileID: 1959248774}
   - component: {fileID: 1959248773}
   - component: {fileID: 1959248772}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Tilemap
   m_TagString: Platform
   m_Icon: {fileID: 0}
@@ -3531,7 +3531,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1986058154}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Map
   m_TagString: Platform
   m_Icon: {fileID: 0}
