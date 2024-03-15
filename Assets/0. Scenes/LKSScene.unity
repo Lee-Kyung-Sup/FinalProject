@@ -205,7 +205,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 500993570}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Edge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -657,7 +657,7 @@ GameObject:
   m_Component:
   - component: {fileID: 985745239}
   - component: {fileID: 985745240}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Grid
   m_TagString: Platform
   m_Icon: {fileID: 0}
@@ -733,7 +733,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1049970046}
   - component: {fileID: 1049970047}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Edge
   m_TagString: Platform
   m_Icon: {fileID: 0}
@@ -894,7 +894,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1525350278}
   - component: {fileID: 1525350279}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Edge (1)
   m_TagString: Platform
   m_Icon: {fileID: 0}
@@ -1343,7 +1343,7 @@ GameObject:
   - component: {fileID: 1830562449}
   - component: {fileID: 1830562448}
   - component: {fileID: 1830562447}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Canvas
   m_TagString: Platform
   m_Icon: {fileID: 0}
@@ -1451,7 +1451,7 @@ GameObject:
   - component: {fileID: 1959248774}
   - component: {fileID: 1959248773}
   - component: {fileID: 1959248772}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Tilemap
   m_TagString: Platform
   m_Icon: {fileID: 0}
@@ -2639,7 +2639,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1986058154}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Map
   m_TagString: Platform
   m_Icon: {fileID: 0}
@@ -2689,11 +2689,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9034469923401365301, guid: 0b595e49dafa76d44a84666808c7a2f6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9.43
+      value: -8.97
       objectReference: {fileID: 0}
     - target: {fileID: 9034469923401365301, guid: 0b595e49dafa76d44a84666808c7a2f6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -9.23
+      value: -8.85
       objectReference: {fileID: 0}
     - target: {fileID: 9034469923401365301, guid: 0b595e49dafa76d44a84666808c7a2f6, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2803,6 +2803,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8097386340798221988, guid: 7e50c951c7ed343458d26a331350fbe1, type: 3}
+      propertyPath: bullet
+      value: 
+      objectReference: {fileID: 502197329397440078, guid: 3ff540c205fd498428596d1f570577a5, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
