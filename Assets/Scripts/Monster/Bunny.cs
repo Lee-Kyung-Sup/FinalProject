@@ -48,7 +48,7 @@ public class Bunny : Monster
             Vector2 origin = monsterFrontBelowPosition;
 
             // Raycast 방향 (아래 방향)
-            Vector2 direction = monsterDirRight ? Vector2.right : Vector2.left;
+            Vector2 direction = monsterDirRight ? Vector2.down : Vector2.down;
 
             // Raycast 길이
             float distance = 3f;
