@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 617f2a2815f938644b38605a2d606c46, type: 3}
+  m_Name: Gun
+  m_EditorClassIdentifier: 
+  displayName: "\uCD1D"
+  description: "\uAD34\uBB3C\uC744 \uC218\uD655\uD560\uB54C \uC0AC\uC6A9\uD569\uB2C8\uB2E4."
+  type: 1
+  icon: {fileID: 21300000, guid: 556def944fd02f54c98ac89a1fd817a7, type: 3}
+  dropPrefab: {fileID: 6548145728997466807, guid: c1eaec4760a82da4b98d9c42b8f89be8, type: 3}
+  canStack: 0
+  maxStackAmount: 0
+  consumables: []
