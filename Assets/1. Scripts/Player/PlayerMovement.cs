@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour,IsGroundable
 {
     private Rigidbody2D rb;
     [SerializeField] private TrailRenderer tr; // 대시 효과용 TrailRenderer
@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
 
     private float groundCheckRange = 0.3f; // 땅 감지 범위
     private int jumpCount = 0; // 점프 횟수
-    public bool isGrounded { get; private set; } = false;
+    bool isGrounded = false;
 
     private bool canDash = true; // 대쉬 가능한지
     private bool isDashing; // 현재 대쉬 중인지
@@ -190,5 +190,10 @@ public class PlayerMovement : MonoBehaviour
         {
             collider.enabled = true;
         }
+    }
+
+    public bool IsGround()
+    {
+        return isGrounded;
     }
 }
