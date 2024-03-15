@@ -2,23 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovePlatform : MonoBehaviour
+public class MovePlatform : CharacterEnterTrigger
 {
     [SerializeField] bool isUpDown;
     [SerializeField] float speed;
     [SerializeField] float amplitude;
     Vector2 startPos;
     Rigidbody2D rigi;
-    LayerMask pLayer;
-    LayerMask mLayer;
-    private void Start()
+    protected override void Awake()
     {
+        base.Awake();
         rigi = GetComponent<Rigidbody2D>();
         startPos = transform.position;
-        pLayer = LayerMask.GetMask("Player");
-        mLayer = LayerMask.GetMask("Monster");
     }
-    private void FixedUpdate()
+    private void Update()
     {
         if (isUpDown)
         {
@@ -29,24 +26,19 @@ public class MovePlatform : MonoBehaviour
             rigi.transform.position = new Vector2(startPos.x + amplitude * Mathf.Sin(Time.time) * speed, startPos.y);
         }
     }
-    private void OnCollisionEnter2D(Collision2D collision) //Fix later
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (pLayer.value == (pLayer.value | (1 << collision.gameObject.layer)) && collision.gameObject.GetComponent<PlayerMovement>().isGrounded)
         {
-            collision.transform.SetParent(transform);
-        }
-        else if(mLayer.value == (mLayer.value | (1 << collision.gameObject.layer)) && collision.gameObject.GetComponent<Monster>().isGround)
-        {
-            collision.transform.SetParent(transform);
+            if (collision.gameObject.GetComponent<IsGroundable>().IsGround())
+            {
+                collision.transform.SetParent(transform);
+            }
         }
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (pLayer.value == (pLayer.value | (1 << collision.gameObject.layer)))
-        {
-            collision.transform.SetParent(null);
-        }
-        else if (mLayer.value == (mLayer.value | (1 << collision.gameObject.layer)))
+        if (transform.root.gameObject.activeInHierarchy && characterLayer.value == (characterLayer.value | (1 << collision.gameObject.layer)))
         {
             collision.transform.SetParent(null);
         }

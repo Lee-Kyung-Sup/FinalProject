@@ -9,7 +9,6 @@ public class CameraController : SingletonBase<CameraController>
 
     Transform target;
     Vector3 cameraPos;
-    float moveSpeed = 4;
 
     BoxCollider2D cameraArea;
     Vector3 minArea;
@@ -24,7 +23,7 @@ public class CameraController : SingletonBase<CameraController>
     }
     private void Start()
     {
-        target = FindObjectOfType<PlayerController>().gameObject.transform;
+        target = FindObjectOfType<PlayerController>().gameObject.transform; //이후 게임 매니저로부터 모든게 만들어질때 같이 할당
     }
     private void Update()
     {
@@ -54,6 +53,7 @@ public class CameraController : SingletonBase<CameraController>
     }
     void CameraMove()
     {
+        float moveSpeed = Vector2.Distance(target.position,transform.position);
         cameraPos.Set(target.position.x, target.position.y, transform.position.z);
         transform.position = Vector3.Lerp(transform.position, cameraPos, moveSpeed * Time.deltaTime);
         float clampedX = Mathf.Clamp(transform.position.x, minArea.x + cameraHalfWidth, maxArea.x - cameraHalfWidth);

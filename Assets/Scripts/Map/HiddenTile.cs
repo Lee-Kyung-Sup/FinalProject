@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class HiddenTile : MonoBehaviour
+public class HiddenTile : PlayerEnterTrigger
 {
     Tilemap tile;
-    LayerMask pLayer;
-    private void Start()
+    protected override void Awake()
     {
+        base.Awake();
         tile = GetComponent<Tilemap>();
-        pLayer = LayerMask.GetMask("Player");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
