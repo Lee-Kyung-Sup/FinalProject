@@ -30,15 +30,13 @@ public class Bunny : Monster
                   Physics2D.OverlapCircle(wallCheck[1].position, 0.1f, layerMask[0]))  /*&&  //1번이 플랫폼이면 몬스터 점프
                        !Physics2D.Raycast(transform.position, -transform.localScale.x * transform.right, 1f, layerMask)*/)  //플랫폼과 너무 가까우면 올라가기 힘들기 때문에 넣음
             {
-                if(isGround==true)
-                {
-                    rb.velocity = new Vector2(rb.velocity.x, jumpPower);
-                }
                 
+                rb.velocity = new Vector2(rb.velocity.x, jumpPower);
+                              
                 Debug.Log(rb.velocity);
             }
             if ((Physics2D.OverlapCircle(wallCheck[0].position, 0.1f, layerMask[1]) &&
-                 Physics2D.OverlapCircle(wallCheck[1].position, 0.1f, layerMask[1])) &&
+                 Physics2D.OverlapCircle(wallCheck[1].position, 0.1f, layerMask[1])) ||
                 (Physics2D.OverlapCircle(wallCheck[0].position, 0.1f, layerMask[0]) &&
                  Physics2D.OverlapCircle(wallCheck[1].position, 0.1f, layerMask[0]))
             )
