@@ -130,6 +130,20 @@ public class Monster : MonoBehaviour
             }
         }
     }
+    //벽체크
+    public bool CheckIfNoWall(Vector2 origin, Vector2 direction, float distance, LayerMask layerMask)
+    {
+        // Raycast 발사
+        RaycastHit2D hit = Physics2D.Raycast(origin, direction, distance, layerMask);
+
+        // Raycast가 벽에 부딪히면 false 반환
+        if (hit.collider != null)
+        {
+            return false;
+        }
+
+        return true;
+    }
 
     //몬스터 데미지 받기
     public void TakeDamage(int dam)

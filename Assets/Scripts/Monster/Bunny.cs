@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.UI.Image;
 public class Bunny : Monster
 {
     public Transform[] wallCheck;
@@ -39,24 +41,33 @@ public class Bunny : Monster
                 Debug.Log("t1");
                 MonsterFlip();
             }
-            if ((!Physics2D.OverlapCircle(wallCheck[2].position, 0.35f, layerMask[1]) &&
-                !Physics2D.OverlapCircle(wallCheck[3].position, 0.35f, layerMask[1]) &&
-                !Physics2D.OverlapCircle(wallCheck[4].position, 0.35f, layerMask[1])) &&
-                (!Physics2D.OverlapCircle(wallCheck[2].position, 0.35f, layerMask[0]) &&
-                !Physics2D.OverlapCircle(wallCheck[3].position, 0.35f, layerMask[0]) &&
-                !Physics2D.OverlapCircle(wallCheck[4].position, 0.35f, layerMask[0])))
-                
+
+            // 몬스터의 앞 아래 위치 계산
+            Vector2 monsterFrontBelowPosition = (Vector2)transform.position + new Vector2(-1f, -1f);
+            // Raycast 시작점
+            Vector2 origin = monsterFrontBelowPosition;
+
+            // Raycast 방향 (아래 방향)
+            Vector2 direction = monsterDirRight ? Vector2.right : Vector2.left;
+
+            // Raycast 길이
+            float distance = 3f;
+
+            // Raycast 시각적으로 표시
+            Debug.DrawRay(origin, direction * distance, Color.red);
+
+            // Raycast를 사용하여 조건 확인
+            if (CheckIfNoWall(origin, direction, distance, layerMask[1]) && CheckIfNoWall(origin, direction, distance, layerMask[0]))
             {
                 Debug.Log("t2");
                 MonsterFlip();
             }
 
 
-
         }
     }
+  
 
-    
     protected override void OnTriggerEnter2D(Collider2D collision)
     {
         base.OnTriggerEnter2D(collision);
