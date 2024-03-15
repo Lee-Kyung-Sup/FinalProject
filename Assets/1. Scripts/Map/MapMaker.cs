@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class MapMaker : SingletonBase<MapMaker>
 {
-    [SerializeField]int curMapId = 0;
+    [SerializeField][Range(0, 2)] int curChapterId = 0;
+    [SerializeField] int curMapId = 0;
     GameObject curMap;
     MapDatas mapList;
     PotalMaker potalMaker;
@@ -13,7 +14,7 @@ public class MapMaker : SingletonBase<MapMaker>
     protected override void Awake()
     {
         base.Awake();
-        mapList = Resources.Load<MapDatas>("Ch1MapDatas");
+        mapList = Resources.Load<MapDatas>($"Ch{curChapterId}MapDatas");
     }
     private void Start()
     {
