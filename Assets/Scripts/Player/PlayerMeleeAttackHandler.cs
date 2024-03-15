@@ -6,6 +6,7 @@ public class PlayerMeleeAttackHandler : MonoBehaviour
 {
     [SerializeField] private GameObject meleeHitEffect; // 히트 효과 프리팹
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,11 +21,11 @@ public class PlayerMeleeAttackHandler : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Monster"))
+        if (collision.gameObject.CompareTag("Monster"))
         {
             Debug.Log("몬스터에게 근접 공격!");
             //collision.SendMessage("Damaged", 10);  // TODO
-            Instantiate(meleeHitEffect, transform.position, Quaternion.identity);
+            Instantiate(meleeHitEffect, collision.transform.position, Quaternion.identity);
         }
     }
 }

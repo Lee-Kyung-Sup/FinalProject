@@ -29,7 +29,7 @@ public class PlayerRangeAttackHandler : MonoBehaviour
         {
             Debug.Log("몬스터에게 충돌!");
             Instantiate(RangeHitEffect, transform.position, Quaternion.identity); // 히트 효과 생성
-            // collision.SendMessage("Demaged", 10); // Demaged 함수 호출, 원거리 공격력(10, 임시)만큼 피해  TODO
+            // collision.SendMessage("Demaged", 1); // Demaged 함수 호출, 원거리 공격력(1, 임시)만큼 피해  TODO
             Destroy(gameObject);
         }
     }

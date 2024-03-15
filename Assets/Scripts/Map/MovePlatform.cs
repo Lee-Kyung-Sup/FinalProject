@@ -31,7 +31,7 @@ public class MovePlatform : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision) //Fix later
     {
-        if (pLayer.value == (pLayer.value | (1 << collision.gameObject.layer)) && collision.gameObject.GetComponent<PlayerMovement>().IsGrounded)
+        if (pLayer.value == (pLayer.value | (1 << collision.gameObject.layer)) && collision.gameObject.GetComponent<PlayerMovement>().isGrounded)
         {
             collision.transform.SetParent(transform);
         }
