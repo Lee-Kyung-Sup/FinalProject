@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class Monster : MonoBehaviour
+public class Monster : MonoBehaviour, IsGroundable
 {
     public int currentHp = 1;
     public float moveSpeed = 5f;
@@ -149,5 +149,8 @@ public class Monster : MonoBehaviour
         //}
     }
 
-  
+    public bool IsGround()
+    {
+        return isGround;
+    }
 }

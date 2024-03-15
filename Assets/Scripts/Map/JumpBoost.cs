@@ -2,14 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class JumpBoost : MonoBehaviour
+public class JumpBoost : PlayerEnterTrigger
 {
-    LayerMask pLayer;
     Rigidbody2D pRigi;
     [SerializeField] float jumpPower;
-    private void Start()
+    protected override void Awake()
     {
-        pLayer = LayerMask.GetMask("Player");
+        base.Awake();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

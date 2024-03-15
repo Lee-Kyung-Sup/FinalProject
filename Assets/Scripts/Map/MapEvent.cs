@@ -13,11 +13,10 @@ public class Summon
     public Vector3[] summonPos;
 }
 
-public class MapEvent : MonoBehaviour
+public class MapEvent : PlayerEnterTrigger
 {
     MapEventChecker checker;
     BoxCollider2D col;
-    LayerMask pLayer;
     Transform playerTrans;
     PlayerInput playerAction;
 
@@ -25,10 +24,9 @@ public class MapEvent : MonoBehaviour
 
     WaitUntil isAllDieMonster;
     [SerializeField] Summon[] mapPhase;
-
-    private void Start()
+    protected override void Awake()
     {
-        pLayer = LayerMask.GetMask("Player");
+        base.Awake();
         col = GetComponent<BoxCollider2D>();
         isAllDieMonster = new WaitUntil(() => monsters <= 0);
     }
