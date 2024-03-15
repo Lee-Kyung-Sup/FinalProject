@@ -18,6 +18,11 @@ public class Piston : CharacterEnterTrigger
     {
         Move(); //데미지를 주는 조건 고려
         //이 오브젝트를 piston으로 적용후 Gfour에 들어간 객체들이 ground와 닿았을때 데미지
+        //이 방법은 옆면에서도 판정이 있어서 주의해야함
+
+        //이 피스톤이 느려진걸 모종의 방법으로 체크해서 데미지
+
+        //Gfour에 들어간 객체들의 위아래 ground를 동시체크해서 데미지 << s
     }
     void Move()
     {
