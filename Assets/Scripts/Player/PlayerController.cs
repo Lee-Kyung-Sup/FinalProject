@@ -72,5 +72,4 @@ public class PlayerController : MonoBehaviour
         bool isPressing = context.ReadValue<float>() > 0;
         _playerMovement.SetIsPressingDown(isPressing);
     }
-
 }

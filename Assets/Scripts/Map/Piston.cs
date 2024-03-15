@@ -2,42 +2,41 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Piston : MonoBehaviour
+public class Piston : CharacterEnterTrigger
 {
-    [SerializeField]bool isUpDown;
-    bool changeVector;
+    float upSpeed;
+    float downSpeed;
     Rigidbody2D rigi;
-    [SerializeField]float speed;
-    LayerMask gLayer;
-    private void Awake()
+    List<Collider2D> Gfour = new List<Collider2D>(5);
+    protected override void Awake()
     {
+        base.Awake();
         rigi = GetComponent<Rigidbody2D>();
-        gLayer = LayerMask.GetMask("Ground");
     }
     private void Update()
     {
-        if (isUpDown)
-        {
-            if (changeVector)
-            {
-                rigi.velocity = Vector2.up * speed;
-                return;
-            }
-            rigi.velocity = Vector2.down * speed;
-            return;
-        }
-        if (changeVector)
-        {
-            rigi.velocity = Vector2.left * speed;
-            return;
-        }
-        rigi.velocity = Vector2.right * speed;
+        //move
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (gLayer.value == (gLayer.value | (1 << collision.gameObject.layer)))
+        if (characterLayer.value == (characterLayer.value | (1 << collision.gameObject.layer)))
         {
-            changeVector = !changeVector;
+            Gfour.Add(collision);
+        }
+        if (LayerMask.GetMask("Ground") == (LayerMask.GetMask("Ground") | (1 << collision.gameObject.layer)))
+        {
+            foreach (Collider2D item in Gfour)
+            {
+                //최대 체력을 쉽게 찾을 방법? 인터페이스로 똑같이?
+                //  item.getcom<dmg>().GiveDmg( 최대 체력 비례 );
+            }
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (characterLayer.value == (characterLayer.value | (1 << collision.gameObject.layer)))
+        {
+            Gfour.Remove(collision);
         }
     }
 }

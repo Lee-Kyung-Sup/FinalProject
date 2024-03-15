@@ -9,7 +9,6 @@ public class CameraController : SingletonBase<CameraController>
 
     Transform target;
     Vector3 cameraPos;
-    float moveSpeed = 4;
 
     BoxCollider2D cameraArea;
     Vector3 minArea;
@@ -52,8 +51,9 @@ public class CameraController : SingletonBase<CameraController>
     {
         target = viewPos;
     }
-    void CameraMove() //타겟과 멀리 떨어졌을때 가속 need
+    void CameraMove()
     {
+        float moveSpeed = Vector2.Distance(target.position,transform.position);
         cameraPos.Set(target.position.x, target.position.y, transform.position.z);
         transform.position = Vector3.Lerp(transform.position, cameraPos, moveSpeed * Time.deltaTime);
         float clampedX = Mathf.Clamp(transform.position.x, minArea.x + cameraHalfWidth, maxArea.x - cameraHalfWidth);
