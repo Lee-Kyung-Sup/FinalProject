@@ -12,12 +12,12 @@ public class Monster : MonoBehaviour, IsGroundable
     public bool isHit = false;
     public bool isGround = true;
     public bool canAtk = true;
-    public bool MonsterDirRight;
+    public bool monsterDirRight;
 
     protected Rigidbody2D rb;
     protected CapsuleCollider2D capsuleCollider;
     public GameObject hitBoxCollider;
-    public Animator Anim;
+    public Animator anim;
     public LayerMask[] layerMask;
 
 
@@ -27,7 +27,7 @@ public class Monster : MonoBehaviour, IsGroundable
     {
         rb = GetComponent<Rigidbody2D>();
         capsuleCollider = GetComponent<CapsuleCollider2D>();
-        Anim = GetComponent<Animator>();
+        anim = GetComponent<Animator>();
 
         StartCoroutine(CalcCoolTime());
         StartCoroutine(ResetCollider());
@@ -70,7 +70,7 @@ public class Monster : MonoBehaviour, IsGroundable
     //실행중인 애니메이션이 특정이름과 일치하는지 확인
     public bool IsPlayingAnim(string AnimName)
     {
-        if (Anim.GetCurrentAnimatorStateInfo(0).IsName(AnimName))
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName(AnimName))
         {
             return true;
         }
@@ -82,17 +82,17 @@ public class Monster : MonoBehaviour, IsGroundable
     {
         if (!IsPlayingAnim(AnimName))
         {
-            Anim.SetTrigger(AnimName);
+            anim.SetTrigger(AnimName);
         }
     }
 
     //몬스터 방향전환 true이면 오른쪽, false이면 원쪽
     protected void MonsterFlip()
     {
-        MonsterDirRight = !MonsterDirRight;
+        monsterDirRight = !monsterDirRight;
 
         Vector3 thisScale = transform.localScale;
-        if (MonsterDirRight)
+        if (monsterDirRight)
         {
             thisScale.x = -Mathf.Abs(thisScale.x);
         }
@@ -107,7 +107,7 @@ public class Monster : MonoBehaviour, IsGroundable
     //플레이어 위치값 받아와서 몬스터 방향조정
     protected bool IsPlayerDir()
     {
-        if (transform.position.x < GameManager.instance.GetPlayerPosition().x ? MonsterDirRight : !MonsterDirRight)
+        if (transform.position.x < GameManager.instance.GetPlayerPosition().x ? monsterDirRight : !monsterDirRight)
         {
             return true;
         }
