@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class MapMaker : SingletonBase<MapMaker>
 {
-    [SerializeField][Range(0, 2)] int curChapterId = 0;
+    [SerializeField][Range(1, 3)] int curChapterId = 1;
     [SerializeField] int curMapId = 0;
     GameObject curMap;
     MapDatas mapList;
