@@ -79,13 +79,11 @@ public class Inventory : MonoBehaviour
         {
             inventoryWindow.SetActive(false);
             onCloseInventory?.Invoke();
-            //controller.ToggleCursor(false);
         }
         else
         {
             inventoryWindow.SetActive(true);
             onOpenInventory?.Invoke();
-            //controller.ToggleCursor(true);
         }
     }
 
@@ -179,8 +177,8 @@ public class Inventory : MonoBehaviour
         }
 
         useButton.SetActive(selectedItem.item.type == ItemType.Consumable);
-        //equipButton.SetActive(selectedItem.item.type == ItemType.Equipable && !uiSlots[index].equipped);
-        //unEquipButton.SetActive(selectedItem.item.type == ItemType.Equipable && uiSlots[index].equipped);
+        equipButton.SetActive(selectedItem.item.type == ItemType.Equipable && !uiSlots[index].equipped);
+        unEquipButton.SetActive(selectedItem.item.type == ItemType.Equipable && uiSlots[index].equipped);
         dropButton.SetActive(true);
     }
 
@@ -199,23 +197,23 @@ public class Inventory : MonoBehaviour
         dropButton.SetActive(false);
     }
 
-    //public void OnUseButton()
-    //{
-    //    if (selectedItem.item.type == ItemType.Consumable)
-    //    {
-    //        for (int i = 0; i < selectedItem.item.consumables.Length; i++)
-    //        {
-    //            switch (selectedItem.item.consumables[i].type)
-    //            {
-    //                case ConsumableType.Health:
-    //                    //condition.Heal(selectedItem.item.consumables[i].value); break;
-    //                case ConsumableType.Hunger:
-    //                    //condition.Eat(selectedItem.item.consumables[i].value); break;
-    //            }
-    //        }
-    //    }
-    //    RemoveSelectedItem();
-    //}
+    public void OnUseButton()
+    {
+        if (selectedItem.item.type == ItemType.Consumable)
+        {
+            for (int i = 0; i < selectedItem.item.consumables.Length; i++)
+            {
+                switch (selectedItem.item.consumables[i].type)
+                {
+                    //case ConsumableType.Health:
+                    //condition.Heal(selectedItem.item.consumables[i].value); break;
+                    //case ConsumableType.Hunger:
+                    //    condition.Eat(selectedItem.item.consumables[i].value); break;
+                }
+            }
+        }
+        RemoveSelectedItem();
+    }
 
     public void OnEquipButton()
     {
