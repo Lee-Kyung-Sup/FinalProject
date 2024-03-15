@@ -317,6 +317,7 @@ MonoBehaviour:
   isGround: 1
   canAtk: 1
   monsterDirRight: 0
+  monsterIdle: 0
   hitBoxCollider: {fileID: 158051219}
   anim: {fileID: 0}
   layerMask:
@@ -2281,6 +2282,7 @@ MonoBehaviour:
   isGround: 1
   canAtk: 1
   monsterDirRight: 0
+  monsterIdle: 0
   hitBoxCollider: {fileID: 2006564454}
   anim: {fileID: 0}
   layerMask:
@@ -3646,11 +3648,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9034469923401365301, guid: 0b595e49dafa76d44a84666808c7a2f6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.65
+      value: -9.43
       objectReference: {fileID: 0}
     - target: {fileID: 9034469923401365301, guid: 0b595e49dafa76d44a84666808c7a2f6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.02
+      value: -9.23
       objectReference: {fileID: 0}
     - target: {fileID: 9034469923401365301, guid: 0b595e49dafa76d44a84666808c7a2f6, type: 3}
       propertyPath: m_LocalPosition.z

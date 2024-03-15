@@ -13,6 +13,7 @@ public class Monster : MonoBehaviour, IsGroundable
     public bool isGround = true;
     public bool canAtk = true;
     public bool monsterDirRight;
+    public bool monsterIdle = true;
 
     protected Rigidbody2D rb;
     protected CapsuleCollider2D capsuleCollider;
@@ -20,7 +21,7 @@ public class Monster : MonoBehaviour, IsGroundable
     public Animator anim;
     public LayerMask[] layerMask;
 
-
+    
 
 
     protected virtual void Awake()
@@ -95,13 +96,16 @@ public class Monster : MonoBehaviour, IsGroundable
         if (monsterDirRight)
         {
             thisScale.x = -Mathf.Abs(thisScale.x);
+            
         }
         else
         {
             thisScale.x = Mathf.Abs(thisScale.x);
+            
         }
         transform.localScale = thisScale;
         rb.velocity = Vector2.zero;
+
     }
 
     //플레이어 위치값 받아와서 몬스터 방향조정
@@ -114,13 +118,14 @@ public class Monster : MonoBehaviour, IsGroundable
         return false;
     }
 
+
+    
     //바닥에 닿았는지 아닌지 체크
     protected void GroundCheck()
     {
-        foreach(LayerMask mask in layerMask)
-        {
-            if (Physics2D.CapsuleCast(capsuleCollider.bounds.center, capsuleCollider.size, capsuleCollider.direction,
-            0, Vector2.down, 0.05f, mask))
+            Debug.DrawRay(transform.localPosition, Vector2.down* 3f, Color.red);
+            if (Physics2D.Raycast(transform.localPosition, Vector2.down, 3f, layerMask[1]) ||
+                Physics2D.Raycast(transform.localPosition, Vector2.down, 3f, layerMask[0]))
             {
                 isGround = true;
             }
@@ -128,7 +133,7 @@ public class Monster : MonoBehaviour, IsGroundable
             {
                 isGround = false;
             }
-        }
+        
     }
     //벽체크
     public bool CheckIfNoWall(Vector2 origin, Vector2 direction, float distance, LayerMask layerMask)
