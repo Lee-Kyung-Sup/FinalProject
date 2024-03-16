@@ -62,32 +62,44 @@ public class Dino : Monster
                 rb.velocity = new Vector2(-transform.localScale.x * moveSpeed, rb.velocity.y);
 
 
-                if (!Physics2D.OverlapCircle(wallCheck[0].position, 0.35f, layerMask[1]) &&  //벽체크 0번 플랫폼이없고
-                     Physics2D.OverlapCircle(wallCheck[1].position, 0.35f, layerMask[0]) /*&&  //1번이 플랫폼이면 몬스터 점프
-                    !Physics2D.Raycast(transform.position, -transform.localScale.x * transform.right, 1f, layerMask)*/)  //플랫폼과 너무 가까우면 올라가기 힘들기 때문에 넣음
+                if ((!Physics2D.OverlapCircle(wallCheck[0].position, 0.1f, layerMask[1]) &&  //벽체크 0번 플랫폼이없고
+                      Physics2D.OverlapCircle(wallCheck[1].position, 0.1f, layerMask[1])) ||
+                    (!Physics2D.OverlapCircle(wallCheck[0].position, 0.1f, layerMask[0]) &&
+                      Physics2D.OverlapCircle(wallCheck[1].position, 0.1f, layerMask[0]))  /*&&  //1번이 플랫폼이면 몬스터 점프
+                       !Physics2D.Raycast(transform.position, -transform.localScale.x * transform.right, 1f, layerMask)*/)  //플랫폼과 너무 가까우면 올라가기 힘들기 때문에 넣음
                 {
 
                     rb.velocity = new Vector2(rb.velocity.x, jumpPower);
+
                     Debug.Log(rb.velocity);
                 }
-
-                if ((Physics2D.OverlapCircle(wallCheck[0].position, 0.35f, layerMask[1]) &&
-                     Physics2D.OverlapCircle(wallCheck[1].position, 0.35f, layerMask[1])) &&
-                    (Physics2D.OverlapCircle(wallCheck[0].position, 0.35f, layerMask[0]) &&
-                     Physics2D.OverlapCircle(wallCheck[1].position, 0.35f, layerMask[0])))
+                if ((Physics2D.OverlapCircle(wallCheck[0].position, 0.1f, layerMask[1]) &&
+                     Physics2D.OverlapCircle(wallCheck[1].position, 0.1f, layerMask[1])) ||
+                    (Physics2D.OverlapCircle(wallCheck[0].position, 0.1f, layerMask[0]) &&
+                     Physics2D.OverlapCircle(wallCheck[1].position, 0.1f, layerMask[0]))
+                )
                 {
                     Debug.Log("t1");
                     MonsterFlip();
                 }
 
-                if ((!Physics2D.OverlapCircle(wallCheck[2].position, 0.35f, layerMask[1]) &&
-                    !Physics2D.OverlapCircle(wallCheck[3].position, 0.35f, layerMask[1]) &&
-                    !Physics2D.OverlapCircle(wallCheck[4].position, 0.35f, layerMask[1])) &&
-                    (!Physics2D.OverlapCircle(wallCheck[2].position, 0.35f, layerMask[0]) &&
-                    !Physics2D.OverlapCircle(wallCheck[3].position, 0.35f, layerMask[0]) &&
-                    !Physics2D.OverlapCircle(wallCheck[4].position, 0.35f, layerMask[0])))
+
+                Vector2 monsterFrontBelowPosition = (Vector2)transform.localPosition + new Vector2(-transform.localScale.x, -1f);
+
+                Vector2 origin = monsterFrontBelowPosition;
+
+                Vector2 direction = Vector2.down;
+
+                float distance = 3f;
+
+                // Raycast 시각적으로 표시
+                Debug.DrawRay(origin, direction * distance, Color.red);
+
+                // Raycast를 사용하여 조건 확인
+                if (CheckIfNoWall(origin, direction, distance, layerMask[1]) && CheckIfNoWall(origin, direction, distance, layerMask[0]))
                 {
                     Debug.Log("t2");
+
                     MonsterFlip();
                 }
 
