@@ -7,3 +7,8 @@ public interface IsGroundable
 {
     public bool IsGround();
 }
+public interface IDamageable
+{
+    void TakeDamage(float amount);
+}
+
