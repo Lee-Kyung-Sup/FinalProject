@@ -1768,7 +1768,7 @@ GameObject:
   - component: {fileID: 1201790801996444290}
   - component: {fileID: 8664616279106058198}
   - component: {fileID: 2796533620677229713}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: HiddenBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}

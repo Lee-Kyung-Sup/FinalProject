@@ -51,7 +51,7 @@ public class CameraController : SingletonBase<CameraController>
     {
         target = viewPos;
     }
-    void CameraMove()
+    void CameraMove() // 약간 하단에 위치하게 y값 조절 need
     {
         float moveSpeed = Vector2.Distance(target.position,transform.position);
         cameraPos.Set(target.position.x, target.position.y, transform.position.z);
