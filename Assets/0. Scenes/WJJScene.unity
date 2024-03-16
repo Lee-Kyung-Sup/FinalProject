@@ -451,16 +451,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &498032010 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 4588999740573174711, guid: 5ea784b956f4a564ea1a6ea255629d76, type: 3}
-  m_PrefabInstance: {fileID: 3542811182113588400}
-  m_PrefabAsset: {fileID: 0}
---- !u!212 &498032011 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 5396022831010056269, guid: 5ea784b956f4a564ea1a6ea255629d76, type: 3}
-  m_PrefabInstance: {fileID: 3542811182113588400}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1285826740
 GameObject:
   m_ObjectHideFlags: 0
@@ -1294,11 +1284,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
---- !u!61 &2039706564 stripped
-BoxCollider2D:
-  m_CorrespondingSourceObject: {fileID: 6198198559188364953, guid: 5ea784b956f4a564ea1a6ea255629d76, type: 3}
-  m_PrefabInstance: {fileID: 3542811182113588400}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3542811182113588400
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1307,18 +1292,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2629860545646752947, guid: 5ea784b956f4a564ea1a6ea255629d76, type: 3}
-      propertyPath: meleeAttackSprite
-      value: 
-      objectReference: {fileID: 498032011}
-    - target: {fileID: 2629860545646752947, guid: 5ea784b956f4a564ea1a6ea255629d76, type: 3}
-      propertyPath: meleeAttackAnimator
-      value: 
-      objectReference: {fileID: 498032010}
-    - target: {fileID: 2629860545646752947, guid: 5ea784b956f4a564ea1a6ea255629d76, type: 3}
-      propertyPath: meleeAttackCollider
-      value: 
-      objectReference: {fileID: 2039706564}
     - target: {fileID: 3949886980107114563, guid: 5ea784b956f4a564ea1a6ea255629d76, type: 3}
       propertyPath: m_Name
       value: Player
