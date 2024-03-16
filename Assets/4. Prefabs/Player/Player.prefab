@@ -756,9 +756,9 @@ MonoBehaviour:
   bulletPref: {fileID: 2633405581603700037, guid: f574287d5d7544a48ac02a90207fdadc, type: 3}
   firePower: 15
   fireDelay: 0.1
-  meleeAttackCollider: {fileID: 0}
-  meleeAttackSprite: {fileID: 0}
-  meleeAttackAnimator: {fileID: 0}
+  meleeAttackCollider: {fileID: 6198198559188364953}
+  meleeAttackSprite: {fileID: 5396022831010056269}
+  meleeAttackAnimator: {fileID: 4588999740573174711}
 --- !u!1 &8695184988574916669
 GameObject:
   m_ObjectHideFlags: 0
