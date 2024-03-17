@@ -10,7 +10,7 @@ public class CameraController : SingletonBase<CameraController>
     Transform target;
     Vector3 cameraPos;
 
-    BoxCollider2D cameraArea;
+    public BoxCollider2D CameraArea { get; private set; }
     Vector3 minArea;
     Vector3 maxArea;
     float cameraHalfHeight;
@@ -41,9 +41,9 @@ public class CameraController : SingletonBase<CameraController>
     }
     public void SetCameraArea(BoxCollider2D newArea)
     {
-        cameraArea = newArea;
-        minArea = cameraArea.bounds.min;
-        maxArea = cameraArea.bounds.max;
+        CameraArea = newArea;
+        minArea = CameraArea.bounds.min;
+        maxArea = CameraArea.bounds.max;
         cameraHalfHeight = _camera.orthographicSize;
         cameraHalfWidth = cameraHalfHeight * Screen.width / Screen.height;
     }
