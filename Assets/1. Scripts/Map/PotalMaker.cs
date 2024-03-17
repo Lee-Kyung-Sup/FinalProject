@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class PotalMaker : MonoBehaviour
 {
-    List<GameObject> potals = new List<GameObject>(5);
+    List<GameObject> potals = new List<GameObject>(7);
     public void MakePotal(Poter[] poters)
     {
         DestroyPotals();

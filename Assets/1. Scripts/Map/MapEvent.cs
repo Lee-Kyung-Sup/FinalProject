@@ -76,7 +76,7 @@ public class MapEvent : PlayerEnterTrigger
             }
             if (i == 0)
             {
-                //벽 및 몬스터 생성 연출 종료후
+                //TODO 벽 및 몬스터 생성 연출 종료후
                 playerAction.enabled = true;
             }
             yield return isAllDieMonster;
@@ -91,7 +91,7 @@ public class MapEvent : PlayerEnterTrigger
     }
     void ClearEvent()
     {
-        //종료 연출
+        //TODO 종료 연출
         cameraController.SetCameraArea(stageCameraArea);
         transform.GetChild(0).gameObject.SetActive(false);
         checker.isClear[transform.parent.name] = true;
