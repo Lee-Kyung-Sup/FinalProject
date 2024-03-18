@@ -39,6 +39,10 @@ MonoBehaviour:
       potalPos: {x: 36.97, y: 4.18, z: 0}
       targetPos: {x: -12.91, y: -6.83, z: 0}
       potalSize: {x: 1, y: 10}
+    - goMapIndex: 5
+      potalPos: {x: -22.82, y: -30.05, z: 0}
+      targetPos: {x: 17.17, y: -9.99, z: 0}
+      potalSize: {x: 1, y: 0}
   - maps: {fileID: 5831184893114448191, guid: b77f7c88f38858846a119207490db9eb, type: 3}
     poter:
     - goMapIndex: 2
@@ -55,10 +59,22 @@ MonoBehaviour:
       potalPos: {x: -15.86, y: -8.01, z: 0}
       targetPos: {x: 50.21, y: -6.91, z: 0}
       potalSize: {x: 1, y: 6}
-  - maps: {fileID: 0}
-    poter: []
-  - maps: {fileID: 0}
-    poter: []
+  - maps: {fileID: 854003828609358802, guid: 2fb14ee670c090f46b3d9336bd941ca0, type: 3}
+    poter:
+    - goMapIndex: 2
+      potalPos: {x: 19.03, y: -9.06, z: 0}
+      targetPos: {x: -20.97, y: -30.95, z: 0}
+      potalSize: {x: 1, y: 4}
+    - goMapIndex: 6
+      potalPos: {x: -15.79, y: -1.69, z: 0}
+      targetPos: {x: 24.12, y: -6.81, z: 0}
+      potalSize: {x: 1, y: 20}
+  - maps: {fileID: 5502604524396197589, guid: 4055318e907d3164486996b8778744a8, type: 3}
+    poter:
+    - goMapIndex: 5
+      potalPos: {x: 26.04, y: -9.79, z: 0}
+      targetPos: {x: -13.75, y: 0, z: 0}
+      potalSize: {x: 1, y: 20}
   - maps: {fileID: 0}
     poter: []
   - maps: {fileID: 0}
