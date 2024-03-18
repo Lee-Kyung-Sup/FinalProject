@@ -45,8 +45,16 @@ MonoBehaviour:
       potalPos: {x: -15.02, y: 0, z: 0}
       targetPos: {x: 34.97, y: 1.11, z: 0}
       potalSize: {x: 1, y: 20}
-  - maps: {fileID: 0}
-    poter: []
+    - goMapIndex: 4
+      potalPos: {x: 52.04, y: -6.05, z: 0}
+      targetPos: {x: -14.07, y: -8.94, z: 0}
+      potalSize: {x: 1, y: 5}
+  - maps: {fileID: 4095744550034037860, guid: 8b1cecb821d183445bae1f7228f04a60, type: 3}
+    poter:
+    - goMapIndex: 3
+      potalPos: {x: -15.86, y: -8.01, z: 0}
+      targetPos: {x: 50.21, y: -6.91, z: 0}
+      potalSize: {x: 1, y: 6}
   - maps: {fileID: 0}
     poter: []
   - maps: {fileID: 0}
