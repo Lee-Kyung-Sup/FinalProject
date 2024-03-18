@@ -24,10 +24,8 @@ public class Bunny : Monster
             rb.velocity = new Vector2(move, rb.velocity.y); //몬스터 기본 움직임
 
 
-            if ((!Physics2D.OverlapCircle(wallCheck[0].position, 0.1f, layerMask[1]) &&  //벽체크 0번 플랫폼이없고
-                  Physics2D.OverlapCircle(wallCheck[1].position, 0.1f, layerMask[1])) ||
-                (!Physics2D.OverlapCircle(wallCheck[0].position, 0.1f, layerMask[0]) &&
-                  Physics2D.OverlapCircle(wallCheck[1].position, 0.1f, layerMask[0]))  /*&&  //1번이 플랫폼이면 몬스터 점프
+            if ((!Physics2D.OverlapCircle(wallCheck[0].position, 0.1f, layerMask) &&  //벽체크 0번 플랫폼이없고
+                  Physics2D.OverlapCircle(wallCheck[1].position, 0.1f, layerMask))  /*&&  //1번이 플랫폼이면 몬스터 점프
                        !Physics2D.Raycast(transform.position, -transform.localScale.x * transform.right, 1f, layerMask)*/)  //플랫폼과 너무 가까우면 올라가기 힘들기 때문에 넣음
             {
                 
@@ -35,10 +33,8 @@ public class Bunny : Monster
                               
                 Debug.Log(rb.velocity);
             }
-            if ((Physics2D.OverlapCircle(wallCheck[0].position, 0.1f, layerMask[1]) &&
-                 Physics2D.OverlapCircle(wallCheck[1].position, 0.1f, layerMask[1])) ||
-                (Physics2D.OverlapCircle(wallCheck[0].position, 0.1f, layerMask[0]) &&
-                 Physics2D.OverlapCircle(wallCheck[1].position, 0.1f, layerMask[0]))
+            if ((Physics2D.OverlapCircle(wallCheck[0].position, 0.1f, layerMask) &&
+                 Physics2D.OverlapCircle(wallCheck[1].position, 0.1f, layerMask))
             )
             {
                 Debug.Log("t1");
@@ -46,7 +42,7 @@ public class Bunny : Monster
             }
 
             
-            Vector2 monsterFrontBelowPosition = (Vector2)transform.localPosition + new Vector2(-transform.localScale.x, -1f);
+            Vector2 monsterFrontBelowPosition = (Vector2)transform.localPosition + new Vector2(-transform.localScale.x * 0.2f, 0);
 
             Vector2 origin = monsterFrontBelowPosition;
 
@@ -58,7 +54,7 @@ public class Bunny : Monster
             Debug.DrawRay(origin, direction * distance, Color.red);
 
             // Raycast를 사용하여 조건 확인
-            if (CheckIfNoWall(origin, direction, distance, layerMask[1]) && CheckIfNoWall(origin, direction, distance, layerMask[0]))
+            if (CheckIfNoWall(origin, direction, distance, layerMask))
             {
                 Debug.Log("t2");
                

@@ -19,13 +19,14 @@ public class Monster : MonoBehaviour, IsGroundable
     protected CapsuleCollider2D capsuleCollider;
     public GameObject hitBoxCollider;
     public Animator anim;
-    public LayerMask[] layerMask;
+    protected LayerMask layerMask;
 
     
 
 
     protected virtual void Awake()
     {
+        layerMask = LayerMask.GetMask("Ground","Platform");
         rb = GetComponent<Rigidbody2D>();
         capsuleCollider = GetComponent<CapsuleCollider2D>();
         anim = GetComponent<Animator>();
@@ -124,8 +125,7 @@ public class Monster : MonoBehaviour, IsGroundable
     protected void GroundCheck()
     {
             Debug.DrawRay(transform.localPosition, Vector2.down* 3f, Color.red);
-            if (Physics2D.Raycast(transform.localPosition, Vector2.down, 3f, layerMask[1]) ||
-                Physics2D.Raycast(transform.localPosition, Vector2.down, 3f, layerMask[0]))
+            if (Physics2D.Raycast(transform.localPosition, Vector2.down, 3f, layerMask))
             {
                 isGround = true;
             }

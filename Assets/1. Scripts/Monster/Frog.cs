@@ -17,7 +17,7 @@ public class Frog : Monster
     public GameObject bullet;
     public float bulletLifetime = 3f;
 
-    WaitForSeconds Delay1000 = new WaitForSeconds( 1f );
+    WaitForSeconds Delay1000 = new WaitForSeconds(1f);
 
     protected override void Awake()
     {
@@ -33,7 +33,7 @@ public class Frog : Monster
 
     IEnumerator FSM()
     {
-        while(true)
+        while (true)
         {
             yield return StartCoroutine(currentState.ToString());
         }
@@ -44,7 +44,7 @@ public class Frog : Monster
         yield return null;
         MyAnimSetTrigger("Idle");
 
-        if(Random.value > 0.5f)
+        if (Random.value > 0.5f)
         {
             MonsterFlip();
         }
@@ -56,18 +56,16 @@ public class Frog : Monster
     {
         yield return null;
         float runTime = Random.Range(2f, 3f);
-        while(runTime > 0)
+        while (runTime > 0)
         {
             runTime -= Time.deltaTime;
             MyAnimSetTrigger("Run");
-            if(!isHit)
+            if (!isHit)
             {
                 rb.velocity = new Vector2(-transform.localScale.x * moveSpeed, rb.velocity.y);
 
-                if ((!Physics2D.OverlapCircle(wallCheck[0].position, 0.1f, layerMask[1]) &&  //벽체크 0번 플랫폼이없고
-                      Physics2D.OverlapCircle(wallCheck[1].position, 0.1f, layerMask[1])) ||
-                    (!Physics2D.OverlapCircle(wallCheck[0].position, 0.1f, layerMask[0]) &&
-                      Physics2D.OverlapCircle(wallCheck[1].position, 0.1f, layerMask[0]))  /*&&  //1번이 플랫폼이면 몬스터 점프
+                if ((!Physics2D.OverlapCircle(wallCheck[0].position, 0.1f, layerMask) &&  //벽체크 0번 플랫폼이없고
+                      Physics2D.OverlapCircle(wallCheck[1].position, 0.1f, layerMask)) /*&&  //1번이 플랫폼이면 몬스터 점프
                        !Physics2D.Raycast(transform.position, -transform.localScale.x * transform.right, 1f, layerMask)*/)  //플랫폼과 너무 가까우면 올라가기 힘들기 때문에 넣음
                 {
 
@@ -75,10 +73,8 @@ public class Frog : Monster
 
                     Debug.Log(rb.velocity);
                 }
-                if ((Physics2D.OverlapCircle(wallCheck[0].position, 0.1f, layerMask[1]) &&
-                     Physics2D.OverlapCircle(wallCheck[1].position, 0.1f, layerMask[1])) ||
-                    (Physics2D.OverlapCircle(wallCheck[0].position, 0.1f, layerMask[0]) &&
-                     Physics2D.OverlapCircle(wallCheck[1].position, 0.1f, layerMask[0]))
+                if ((Physics2D.OverlapCircle(wallCheck[0].position, 0.1f, layerMask) &&
+                     Physics2D.OverlapCircle(wallCheck[1].position, 0.1f, layerMask))
                 )
                 {
                     Debug.Log("t1");
@@ -98,29 +94,29 @@ public class Frog : Monster
                 Debug.DrawRay(origin, direction * distance, Color.red);
 
                 // Raycast를 사용하여 조건 확인
-                if (CheckIfNoWall(origin, direction, distance, layerMask[1]) && CheckIfNoWall(origin, direction, distance, layerMask[0]))
+                if (CheckIfNoWall(origin, direction, distance, layerMask))
                 {
                     Debug.Log("t2");
 
                     MonsterFlip();
                 }
                 if (canAtk && IsPlayerDir())
+                {
+                    if (Vector2.Distance(transform.position, GameManager.instance.GetPlayerPosition()) < 15f)
                     {
-                        if (Vector2.Distance(transform.position, GameManager.instance.GetPlayerPosition()) < 15f)
-                        {
-                            currentState = State.Attack;
-                            break;
-                        }
+                        currentState = State.Attack;
+                        break;
                     }
-                
-               
+                }
+
+
             }
             yield return null;
         }
 
-        if(currentState != State.Attack)
+        if (currentState != State.Attack)
         {
-            if(Random.value > 0.5f)
+            if (Random.value > 0.5f)
             {
                 MonsterFlip();
             }
