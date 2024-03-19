@@ -168,7 +168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   curChapterId: 1
-  curMapId: 0
+  curMapId: 3
 --- !u!1 &1744592445
 GameObject:
   m_ObjectHideFlags: 0
