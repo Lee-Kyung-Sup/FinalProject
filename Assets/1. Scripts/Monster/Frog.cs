@@ -42,23 +42,25 @@ public class Frog : Monster
     IEnumerator Idle()
     {
         yield return null;
+        
         MyAnimSetTrigger(currentState.ToString());
-
         if (Random.value > 0.5f)
         {
             MonsterFlip();
         }
         yield return Delay5000;
         currentState = State.Run;
+      
     }
 
-    IEnumerator Run()
+        IEnumerator Run()
     {
         yield return null;
         float runTime = Random.Range(2f, 3f);
-        MyAnimSetTrigger(currentState.ToString());
+        
         while (runTime > 0)
         {
+            MyAnimSetTrigger(currentState.ToString());
             runTime -= Time.deltaTime;
             
             if (!isHit)
@@ -117,7 +119,7 @@ public class Frog : Monster
 
         if (currentState != State.Attack)
         {
-            if (Random.value < 0f)
+            if (Random.value < 0.5f)
             {
                 MonsterFlip();
             }
@@ -137,7 +139,7 @@ public class Frog : Monster
         MyAnimSetTrigger(currentState.ToString());
 
 
-        yield return Delay5000;
+        yield return null;
         currentState = State.Idle;
     }
 
