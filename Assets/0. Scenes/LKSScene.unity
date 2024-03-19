@@ -1011,7 +1011,7 @@ PrefabInstance:
     - target: {fileID: 7242347278766324192, guid: 5841e54c382082e45a1b864cbcbd0bab, type: 3}
       propertyPath: anim
       value: 
-      objectReference: {fileID: 1353054442}
+      objectReference: {fileID: 0}
     - target: {fileID: 7242347278766324192, guid: 5841e54c382082e45a1b864cbcbd0bab, type: 3}
       propertyPath: currentState
       value: 0
@@ -1114,11 +1114,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0.45}
   m_Size: {x: 0.98, y: 0.38}
   m_Direction: 0
---- !u!95 &1353054442 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 6960765800194625429, guid: 5841e54c382082e45a1b864cbcbd0bab, type: 3}
-  m_PrefabInstance: {fileID: 1353054435}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1525350277
 GameObject:
   m_ObjectHideFlags: 0
