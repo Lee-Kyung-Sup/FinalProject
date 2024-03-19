@@ -6,40 +6,78 @@ using UnityEngine.UI;
 public class PlayerStatus : MonoBehaviour, IDamageable
 {
     [SerializeField] private int health = 3; // 캐릭터 체력
-    [SerializeField] private PlayerUI healthUI;
+    [SerializeField] private float stamina = 100; // 캐릭터 스태미너
+    [SerializeField] private float staminaRecoveryRate = 25; // 초당 스태미너 회복량
+    [SerializeField] private float staminaRecoveryDelay = 2f; // 스태미너 회복 지연 시간
 
-    [SerializeField] private int stamina = 100; // 캐릭터 스태미너
+    private float lastStaminaUseTime;
+    private float maxStamina;
+
     [SerializeField] private float speed = 10f;
     [SerializeField] private float jumpPower = 20f;
     [SerializeField] private int maxJumpCount = 2; // 최대 점프 가능 횟수
 
+    private PlayerUI playerUI;
+
     public float Speed => speed;
     public float JumpPower => jumpPower;
     public int MaxJumpCount => maxJumpCount;
+    public float Stamina => stamina;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        playerUI = FindObjectOfType<PlayerUI>();
+        maxStamina = stamina;
+        lastStaminaUseTime = Time.time;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-    }
+        if (Time.time - lastStaminaUseTime >= staminaRecoveryDelay && stamina < 100)
+        {
+            RecoverStamina(staminaRecoveryRate * Time.deltaTime);
+        }
 
+        float displayStamina = Mathf.Lerp(playerUI.staminaUI.value, maxStamina, Time.deltaTime * 10);
+        playerUI.UpdateStaminaUI(Stamina);
+    }
 
     public void TakeDamage(int damage)
     {
         health -= damage;
-        healthUI.UpdateHeartUI(health);
+        playerUI.UpdateHeartUI(health);
 
         if (health <= 0)
         {
             Die();
         }
     }
+
+    public void UseStamina(float value)
+    {
+        stamina -= value;
+        playerUI.UpdateStaminaUI(stamina);
+
+        if (stamina < 0)
+        {
+            stamina = 0;
+        }
+        maxStamina = stamina;
+        lastStaminaUseTime = Time.time;
+    }
+
+    private void RecoverStamina(float value)
+    {
+        stamina += value;
+        if (stamina > 100)
+        {
+            stamina = 100;
+        }
+        maxStamina = stamina;
+    }
+
 
 
     private void Die()

@@ -8,6 +8,8 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] private Image[] hearts;
     [SerializeField] private Sprite redHeart;
     [SerializeField] private Sprite blackHeart;
+    [SerializeField] private PlayerUI healthUI;
+    public Slider staminaUI;
 
 
     public void UpdateHeartUI(int health)
@@ -24,4 +26,12 @@ public class PlayerUI : MonoBehaviour
             }
         }
     }
+
+    public void UpdateStaminaUI(float stamina)
+    {
+        staminaUI.value = stamina;
+    }
+
 }
+
+

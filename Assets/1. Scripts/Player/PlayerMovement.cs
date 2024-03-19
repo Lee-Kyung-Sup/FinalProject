@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour,IsGroundable
 {
     private PlayerStatus playerStatus;
     private Rigidbody2D rb;
-
+    [SerializeField] private Transform playerUI;
     [SerializeField] private TrailRenderer tr; // 대시 효과용 TrailRenderer
     [SerializeField] private Transform groundCheck; // 플레이어의 하단에 위치
 
@@ -76,6 +76,12 @@ public class PlayerMovement : MonoBehaviour,IsGroundable
         }
     }
 
+    private void UnFlipPlayerUI()
+    {
+        // 플레이어 UI는 플레이어의 Scale.x가 반전 되도 고정되게
+        playerUI.localScale = new Vector3(transform.localScale.x > 0 ? 1 : -1, 1, 1);
+    }
+
     public void Move(float inputX)
     {
         if (!isDashing)
@@ -87,6 +93,7 @@ public class PlayerMovement : MonoBehaviour,IsGroundable
             {
                 // 방향에 따른 플레이어 스프라이트 전환
                 transform.localScale = new Vector3(inputX > 0 ? 1 : -1, 1, 1);
+                UnFlipPlayerUI();
             }
 
             if (inputX == 0 && isGrounded)
@@ -96,6 +103,8 @@ public class PlayerMovement : MonoBehaviour,IsGroundable
             }
         }
     }
+
+
 
 
 
@@ -114,17 +123,19 @@ public class PlayerMovement : MonoBehaviour,IsGroundable
             jumpCount++; // 점프 횟수 증가 (첫 번째 점프)
         }
 
-        else if (!isGrounded && jumpCount > 0 && jumpCount < playerStatus.MaxJumpCount)  // 공중에서 추가 점프
+        else if (!isGrounded && jumpCount > 0 && jumpCount < playerStatus.MaxJumpCount && playerStatus.Stamina >= 25)  // 공중에서 추가 점프
         {
             rb.velocity = new Vector2(rb.velocity.x, 0); // 수직 속도 초기화
             rb.AddForce(Vector2.up * playerStatus.JumpPower, ForceMode2D.Impulse);
+
+            playerStatus.UseStamina(25);
             jumpCount++;
         }
     }
 
     public void Dash()
     {
-        if (canDash && !isDashing) // 대쉬가 가능하고 현재 대쉬 중이 아닐 때
+        if (canDash && !isDashing && playerStatus.Stamina >= 25) // 대쉬가 가능하고 현재 대쉬 중이 아닐 때 + 플레이어 스태미너 25이상
         {
             isDashing = true;
             dashStartTime = Time.time;
@@ -132,6 +143,8 @@ public class PlayerMovement : MonoBehaviour,IsGroundable
             isDashCooldownComplete = false;  // 쿨다운 재시작
             tr.emitting = true; // 대쉬 효과 
             rb.velocity = new Vector2(transform.localScale.x * dashPower, rb.velocity.y);
+
+            playerStatus.UseStamina(25); // 스태미너 사용
             StartCoroutine(DashCooldown()); // 대쉬 쿨다운 코루틴
         }
     }
