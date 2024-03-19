@@ -11,7 +11,7 @@ public enum ItemType
 
 public enum ConsumableType
 {
-    Hunger,
+    stamina,
     Health
 }
 
@@ -38,5 +38,8 @@ public class ItemData : ScriptableObject
 
     [Header("Consumable")]
     public ItemDataConsumable[] consumables;
+
+    [Header("Equip")]
+    public GameObject equipPrefab;
 
 }
