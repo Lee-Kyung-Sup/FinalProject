@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 275306072886394592}
   - component: {fileID: 8426001837257117021}
   - component: {fileID: 2283507346400804088}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: HiddenBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5702,7 +5702,7 @@ Transform:
   - {fileID: 5561654129017190911}
   - {fileID: 4116199732635914527}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &2077115403286554631
 BoxCollider2D:

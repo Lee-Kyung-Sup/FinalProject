@@ -22,6 +22,9 @@ public class MapEvent : PlayerEnterTrigger
 
     [HideInInspector] public int monsters;
 
+    BoxCollider2D stageCameraArea;
+    CameraController cameraController;
+
     WaitUntil isAllDieMonster;
     [SerializeField] Summon[] mapPhase;
     protected override void Awake()
@@ -29,6 +32,7 @@ public class MapEvent : PlayerEnterTrigger
         base.Awake();
         col = GetComponent<BoxCollider2D>();
         isAllDieMonster = new WaitUntil(() => monsters <= 0);
+        cameraController = CameraController.Instance;
     }
 
     private void OnEnable()
@@ -58,7 +62,8 @@ public class MapEvent : PlayerEnterTrigger
     {
         playerAction.enabled = false;//알수 없지만 페이즈 설정을 하지 않으면 이곳에서 멈춤
         transform.GetChild(0).gameObject.SetActive(true);//이 컴퍼넌트의 첫 자식은 타일맵임
-        CameraController.Instance.CameraViewZone(transform.GetChild(1).transform);//두 번째 자식은 카메라 고정 위치
+        stageCameraArea = cameraController.CameraArea;
+        cameraController.SetCameraArea(transform.GetChild(1).GetComponent<BoxCollider2D>());//두 번째 자식은 카메라 고정 위치
         StartCoroutine(Eventing());
     }
     IEnumerator Eventing()
@@ -71,7 +76,7 @@ public class MapEvent : PlayerEnterTrigger
             }
             if (i == 0)
             {
-                //벽 및 몬스터 생성 연출 종료후
+                //TODO 벽 및 몬스터 생성 연출 종료후
                 playerAction.enabled = true;
             }
             yield return isAllDieMonster;
@@ -86,8 +91,8 @@ public class MapEvent : PlayerEnterTrigger
     }
     void ClearEvent()
     {
-        //종료 연출
-        CameraController.Instance.CameraViewZone(playerTrans);
+        //TODO 종료 연출
+        cameraController.SetCameraArea(stageCameraArea);
         transform.GetChild(0).gameObject.SetActive(false);
         checker.isClear[transform.parent.name] = true;
     }

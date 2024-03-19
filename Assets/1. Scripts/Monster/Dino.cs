@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Dino : Monster
-{ 
+{
     public enum State
     {
         Idle,
@@ -37,7 +37,7 @@ public class Dino : Monster
 
     IEnumerator FSM()
     {
-        while(true)
+        while (true)
         {
             yield return StartCoroutine(currentState.ToString());
         }
@@ -54,7 +54,7 @@ public class Dino : Monster
     {
         yield return null;
         float runTime = Random.Range(2f, 4f);
-        while(runTime >= 0f)
+        while (runTime >= 0f)
         {
             runTime -= Time.deltaTime;
             if (!isHit)
@@ -62,21 +62,17 @@ public class Dino : Monster
                 rb.velocity = new Vector2(-transform.localScale.x * moveSpeed, rb.velocity.y);
 
 
-                if ((!Physics2D.OverlapCircle(wallCheck[0].position, 0.1f, layerMask[1]) &&  //벽체크 0번 플랫폼이없고
-                      Physics2D.OverlapCircle(wallCheck[1].position, 0.1f, layerMask[1])) ||
-                    (!Physics2D.OverlapCircle(wallCheck[0].position, 0.1f, layerMask[0]) &&
-                      Physics2D.OverlapCircle(wallCheck[1].position, 0.1f, layerMask[0]))  /*&&  //1번이 플랫폼이면 몬스터 점프
-                       !Physics2D.Raycast(transform.position, -transform.localScale.x * transform.right, 1f, layerMask)*/)  //플랫폼과 너무 가까우면 올라가기 힘들기 때문에 넣음
+                if ((!Physics2D.OverlapCircle(wallCheck[0].position, 0.1f, layerMask) &&  //벽체크 0번 플랫폼이없고
+                      Physics2D.OverlapCircle(wallCheck[1].position, 0.1f, layerMask)))  /*&&  //1번이 플랫폼이면 몬스터 점프
+                       !Physics2D.Raycast(transform.position, -transform.localScale.x * transform.right, 1f, layerMask)*/  //플랫폼과 너무 가까우면 올라가기 힘들기 때문에 넣음
                 {
 
                     rb.velocity = new Vector2(rb.velocity.x, jumpPower);
 
                     Debug.Log(rb.velocity);
                 }
-                if ((Physics2D.OverlapCircle(wallCheck[0].position, 0.1f, layerMask[1]) &&
-                     Physics2D.OverlapCircle(wallCheck[1].position, 0.1f, layerMask[1])) ||
-                    (Physics2D.OverlapCircle(wallCheck[0].position, 0.1f, layerMask[0]) &&
-                     Physics2D.OverlapCircle(wallCheck[1].position, 0.1f, layerMask[0]))
+                if ((Physics2D.OverlapCircle(wallCheck[0].position, 0.1f, layerMask) &&
+                     Physics2D.OverlapCircle(wallCheck[1].position, 0.1f, layerMask))
                 )
                 {
                     Debug.Log("t1");
@@ -84,7 +80,7 @@ public class Dino : Monster
                 }
 
 
-                Vector2 monsterFrontBelowPosition = (Vector2)transform.localPosition + new Vector2(-transform.localScale.x, -1f);
+                Vector2 monsterFrontBelowPosition = (Vector2)transform.localPosition + new Vector2(-transform.localScale.x * 0.2f, -1f);
 
                 Vector2 origin = monsterFrontBelowPosition;
 
@@ -96,7 +92,7 @@ public class Dino : Monster
                 Debug.DrawRay(origin, direction * distance, Color.red);
 
                 // Raycast를 사용하여 조건 확인
-                if (CheckIfNoWall(origin, direction, distance, layerMask[1]) && CheckIfNoWall(origin, direction, distance, layerMask[0]))
+                if (CheckIfNoWall(origin, direction, distance, layerMask))
                 {
                     Debug.Log("t2");
 
@@ -105,33 +101,33 @@ public class Dino : Monster
 
                 if (canAtk && IsPlayerDir() && isGround)
                 {
-                     if (Vector2.Distance(transform.position, GameManager.instance.GetPlayerPosition()) < 5f)
-                     {
-                          currentState = State.Attack;
-                          break;
-                     }
+                    if (Vector2.Distance(transform.position, GameManager.instance.GetPlayerPosition()) < 5f)
+                    {
+                        currentState = State.Attack;
+                        break;
+                    }
                 }
             }
             yield return null;
         }
-        if(currentState != State.Attack &&
+        if (currentState != State.Attack &&
            currentState != State.Jump)
         {
-            if(!IsPlayerDir())
+            if (!IsPlayerDir())
             {
                 MonsterFlip();
             }
         }
-    } 
+    }
 
     IEnumerator Attack()
     {
         yield return null;
-        if(!isHit && isGround)
+        if (!isHit && isGround)
         {
             capsuleCollider.offset = capsuleColliderJumpOffset;
             canAtk = false;
-            rb.velocity = new Vector2(-transform.localScale.x * 14f, jumpPower/ 1.25f);
+            rb.velocity = new Vector2(-transform.localScale.x * 14f, jumpPower / 1.25f);
             MyAnimSetTrigger("Attack");
 
             yield return Delay500;
@@ -158,7 +154,7 @@ public class Dino : Monster
     void Update()
     {
         GroundCheck();
-        if(!isHit && isGround && !IsPlayingAnim("Run"))
+        if (!isHit && isGround && !IsPlayingAnim("Run"))
         {
             capsuleCollider.offset = capsuleColliderOffset;
             MyAnimSetTrigger("Idle");
