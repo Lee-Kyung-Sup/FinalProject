@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour,IsGroundable
 {
+    private PlayerStatus playerStatus;
     private Rigidbody2D rb;
+
     [SerializeField] private TrailRenderer tr; // 대시 효과용 TrailRenderer
-    [SerializeField] private float speed = 5f;
-    [SerializeField] private float jumpPower = 5f;
-    [SerializeField] private int maxJumpCount = 2; // 최대 점프 가능 횟수
     [SerializeField] private Transform groundCheck; // 플레이어의 하단에 위치
 
     private LayerMask groundLayer; // 땅으로 간주할 레이어
@@ -34,7 +33,9 @@ public class PlayerMovement : MonoBehaviour,IsGroundable
 
     void Awake()
     {
+        playerStatus = GetComponent<PlayerStatus>();
         rb = GetComponent<Rigidbody2D>();
+
         originalGravityScale = rb.gravityScale;
         groundLayer = LayerMask.GetMask("Ground", "Platform");
         platformLayer = LayerMask.GetMask("Platform");
@@ -42,10 +43,6 @@ public class PlayerMovement : MonoBehaviour,IsGroundable
 
     private void Update()
     {
-        //if (isDashing)
-        //{
-        //    return; // 대쉬 중에 다른 입력 x
-        //}
     }
 
     void FixedUpdate()
@@ -84,7 +81,7 @@ public class PlayerMovement : MonoBehaviour,IsGroundable
         if (!isDashing)
         {
             // 대쉬 중이 아닐 때만 이동
-            rb.velocity = new Vector2(inputX * speed, rb.velocity.y);
+            rb.velocity = new Vector2(inputX * playerStatus.Speed, rb.velocity.y);
 
             if (inputX != 0)
             {
@@ -110,17 +107,17 @@ public class PlayerMovement : MonoBehaviour,IsGroundable
             return;
         }
 
-        if ((isGrounded || isDashing) && jumpCount < maxJumpCount) // 땅에서 점프
+        if ((isGrounded || isDashing) && jumpCount < playerStatus.MaxJumpCount) // 땅에서 점프
         {
             rb.velocity = new Vector2(rb.velocity.x, 0); // 수직 속도 초기화
-            rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+            rb.AddForce(Vector2.up * playerStatus.JumpPower, ForceMode2D.Impulse);
             jumpCount++; // 점프 횟수 증가 (첫 번째 점프)
         }
 
-        else if (!isGrounded && jumpCount > 0 && jumpCount < maxJumpCount)  // 공중에서 추가 점프
+        else if (!isGrounded && jumpCount > 0 && jumpCount < playerStatus.MaxJumpCount)  // 공중에서 추가 점프
         {
             rb.velocity = new Vector2(rb.velocity.x, 0); // 수직 속도 초기화
-            rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+            rb.AddForce(Vector2.up * playerStatus.JumpPower, ForceMode2D.Impulse);
             jumpCount++;
         }
     }
@@ -174,7 +171,7 @@ public class PlayerMovement : MonoBehaviour,IsGroundable
         if (isPressingDown)
         {
             // 플레이어의 콜라이더 비활성화 (플랫폼 아래로 하강)
-            rb.velocity = new Vector2(rb.velocity.x, jumpPower * 0.25f); // 살짝 점프
+            rb.velocity = new Vector2(rb.velocity.x, playerStatus.JumpPower * 0.25f); // 살짝 점프
             Collider2D collider = GetComponent<Collider2D>();
             if (collider != null)
             {

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6606579963691706386}
   - component: {fileID: 5396022831010056269}
   - component: {fileID: 4588999740573174711}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: AttackSprite1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -372,6 +372,7 @@ GameObject:
   - component: {fileID: 6621935762439540140}
   - component: {fileID: 2243918332336067866}
   - component: {fileID: 1756893326375499926}
+  - component: {fileID: 1360410190396740173}
   - component: {fileID: 8226669703730961352}
   - component: {fileID: 2629860545646752947}
   m_Layer: 6
@@ -721,6 +722,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42d949a2acb1a7842b32168343d4997b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1360410190396740173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3949886980107114563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee63044ee86a21d4ca376d84a760400c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 3
+  stamina: 100
+  speed: 5
+  jumpPower: 5
+  maxJumpCount: 2
 --- !u!114 &8226669703730961352
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -734,9 +752,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tr: {fileID: 744946669726102089}
-  speed: 10
-  jumpPower: 20
-  maxJumpCount: 2
   groundCheck: {fileID: 7452848560659514459}
   dashPower: 70
   dashTime: 0.1
@@ -770,7 +785,7 @@ GameObject:
   - component: {fileID: 221308506803821778}
   - component: {fileID: 6198198559188364953}
   - component: {fileID: 9094434115529792470}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: MeleeAttackHitBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
