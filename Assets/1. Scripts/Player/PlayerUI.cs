@@ -10,7 +10,7 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] private Sprite blackHeart;
 
 
-    public void UpdateHeartUI()
+    public void UpdateHeartUI(int health)
     {
         for (int i = 0; i < hearts.Length; i++)
         {

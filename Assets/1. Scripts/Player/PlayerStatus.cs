@@ -33,16 +33,13 @@ public class PlayerStatus : MonoBehaviour, IDamageable
     public void TakeDamage(int damage)
     {
         health -= damage;
-        healthUI.UpdateHeartUI();
+        healthUI.UpdateHeartUI(health);
 
         if (health <= 0)
         {
             Die();
         }
     }
-
-
-
 
 
     private void Die()

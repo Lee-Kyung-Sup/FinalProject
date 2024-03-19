@@ -50,7 +50,7 @@ public class PlayerMovement : MonoBehaviour,IsGroundable
         RaycastHit2D hit = Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckRange, groundLayer);
         isGrounded = hit.collider != null;
         if (isGrounded)
-        {
+        { 
             if (!canDash && isDashCooldownComplete)
             {
                 canDash = true;  // 땅에 닿음 + 쿨다운이 완료되었다면 대쉬 가능

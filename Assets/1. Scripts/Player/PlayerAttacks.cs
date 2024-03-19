@@ -12,13 +12,13 @@ public class PlayerAttacks : MonoBehaviour
 
 
     [SerializeField] private Collider2D meleeAttackCollider;
-    [SerializeField] private SpriteRenderer meleeAttackSprite;
-    [SerializeField] private Animator meleeAttackAnimator;
+    //[SerializeField] private SpriteRenderer meleeAttackSprite;
+    //[SerializeField] private Animator meleeAttackAnimator;
 
     private void Start()
     {
         meleeAttackCollider.enabled = false;
-        meleeAttackSprite.enabled = false;
+        //meleeAttackSprite.enabled = false;
     }
 
 
@@ -43,15 +43,15 @@ public class PlayerAttacks : MonoBehaviour
     public void Attack()
     {
         meleeAttackCollider.enabled = true;
-        meleeAttackSprite.enabled = true;
-        meleeAttackAnimator.SetTrigger("Attack");
+        //meleeAttackSprite.enabled = true;
+        //meleeAttackAnimator.SetTrigger("Attack");
         Invoke("DisableAttack", 0.25f);
     }
 
     private void DisableAttack()
     {
         meleeAttackCollider.enabled = false;
-        meleeAttackSprite.enabled = false;
-        meleeAttackAnimator.ResetTrigger("Attack");
+        //meleeAttackSprite.enabled = false;
+        //meleeAttackAnimator.ResetTrigger("Attack");
     }
 }
