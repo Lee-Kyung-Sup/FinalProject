@@ -42,7 +42,7 @@ public class Frog : Monster
     IEnumerator Idle()
     {
         yield return null;
-        MyAnimSetTrigger("Idle");
+        MyAnimSetTrigger("FrogIdle");
 
         if (Random.value > 0.5f)
         {
@@ -59,7 +59,7 @@ public class Frog : Monster
         while (runTime > 0)
         {
             runTime -= Time.deltaTime;
-            MyAnimSetTrigger("Run");
+            MyAnimSetTrigger("FrogRun");
             if (!isHit)
             {
                 rb.velocity = new Vector2(-transform.localScale.x * moveSpeed, rb.velocity.y);
@@ -133,7 +133,7 @@ public class Frog : Monster
 
         canAtk = false;
         rb.velocity = new Vector2(0, jumpPower);
-        MyAnimSetTrigger("Attack");
+        MyAnimSetTrigger("FrogAttack");
 
         yield return Delay1000;
         currentState = State.Idle;
