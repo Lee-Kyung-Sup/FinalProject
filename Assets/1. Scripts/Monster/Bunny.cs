@@ -18,7 +18,7 @@ public class Bunny : Monster
 
     void Update()
     {
-        if (!isHit && monsterIdle)
+        if (!isHit && isGround)
         {
             move = -transform.localScale.x * moveSpeed;
             rb.velocity = new Vector2(move, rb.velocity.y); //몬스터 기본 움직임
@@ -35,7 +35,7 @@ public class Bunny : Monster
             }
             if ((Physics2D.OverlapCircle(wallCheck[0].position, 0.1f, layerMask) &&
                  Physics2D.OverlapCircle(wallCheck[1].position, 0.1f, layerMask))
-            )
+               )
             {
                 Debug.Log("t1");
                 MonsterFlip();
@@ -54,7 +54,7 @@ public class Bunny : Monster
             Debug.DrawRay(origin, direction * distance, Color.red);
 
             // Raycast를 사용하여 조건 확인
-            if (CheckIfNoWall(origin, direction, distance, layerMask))
+            if (CheckIfNoWall(origin, direction, distance, layerMask) && !isGround)
             {
                 Debug.Log("t2");
                

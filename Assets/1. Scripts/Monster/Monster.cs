@@ -91,8 +91,12 @@ public class Monster : MonoBehaviour, IsGroundable
     //몬스터 방향전환 true이면 오른쪽, false이면 원쪽
     protected void MonsterFlip()
     {
+        if(isGround == false)
+        {
+            return;
+        }
         monsterDirRight = !monsterDirRight;
-
+        
         Vector3 thisScale = transform.localScale;
         if (monsterDirRight)
         {

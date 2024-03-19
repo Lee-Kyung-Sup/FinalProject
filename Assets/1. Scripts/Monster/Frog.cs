@@ -17,7 +17,7 @@ public class Frog : Monster
     public GameObject bullet;
     public float bulletLifetime = 3f;
 
-    WaitForSeconds Delay1000 = new WaitForSeconds(1f);
+    WaitForSeconds Delay5000 = new WaitForSeconds(5f);
 
     protected override void Awake()
     {
@@ -42,24 +42,27 @@ public class Frog : Monster
     IEnumerator Idle()
     {
         yield return null;
-        MyAnimSetTrigger("Idle");
-
+        
+        MyAnimSetTrigger(currentState.ToString());
         if (Random.value > 0.5f)
         {
             MonsterFlip();
         }
-        yield return Delay1000;
+        yield return Delay5000;
         currentState = State.Run;
+      
     }
 
-    IEnumerator Run()
+        IEnumerator Run()
     {
         yield return null;
         float runTime = Random.Range(2f, 3f);
+        
         while (runTime > 0)
         {
+            MyAnimSetTrigger(currentState.ToString());
             runTime -= Time.deltaTime;
-            MyAnimSetTrigger("Run");
+            
             if (!isHit)
             {
                 rb.velocity = new Vector2(-transform.localScale.x * moveSpeed, rb.velocity.y);
@@ -116,7 +119,7 @@ public class Frog : Monster
 
         if (currentState != State.Attack)
         {
-            if (Random.value > 0.5f)
+            if (Random.value < 0.5f)
             {
                 MonsterFlip();
             }
@@ -133,9 +136,10 @@ public class Frog : Monster
 
         canAtk = false;
         rb.velocity = new Vector2(0, jumpPower);
-        MyAnimSetTrigger("Attack");
+        MyAnimSetTrigger(currentState.ToString());
 
-        yield return Delay1000;
+
+        yield return null;
         currentState = State.Idle;
     }
 
