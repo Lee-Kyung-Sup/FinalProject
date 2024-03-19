@@ -22299,7 +22299,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8435021216814041710, guid: a63bf4f81c2d6ca4394852af2bfbb2de, type: 3}
       propertyPath: speed
-      value: 1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 8435021216814041710, guid: a63bf4f81c2d6ca4394852af2bfbb2de, type: 3}
       propertyPath: amplitude
@@ -22337,7 +22337,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5300354766707566390, guid: 8fb0beb07ec06b84b9352417a59aca4d, type: 3}
       propertyPath: m_LocalScale.x
-      value: 3
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5300354766707566390, guid: 8fb0beb07ec06b84b9352417a59aca4d, type: 3}
       propertyPath: m_LocalScale.y
