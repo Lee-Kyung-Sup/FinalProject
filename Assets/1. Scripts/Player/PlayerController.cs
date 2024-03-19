@@ -9,13 +9,12 @@ public class PlayerController : MonoBehaviour
     private PlayerMovement _playerMovement; // PlayerMovement 스크립트 참조
     private PlayerAttacks _playerAttacks;
     private Vector2 _inputVector; // 플레이어의 움직임 입력을 저장하는 벡터
-
-
-
+    Dictionary<Paction, bool> lockAction = new Dictionary<Paction, bool>(); 
     void Awake()
     {
         _playerMovement = GetComponent<PlayerMovement>();
         _playerAttacks = GetComponent<PlayerAttacks>();
+        InItLockAction();
     }
 
     void FixedUpdate()
@@ -23,7 +22,15 @@ public class PlayerController : MonoBehaviour
         _playerMovement.Move(_inputVector.x);
 
     }
-
+    void InItLockAction()
+    {
+        lockAction.Add(Paction.AirAttack,false);
+        lockAction.Add(Paction.ChargeShot,false);
+        lockAction.Add(Paction.Dash,false);
+        lockAction.Add(Paction.DubleJump,false);
+        lockAction.Add(Paction.MeleeAttack,false);
+        lockAction.Add(Paction.RangeAttack,false);
+    }
     public void OnMove(InputAction.CallbackContext context)
     {
         // 입력 벡터를 업데이트
@@ -41,7 +48,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnDash(InputAction.CallbackContext context)
     {
-        if (context.performed) // 대시 버튼이 눌렸을 때만
+        if (context.performed && lockAction[Paction.Dash]) // 대시 버튼이 눌렸을 때만
         {
             _playerMovement.Dash();
         }
@@ -50,7 +57,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnFire(InputAction.CallbackContext context)
     {
-        if (context.performed) // 발사 버튼이 눌렸을 때만
+        if (context.performed && lockAction[Paction.RangeAttack]) // 발사 버튼이 눌렸을 때만
         {
             _playerAttacks.Fire();
         }
@@ -58,7 +65,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnAttack(InputAction.CallbackContext context) // 근접 공격 임시
     {
-        if (context.performed) 
+        if (context.performed && lockAction[Paction.MeleeAttack]) 
         {
             _playerAttacks.Attack();
         }
@@ -79,5 +86,9 @@ public class PlayerController : MonoBehaviour
     {
         bool isPressing = context.ReadValue<float>() > 0;
         _playerMovement.SetIsPressingDown(isPressing);
+    }
+    public void UnLockAction(Paction unLockAction)
+    {
+        lockAction[unLockAction] = true;
     }
 }
