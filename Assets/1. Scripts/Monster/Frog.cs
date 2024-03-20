@@ -89,7 +89,7 @@ public class Frog : Monster
                 }
 
 
-                Vector2 monsterFrontBelowPosition = (Vector2)transform.localPosition + new Vector2(-transform.localScale.x * 0.2f, -1f);
+                Vector2 monsterFrontBelowPosition = (Vector2)transform.localPosition + new Vector2(-transform.localScale.x * 0.2f, 0);
 
                 Vector2 origin = monsterFrontBelowPosition;
 
@@ -101,7 +101,7 @@ public class Frog : Monster
                 Debug.DrawRay(origin, direction * distance, Color.red);
 
                 // Raycast를 사용하여 조건 확인
-                if (CheckIfNoWall(origin, direction, distance, layerMask))
+                if (CheckIsClif(origin, direction, distance, layerMask))
                 {
                     Debug.Log("t2");
 

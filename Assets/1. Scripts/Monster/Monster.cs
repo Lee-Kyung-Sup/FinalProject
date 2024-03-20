@@ -144,7 +144,7 @@ public class Monster : MonoBehaviour, IsGroundable
     }
 
     //벽체크
-    public bool CheckIfNoWall(Vector2 origin, Vector2 direction, float distance, LayerMask layerMask)
+    public bool CheckIsClif(Vector2 origin, Vector2 direction, float distance, LayerMask layerMask)
     {
         // Raycast 발사
         RaycastHit2D hit = Physics2D.Raycast(origin, direction, distance, layerMask);
