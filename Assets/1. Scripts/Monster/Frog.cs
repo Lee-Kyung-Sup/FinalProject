@@ -31,6 +31,10 @@ public class Frog : Monster
         StartCoroutine(FSM());
     }
 
+    protected override void Update()
+    {
+        base.Update();
+    }
     IEnumerator FSM()
     {
         while (true)
@@ -63,7 +67,7 @@ public class Frog : Monster
             MyAnimSetTrigger(currentState.ToString());
             runTime -= Time.deltaTime;
             
-            if (!isHit)
+            if (!isHit && isGround)
             {
                 rb.velocity = new Vector2(-transform.localScale.x * moveSpeed, rb.velocity.y);
 

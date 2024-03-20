@@ -124,7 +124,10 @@ public class Monster : MonoBehaviour, IsGroundable
     }
 
 
-    
+    protected virtual void Update()
+    {
+        GroundCheck();
+    }
     //바닥에 닿았는지 아닌지 체크
     protected void GroundCheck()
     {
@@ -139,6 +142,7 @@ public class Monster : MonoBehaviour, IsGroundable
             }
         
     }
+
     //벽체크
     public bool CheckIfNoWall(Vector2 origin, Vector2 direction, float distance, LayerMask layerMask)
     {

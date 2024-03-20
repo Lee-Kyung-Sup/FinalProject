@@ -19,7 +19,7 @@ public class Dino : Monster
 
     //Vector2 capsuleColliderOffset;
     //Vector2 capsuleColliderJumpOffset;
-
+    
     protected override void Awake()
     {
         base.Awake();
@@ -34,7 +34,10 @@ public class Dino : Monster
 
         StartCoroutine(FSM());
     }
-
+    protected override void Update()
+    {
+        base.Update();
+    }
     IEnumerator FSM()
     {
         while (true)
