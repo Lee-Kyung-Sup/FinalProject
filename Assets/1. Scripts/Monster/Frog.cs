@@ -103,7 +103,7 @@ public class Frog : Monster
 
                     MonsterFlip();
                 }
-                if (canAtk && IsPlayerDir())
+                if (canAtk && IsPlayerDir() && isGround)
                 {
                     if (Vector2.Distance(transform.position, GameManager.instance.GetPlayerPosition()) < 15f)
                     {

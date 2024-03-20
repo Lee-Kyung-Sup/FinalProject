@@ -9,16 +9,16 @@ public class Dino : Monster
         Idle,
         Run,
         Attack,
-        Jump
+        //Jump
     };
 
     public State currentState = State.Idle;
 
     public Transform[] wallCheck;
-    WaitForSeconds Delay500 = new WaitForSeconds(0.5f);
+    WaitForSeconds Delay500 = new WaitForSeconds(0.55f);
 
-    Vector2 capsuleColliderOffset;
-    Vector2 capsuleColliderJumpOffset;
+    //Vector2 capsuleColliderOffset;
+    //Vector2 capsuleColliderJumpOffset;
 
     protected override void Awake()
     {
@@ -29,8 +29,8 @@ public class Dino : Monster
         atkCoolTime = 3f;
         atkCoolTimeCalc = atkCoolTime;
 
-        capsuleColliderOffset = capsuleCollider.offset;
-        capsuleColliderJumpOffset = new Vector2(capsuleColliderOffset.x, 1f);
+        //capsuleColliderOffset = capsuleCollider.offset;
+        //capsuleColliderJumpOffset = new Vector2(capsuleColliderOffset.x, 1f);
 
         StartCoroutine(FSM());
     }
@@ -45,7 +45,10 @@ public class Dino : Monster
 
     IEnumerator Idle()
     {
-        capsuleCollider.offset = capsuleColliderOffset;
+        //yield return null;
+
+        //capsuleCollider.offset = capsuleColliderOffset;
+        MyAnimSetTrigger(currentState.ToString());
         yield return Delay500;
         currentState = State.Run;
     }
@@ -56,6 +59,7 @@ public class Dino : Monster
         float runTime = Random.Range(2f, 4f);
         while (runTime >= 0f)
         {
+            MyAnimSetTrigger(currentState.ToString());
             runTime -= Time.deltaTime;
             if (!isHit)
             {
@@ -110,8 +114,8 @@ public class Dino : Monster
             }
             yield return null;
         }
-        if (currentState != State.Attack &&
-           currentState != State.Jump)
+        if (currentState != State.Attack 
+            /*&& currentState != State.Jump*/)
         {
             if (!IsPlayerDir())
             {
@@ -125,12 +129,12 @@ public class Dino : Monster
         yield return null;
         if (!isHit && isGround)
         {
-            capsuleCollider.offset = capsuleColliderJumpOffset;
+            //capsuleCollider.offset = capsuleColliderJumpOffset;
             canAtk = false;
             rb.velocity = new Vector2(-transform.localScale.x * 14f, jumpPower / 1.25f);
-            MyAnimSetTrigger("Attack");
+            MyAnimSetTrigger(currentState.ToString());
 
-            yield return Delay500;
+            yield return null;
             currentState = State.Idle;
         }
         else
@@ -139,26 +143,26 @@ public class Dino : Monster
         }
 
     }
-    IEnumerator Jump()
-    {
-        yield return null;
-        capsuleCollider.offset = capsuleColliderJumpOffset;
+    //IEnumerator Jump()
+    //{
+    //    yield return null;
+    //    capsuleCollider.offset = capsuleColliderJumpOffset;
 
-        rb.velocity = new Vector2(-transform.localScale.x * 6f, jumpPower);
-        MyAnimSetTrigger("Attack");
+    //    rb.velocity = new Vector2(-transform.localScale.x * 6f, jumpPower);
+    //    MyAnimSetTrigger("Attack");
 
-        yield return Delay500;
-        currentState = State.Idle;
-    }
+    //    yield return Delay500;
+    //    currentState = State.Idle;
+    //}
 
-    void Update()
-    {
-        GroundCheck();
-        if (!isHit && isGround && !IsPlayingAnim("Run"))
-        {
-            capsuleCollider.offset = capsuleColliderOffset;
-            MyAnimSetTrigger("Idle");
-        }
-    }
+    //void Update()
+    //{
+    //    GroundCheck();
+    //    if (!isHit && isGround && !IsPlayingAnim("Run"))
+    //    {
+    //        capsuleCollider.offset = capsuleColliderOffset;
+    //        MyAnimSetTrigger("Idle");
+    //    }
+    //}
 }
 
