@@ -16,7 +16,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
         public ParticleSystem JumpDust;
 
         private Vector3 _motion = Vector3.zero;
-        private int _inputX, _inputY;
+        private int _inputX;
         private float _activityTime;
         
         public void Start()
@@ -68,7 +68,6 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
             
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
-                _inputY = 1;
                 
                 if (Controller.isGrounded)
                 {
@@ -180,7 +179,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
             //    _activityTime = Time.time;
             //}
 
-            _inputX = _inputY = 0;
+
 
             if (Controller.isGrounded && !Mathf.Approximately(Controller.velocity.x, 0))
             {

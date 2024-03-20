@@ -22,13 +22,13 @@ public class InteractionManager : MonoBehaviour
     private IInteractable curInteractable;
 
     public TextMeshProUGUI promptText;
-    private Camera camera;
+    private Camera _camera;
     Vector3 MousePosition;
 
     // Start is called before the first frame update
     void Start()
     {
-        camera = Camera.main;
+        _camera = Camera.main;
     }
 
     // Update is called once per frame
@@ -42,7 +42,7 @@ public class InteractionManager : MonoBehaviour
             if (Input.GetMouseButton(0))
             {
                 MousePosition =Input.mousePosition;
-                MousePosition = camera.ScreenToWorldPoint(MousePosition);
+                MousePosition = _camera.ScreenToWorldPoint(MousePosition);
 
                 RaycastHit2D hit = Physics2D.Raycast(MousePosition, transform.forward, maxCheckDistance, layerMask);
 

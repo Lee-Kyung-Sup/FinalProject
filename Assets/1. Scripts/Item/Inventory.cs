@@ -203,13 +203,13 @@ public class Inventory : MonoBehaviour
         {
             for (int i = 0; i < selectedItem.item.consumables.Length; i++)
             {
-                switch (selectedItem.item.consumables[i].type)
-                {
-                    //case ConsumableType.Health:
-                    //condition.Heal(selectedItem.item.consumables[i].value); break;
-                    //case ConsumableType.Hunger:
-                    //    condition.Eat(selectedItem.item.consumables[i].value); break;
-                }
+                //switch (selectedItem.item.consumables[i].type)
+                //{
+                //    //case ConsumableType.Health:
+                //    //condition.Heal(selectedItem.item.consumables[i].value); break;
+                //    //case ConsumableType.Hunger:
+                //    //    condition.Eat(selectedItem.item.consumables[i].value); break;
+                //}
             }
         }
         RemoveSelectedItem();
