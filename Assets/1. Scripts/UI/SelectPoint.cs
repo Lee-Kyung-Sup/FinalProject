@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 using System.IO;
 using TMPro;
 
-public class Select : MonoBehaviour
+public class SelectPoint : MonoBehaviour
 {
     public GameObject creat;	// 플레이어 닉네임 입력UI
     public TMP_Text[] slotText;		// 슬롯버튼 아래에 존재하는 Text들
@@ -63,5 +63,9 @@ public class Select : MonoBehaviour
             DataManager.instance.SaveData(); // 현재 정보를 저장함.
         }
         SceneManager.LoadScene(3); // 게임씬으로 이동
+
+
+
+
     }
 }
