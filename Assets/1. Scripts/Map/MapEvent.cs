@@ -38,11 +38,11 @@ public class MapEvent : PlayerEnterTrigger
     private void OnEnable()
     {
         checker = MapMaker.Instance.mapEventCheker;
-        if (checker.isClear.ContainsKey(transform.parent.name))
+        if (checker.isClear.ContainsKey(transform.parent.root.name))
         {
             return;
         }
-        checker.isClear.Add(transform.parent.name, false);
+        checker.isClear.Add(transform.parent.root.name, false);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -50,7 +50,7 @@ public class MapEvent : PlayerEnterTrigger
         if (pLayer.value == (pLayer.value |(1<< collision.gameObject.layer)))
         {
             col.enabled = false;
-            if (!checker.isClear[transform.parent.name])
+            if (!checker.isClear[transform.parent.root.name])
             {
                 playerTrans = collision.transform;
                 playerAction = playerTrans.GetComponent<PlayerInput>();
@@ -94,6 +94,6 @@ public class MapEvent : PlayerEnterTrigger
         //TODO 종료 연출
         cameraController.SetCameraArea(stageCameraArea);
         transform.GetChild(0).gameObject.SetActive(false);
-        checker.isClear[transform.parent.name] = true;
+        checker.isClear[transform.parent.root.name] = true;
     }
 }
