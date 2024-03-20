@@ -5,10 +5,13 @@ using UnityEngine.UI;
 
 public class PlayerStatus : MonoBehaviour, IDamageable
 {
+    private PlayerAnimations playerAnimations;
+    private PlayerUI playerUI;
+
     [SerializeField] private int health = 3; // 캐릭터 체력
     [SerializeField] private float stamina = 100; // 캐릭터 스태미너
-    [SerializeField] private float staminaRecoveryRate = 25; // 초당 스태미너 회복량
-    [SerializeField] private float staminaRecoveryDelay = 2f; // 스태미너 회복 지연 시간
+    [SerializeField] private float staminaRecoveryRate = 100; // 초당 스태미너 회복량
+    [SerializeField] private float staminaRecoveryDelay = 1f; // 스태미너 회복 지연 시간
 
     private float lastStaminaUseTime;
     private float maxStamina;
@@ -17,7 +20,6 @@ public class PlayerStatus : MonoBehaviour, IDamageable
     [SerializeField] private float jumpPower = 20f;
     [SerializeField] private int maxJumpCount = 2; // 최대 점프 가능 횟수
 
-    private PlayerUI playerUI;
 
     public float Speed => speed;
     public float JumpPower => jumpPower;
@@ -27,6 +29,7 @@ public class PlayerStatus : MonoBehaviour, IDamageable
     // Start is called before the first frame update
     void Start()
     {
+        playerAnimations = GetComponent<PlayerAnimations>();
         playerUI = FindObjectOfType<PlayerUI>();
         maxStamina = stamina;
         lastStaminaUseTime = Time.time;
@@ -40,7 +43,7 @@ public class PlayerStatus : MonoBehaviour, IDamageable
             RecoverStamina(staminaRecoveryRate * Time.deltaTime);
         }
 
-        float displayStamina = Mathf.Lerp(playerUI.staminaUI.value, maxStamina, Time.deltaTime * 10);
+        float Stamina = Mathf.Lerp(playerUI.staminaUI.value, maxStamina, Time.deltaTime * 10);
         playerUI.UpdateStaminaUI(Stamina);
     }
 
@@ -53,12 +56,15 @@ public class PlayerStatus : MonoBehaviour, IDamageable
         {
             Die();
         }
+
+        // 피해 시 넉백 메서드
+        // 피해 시 일정시간 무적 메서드
+
     }
 
     public void UseStamina(float value)
     {
         stamina -= value;
-        playerUI.UpdateStaminaUI(stamina);
 
         if (stamina < 0)
         {
@@ -66,6 +72,7 @@ public class PlayerStatus : MonoBehaviour, IDamageable
         }
         maxStamina = stamina;
         lastStaminaUseTime = Time.time;
+        playerUI.UpdateStaminaUI(stamina);
     }
 
     private void RecoverStamina(float value)
@@ -78,14 +85,10 @@ public class PlayerStatus : MonoBehaviour, IDamageable
         maxStamina = stamina;
     }
 
-
-
     private void Die()
     {
-        
         Debug.Log("플레이어 죽음");
         // 플레이어 사망 후 로직 TODO - 입력 불가, DIE 애니메이션 재생, Game Over Scene으로.
-     
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

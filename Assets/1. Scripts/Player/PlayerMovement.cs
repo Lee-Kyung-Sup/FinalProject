@@ -5,7 +5,9 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour,IsGroundable
 {
     private PlayerStatus playerStatus;
+    private PlayerAnimations playerAnimations;
     private Rigidbody2D rb;
+
     [SerializeField] private Transform playerUI;
     [SerializeField] private TrailRenderer tr; // 대시 효과용 TrailRenderer
     [SerializeField] private Transform groundCheck; // 플레이어의 하단에 위치
@@ -35,15 +37,13 @@ public class PlayerMovement : MonoBehaviour,IsGroundable
     {
         playerStatus = GetComponent<PlayerStatus>();
         rb = GetComponent<Rigidbody2D>();
+        playerAnimations = GetComponent<PlayerAnimations>();
 
         originalGravityScale = rb.gravityScale;
         groundLayer = LayerMask.GetMask("Ground", "Platform");
         platformLayer = LayerMask.GetMask("Platform");
     }
 
-    private void Update()
-    {
-    }
 
     void FixedUpdate()
     {
@@ -59,6 +59,7 @@ public class PlayerMovement : MonoBehaviour,IsGroundable
             if (rb.velocity.y <= 0)
             {
                 jumpCount = 0; // 땅에 닿으면 점프 횟수 초기화
+                playerAnimations.Jumping(false);
             }
         }
 
@@ -78,7 +79,7 @@ public class PlayerMovement : MonoBehaviour,IsGroundable
 
     private void UnFlipPlayerUI()
     {
-        // 플레이어 UI는 플레이어의 Scale.x가 반전 되도 고정되게
+        // 플레이어 UI는 플레이어의 Scale.x가 반전되도 변하지 않게
         playerUI.localScale = new Vector3(transform.localScale.x > 0 ? 1 : -1, 1, 1);
     }
 
@@ -86,8 +87,11 @@ public class PlayerMovement : MonoBehaviour,IsGroundable
     {
         if (!isDashing)
         {
+
             // 대쉬 중이 아닐 때만 이동
             rb.velocity = new Vector2(inputX * playerStatus.Speed, rb.velocity.y);
+
+            playerAnimations.Moving(true);
 
             if (inputX != 0)
             {
@@ -100,6 +104,7 @@ public class PlayerMovement : MonoBehaviour,IsGroundable
             {
                 // 정지 상태
                 rb.velocity = new Vector2(0, rb.velocity.y);
+                playerAnimations.Moving(false);
             }
         }
     }
@@ -121,6 +126,7 @@ public class PlayerMovement : MonoBehaviour,IsGroundable
             rb.velocity = new Vector2(rb.velocity.x, 0); // 수직 속도 초기화
             rb.AddForce(Vector2.up * playerStatus.JumpPower, ForceMode2D.Impulse);
             jumpCount++; // 점프 횟수 증가 (첫 번째 점프)
+            playerAnimations.Jumping(true);
         }
 
         else if (!isGrounded && jumpCount > 0 && jumpCount < playerStatus.MaxJumpCount && playerStatus.Stamina >= 25)  // 공중에서 추가 점프
@@ -130,6 +136,7 @@ public class PlayerMovement : MonoBehaviour,IsGroundable
 
             playerStatus.UseStamina(25);
             jumpCount++;
+            playerAnimations.Jumping(true);
         }
     }
 
@@ -141,6 +148,9 @@ public class PlayerMovement : MonoBehaviour,IsGroundable
             dashStartTime = Time.time;
             canDash = false;
             isDashCooldownComplete = false;  // 쿨다운 재시작
+
+            playerAnimations.Dashing(); // 대쉬 애니메이션 재생
+
             tr.emitting = true; // 대쉬 효과 
             rb.velocity = new Vector2(transform.localScale.x * dashPower, rb.velocity.y);
 
