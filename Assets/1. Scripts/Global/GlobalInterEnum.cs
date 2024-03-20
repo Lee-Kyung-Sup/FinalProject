@@ -15,7 +15,7 @@ public enum Paction
 {
     MeleeAttack,
     AirAttack,
-    DubleJump,
+    DoubleJump,
     Dash,
     RangeAttack,
     ChargeShot

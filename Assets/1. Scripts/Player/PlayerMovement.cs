@@ -19,6 +19,8 @@ public class PlayerMovement : MonoBehaviour,IsGroundable
     private int jumpCount = 0; // 점프 횟수
     bool isGrounded = false;
 
+    private bool canDoubleJump = false; // 더블 점프 가능 여부 (아이템으로 해금)
+
     private bool canDash = true; // 대쉬 가능한지
     private bool isDashing; // 현재 대쉬 중인지
     private bool isDashCooldownComplete = true;  // 대쉬 쿨다운이 완료되었는지
@@ -26,8 +28,8 @@ public class PlayerMovement : MonoBehaviour,IsGroundable
     [SerializeField] private float dashTime = 0.2f;
     [SerializeField] private float dashCooldown = 1f;
     private float dashStartTime; // 대쉬 시작 시간
-    private float originalGravityScale; // 기본 중력 값
 
+    private float originalGravityScale; // 기본 중력 값
     private bool isPressingDown = false;
 
 
@@ -42,6 +44,8 @@ public class PlayerMovement : MonoBehaviour,IsGroundable
         originalGravityScale = rb.gravityScale;
         groundLayer = LayerMask.GetMask("Ground", "Platform");
         platformLayer = LayerMask.GetMask("Platform");
+
+        SetDoubleJumpEnabled(true); // 더블 점프 해금 (테스트)
     }
 
 
@@ -142,7 +146,7 @@ public class PlayerMovement : MonoBehaviour,IsGroundable
             playerAnimations.Jumping(true);
         }
 
-        else if (!isGrounded && jumpCount > 0 && jumpCount < playerStatus.MaxJumpCount && playerStatus.Stamina >= 25)  // 공중에서 추가 점프
+        else if (!isGrounded && canDoubleJump && jumpCount > 0 && jumpCount < playerStatus.MaxJumpCount && playerStatus.Stamina >= 25)  // 공중에서 추가 점프
         {
             rb.velocity = new Vector2(rb.velocity.x, 0); // 수직 속도 초기화
             rb.AddForce(Vector2.up * playerStatus.JumpPower, ForceMode2D.Impulse);
@@ -193,6 +197,11 @@ public class PlayerMovement : MonoBehaviour,IsGroundable
     public void SetIsPressingDown(bool isPressing)
     {
         isPressingDown = isPressing;
+    }
+
+    public void SetDoubleJumpEnabled(bool enabled) // 더블 점프 해제
+    {
+        canDoubleJump = enabled;
     }
 
 
