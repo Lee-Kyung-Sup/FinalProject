@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerAttacks : MonoBehaviour
 {
+    private PlayerAnimations playerAnimations;
+
     [SerializeField] GameObject bulletPref;
 
     [SerializeField] private float firePower = 15f; // 발사 힘
@@ -12,11 +14,14 @@ public class PlayerAttacks : MonoBehaviour
 
 
     [SerializeField] private Collider2D meleeAttackCollider;
+    [SerializeField] private Transform rangeAttackPosition;
     //[SerializeField] private SpriteRenderer meleeAttackSprite;
     //[SerializeField] private Animator meleeAttackAnimator;
 
     private void Start()
     {
+        playerAnimations = GetComponent<PlayerAnimations>();
+
         meleeAttackCollider.enabled = false;
         //meleeAttackSprite.enabled = false;
     }
@@ -28,7 +33,8 @@ public class PlayerAttacks : MonoBehaviour
         if (Time.time - lastFireTime >= fireDelay)
         {
             Vector3 direction = transform.right * transform.localScale.x; // 플레이어의 방향에 따라 발사 방향 결정
-            GameObject bullet = Instantiate(bulletPref, transform.position + direction, Quaternion.identity);
+            GameObject bullet = Instantiate(bulletPref, rangeAttackPosition.position + direction, Quaternion.identity);
+            playerAnimations.Fired();
 
             // 플레이어의 방향에 따른 투사체 스프라이트 스케일 반전
             float bulletDirection = transform.localScale.x > 0 ? 1f : -1f;
@@ -46,6 +52,7 @@ public class PlayerAttacks : MonoBehaviour
         //meleeAttackSprite.enabled = true;
         //meleeAttackAnimator.SetTrigger("Attack");
         Invoke("DisableAttack", 0.25f);
+        playerAnimations.Attacking();
     }
 
     private void DisableAttack()
@@ -56,4 +63,9 @@ public class PlayerAttacks : MonoBehaviour
     }
 
     // Attack 2, 3  TODO (콤보 공격)
+
+    public void JumpAttack()
+    {
+
+    }
 }

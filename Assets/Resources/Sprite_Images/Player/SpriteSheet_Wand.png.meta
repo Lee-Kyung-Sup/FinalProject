@@ -43,12 +43,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 10
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -108,7 +108,784 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: SpriteSheet_Wand_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 822
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87c845f111f0c534f80b60111ba3eefa
+      internalID: 939150723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheet_Wand_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 822
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d57e44bab434d1458bbd09d52dafc1b
+      internalID: -1446373896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheet_Wand_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 758
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b894023420cac444daf0aed7f4308a22
+      internalID: -484969349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheet_Wand_3
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 758
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46aea68538e05d8469a9f910908e9f6f
+      internalID: 918629392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheet_Wand_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 694
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8cd2a28c7127504fa1e42c7a722a0ed
+      internalID: -53316237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheet_Wand_5
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 694
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af6e9787eda98dc478f856fcebf87abc
+      internalID: 1481311617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheet_Wand_6
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 694
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0835865a505ced84c8d0b4f361821579
+      internalID: 1502397695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheet_Wand_7
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 694
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bee2f4ec263846d40bbc7d760754ea7d
+      internalID: 1270630965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheet_Wand_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 630
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2d12d92589edf7498b5fc2179a19117
+      internalID: 1701484267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheet_Wand_9
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 630
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2cf8c7bfd14baa4459ea1845a3e1d2a0
+      internalID: 140931212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheet_Wand_10
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 630
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94dffcb69726b644589d6bf272249a54
+      internalID: -95740894
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheet_Wand_11
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 630
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 258de7836aa080548b1bb6cff1193911
+      internalID: 2137404491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheet_Wand_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 566
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7cd556dacefa46f48bb620e985d2cf7b
+      internalID: 554391887
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheet_Wand_13
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 566
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0825ebb5eb3e70b4ba668f4dd26f6778
+      internalID: 964731268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheet_Wand_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 502
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 779ffa3bac4a8f24b83374d6534dfb8f
+      internalID: 1176210107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheet_Wand_15
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 502
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10141924aefbacc4db330065b27d3283
+      internalID: -1430553755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheet_Wand_16
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 502
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4406ac7e752f5724d976daf7971718b3
+      internalID: -860091029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheet_Wand_17
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 438
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05211220bce773f44b9f54101762ddba
+      internalID: -809817378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheet_Wand_18
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 438
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ade0b90fe2241284f8d0b85a0e95aecf
+      internalID: 1351085255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheet_Wand_19
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 438
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68a4776d93e71a340b96db00ee5a49dc
+      internalID: 322163985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheet_Wand_FIre1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 374
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf647e1e396a1d54bb417d2ad4d571b7
+      internalID: 1604989078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheet_Wand_Fire2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 374
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01b969fd602614c499ad4264b0bdf16a
+      internalID: -317298928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheet_Wand_Fire3
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 375
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14f14b0d1818e0e42b900a99d455fded
+      internalID: 288885211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheet_Wand_23
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 310
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2568fd3e1fc0c8943852e39aedaab2f4
+      internalID: 532235954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheet_Wand_24
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 310
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5de3fc6f8c65f6b4eb7fce8d6a189efa
+      internalID: -447070055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheet_Wand_25
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 310
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44a1cad8b3b8b5e4ca47f6b18e8e96a6
+      internalID: -2068404725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheet_Wand_26
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 310
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be8a7d2c0c80e2142b11010e4e744032
+      internalID: 1517797881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheet_Wand_27
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 246
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aee9b691fee883e408e61560e3be5c23
+      internalID: 1670930731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheet_Wand_28
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 246
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6539d6838838b85489b000b7b8826d41
+      internalID: -44223227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheet_Wand_29
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 246
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1461b96218c899c4aa293516d6336eca
+      internalID: -385963885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheet_Wand_30
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 246
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ffe6857fedf8494ba069717e34f4296
+      internalID: -90651746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheet_Wand_31
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 182
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df4a9fe74ccd5b744b2267cc50c7e251
+      internalID: 693774060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheet_Wand_32
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 182
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce3b1e6c8c308d0488f87d62c0123976
+      internalID: 1087224112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheet_Wand_33
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 118
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4c45a26365518a4eac500bc045a3464
+      internalID: -841181837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheet_Wand_34
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 118
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b05ec669845b56b4fae5b859a3cd6998
+      internalID: -2088395234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheet_Wand_35
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 54
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef194e8bef9137442932431ef98e02d3
+      internalID: 1783000637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheet_Wand_36
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 54
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 263d53f7f4fddbf4d826953c91d06851
+      internalID: 1193477397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -119,7 +896,44 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      SpriteSheet_Wand_0: 939150723
+      SpriteSheet_Wand_1: -1446373896
+      SpriteSheet_Wand_10: -95740894
+      SpriteSheet_Wand_11: 2137404491
+      SpriteSheet_Wand_12: 554391887
+      SpriteSheet_Wand_13: 964731268
+      SpriteSheet_Wand_14: 1176210107
+      SpriteSheet_Wand_15: -1430553755
+      SpriteSheet_Wand_16: -860091029
+      SpriteSheet_Wand_17: -809817378
+      SpriteSheet_Wand_18: 1351085255
+      SpriteSheet_Wand_19: 322163985
+      SpriteSheet_Wand_2: -484969349
+      SpriteSheet_Wand_23: 532235954
+      SpriteSheet_Wand_24: -447070055
+      SpriteSheet_Wand_25: -2068404725
+      SpriteSheet_Wand_26: 1517797881
+      SpriteSheet_Wand_27: 1670930731
+      SpriteSheet_Wand_28: -44223227
+      SpriteSheet_Wand_29: -385963885
+      SpriteSheet_Wand_3: 918629392
+      SpriteSheet_Wand_30: -90651746
+      SpriteSheet_Wand_31: 693774060
+      SpriteSheet_Wand_32: 1087224112
+      SpriteSheet_Wand_33: -841181837
+      SpriteSheet_Wand_34: -2088395234
+      SpriteSheet_Wand_35: 1783000637
+      SpriteSheet_Wand_36: 1193477397
+      SpriteSheet_Wand_4: -53316237
+      SpriteSheet_Wand_5: 1481311617
+      SpriteSheet_Wand_6: 1502397695
+      SpriteSheet_Wand_7: 1270630965
+      SpriteSheet_Wand_8: 1701484267
+      SpriteSheet_Wand_9: 140931212
+      SpriteSheet_Wand_FIre1: 1604989078
+      SpriteSheet_Wand_Fire2: -317298928
+      SpriteSheet_Wand_Fire3: 288885211
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

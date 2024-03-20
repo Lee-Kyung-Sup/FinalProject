@@ -14,11 +14,12 @@ public class PlayerAnimations : MonoBehaviour
 
     private static readonly int IsMoving = Animator.StringToHash("IsMoving");
     private static readonly int IsJumping = Animator.StringToHash("IsJumping");
-    private static readonly int IsHit = Animator.StringToHash("IsHit");
 
     private static readonly int Dash = Animator.StringToHash("Dash");
     private static readonly int Attack = Animator.StringToHash("Attack");
     private static readonly int Fire = Animator.StringToHash("Fire");
+    private static readonly int Hit = Animator.StringToHash("Hit");
+    private static readonly int Invincible = Animator.StringToHash("Invincible");
     private static readonly int Die = Animator.StringToHash("Die");
 
 
@@ -31,6 +32,7 @@ public class PlayerAnimations : MonoBehaviour
     {
         animator.SetBool(IsJumping, isJumping);
     }
+
 
     public void Dashing()
     {
@@ -47,12 +49,17 @@ public class PlayerAnimations : MonoBehaviour
         animator.SetTrigger(Fire);
     }
 
-    public void Hit()
+    public void GetHit()
     {
-        animator.SetBool(IsHit, true);
+        animator.SetTrigger(Hit);
     }
-    public void InvincibilityEnd()
+    public void InvincibleEffect() // 무적 이펙트 애니메이션 (피격 시)
     {
-        animator.SetBool(IsHit, false);
+        animator.SetTrigger(Invincible);
+    }
+
+    public void Dead()
+    {
+        animator.SetTrigger(Die);
     }
 }

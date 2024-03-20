@@ -8,6 +8,7 @@ public class PlayerStatus : MonoBehaviour, IDamageable
     private PlayerAnimations playerAnimations;
     private PlayerUI playerUI;
 
+    [SerializeField] private Collider2D hitCollider; // 피격용 콜라이더
     [SerializeField] private int health = 3; // 캐릭터 체력
     [SerializeField] private float stamina = 100; // 캐릭터 스태미너
     [SerializeField] private float staminaRecoveryRate = 100; // 초당 스태미너 회복량
@@ -30,6 +31,7 @@ public class PlayerStatus : MonoBehaviour, IDamageable
     void Start()
     {
         playerAnimations = GetComponent<PlayerAnimations>();
+        hitCollider = GetComponent<Collider2D>();
         playerUI = FindObjectOfType<PlayerUI>();
         maxStamina = stamina;
         lastStaminaUseTime = Time.time;
@@ -51,6 +53,7 @@ public class PlayerStatus : MonoBehaviour, IDamageable
     {
         health -= damage;
         playerUI.UpdateHeartUI(health);
+        playerAnimations.GetHit();
 
         if (health <= 0)
         {
@@ -88,14 +91,21 @@ public class PlayerStatus : MonoBehaviour, IDamageable
     private void Die()
     {
         Debug.Log("플레이어 죽음");
-        // 플레이어 사망 후 로직 TODO - 입력 불가, DIE 애니메이션 재생, Game Over Scene으로.
+        playerAnimations.Dead(); // die 애니메이션
+
+        // 플레이어 사망 후 로직 TODO
+        // DisableControls();
+        // ShowGameOver();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("EnemyBullet") || collision.CompareTag("Monster"))
         {
-            TakeDamage(1);
+            if (collision == hitCollider) // 충돌한 콜라이더가 플레이어의 피격용 콜라이더면
+            {
+                TakeDamage(1);
+            }
         }
     }
 

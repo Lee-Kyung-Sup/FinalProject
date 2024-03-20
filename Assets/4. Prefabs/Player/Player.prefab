@@ -700,6 +700,7 @@ GameObject:
   - component: {fileID: 3062884226310124146}
   - component: {fileID: 2243918332336067866}
   - component: {fileID: 1756893326375499926}
+  - component: {fileID: 2893446630317019161}
   - component: {fileID: 1360410190396740173}
   - component: {fileID: 8226669703730961352}
   - component: {fileID: 2629860545646752947}
@@ -727,6 +728,7 @@ Transform:
   - {fileID: 3145523589203839341}
   - {fileID: 461636979155573291}
   - {fileID: 221308506803821778}
+  - {fileID: 4725015911969058207}
   - {fileID: 5648424438772859706}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -984,6 +986,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42d949a2acb1a7842b32168343d4997b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2893446630317019161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3949886980107114563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53d1f32be11cf30439fb6048293e1b8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1360410190396740173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -996,8 +1010,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee63044ee86a21d4ca376d84a760400c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitCollider: {fileID: 0}
   health: 3
   stamina: 100
+  staminaRecoveryRate: 100
+  staminaRecoveryDelay: 1
   speed: 10
   jumpPower: 20
   maxJumpCount: 2
@@ -1013,6 +1030,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a29cbd7f6b626f342a5e7d58ac98436d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerUI: {fileID: 5648424438772859706}
   tr: {fileID: 9197108407005593866}
   groundCheck: {fileID: 7452848560659514459}
   dashPower: 70
@@ -1034,6 +1052,7 @@ MonoBehaviour:
   firePower: 15
   fireDelay: 0.1
   meleeAttackCollider: {fileID: 6198198559188364953}
+  rangeAttackPosition: {fileID: 0}
 --- !u!1 &5354008962644317265
 GameObject:
   m_ObjectHideFlags: 0
@@ -1255,6 +1274,37 @@ TrailRenderer:
   m_Autodestruct: 0
   m_Emitting: 0
   m_ApplyActiveColorSpace: 1
+--- !u!1 &8424520208955895740
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4725015911969058207}
+  m_Layer: 6
+  m_Name: RangeAttackPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4725015911969058207
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8424520208955895740}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.7, y: -0.8, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8419139054370907626}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8695184988574916669
 GameObject:
   m_ObjectHideFlags: 0
