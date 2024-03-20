@@ -77,6 +77,19 @@ public class PlayerMovement : MonoBehaviour,IsGroundable
         }
     }
 
+    void Update()
+    {
+        if (!isGrounded && rb.velocity.y < 0) // 낙하 중
+        {
+            playerAnimations.Falling(true);
+        }
+        else if (isGrounded)
+        {
+            playerAnimations.Falling(false);
+        }
+    }
+
+
     private void UnFlipPlayerUI()
     {
         // 플레이어 UI는 플레이어의 Scale.x가 반전되도 변하지 않게

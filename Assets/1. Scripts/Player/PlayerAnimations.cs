@@ -14,6 +14,7 @@ public class PlayerAnimations : MonoBehaviour
 
     private static readonly int IsMoving = Animator.StringToHash("IsMoving");
     private static readonly int IsJumping = Animator.StringToHash("IsJumping");
+    private static readonly int IsFalling = Animator.StringToHash("IsFalling");
 
     private static readonly int Dash = Animator.StringToHash("Dash");
     private static readonly int Attack = Animator.StringToHash("Attack");
@@ -31,6 +32,11 @@ public class PlayerAnimations : MonoBehaviour
     public void Jumping(bool isJumping)
     {
         animator.SetBool(IsJumping, isJumping);
+    }
+
+    public void Falling(bool isFalling)
+    {
+        animator.SetBool(IsJumping, isFalling);
     }
 
 

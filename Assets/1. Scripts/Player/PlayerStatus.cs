@@ -102,7 +102,6 @@ public class PlayerStatus : MonoBehaviour, IDamageable
     {
         if (collision.CompareTag("EnemyBullet") || collision.CompareTag("Monster"))
         {
-
             TakeDamage(1);
             //if (collision == hitCollider) // 충돌한 콜라이더가 플레이어의 피격용 콜라이더면
             //{
