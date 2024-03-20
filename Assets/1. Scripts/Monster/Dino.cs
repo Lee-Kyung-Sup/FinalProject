@@ -87,7 +87,7 @@ public class Dino : Monster
                 }
 
 
-                Vector2 monsterFrontBelowPosition = (Vector2)transform.localPosition + new Vector2(-transform.localScale.x * 0.2f, 0f);
+                Vector2 monsterFrontBelowPosition = (Vector2)transform.localPosition + new Vector2(-transform.localScale.x * 0.5f, 0f);
 
                 Vector2 origin = monsterFrontBelowPosition;
 

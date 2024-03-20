@@ -16,10 +16,23 @@ public class Bunny : Monster
         jumpPower = 15f;
     }
 
+    protected override void GroundCheck()
+    {
+        Debug.DrawRay(new Vector2(transform.localPosition.x, transform.localPosition.y + 0.2f), Vector2.down * 3f, Color.red);
+        if (Physics2D.Raycast(new Vector2(transform.localPosition.x, transform.localPosition.y + 0.2f), Vector2.down, 3f, layerMask))
+        {
+            isGround = true;
+        }
+        else
+        {
+            isGround = false;
+        }
+
+    }
+
     protected override void Update()
     {
-        base.Update();
-       
+        GroundCheck();
         if (!isHit && isGround)
         {
             move = -transform.localScale.x * moveSpeed;
@@ -44,7 +57,7 @@ public class Bunny : Monster
             }
 
 
-            Vector2 monsterFrontBelowPosition = (Vector2)transform.localPosition + new Vector2(-transform.localScale.x * 0.2f, 0);
+            Vector2 monsterFrontBelowPosition = (Vector2)transform.localPosition + new Vector2(-transform.localScale.x * 0.5f, 0);
 
             Vector2 origin = monsterFrontBelowPosition;
 

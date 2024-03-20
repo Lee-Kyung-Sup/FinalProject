@@ -129,7 +129,7 @@ public class Monster : MonoBehaviour, IsGroundable, IDamageable
         GroundCheck();
     }
     //바닥에 닿았는지 아닌지 체크
-    protected void GroundCheck()
+    protected virtual void GroundCheck()
     {
             Debug.DrawRay(transform.localPosition, Vector2.down* 3f, Color.red);
             if (Physics2D.Raycast(transform.localPosition, Vector2.down, 3f, layerMask))

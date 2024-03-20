@@ -50,7 +50,7 @@ public class Frog : Monster
         MyAnimSetTrigger(currentState.ToString());
         if (Random.value > 0.5f)
         {
-            MonsterFlip();
+            //MonsterFlip();
         }
         yield return Delay5000;
         currentState = State.Run;
@@ -89,7 +89,7 @@ public class Frog : Monster
                 }
 
 
-                Vector2 monsterFrontBelowPosition = (Vector2)transform.localPosition + new Vector2(-transform.localScale.x * 0.2f, 0f);
+                Vector2 monsterFrontBelowPosition = (Vector2)transform.localPosition + new Vector2(-transform.localScale.x * 0.5f, 0f);
 
                 Vector2 origin = monsterFrontBelowPosition;
 
@@ -162,22 +162,22 @@ public class Frog : Monster
         Destroy(bullet);
     }
 
-    protected override void OnTriggerEnter2D(Collider2D collision)
-    {
-        base.OnTriggerEnter2D(collision);
-        if (collision.transform.tag == ("Player"))
-        {
-            Destroy(bullet);
-        }
-    }
-    //몬스터 데미지 받기
-    public override void TakeDamage(int dam)
-    {
-        currentHp -= dam;
-        isHit = true;
-        MyAnimSetTrigger("Hit");
-        //() 죽거나 넉백일경우 코드구현하기
-        hitBoxCollider.SetActive(false);
-    }
+    //protected override void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    base.OnTriggerEnter2D(collision);
+    //    if (collision.transform.tag == ("Player"))
+    //    {
+    //        Destroy(bullet);
+    //    }
+    //}
+    ////몬스터 데미지 받기
+    //public override void TakeDamage(int dam)
+    //{
+    //    currentHp -= dam;
+    //    isHit = true;
+    //    MyAnimSetTrigger("Hit");
+    //    //() 죽거나 넉백일경우 코드구현하기
+    //    hitBoxCollider.SetActive(false);
+    //}
 }
 
