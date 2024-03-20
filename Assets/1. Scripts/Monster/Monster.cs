@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class Monster : MonoBehaviour, IsGroundable
+public class Monster : MonoBehaviour, IsGroundable, IDamageable
 {
     public int currentHp = 1;
     public float moveSpeed = 5f;
@@ -144,7 +144,7 @@ public class Monster : MonoBehaviour, IsGroundable
     }
 
     //벽체크
-    public bool CheckIfNoWall(Vector2 origin, Vector2 direction, float distance, LayerMask layerMask)
+    public bool CheckisClif(Vector2 origin, Vector2 direction, float distance, LayerMask layerMask)
     {
         // Raycast 발사
         RaycastHit2D hit = Physics2D.Raycast(origin, direction, distance, layerMask);
@@ -159,10 +159,11 @@ public class Monster : MonoBehaviour, IsGroundable
     }
 
     //몬스터 데미지 받기
-    public void TakeDamage(int dam)
+    public virtual void TakeDamage(int dam)
     {
         currentHp -= dam;
         isHit = true;
+       
         //() 죽거나 넉백일경우 코드구현하기
         hitBoxCollider.SetActive(false);
     }

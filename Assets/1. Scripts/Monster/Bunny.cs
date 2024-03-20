@@ -19,7 +19,7 @@ public class Bunny : Monster
     protected override void Update()
     {
         base.Update();
-        GroundCheck();
+       
         if (!isHit && isGround)
         {
             move = -transform.localScale.x * moveSpeed;
@@ -56,7 +56,7 @@ public class Bunny : Monster
             Debug.DrawRay(origin, direction * distance, Color.red);
 
             // Raycast를 사용하여 조건 확인
-            if (CheckIfNoWall(origin, direction, distance, layerMask))
+            if (CheckisClif(origin, direction, distance, layerMask))
             {
                 Debug.Log("t2");
 

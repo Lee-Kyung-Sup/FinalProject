@@ -60,7 +60,7 @@ public class Frog : Monster
         IEnumerator Run()
     {
         yield return null;
-        float runTime = Random.Range(2f, 3f);
+        float runTime = Random.Range(1f, 2f);
         
         while (runTime > 0)
         {
@@ -89,7 +89,7 @@ public class Frog : Monster
                 }
 
 
-                Vector2 monsterFrontBelowPosition = (Vector2)transform.localPosition + new Vector2(-transform.localScale.x * 0.2f, -1f);
+                Vector2 monsterFrontBelowPosition = (Vector2)transform.localPosition + new Vector2(-transform.localScale.x * 0.2f, 0f);
 
                 Vector2 origin = monsterFrontBelowPosition;
 
@@ -101,7 +101,7 @@ public class Frog : Monster
                 Debug.DrawRay(origin, direction * distance, Color.red);
 
                 // Raycast를 사용하여 조건 확인
-                if (CheckIfNoWall(origin, direction, distance, layerMask))
+                if (CheckisClif(origin, direction, distance, layerMask))
                 {
                     Debug.Log("t2");
 
@@ -141,7 +141,7 @@ public class Frog : Monster
         canAtk = false;
         rb.velocity = new Vector2(0, jumpPower);
         MyAnimSetTrigger(currentState.ToString());
-
+        
 
         yield return null;
         currentState = State.Idle;
@@ -162,5 +162,22 @@ public class Frog : Monster
         Destroy(bullet);
     }
 
+    protected override void OnTriggerEnter2D(Collider2D collision)
+    {
+        base.OnTriggerEnter2D(collision);
+        if (collision.transform.tag == ("Player"))
+        {
+            Destroy(bullet);
+        }
+    }
+    //몬스터 데미지 받기
+    public override void TakeDamage(int dam)
+    {
+        currentHp -= dam;
+        isHit = true;
+        MyAnimSetTrigger("Hit");
+        //() 죽거나 넉백일경우 코드구현하기
+        hitBoxCollider.SetActive(false);
+    }
 }
 
