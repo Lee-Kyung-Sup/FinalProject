@@ -18,7 +18,8 @@ public class Bunny : Monster
 
     void Update()
     {
-        if (!isHit && monsterIdle)
+        GroundCheck();
+        if (!isHit && isGround)
         {
             move = -transform.localScale.x * moveSpeed;
             rb.velocity = new Vector2(move, rb.velocity.y); //몬스터 기본 움직임
@@ -35,13 +36,13 @@ public class Bunny : Monster
             }
             if ((Physics2D.OverlapCircle(wallCheck[0].position, 0.1f, layerMask) &&
                  Physics2D.OverlapCircle(wallCheck[1].position, 0.1f, layerMask))
-            )
+               )
             {
                 Debug.Log("t1");
                 MonsterFlip();
             }
 
-            
+
             Vector2 monsterFrontBelowPosition = (Vector2)transform.localPosition + new Vector2(-transform.localScale.x * 0.2f, 0);
 
             Vector2 origin = monsterFrontBelowPosition;
@@ -57,7 +58,7 @@ public class Bunny : Monster
             if (CheckIfNoWall(origin, direction, distance, layerMask))
             {
                 Debug.Log("t2");
-               
+
                 MonsterFlip();
             }
 

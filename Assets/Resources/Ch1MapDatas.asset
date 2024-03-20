@@ -217,7 +217,7 @@ MonoBehaviour:
       potalPos: {x: -22.72, y: 7.52, z: 0}
       targetPos: {x: 11.27, y: -8.04, z: 0}
       potalSize: {x: 1, y: 6}
-  - maps: {fileID: 4224832732101302630, guid: 381baa0d535297b468a472bebbb644c1, type: 3}
+  - maps: {fileID: 4224832732101302630, guid: d0783537fb160e646b6d140ea2989063, type: 3}
     poter:
     - goMapIndex: 17
       potalPos: {x: 12.84, y: -10.94, z: 0}

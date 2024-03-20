@@ -91,8 +91,12 @@ public class Monster : MonoBehaviour, IsGroundable
     //몬스터 방향전환 true이면 오른쪽, false이면 원쪽
     protected void MonsterFlip()
     {
+        if(isGround == false)
+        {
+            return;
+        }
         monsterDirRight = !monsterDirRight;
-
+        
         Vector3 thisScale = transform.localScale;
         if (monsterDirRight)
         {
@@ -120,7 +124,10 @@ public class Monster : MonoBehaviour, IsGroundable
     }
 
 
-    
+    protected virtual void Update()
+    {
+        GroundCheck();
+    }
     //바닥에 닿았는지 아닌지 체크
     protected void GroundCheck()
     {
@@ -135,6 +142,7 @@ public class Monster : MonoBehaviour, IsGroundable
             }
         
     }
+
     //벽체크
     public bool CheckIfNoWall(Vector2 origin, Vector2 direction, float distance, LayerMask layerMask)
     {

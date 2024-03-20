@@ -18,11 +18,11 @@ public class MovePlatform : MonoBehaviour
     {
         if (isUpDown)
         {
-            rigi.transform.position = new Vector2(startPos.x, startPos.y + amplitude * Mathf.Sin(Time.time) * speed);
+            rigi.transform.position = new Vector2(startPos.x, startPos.y + amplitude * Mathf.Sin(Time.time * speed));
         }
         else
         {
-            rigi.transform.position = new Vector2(startPos.x + amplitude * Mathf.Sin(Time.time) * speed, startPos.y);
+            rigi.transform.position = new Vector2(startPos.x + amplitude * Mathf.Sin(Time.time * speed), startPos.y);
         }
     }
     private void OnCollisionStay2D(Collision2D collision)
@@ -34,7 +34,7 @@ public class MovePlatform : MonoBehaviour
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (transform.root.gameObject.activeInHierarchy && collision.gameObject.TryGetComponent<IsGroundable>(out IsGroundable ound) && !ound.IsGround())
+        if (transform.root.gameObject.activeInHierarchy && collision.gameObject.TryGetComponent<IsGroundable>(out IsGroundable ound))
         {
             collision.transform.SetParent(null);
         }

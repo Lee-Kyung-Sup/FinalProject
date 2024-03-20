@@ -193,23 +193,14 @@ public class PlayerMovement : MonoBehaviour,IsGroundable
     {
         if (isPressingDown)
         {
-            // 플레이어의 콜라이더 비활성화 (플랫폼 아래로 하강)
-            rb.velocity = new Vector2(rb.velocity.x, playerStatus.JumpPower * 0.25f); // 살짝 점프
-            Collider2D collider = GetComponent<Collider2D>();
-            if (collider != null)
-            {
-                collider.enabled = false;
-                Invoke("EnableCollider", 0.5f); // 0.5초 후에 다시 콜라이더 활성화
-            }
+            rb.velocity = new Vector2(rb.velocity.x, jumpPower * 0.25f); // 살짝 점프
+            Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"),LayerMask.NameToLayer("Platform"),true);
+            Invoke("Platform", 0.5f); // ignore False
         }
     }
-    private void EnableCollider()
+    private void Platform()
     {
-        Collider2D collider = GetComponent<Collider2D>();
-        if (collider != null)
-        {
-            collider.enabled = true;
-        }
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Platform"), false);
     }
 
     public bool IsGround()
