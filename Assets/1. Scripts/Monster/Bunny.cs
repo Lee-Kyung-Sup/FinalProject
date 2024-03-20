@@ -16,8 +16,9 @@ public class Bunny : Monster
         jumpPower = 15f;
     }
 
-    void Update()
+    protected override void Update()
     {
+        base.Update();
         GroundCheck();
         if (!isHit && isGround)
         {

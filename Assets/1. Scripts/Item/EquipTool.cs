@@ -16,11 +16,11 @@ public class EquipTool : Equip
     public int damage;
 
     private Animator animator;
-    private Camera camera;
+    private Camera _camera;
 
     private void Awake()
     {
-        camera = Camera.main;
+        _camera = Camera.main;
         animator = GetComponent<Animator>();
     }
 

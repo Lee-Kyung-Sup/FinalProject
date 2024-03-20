@@ -6,7 +6,7 @@ using TMPro;
 
 public class Game : MonoBehaviour
 {
-    public TMP_Text name;
+    public TMP_Text _name;
     public TMP_Text level;
     public TMP_Text coin;
 
@@ -14,10 +14,7 @@ public class Game : MonoBehaviour
 
     void Start()
     {
-        name.text += DataManager.instance.nowPlayer.name;
         level.text += DataManager.instance.nowPlayer.level.ToString();
-        coin.text += DataManager.instance.nowPlayer.coin.ToString();
-        ItemSetting(DataManager.instance.nowPlayer.item);
     }
 
     public void LevelUp()
