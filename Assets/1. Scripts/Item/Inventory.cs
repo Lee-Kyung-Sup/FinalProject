@@ -94,6 +94,7 @@ public class Inventory : MonoBehaviour
 
     public void AddItem(ItemData item)
     {
+
         if (item.canStack)
         {
             ItemSlot slotToStackTo = GetItemStack(item);

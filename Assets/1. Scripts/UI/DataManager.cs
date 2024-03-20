@@ -6,11 +6,11 @@ using System.IO;
 public class PlayerData
 {
     public string name;
-    public int level = 1;
+    public int level;
     public int HP;
-    public int stamina = 100;
-    public int item = -1;
-    public int coin = 0;
+    public int stamina;
+    public int item;
+    public int coin;
     //public string input;
 }
 
