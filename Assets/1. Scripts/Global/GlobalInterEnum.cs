@@ -11,4 +11,12 @@ public interface IDamageable
 {
     void TakeDamage(float amount);
 }
-
+public enum Paction
+{
+    MeleeAttack,
+    AirAttack,
+    DubleJump,
+    Dash,
+    RangeAttack,
+    ChargeShot
+}
