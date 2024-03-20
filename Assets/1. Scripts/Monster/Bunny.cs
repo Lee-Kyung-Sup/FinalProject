@@ -18,6 +18,7 @@ public class Bunny : Monster
 
     void Update()
     {
+        GroundCheck();
         if (!isHit && isGround)
         {
             move = -transform.localScale.x * moveSpeed;
@@ -41,7 +42,7 @@ public class Bunny : Monster
                 MonsterFlip();
             }
 
-            
+
             Vector2 monsterFrontBelowPosition = (Vector2)transform.localPosition + new Vector2(-transform.localScale.x * 0.2f, 0);
 
             Vector2 origin = monsterFrontBelowPosition;
@@ -54,10 +55,10 @@ public class Bunny : Monster
             Debug.DrawRay(origin, direction * distance, Color.red);
 
             // Raycast를 사용하여 조건 확인
-            if (CheckIfNoWall(origin, direction, distance, layerMask) && !isGround)
+            if (CheckIfNoWall(origin, direction, distance, layerMask))
             {
                 Debug.Log("t2");
-               
+
                 MonsterFlip();
             }
 
