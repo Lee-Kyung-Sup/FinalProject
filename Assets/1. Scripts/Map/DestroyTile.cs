@@ -9,7 +9,6 @@ public class DestroyTile : MonoBehaviour
     MapEventChecker checker;
     private void Start()
     {
-        Debug.Log(transform.parent.root.name);
         tile = GetComponent<Tilemap>();
         checker = MapMaker.Instance.mapEventCheker;
         if (checker.isBroken.ContainsKey(transform.parent.root.name))
