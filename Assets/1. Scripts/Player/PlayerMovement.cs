@@ -172,6 +172,9 @@ public class PlayerMovement : MonoBehaviour,IsGroundable
         if (canDash && !isDashing && playerStatus.Stamina >= 25) // 대쉬가 가능하고 현재 대쉬 중이 아닐 때 + 플레이어 스태미너 25이상
         {
             isDashing = true;
+            
+            gameObject.layer = 18; // 무적 레이어
+
             dashStartTime = Time.time;
             canDash = false;
             isDashCooldownComplete = false;  // 쿨다운 재시작
@@ -185,15 +188,6 @@ public class PlayerMovement : MonoBehaviour,IsGroundable
             StartCoroutine(DashCooldown()); // 대쉬 쿨다운 코루틴
         }
     }
-
-    private void EndDash() // 대쉬 종료 처리
-    {
-        isDashing = false;
-        rb.gravityScale = originalGravityScale;  // 대쉬가 끝나면 중력 스케일을 원래대로 복원
-        tr.emitting = false;
-        rb.velocity = new Vector2(rb.velocity.x, 0);  // 수평 속도 유지, 수직 속도 0
-    }
-
     private IEnumerator DashCooldown()
     {
         yield return new WaitForSeconds(dashCooldown);
@@ -204,6 +198,18 @@ public class PlayerMovement : MonoBehaviour,IsGroundable
             canDash = true; // 땅에 있으면 대쉬 다시 가능
         }
     }
+
+    private void EndDash() // 대쉬 종료 처리
+    {
+        isDashing = false;
+        gameObject.layer = 6; // 레이어 초기화 (무적 종료)
+
+        rb.gravityScale = originalGravityScale;  // 대쉬가 끝나면 중력 스케일을 원래대로 복원
+        tr.emitting = false;
+        rb.velocity = new Vector2(rb.velocity.x, 0);  // 수평 속도 유지, 수직 속도 0
+    }
+
+
 
     public void SetIsPressingDown(bool isPressing)
     {
