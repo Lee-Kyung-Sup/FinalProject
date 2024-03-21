@@ -77,7 +77,7 @@ public class Dino : Monster
         {
             MyAnimSetTrigger(currentState.ToString());
             runTime -= Time.deltaTime;
-            if (!Hit)
+            if (!base.Hit)
             {
                 rb.velocity = new Vector2(-transform.localScale.x * moveSpeed, rb.velocity.y);
 
@@ -143,7 +143,7 @@ public class Dino : Monster
     IEnumerator Attack()
     {
         yield return null;
-        if (!Hit && isGround)
+        if (!base.Hit && isGround)
         {
             //capsuleCollider.offset = capsuleColliderJumpOffset;
             canAtk = false;
@@ -157,6 +157,24 @@ public class Dino : Monster
         {
             currentState = State.Run;
         }
+
+    }
+
+    IEnumerator Hit()
+    {
+        yield return null;
+
+        TakeDamage(1);
+
+        yield return null;
+        currentState = State.Idle;
+    }
+
+    IEnumerator Die()
+    {
+        yield return null;
+
+
 
     }
     //IEnumerator Jump()

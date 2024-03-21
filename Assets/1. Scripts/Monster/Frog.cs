@@ -56,6 +56,7 @@ public class Frog : Monster
         {
             yield return StartCoroutine(currentState.ToString());
         }
+        StopAllCoroutines();
     }
 
     IEnumerator Idle()
@@ -175,6 +176,7 @@ public class Frog : Monster
     IEnumerator Die()
     {
         yield return null;
+
         
 
     }

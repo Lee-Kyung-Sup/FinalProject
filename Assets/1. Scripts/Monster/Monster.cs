@@ -1,4 +1,5 @@
 using System.Collections;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class Monster : MonoBehaviour, IsGroundable, IDamageable
@@ -67,6 +68,11 @@ public class Monster : MonoBehaviour, IsGroundable, IDamageable
                 }
             }
         }
+    }
+
+    public void Destroy()
+    {
+        Destroy(gameObject);
     }
 
     //실행중인 애니메이션이 특정이름과 일치하는지 확인
@@ -145,13 +151,21 @@ public class Monster : MonoBehaviour, IsGroundable, IDamageable
     //몬스터 데미지 받기
     public virtual void TakeDamage(int dam)
     {
+        if(currentHp <= 0)
+        {
+            return;
+        }
         currentHp -= dam;
         Hit = true;
 
         if(currentHp <= 0)
         {
             MyAnimSetTrigger("Die");
+            Destroy(capsuleCollider);
+            Destroy(hitBoxCollider);
+            Destroy(rb);
             Debug.Log("Monster Dead");
+            StopAllCoroutines();
         }
         else
         {
@@ -173,7 +187,7 @@ public class Monster : MonoBehaviour, IsGroundable, IDamageable
     //특정태그에 따른 충돌 피해
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.transform.tag ==("Player"))
+        if (collision.transform.tag ==("PlayerAttackBox"))
         {
             TakeDamage(1);
         }

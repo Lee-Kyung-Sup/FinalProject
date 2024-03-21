@@ -80,19 +80,15 @@ public class Bunny : Monster
 
 
         }
-        if(Hit)
-        {
-            TakeDamage(1);
-        }
+        
     }
   
 
     protected override void OnTriggerEnter2D(Collider2D collision)
     {
         base.OnTriggerEnter2D(collision);
-        if (collision.transform.tag == ("Player"))
+        if (collision.transform.tag == ("PlayerAttackBox"))
         {
-            TakeDamage(1);
             MonsterFlip();
         }
     }
