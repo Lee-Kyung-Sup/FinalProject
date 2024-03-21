@@ -92,6 +92,7 @@ public class MapEvent : PlayerEnterTrigger
             BossMapEvent = MapMaker.Instance.bossMapEvents.GiveBossEvent();
             //Todo 보스 소환
             //Todo 보스 소환 연출
+            playerAction.enabled = true;
             BossMapEvent?.Invoke();
         }
         ClearEvent();
