@@ -8,6 +8,7 @@ public class PlayerStatus : MonoBehaviour, IDamageable
     private PlayerAnimations playerAnimations;
     private PlayerMovement playerMovement;
     private PlayerUI playerUI;
+    private SpriteRenderer spriteRenderer;
     private Rigidbody2D rb;
 
     //[SerializeField] private Collider2D hitCollider; // 피격용 콜라이더
@@ -15,7 +16,7 @@ public class PlayerStatus : MonoBehaviour, IDamageable
     [SerializeField] private float stamina = 100; // 캐릭터 스태미너
     [SerializeField] private float staminaRecoveryRate = 100; // 초당 스태미너 회복량
     [SerializeField] private float staminaRecoveryDelay = 1f; // 스태미너 회복 지연 시간
-    [SerializeField] private int Atk = 1; // 캐릭터 공격력 (추후 공격 방식따라 분할 TODO)
+    //[SerializeField] private int Atk = 1; // 캐릭터 공격력 (추후 공격 방식따라 분할 TODO)
 
     private float lastStaminaUseTime;
     private float maxStamina;
@@ -34,7 +35,7 @@ public class PlayerStatus : MonoBehaviour, IDamageable
     void Start()
     {
         playerUI = FindObjectOfType<PlayerUI>();
-
+        spriteRenderer = transform.Find("MainSprite").GetComponent<SpriteRenderer>();
         playerMovement = GetComponent<PlayerMovement>();
         playerAnimations = GetComponent<PlayerAnimations>();
         rb = GetComponent<Rigidbody2D>();
@@ -62,6 +63,7 @@ public class PlayerStatus : MonoBehaviour, IDamageable
 
     public void TakeDamage(int damage)
     {
+        OnInvincible();
         playerAnimations.GetHit();
         health -= damage;
         playerUI.UpdateHeartUI(health);
@@ -72,6 +74,22 @@ public class PlayerStatus : MonoBehaviour, IDamageable
         }
         // 피해 시 넉백 메서드
         // 피해 시 일정시간 무적 메서드
+    }
+
+
+    public void OnInvincible()
+    {
+
+        gameObject.layer = 18; // 플레이어 무적상태 레이어 (몬스터 / 몬스터투사체 충돌 x)
+        spriteRenderer.color = new Color(1, 1, 1, 0.5f); // 투명 효과 TODO
+
+        Invoke("OffInvincible", 3); // n초간 무적 시간
+    }
+
+    public void OffInvincible()
+    {
+        gameObject.layer = 6; // 플레이어 레이어
+        spriteRenderer.color = new Color(1, 1, 1, 1);
     }
 
 
@@ -99,6 +117,8 @@ public class PlayerStatus : MonoBehaviour, IDamageable
         maxStamina = stamina;
     }
 
+
+
     private void Die()
     {
         Debug.Log("플레이어 죽음");
@@ -114,7 +134,7 @@ public class PlayerStatus : MonoBehaviour, IDamageable
         if (collision.CompareTag("EnemyBullet") || collision.CompareTag("Monster"))
         {
             TakeDamage(1);
-            playerMovement.KnockbackAndInvincibility(collision.transform.position);
+            playerMovement.OnKnockback(collision.transform.position);
 
             //if (collision == hitCollider) // 충돌한 콜라이더가 플레이어의 피격용 콜라이더면
             //{

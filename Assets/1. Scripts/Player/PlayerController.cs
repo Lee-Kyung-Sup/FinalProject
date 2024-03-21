@@ -29,8 +29,8 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         _playerMovement.Move(_inputVector.x);
-
     }
+
     void InItLockAction()
     {
         lockAction.Add(Paction.AirAttack,false);

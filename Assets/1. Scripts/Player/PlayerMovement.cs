@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour,IsGroundable
     private PlayerAnimations playerAnimations;
     private Rigidbody2D rb;
 
+
     [SerializeField] private Transform playerUI;
     [SerializeField] private TrailRenderer tr; // 대시 효과용 TrailRenderer
     [SerializeField] private Transform groundCheck; // 플레이어의 하단에 위치
@@ -45,6 +46,7 @@ public class PlayerMovement : MonoBehaviour,IsGroundable
         playerStatus = GetComponent<PlayerStatus>();
         rb = GetComponent<Rigidbody2D>();
         playerAnimations = GetComponent<PlayerAnimations>();
+
 
         originalGravityScale = rb.gravityScale;
         groundLayer = LayerMask.GetMask("Ground", "Platform");
@@ -240,10 +242,8 @@ public class PlayerMovement : MonoBehaviour,IsGroundable
     }
 
 
-    public void KnockbackAndInvincibility(Vector2 targetPosition)
+    public void OnKnockback(Vector2 targetPosition)
     {
-        //gameObject.layer = 18;
-
         isKnockedBack = true;
         rb.velocity = Vector2.zero; // 플레이어가 이동 힘과 넉백 힘의 상쇄 방지
 
@@ -251,14 +251,16 @@ public class PlayerMovement : MonoBehaviour,IsGroundable
         int dirc = targetPosition.x - transform.position.x < 0 ? 1 : -1;
         rb.AddForce(new Vector2(dirc, knockbackForceX) * knockbackForceY, ForceMode2D.Impulse);
 
-        StartCoroutine(ResetKnockbackState(knockbackTime));
+        StartCoroutine(OffKnockback(knockbackTime));
     }
-    private IEnumerator ResetKnockbackState(float delay)
+    private IEnumerator OffKnockback(float delay)
     {
         yield return new WaitForSeconds(delay);
 
         rb.velocity = Vector2.zero;
         isKnockedBack = false;
     }
+
+
 
 }

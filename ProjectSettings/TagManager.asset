@@ -30,7 +30,7 @@ TagManager:
   - Interactable
   - Resource
   - Equip
-  - PlayerDemaged
+  - PlayerInvincible
   - 
   - 
   - 
