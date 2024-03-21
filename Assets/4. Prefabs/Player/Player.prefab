@@ -766,6 +766,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee63044ee86a21d4ca376d84a760400c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitCollider: {fileID: 0}
   health: 3
   stamina: 100
   staminaRecoveryRate: 100
@@ -1074,7 +1075,7 @@ GameObject:
   - component: {fileID: 221308506803821778}
   - component: {fileID: 6198198559188364953}
   - component: {fileID: 9094434115529792470}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: MeleeAttackHitBox
   m_TagString: PlayerAttackBox
   m_Icon: {fileID: 0}
