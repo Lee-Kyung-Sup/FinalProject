@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Frog : Monster
@@ -31,16 +32,31 @@ public class Frog : Monster
         StartCoroutine(FSM());
     }
 
-    protected override void Update()
+    //바닥에 닿았는지 아닌지 체크
+    protected void GroundCheck()
     {
-        base.Update();
+        Debug.DrawRay(transform.localPosition, Vector2.down * 3f, Color.red);
+        if (Physics2D.Raycast(transform.localPosition, Vector2.down, 3f, layerMask))
+        {
+            isGround = true;
+        }
+        else
+        {
+            isGround = false;
+        }
+
+    }
+    void Update()
+    {
+        GroundCheck();
     }
     IEnumerator FSM()
     {
-        while (true)
+        while (currentHp >=0)
         {
             yield return StartCoroutine(currentState.ToString());
         }
+        StopAllCoroutines();
     }
 
     IEnumerator Idle()
@@ -50,7 +66,7 @@ public class Frog : Monster
         MyAnimSetTrigger(currentState.ToString());
         if (Random.value > 0.5f)
         {
-            MonsterFlip();
+            //MonsterFlip();
         }
         yield return Delay5000;
         currentState = State.Run;
@@ -67,7 +83,7 @@ public class Frog : Monster
             MyAnimSetTrigger(currentState.ToString());
             runTime -= Time.deltaTime;
             
-            if (!isHit && isGround)
+            if (!base.Hit)
             {
                 rb.velocity = new Vector2(-transform.localScale.x * moveSpeed, rb.velocity.y);
 
@@ -89,7 +105,7 @@ public class Frog : Monster
                 }
 
 
-                Vector2 monsterFrontBelowPosition = (Vector2)transform.localPosition + new Vector2(-transform.localScale.x * 0.2f, -1f);
+                Vector2 monsterFrontBelowPosition = (Vector2)transform.localPosition + new Vector2(-transform.localScale.x * 0.5f, 0f);
 
                 Vector2 origin = monsterFrontBelowPosition;
 
@@ -101,7 +117,7 @@ public class Frog : Monster
                 Debug.DrawRay(origin, direction * distance, Color.red);
 
                 // Raycast를 사용하여 조건 확인
-                if (CheckIfNoWall(origin, direction, distance, layerMask))
+                if (CheckisClif(origin, direction, distance, layerMask))
                 {
                     Debug.Log("t2");
 
@@ -141,12 +157,29 @@ public class Frog : Monster
         canAtk = false;
         rb.velocity = new Vector2(0, jumpPower);
         MyAnimSetTrigger(currentState.ToString());
-
+        
 
         yield return null;
         currentState = State.Idle;
     }
 
+    IEnumerator Hit()
+    {
+        yield return null;
+
+        TakeDamage(1);
+       
+        yield return null;
+        currentState = State.Idle;
+    }
+
+    IEnumerator Die()
+    {
+        yield return null;
+
+        
+
+    }
     public void Fire()
     {
         GameObject bulletClone = Instantiate(bullet, genPoint.position, transform.rotation);
@@ -162,5 +195,22 @@ public class Frog : Monster
         Destroy(bullet);
     }
 
+    //protected override void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    base.OnTriggerEnter2D(collision);
+    //    if (collision.transform.tag == ("Player"))
+    //    {
+    //        Destroy(bullet);
+    //    }
+    //}
+    ////몬스터 데미지 받기
+    //public override void TakeDamage(int dam)
+    //{
+    //    currentHp -= dam;
+    //    isHit = true;
+    //    MyAnimSetTrigger("Hit");
+    //    //() 죽거나 넉백일경우 코드구현하기
+    //    hitBoxCollider.SetActive(false);
+    //}
 }
 

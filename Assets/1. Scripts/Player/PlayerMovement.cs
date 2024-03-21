@@ -195,7 +195,7 @@ public class PlayerMovement : MonoBehaviour,IsGroundable
         {
             rb.velocity = new Vector2(rb.velocity.x, playerStatus.JumpPower * 0.25f); // 살짝 점프
             Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"),LayerMask.NameToLayer("Platform"),true);
-            Invoke("Platform", 0.5f); // ignore False
+            Invoke("Platform", 0.3f); // ignore False
         }
     }
     private void Platform()

@@ -34,9 +34,22 @@ public class Dino : Monster
 
         StartCoroutine(FSM());
     }
-    protected override void Update()
+    protected void GroundCheck()
     {
-        base.Update();
+        Debug.DrawRay(transform.localPosition, Vector2.down * 3f, Color.red);
+        if (Physics2D.Raycast(transform.localPosition, Vector2.down, 3f, layerMask))
+        {
+            isGround = true;
+        }
+        else
+        {
+            isGround = false;
+        }
+
+    }
+    protected void Update()
+    {
+        GroundCheck();
     }
     IEnumerator FSM()
     {
@@ -64,7 +77,7 @@ public class Dino : Monster
         {
             MyAnimSetTrigger(currentState.ToString());
             runTime -= Time.deltaTime;
-            if (!isHit)
+            if (!base.Hit)
             {
                 rb.velocity = new Vector2(-transform.localScale.x * moveSpeed, rb.velocity.y);
 
@@ -87,7 +100,7 @@ public class Dino : Monster
                 }
 
 
-                Vector2 monsterFrontBelowPosition = (Vector2)transform.localPosition + new Vector2(-transform.localScale.x * 0.2f, -1f);
+                Vector2 monsterFrontBelowPosition = (Vector2)transform.localPosition + new Vector2(-transform.localScale.x * 0.5f, 0f);
 
                 Vector2 origin = monsterFrontBelowPosition;
 
@@ -99,7 +112,7 @@ public class Dino : Monster
                 Debug.DrawRay(origin, direction * distance, Color.red);
 
                 // Raycast를 사용하여 조건 확인
-                if (CheckIfNoWall(origin, direction, distance, layerMask))
+                if (CheckisClif(origin, direction, distance, layerMask))
                 {
                     Debug.Log("t2");
 
@@ -130,7 +143,7 @@ public class Dino : Monster
     IEnumerator Attack()
     {
         yield return null;
-        if (!isHit && isGround)
+        if (!base.Hit && isGround)
         {
             //capsuleCollider.offset = capsuleColliderJumpOffset;
             canAtk = false;
@@ -144,6 +157,24 @@ public class Dino : Monster
         {
             currentState = State.Run;
         }
+
+    }
+
+    IEnumerator Hit()
+    {
+        yield return null;
+
+        TakeDamage(1);
+
+        yield return null;
+        currentState = State.Idle;
+    }
+
+    IEnumerator Die()
+    {
+        yield return null;
+
+
 
     }
     //IEnumerator Jump()
