@@ -5,6 +5,10 @@ using UnityEngine.UI;
 
 public class PlayerStatus : MonoBehaviour, IDamageable
 {
+    // 3.21 스크립트마다 GetComponen나 Find가 너무 많아서
+    // 게임 매니저에 플레이어 관련 정보들 spriteRenderer, Animator 등을 넣어서
+    // 각 스크립트에서 땡겨오도록 코드 정리 계획
+
     private PlayerAnimations playerAnimations;
     private PlayerMovement playerMovement;
     private PlayerUI playerUI;
@@ -79,17 +83,39 @@ public class PlayerStatus : MonoBehaviour, IDamageable
 
     public void OnInvincible()
     {
-
         gameObject.layer = 18; // 플레이어 무적상태 레이어 (몬스터 / 몬스터투사체 충돌 x)
-        spriteRenderer.color = new Color(1, 1, 1, 0.5f); // 투명 효과 TODO
+        spriteRenderer.color = new Color(1, 1, 1, 0.5f);
 
         Invoke("OffInvincible", 3); // n초간 무적 시간
+        StartCoroutine(BlinkEffect(3f, 0.1f)); // 알파값 깜빡임 코루틴
+    }
+    private IEnumerator BlinkEffect(float duration, float interval)
+    {
+        float time = 0;
+        while (time < duration)
+        {
+            if (spriteRenderer.color.a == 0.5f)
+            {
+                spriteRenderer.color = new Color(1, 1, 1, 0.7f);
+            }
+            else
+            {
+                spriteRenderer.color = new Color(1, 1, 1, 0.5f);
+            }
+
+            yield return new WaitForSeconds(interval); // 전환 간격만큼 대기
+
+            // 시간 업데이트
+            time += interval;
+        }
     }
 
     public void OffInvincible()
     {
+        StopAllCoroutines();
+
         gameObject.layer = 6; // 플레이어 레이어
-        spriteRenderer.color = new Color(1, 1, 1, 1);
+        spriteRenderer.color = new Color(1, 1, 1, 1); // 알파값 초기화
     }
 
 
