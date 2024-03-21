@@ -34,9 +34,22 @@ public class Dino : Monster
 
         StartCoroutine(FSM());
     }
-    protected override void Update()
+    protected void GroundCheck()
     {
-        base.Update();
+        Debug.DrawRay(transform.localPosition, Vector2.down * 3f, Color.red);
+        if (Physics2D.Raycast(transform.localPosition, Vector2.down, 3f, layerMask))
+        {
+            isGround = true;
+        }
+        else
+        {
+            isGround = false;
+        }
+
+    }
+    protected void Update()
+    {
+        GroundCheck();
     }
     IEnumerator FSM()
     {

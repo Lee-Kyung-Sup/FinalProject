@@ -124,24 +124,8 @@ public class Monster : MonoBehaviour, IsGroundable, IDamageable
     }
 
 
-    protected virtual void Update()
-    {
-        GroundCheck();
-    }
-    //바닥에 닿았는지 아닌지 체크
-    protected virtual void GroundCheck()
-    {
-            Debug.DrawRay(transform.localPosition, Vector2.down* 3f, Color.red);
-            if (Physics2D.Raycast(transform.localPosition, Vector2.down, 3f, layerMask))
-            {
-                isGround = true;
-            }
-            else
-            {
-                isGround = false;
-            }
-        
-    }
+   
+  
 
     //벽체크
     public bool CheckisClif(Vector2 origin, Vector2 direction, float distance, LayerMask layerMask)
@@ -163,6 +147,24 @@ public class Monster : MonoBehaviour, IsGroundable, IDamageable
     {
         currentHp -= dam;
         isHit = true;
+
+        if(currentHp <= 0)
+        {
+            Debug.Log("Monster Dead");
+        }
+        else
+        {
+            MyAnimSetTrigger("Hit");
+            rb.velocity = Vector2.zero;
+            if (transform.position.x > GameManager.instance.GetPlayerPosition().x) 
+            {
+                rb.velocity = new Vector2(10f, 0);
+            }
+            else
+            {
+                rb.velocity = new Vector2(-10f, 0);
+            }
+        }
        
         //() 죽거나 넉백일경우 코드구현하기
         hitBoxCollider.SetActive(false);

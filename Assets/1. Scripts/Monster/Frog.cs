@@ -31,9 +31,23 @@ public class Frog : Monster
         StartCoroutine(FSM());
     }
 
-    protected override void Update()
+    //바닥에 닿았는지 아닌지 체크
+    protected void GroundCheck()
     {
-        base.Update();
+        Debug.DrawRay(transform.localPosition, Vector2.down * 3f, Color.red);
+        if (Physics2D.Raycast(transform.localPosition, Vector2.down, 3f, layerMask))
+        {
+            isGround = true;
+        }
+        else
+        {
+            isGround = false;
+        }
+
+    }
+    void Update()
+    {
+        GroundCheck();
     }
     IEnumerator FSM()
     {
@@ -60,14 +74,14 @@ public class Frog : Monster
         IEnumerator Run()
     {
         yield return null;
-        float runTime = Random.Range(1f, 2f);
+        float runTime = Random.Range(2f, 3f);
         
         while (runTime > 0)
         {
             MyAnimSetTrigger(currentState.ToString());
             runTime -= Time.deltaTime;
             
-            if (!isHit && isGround)
+            if (!isHit)
             {
                 rb.velocity = new Vector2(-transform.localScale.x * moveSpeed, rb.velocity.y);
 
@@ -147,6 +161,10 @@ public class Frog : Monster
         currentState = State.Idle;
     }
 
+    IEnumerator Hit()
+    {
+        yield return null;
+    }
     public void Fire()
     {
         GameObject bulletClone = Instantiate(bullet, genPoint.position, transform.rotation);

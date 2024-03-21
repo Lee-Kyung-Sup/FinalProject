@@ -16,7 +16,7 @@ public class Bunny : Monster
         jumpPower = 15f;
     }
 
-    protected override void GroundCheck()
+    protected void GroundCheck()
     {
         Debug.DrawRay(new Vector2(transform.localPosition.x, transform.localPosition.y + 0.2f), Vector2.down * 3f, Color.red);
         if (Physics2D.Raycast(new Vector2(transform.localPosition.x, transform.localPosition.y + 0.2f), Vector2.down, 3f, layerMask))
@@ -30,7 +30,9 @@ public class Bunny : Monster
 
     }
 
-    protected override void Update()
+   
+
+    protected void Update()
     {
         GroundCheck();
         if (!isHit && isGround)
