@@ -35,7 +35,6 @@ public class PlayerStatus : MonoBehaviour, IDamageable
     public int MaxJumpCount => maxJumpCount;
     public float Stamina => stamina;
 
-    // Start is called before the first frame update
     void Start()
     {
         playerUI = FindObjectOfType<PlayerUI>();
@@ -49,7 +48,6 @@ public class PlayerStatus : MonoBehaviour, IDamageable
         //hitCollider = GetComponent<Collider2D>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Time.time - lastStaminaUseTime >= staminaRecoveryDelay && stamina < 100)
