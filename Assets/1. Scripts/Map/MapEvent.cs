@@ -21,10 +21,12 @@ public class MapEvent : PlayerEnterTrigger
     PlayerInput playerAction;
 
     [HideInInspector] public int monsters;
+    [SerializeField] bool isBoss;
+    Action BossMapEvent;
+
 
     BoxCollider2D stageCameraArea;
     CameraController cameraController;
-
     WaitUntil isAllDieMonster;
     [SerializeField] Summon[] mapPhase;
     protected override void Awake()
@@ -47,7 +49,7 @@ public class MapEvent : PlayerEnterTrigger
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (pLayer.value == (pLayer.value |(1<< collision.gameObject.layer)))
+        if (pLayer.value == (pLayer.value | (1 << collision.gameObject.layer)))
         {
             col.enabled = false;
             if (!checker.isClear[transform.parent.root.name])
@@ -65,25 +67,36 @@ public class MapEvent : PlayerEnterTrigger
         stageCameraArea = cameraController.CameraArea;
         cameraController.SetCameraArea(transform.GetChild(1).GetComponent<BoxCollider2D>());//두 번째 자식은 카메라 고정 위치
         StartCoroutine(Eventing());
+
     }
     IEnumerator Eventing()
     {
-        for (int i = 0; i < mapPhase.Length; i++)
+        if (isBoss == false)
         {
-            for (int p = 0; p < mapPhase[i].summonMonster.Length; p++)
+            for (int i = 0; i < mapPhase.Length; i++)
             {
-                CallMonster(mapPhase[i].summonMonster[p], mapPhase[i].summonPos[p]);
+                for (int p = 0; p < mapPhase[i].summonMonster.Length; p++)
+                {
+                    CallMonster(mapPhase[i].summonMonster[p], mapPhase[i].summonPos[p]);
+                }
+                if (i == 0)
+                {
+                    //TODO 벽 및 몬스터 생성 연출 종료후
+                    playerAction.enabled = true;
+                }
+                yield return isAllDieMonster;
             }
-            if (i == 0)
-            {
-                //TODO 벽 및 몬스터 생성 연출 종료후
-                playerAction.enabled = true;
-            }
-            yield return isAllDieMonster;
+        }
+        else
+        {
+            BossMapEvent = MapMaker.Instance.bossMapEvents.GiveBossEvent();
+            //Todo 보스 소환
+            //Todo 보스 소환 연출
+            BossMapEvent?.Invoke();
         }
         ClearEvent();
     }
-    void CallMonster(GameObject m,Vector3 tra)
+    void CallMonster(GameObject m, Vector3 tra)
     {
         monsters++;
         GameObject go = Instantiate(m, tra, Quaternion.identity);

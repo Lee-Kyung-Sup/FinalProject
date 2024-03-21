@@ -5,21 +5,25 @@ using UnityEngine;
 
 public class MapMaker : SingletonBase<MapMaker>
 {
-    [SerializeField][Range(1, 3)] int curChapterId;
+    public int CurChapterId { get; private set; }
     [SerializeField] int curMapId = 0;
     GameObject curMap;
     MapDatas mapList;
     PotalMaker potalMaker;
     public MapEventChecker mapEventCheker { get; private set; }
+
+    public BossMapEventList bossMapEvents { get; private set; }
+
     protected override void Awake()
     {
         base.Awake();
     }
     private void Start()
     {
-        mapList = Resources.Load<MapDatas>($"Ch{curChapterId}MapDatas");
+        mapList = Resources.Load<MapDatas>($"Ch{CurChapterId}MapDatas");
         mapEventCheker = gameObject.AddComponent<MapEventChecker>();
         potalMaker = gameObject.AddComponent<PotalMaker>();
+        bossMapEvents = new BossMapEventList();
         MakeRoom(curMapId);
     }
     public void MakeRoom(int newMap)
