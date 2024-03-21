@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Frog : Monster
@@ -51,7 +52,7 @@ public class Frog : Monster
     }
     IEnumerator FSM()
     {
-        while (true)
+        while (currentHp >=0)
         {
             yield return StartCoroutine(currentState.ToString());
         }
@@ -81,7 +82,7 @@ public class Frog : Monster
             MyAnimSetTrigger(currentState.ToString());
             runTime -= Time.deltaTime;
             
-            if (!isHit)
+            if (!base.Hit)
             {
                 rb.velocity = new Vector2(-transform.localScale.x * moveSpeed, rb.velocity.y);
 
@@ -164,6 +165,18 @@ public class Frog : Monster
     IEnumerator Hit()
     {
         yield return null;
+
+        TakeDamage(1);
+       
+        yield return null;
+        currentState = State.Idle;
+    }
+
+    IEnumerator Die()
+    {
+        yield return null;
+        
+
     }
     public void Fire()
     {

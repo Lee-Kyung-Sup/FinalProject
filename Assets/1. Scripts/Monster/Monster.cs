@@ -9,7 +9,7 @@ public class Monster : MonoBehaviour, IsGroundable, IDamageable
     public float atkCoolTime = 3f;
     public float atkCoolTimeCalc = 3f;
 
-    public bool isHit = false;
+    public bool Hit = false;
     public bool isGround = true;
     public bool canAtk = true;
     public bool monsterDirRight;
@@ -46,7 +46,7 @@ public class Monster : MonoBehaviour, IsGroundable, IDamageable
             {
                 yield return new WaitForSeconds(0.5f);
                 hitBoxCollider.SetActive(true);
-                isHit = false;
+                Hit = false;
             }
         }
     }
@@ -146,10 +146,11 @@ public class Monster : MonoBehaviour, IsGroundable, IDamageable
     public virtual void TakeDamage(int dam)
     {
         currentHp -= dam;
-        isHit = true;
+        Hit = true;
 
         if(currentHp <= 0)
         {
+            MyAnimSetTrigger("Die");
             Debug.Log("Monster Dead");
         }
         else
@@ -166,17 +167,16 @@ public class Monster : MonoBehaviour, IsGroundable, IDamageable
             }
         }
        
-        //() 죽거나 넉백일경우 코드구현하기
         hitBoxCollider.SetActive(false);
     }
 
     //특정태그에 따른 충돌 피해
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        //if ( collision.transform.CompareTag ( ?? ) )
-        //{
-        //TakeDamage ( 0 );
-        //}
+        if (collision.transform.tag ==("Player"))
+        {
+            TakeDamage(1);
+        }
     }
 
     public bool IsGround()

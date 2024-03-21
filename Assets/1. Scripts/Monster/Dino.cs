@@ -77,7 +77,7 @@ public class Dino : Monster
         {
             MyAnimSetTrigger(currentState.ToString());
             runTime -= Time.deltaTime;
-            if (!isHit)
+            if (!Hit)
             {
                 rb.velocity = new Vector2(-transform.localScale.x * moveSpeed, rb.velocity.y);
 
@@ -143,7 +143,7 @@ public class Dino : Monster
     IEnumerator Attack()
     {
         yield return null;
-        if (!isHit && isGround)
+        if (!Hit && isGround)
         {
             //capsuleCollider.offset = capsuleColliderJumpOffset;
             canAtk = false;

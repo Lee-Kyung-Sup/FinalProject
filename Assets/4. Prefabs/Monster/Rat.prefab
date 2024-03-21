@@ -413,7 +413,7 @@ MonoBehaviour:
   jumpPower: 10
   atkCoolTime: 3
   atkCoolTimeCalc: 3
-  isHit: 0
+  Hit: 0
   isGround: 1
   canAtk: 1
   monsterDirRight: 0
@@ -456,7 +456,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.10947186, y: 0.37}

@@ -35,7 +35,7 @@ public class Bunny : Monster
     protected void Update()
     {
         GroundCheck();
-        if (!isHit && isGround)
+        if (!Hit && isGround)
         {
             move = -transform.localScale.x * moveSpeed;
             rb.velocity = new Vector2(move, rb.velocity.y); //몬스터 기본 움직임
@@ -80,14 +80,19 @@ public class Bunny : Monster
 
 
         }
+        if(Hit)
+        {
+            TakeDamage(1);
+        }
     }
   
 
     protected override void OnTriggerEnter2D(Collider2D collision)
     {
         base.OnTriggerEnter2D(collision);
-        if (collision.transform.tag == ("PlayerHitBox"))
+        if (collision.transform.tag == ("Player"))
         {
+            TakeDamage(1);
             MonsterFlip();
         }
     }
