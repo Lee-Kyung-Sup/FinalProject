@@ -16,11 +16,26 @@ public class Bunny : Monster
         jumpPower = 15f;
     }
 
-    protected override void Update()
+    protected void GroundCheck()
     {
-        base.Update();
+        Debug.DrawRay(new Vector2(transform.localPosition.x, transform.localPosition.y + 0.2f), Vector2.down * 3f, Color.red);
+        if (Physics2D.Raycast(new Vector2(transform.localPosition.x, transform.localPosition.y + 0.2f), Vector2.down, 3f, layerMask))
+        {
+            isGround = true;
+        }
+        else
+        {
+            isGround = false;
+        }
+
+    }
+
+   
+
+    protected void Update()
+    {
         GroundCheck();
-        if (!isHit && isGround)
+        if (!Hit && isGround)
         {
             move = -transform.localScale.x * moveSpeed;
             rb.velocity = new Vector2(move, rb.velocity.y); //몬스터 기본 움직임
@@ -44,7 +59,7 @@ public class Bunny : Monster
             }
 
 
-            Vector2 monsterFrontBelowPosition = (Vector2)transform.localPosition + new Vector2(-transform.localScale.x * 0.2f, 0);
+            Vector2 monsterFrontBelowPosition = (Vector2)transform.localPosition + new Vector2(-transform.localScale.x * 0.5f, 0);
 
             Vector2 origin = monsterFrontBelowPosition;
 
@@ -56,7 +71,7 @@ public class Bunny : Monster
             Debug.DrawRay(origin, direction * distance, Color.red);
 
             // Raycast를 사용하여 조건 확인
-            if (CheckIfNoWall(origin, direction, distance, layerMask))
+            if (CheckisClif(origin, direction, distance, layerMask))
             {
                 Debug.Log("t2");
 
@@ -65,13 +80,14 @@ public class Bunny : Monster
 
 
         }
+        
     }
   
 
     protected override void OnTriggerEnter2D(Collider2D collision)
     {
         base.OnTriggerEnter2D(collision);
-        if (collision.transform.tag == ("PlayerHitBox"))
+        if (collision.transform.tag == ("PlayerAttackBox"))
         {
             MonsterFlip();
         }

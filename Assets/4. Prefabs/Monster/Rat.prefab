@@ -86,7 +86,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4859178648872013726}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.39, y: 1.01, z: 0}
+  m_LocalPosition: {x: -0.39, y: 1.85, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -164,7 +164,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9024759465276519126}
-  - component: {fileID: 1714812195494530099}
+  - component: {fileID: 302508565499344216}
   m_Layer: 10
   m_Name: RatHitBox
   m_TagString: MonsterHitBox
@@ -187,7 +187,7 @@ Transform:
   m_Father: {fileID: 6462011824363612640}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!70 &1714812195494530099
+--- !u!70 &302508565499344216
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -219,8 +219,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.02, y: 0.37}
-  m_Size: {x: 1.18, y: 0.66}
+  m_Offset: {x: 0.10947186, y: 0.37}
+  m_Size: {x: 1.5989501, y: 0.84000355}
   m_Direction: 1
 --- !u!1 &7717758883803964885
 GameObject:
@@ -273,7 +273,7 @@ GameObject:
   - component: {fileID: 5717257760993014134}
   - component: {fileID: 4531345282404754109}
   m_Layer: 7
-  m_Name: Rat 1
+  m_Name: Rat
   m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -413,7 +413,7 @@ MonoBehaviour:
   jumpPower: 10
   atkCoolTime: 3
   atkCoolTimeCalc: 3
-  isHit: 0
+  Hit: 0
   isGround: 1
   canAtk: 1
   monsterDirRight: 0
@@ -459,6 +459,6 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.02, y: 0.37}
-  m_Size: {x: 1.18, y: 0.66}
+  m_Offset: {x: 0.10947186, y: 0.37}
+  m_Size: {x: 1.5989501, y: 0.84000355}
   m_Direction: 1
