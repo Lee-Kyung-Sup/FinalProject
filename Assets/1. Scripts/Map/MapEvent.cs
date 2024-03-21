@@ -25,7 +25,7 @@ public class MapEvent : PlayerEnterTrigger
     Action BossMapEvent;
 
 
-    BoxCollider2D stageCameraArea;
+    BoxCollider2D tempCameraArea;
     CameraController cameraController;
     WaitUntil isAllDieMonster;
     [SerializeField] Summon[] mapPhase;
@@ -64,7 +64,7 @@ public class MapEvent : PlayerEnterTrigger
     {
         playerAction.enabled = false;//알수 없지만 페이즈 설정을 하지 않으면 이곳에서 멈춤
         transform.GetChild(0).gameObject.SetActive(true);//이 컴퍼넌트의 첫 자식은 타일맵임
-        stageCameraArea = cameraController.CameraArea;
+        tempCameraArea = cameraController.CameraArea;
         cameraController.SetCameraArea(transform.GetChild(1).GetComponent<BoxCollider2D>());//두 번째 자식은 카메라 고정 위치
         StartCoroutine(Eventing());
 
@@ -106,7 +106,7 @@ public class MapEvent : PlayerEnterTrigger
     void ClearEvent()
     {
         //TODO 종료 연출
-        cameraController.SetCameraArea(stageCameraArea);
+        cameraController.SetCameraArea(tempCameraArea);
         transform.GetChild(0).gameObject.SetActive(false);
         checker.isClear[transform.parent.root.name] = true;
     }
