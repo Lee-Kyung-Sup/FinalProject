@@ -5,21 +5,29 @@ using UnityEngine.UI;
 
 public class PlayerStatus : MonoBehaviour, IDamageable
 {
-    private PlayerAnimations playerAnimations;
-    private PlayerUI playerUI;
+    // 3.21 ï¿½ï¿½Å©ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ GetComponenï¿½ï¿½ Findï¿½ï¿½ ï¿½Ê¹ï¿½ ï¿½ï¿½ï¿½Æ¼ï¿½
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½Å´ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ spriteRenderer, Animator ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¾î¼­
+    // ï¿½ï¿½ ï¿½ï¿½Å©ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ü¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¹
 
-    [SerializeField] private Collider2D hitCollider; // ÇÇ°Ý¿ë ÄÝ¶óÀÌ´õ
-    [SerializeField] private int health = 3; // Ä³¸¯ÅÍ Ã¼·Â
-    [SerializeField] private float stamina = 100; // Ä³¸¯ÅÍ ½ºÅÂ¹Ì³Ê
-    [SerializeField] private float staminaRecoveryRate = 100; // ÃÊ´ç ½ºÅÂ¹Ì³Ê È¸º¹·®
-    [SerializeField] private float staminaRecoveryDelay = 1f; // ½ºÅÂ¹Ì³Ê È¸º¹ Áö¿¬ ½Ã°£
+    private PlayerAnimations playerAnimations;
+    private PlayerMovement playerMovement;
+    private PlayerUI playerUI;
+    private SpriteRenderer spriteRenderer;
+    private Rigidbody2D rb;
+
+    [SerializeField] private Collider2D hitCollider; // ï¿½Ç°Ý¿ï¿½ ï¿½Ý¶ï¿½ï¿½Ì´ï¿½
+    [SerializeField] private int health = 3; // Ä³ï¿½ï¿½ï¿½ï¿½ Ã¼ï¿½ï¿½
+    [SerializeField] private float stamina = 100; // Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â¹Ì³ï¿½
+    [SerializeField] private float staminaRecoveryRate = 100; // ï¿½Ê´ï¿½ ï¿½ï¿½ï¿½Â¹Ì³ï¿½ È¸ï¿½ï¿½ï¿½ï¿½
+    [SerializeField] private float staminaRecoveryDelay = 1f; // ï¿½ï¿½ï¿½Â¹Ì³ï¿½ È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½
+    //[SerializeField] private int Atk = 1; // Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ý·ï¿½ (ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Äµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ TODO)
 
     private float lastStaminaUseTime;
     private float maxStamina;
 
     [SerializeField] private float speed = 10f;
     [SerializeField] private float jumpPower = 20f;
-    [SerializeField] private int maxJumpCount = 2; // ÃÖ´ë Á¡ÇÁ °¡´É È½¼ö
+    [SerializeField] private int maxJumpCount = 2; // ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È½ï¿½ï¿½
 
 
     public float Speed => speed;
@@ -27,17 +35,19 @@ public class PlayerStatus : MonoBehaviour, IDamageable
     public int MaxJumpCount => maxJumpCount;
     public float Stamina => stamina;
 
-    // Start is called before the first frame update
     void Start()
     {
-        playerAnimations = GetComponent<PlayerAnimations>();
-        hitCollider = GetComponent<Collider2D>();
         playerUI = FindObjectOfType<PlayerUI>();
-        maxStamina = stamina;
+        spriteRenderer = transform.Find("MainSprite").GetComponent<SpriteRenderer>();
+        playerMovement = GetComponent<PlayerMovement>();
+        playerAnimations = GetComponent<PlayerAnimations>();
+        rb = GetComponent<Rigidbody2D>();
+
         lastStaminaUseTime = Time.time;
+        maxStamina = stamina;
+        //hitCollider = GetComponent<Collider2D>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Time.time - lastStaminaUseTime >= staminaRecoveryDelay && stamina < 100)
@@ -49,21 +59,64 @@ public class PlayerStatus : MonoBehaviour, IDamageable
         playerUI.UpdateStaminaUI(Stamina);
     }
 
+    void FixedUpdate()
+    {
+    }
+
     public void TakeDamage(int damage)
     {
+        OnInvincible();
+        playerAnimations.GetHit();
         health -= damage;
         playerUI.UpdateHeartUI(health);
-        playerAnimations.GetHit();
 
         if (health <= 0)
         {
             Die();
         }
-
-        // ÇÇÇØ ½Ã ³Ë¹é ¸Þ¼­µå
-        // ÇÇÇØ ½Ã ÀÏÁ¤½Ã°£ ¹«Àû ¸Þ¼­µå
-
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ë¹ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½
     }
+
+
+    public void OnInvincible()
+    {
+        gameObject.layer = 18; // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¾ï¿½ (ï¿½ï¿½ï¿½ï¿½ / ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¼ ï¿½æµ¹ x)
+        spriteRenderer.color = new Color(1, 1, 1, 0.5f);
+
+        Invoke("OffInvincible", 3); // nï¿½Ê°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½
+        StartCoroutine(BlinkEffect(3f, 0.1f)); // ï¿½ï¿½ï¿½Ä°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ú·ï¿½Æ¾
+    }
+    private IEnumerator BlinkEffect(float duration, float interval)
+    {
+        float time = 0;
+        while (time < duration)
+        {
+            if (spriteRenderer.color.a == 0.5f)
+            {
+                spriteRenderer.color = new Color(1, 1, 1, 0.7f);
+            }
+            else
+            {
+                spriteRenderer.color = new Color(1, 1, 1, 0.5f);
+            }
+
+            yield return new WaitForSeconds(interval); // ï¿½ï¿½È¯ ï¿½ï¿½ï¿½Ý¸ï¿½Å­ ï¿½ï¿½ï¿½
+
+            // ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
+            time += interval;
+        }
+    }
+
+    public void OffInvincible()
+    {
+        StopAllCoroutines();
+
+        gameObject.layer = 6; // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½Ì¾ï¿½
+        spriteRenderer.color = new Color(1, 1, 1, 1); // ï¿½ï¿½ï¿½Ä°ï¿½ ï¿½Ê±ï¿½È­
+    }
+
+
 
     public void UseStamina(float value)
     {
@@ -88,12 +141,14 @@ public class PlayerStatus : MonoBehaviour, IDamageable
         maxStamina = stamina;
     }
 
+
+
     private void Die()
     {
-        Debug.Log("ÇÃ·¹ÀÌ¾î Á×À½");
-        playerAnimations.Dead(); // die ¾Ö´Ï¸ÞÀÌ¼Ç
+        Debug.Log("ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½");
+        playerAnimations.Dead(); // die ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½
 
-        // ÇÃ·¹ÀÌ¾î »ç¸Á ÈÄ ·ÎÁ÷ TODO
+        // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ TODO
         // DisableControls();
         // ShowGameOver();
     }
@@ -102,12 +157,16 @@ public class PlayerStatus : MonoBehaviour, IDamageable
     {
         if (collision.CompareTag("EnemyBullet") || collision.CompareTag("Monster"))
         {
-            if (collision == hitCollider) // Ãæµ¹ÇÑ ÄÝ¶óÀÌ´õ°¡ ÇÃ·¹ÀÌ¾îÀÇ ÇÇ°Ý¿ë ÄÝ¶óÀÌ´õ¸é
-            {
-                TakeDamage(1);
-            }
+            TakeDamage(1);
+            playerMovement.OnKnockback(collision.transform.position);
+
+            //if (collision == hitCollider) // ï¿½æµ¹ï¿½ï¿½ ï¿½Ý¶ï¿½ï¿½Ì´ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ ï¿½Ç°Ý¿ï¿½ ï¿½Ý¶ï¿½ï¿½Ì´ï¿½ï¿½ï¿½
+            //{
+            //}
         }
     }
-
-
 }
+
+
+
+

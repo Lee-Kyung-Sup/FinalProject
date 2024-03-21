@@ -46,6 +46,9 @@ public class PlayerAttacks : MonoBehaviour
         }
     }
 
+    
+
+
     public void Attack()
     {
         meleeAttackCollider.enabled = true;

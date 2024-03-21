@@ -16,7 +16,7 @@ public class Bunny : Monster
         jumpPower = 15f;
     }
 
-    protected override void GroundCheck()
+    protected void GroundCheck()
     {
         Debug.DrawRay(new Vector2(transform.localPosition.x, transform.localPosition.y + 0.2f), Vector2.down * 3f, Color.red);
         if (Physics2D.Raycast(new Vector2(transform.localPosition.x, transform.localPosition.y + 0.2f), Vector2.down, 3f, layerMask))
@@ -30,10 +30,12 @@ public class Bunny : Monster
 
     }
 
-    protected override void Update()
+   
+
+    protected void Update()
     {
         GroundCheck();
-        if (!isHit && isGround)
+        if (!Hit && isGround)
         {
             move = -transform.localScale.x * moveSpeed;
             rb.velocity = new Vector2(move, rb.velocity.y); //몬스터 기본 움직임
@@ -78,13 +80,14 @@ public class Bunny : Monster
 
 
         }
+        
     }
   
 
     protected override void OnTriggerEnter2D(Collider2D collision)
     {
         base.OnTriggerEnter2D(collision);
-        if (collision.transform.tag == ("PlayerHitBox"))
+        if (collision.transform.tag == ("PlayerAttackBox"))
         {
             MonsterFlip();
         }

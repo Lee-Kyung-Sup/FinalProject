@@ -9,25 +9,34 @@ public class PlayerController : MonoBehaviour
     private PlayerMovement _playerMovement; // PlayerMovement 스크립트 참조
     private PlayerAttacks _playerAttacks;
     private Vector2 _inputVector; // 플레이어의 움직임 입력을 저장하는 벡터
+
     Dictionary<Paction, bool> lockAction = new Dictionary<Paction, bool>(); 
     void Awake()
     {
         _playerMovement = GetComponent<PlayerMovement>();
         _playerAttacks = GetComponent<PlayerAttacks>();
-        InItLockAction();
+        //InItLockAction(); // 테스트용 주석처리
+
+        // 테스트용 true
+        lockAction[Paction.AirAttack] = true;
+        lockAction[Paction.ChargeShot] = true;
+        lockAction[Paction.Dash] = true;
+        lockAction[Paction.DoubleJump] = true;
+        lockAction[Paction.MeleeAttack] = true;
+        lockAction[Paction.RangeAttack] = true;
     }
 
     void FixedUpdate()
     {
         _playerMovement.Move(_inputVector.x);
-
     }
+
     void InItLockAction()
     {
         lockAction.Add(Paction.AirAttack,false);
         lockAction.Add(Paction.ChargeShot,false);
         lockAction.Add(Paction.Dash,false);
-        lockAction.Add(Paction.DubleJump,false);
+        lockAction.Add(Paction.DoubleJump,false);
         lockAction.Add(Paction.MeleeAttack,false);
         lockAction.Add(Paction.RangeAttack,false);
     }
