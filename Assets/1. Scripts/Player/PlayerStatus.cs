@@ -6,17 +6,16 @@ using UnityEngine.UI;
 public class PlayerStatus : MonoBehaviour, IDamageable
 {
     private PlayerAnimations playerAnimations;
+    private PlayerMovement playerMovement;
     private PlayerUI playerUI;
     private Rigidbody2D rb;
-
-    [SerializeField] private float knockbackSpeed = 2f; // 넉백 속도
-    [SerializeField] private float knockbackDuration = 0.1f; // 넉백 지속 시간
 
     //[SerializeField] private Collider2D hitCollider; // 피격용 콜라이더
     [SerializeField] private int health = 3; // 캐릭터 체력
     [SerializeField] private float stamina = 100; // 캐릭터 스태미너
     [SerializeField] private float staminaRecoveryRate = 100; // 초당 스태미너 회복량
     [SerializeField] private float staminaRecoveryDelay = 1f; // 스태미너 회복 지연 시간
+    [SerializeField] private int Atk = 1; // 캐릭터 공격력 (추후 공격 방식따라 분할 TODO)
 
     private float lastStaminaUseTime;
     private float maxStamina;
@@ -36,6 +35,7 @@ public class PlayerStatus : MonoBehaviour, IDamageable
     {
         playerUI = FindObjectOfType<PlayerUI>();
 
+        playerMovement = GetComponent<PlayerMovement>();
         playerAnimations = GetComponent<PlayerAnimations>();
         rb = GetComponent<Rigidbody2D>();
 
@@ -62,19 +62,19 @@ public class PlayerStatus : MonoBehaviour, IDamageable
 
     public void TakeDamage(int damage)
     {
-            health -= damage;
-            playerUI.UpdateHeartUI(health);
-            playerAnimations.GetHit();
+        playerAnimations.GetHit();
+        health -= damage;
+        playerUI.UpdateHeartUI(health);
 
-            if (health <= 0)
-            {
-                Die();
-            }
-
+        if (health <= 0)
+        {
+            Die();
+        }
         // 피해 시 넉백 메서드
         // 피해 시 일정시간 무적 메서드
-
     }
+
+
 
     public void UseStamina(float value)
     {
@@ -113,33 +113,12 @@ public class PlayerStatus : MonoBehaviour, IDamageable
     {
         if (collision.CompareTag("EnemyBullet") || collision.CompareTag("Monster"))
         {
-
-            Vector3 knockbackDirection = (transform.position - collision.transform.position).normalized;
-            
-            knockbackDirection += new Vector3(0, 0.2f, 0);
-
-            Vector3 knockbackPosition = transform.position + knockbackDirection * knockbackSpeed;
-            StartCoroutine(KnockbackPlayer(knockbackPosition));
-
             TakeDamage(1);
+            playerMovement.KnockbackAndInvincibility(collision.transform.position);
 
             //if (collision == hitCollider) // 충돌한 콜라이더가 플레이어의 피격용 콜라이더면
             //{
-
             //}
-        }
-    }
-
-    private IEnumerator KnockbackPlayer(Vector3 knockbackPosition)
-    {
-        float elapsedTime = 0;
-        Vector2 startPosition = transform.position;
-
-        while (elapsedTime < knockbackDuration)
-        {
-            transform.position = Vector3.Lerp(startPosition, knockbackPosition, (elapsedTime / knockbackDuration));
-            elapsedTime += Time.deltaTime;
-            yield return null;
         }
     }
 }

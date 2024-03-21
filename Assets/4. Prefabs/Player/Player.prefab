@@ -835,7 +835,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.4}
   serializedVersion: 2
-  m_Radius: 0.6
+  m_Radius: 1
 --- !u!114 &1756893326375499926
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -872,7 +872,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee63044ee86a21d4ca376d84a760400c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitCollider: {fileID: 2243918332336067866}
+  knockbackSpeed: 2
+  knockbackDuration: 0.1
   health: 3
   stamina: 100
   staminaRecoveryRate: 100

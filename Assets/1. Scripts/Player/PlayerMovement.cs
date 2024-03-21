@@ -32,6 +32,11 @@ public class PlayerMovement : MonoBehaviour,IsGroundable
     private float originalGravityScale; // 기본 중력 값
     private bool isPressingDown = false;
 
+    private bool isKnockedBack = false;
+    [SerializeField] private float knockbackTime = 0.25f; // 넉백 지속 시간
+    [SerializeField] private float knockbackForceY = 1.5f;
+    [SerializeField] private float knockbackForceX = 5.0f;
+
 
 
 
@@ -102,10 +107,13 @@ public class PlayerMovement : MonoBehaviour,IsGroundable
 
     public void Move(float inputX)
     {
-        if (!isDashing)
+        // 넉백 중이거나 대쉬 중일 때는 이동 x
+        if (isKnockedBack || isDashing) return;
+
+        if (!isDashing && !isKnockedBack)
         {
 
-            // 대쉬 중이 아닐 때만 이동
+            // 대쉬 중 + 넉백 상태가 아닐 때만 이동
             rb.velocity = new Vector2(inputX * playerStatus.Speed, rb.velocity.y);
 
             playerAnimations.Moving(true);
@@ -194,6 +202,7 @@ public class PlayerMovement : MonoBehaviour,IsGroundable
             canDash = true; // 땅에 있으면 대쉬 다시 가능
         }
     }
+
     public void SetIsPressingDown(bool isPressing)
     {
         isPressingDown = isPressing;
@@ -203,7 +212,6 @@ public class PlayerMovement : MonoBehaviour,IsGroundable
     {
         canDoubleJump = enabled;
     }
-
 
     private bool IsPlatformLayer()
     {
@@ -220,6 +228,7 @@ public class PlayerMovement : MonoBehaviour,IsGroundable
             Invoke("Platform", 0.5f); // ignore False
         }
     }
+
     private void Platform()
     {
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Platform"), false);
@@ -229,4 +238,27 @@ public class PlayerMovement : MonoBehaviour,IsGroundable
     {
         return isGrounded;
     }
+
+
+    public void KnockbackAndInvincibility(Vector2 targetPosition)
+    {
+        //gameObject.layer = 18;
+
+        isKnockedBack = true;
+        rb.velocity = Vector2.zero; // 플레이어가 이동 힘과 넉백 힘의 상쇄 방지
+
+
+        int dirc = targetPosition.x - transform.position.x < 0 ? 1 : -1;
+        rb.AddForce(new Vector2(dirc, knockbackForceX) * knockbackForceY, ForceMode2D.Impulse);
+
+        StartCoroutine(ResetKnockbackState(knockbackTime));
+    }
+    private IEnumerator ResetKnockbackState(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        rb.velocity = Vector2.zero;
+        isKnockedBack = false;
+    }
+
 }

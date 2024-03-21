@@ -10,6 +10,7 @@ TagManager:
   - Platform
   - Projectile
   - EnemyBullet
+  - PlayerAttackBox
   layers:
   - Default
   - TransparentFX
@@ -29,7 +30,7 @@ TagManager:
   - Interactable
   - Resource
   - Equip
-  - 
+  - PlayerDemaged
   - 
   - 
   - 
