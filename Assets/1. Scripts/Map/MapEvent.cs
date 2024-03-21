@@ -39,7 +39,7 @@ public class MapEvent : PlayerEnterTrigger
 
     private void OnEnable()
     {
-        checker = MapMaker.Instance.mapEventCheker;
+        checker = MapMaker.Instance.MapEventCheker;
         if (checker.isClear.ContainsKey(transform.parent.root.name))
         {
             return;
@@ -71,29 +71,23 @@ public class MapEvent : PlayerEnterTrigger
     }
     IEnumerator Eventing()
     {
-        if (isBoss == false)
+        for (int i = 0; i < mapPhase.Length; i++)
         {
-            for (int i = 0; i < mapPhase.Length; i++)
+            for (int p = 0; p < mapPhase[i].summonMonster.Length; p++)
             {
-                for (int p = 0; p < mapPhase[i].summonMonster.Length; p++)
-                {
-                    CallMonster(mapPhase[i].summonMonster[p], mapPhase[i].summonPos[p]);
-                }
-                if (i == 0)
-                {
-                    //TODO 벽 및 몬스터 생성 연출 종료후
-                    playerAction.enabled = true;
-                }
-                yield return isAllDieMonster;
+                CallMonster(mapPhase[i].summonMonster[p], mapPhase[i].summonPos[p]);
             }
-        }
-        else
-        {
-            BossMapEvent = MapMaker.Instance.bossMapEvents.GiveBossEvent();
-            //Todo 보스 소환
-            //Todo 보스 소환 연출 및 벽 생성 연출
-            playerAction.enabled = true;
-            BossMapEvent?.Invoke();
+            if (i == 0)
+            {
+                //TODO 벽 및 몬스터 생성 연출 종료후
+                if (isBoss == true)
+                {
+                    BossMapEvent = MapMaker.Instance.BossMapEvents.GiveBossEvent();
+                    BossMapEvent?.Invoke();
+                }
+                playerAction.enabled = true;
+            }
+            yield return isAllDieMonster;
         }
         ClearEvent();
     }
@@ -105,7 +99,6 @@ public class MapEvent : PlayerEnterTrigger
     }
     void ClearEvent()
     {
-        //TODO 종료 연출
         cameraController.SetCameraArea(tempCameraArea);
         transform.GetChild(0).gameObject.SetActive(false);
         checker.isClear[transform.parent.root.name] = true;
