@@ -413,7 +413,7 @@ MonoBehaviour:
   jumpPower: 10
   atkCoolTime: 3
   atkCoolTimeCalc: 3
-  isHit: 0
+  Hit: 0
   isGround: 1
   canAtk: 1
   monsterDirRight: 0

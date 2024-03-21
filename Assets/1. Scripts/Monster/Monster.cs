@@ -1,4 +1,5 @@
 using System.Collections;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class Monster : MonoBehaviour, IsGroundable, IDamageable
@@ -9,7 +10,7 @@ public class Monster : MonoBehaviour, IsGroundable, IDamageable
     public float atkCoolTime = 3f;
     public float atkCoolTimeCalc = 3f;
 
-    public bool isHit = false;
+    public bool Hit = false;
     public bool isGround = true;
     public bool canAtk = true;
     public bool monsterDirRight;
@@ -46,7 +47,7 @@ public class Monster : MonoBehaviour, IsGroundable, IDamageable
             {
                 yield return new WaitForSeconds(0.5f);
                 hitBoxCollider.SetActive(true);
-                isHit = false;
+                Hit = false;
             }
         }
     }
@@ -67,6 +68,11 @@ public class Monster : MonoBehaviour, IsGroundable, IDamageable
                 }
             }
         }
+    }
+
+    public void Destroy()
+    {
+        Destroy(gameObject);
     }
 
     //실행중인 애니메이션이 특정이름과 일치하는지 확인
@@ -124,24 +130,8 @@ public class Monster : MonoBehaviour, IsGroundable, IDamageable
     }
 
 
-    protected virtual void Update()
-    {
-        GroundCheck();
-    }
-    //바닥에 닿았는지 아닌지 체크
-    protected virtual void GroundCheck()
-    {
-            Debug.DrawRay(transform.localPosition, Vector2.down* 3f, Color.red);
-            if (Physics2D.Raycast(transform.localPosition, Vector2.down, 3f, layerMask))
-            {
-                isGround = true;
-            }
-            else
-            {
-                isGround = false;
-            }
-        
-    }
+   
+  
 
     //벽체크
     public bool CheckisClif(Vector2 origin, Vector2 direction, float distance, LayerMask layerMask)
@@ -161,20 +151,46 @@ public class Monster : MonoBehaviour, IsGroundable, IDamageable
     //몬스터 데미지 받기
     public virtual void TakeDamage(int dam)
     {
+        if(currentHp <= 0)
+        {
+            return;
+        }
         currentHp -= dam;
-        isHit = true;
+        Hit = true;
+
+        if(currentHp <= 0)
+        {
+            MyAnimSetTrigger("Die");
+            Destroy(capsuleCollider);
+            Destroy(hitBoxCollider);
+            Destroy(rb);
+            Debug.Log("Monster Dead");
+            StopAllCoroutines();
+        }
+        else
+        {
+            MyAnimSetTrigger("Hit");
+            rb.velocity = Vector2.zero;
+            if (transform.position.x > GameManager.instance.GetPlayerPosition().x) 
+            {
+                rb.velocity = new Vector2(10f, 0);
+            }
+            else
+            {
+                rb.velocity = new Vector2(-10f, 0);
+            }
+        }
        
-        //() 죽거나 넉백일경우 코드구현하기
         hitBoxCollider.SetActive(false);
     }
 
     //특정태그에 따른 충돌 피해
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        //if ( collision.transform.CompareTag ( ?? ) )
-        //{
-        //TakeDamage ( 0 );
-        //}
+        if (collision.transform.tag ==("PlayerAttackBox"))
+        {
+            TakeDamage(1);
+        }
     }
 
     public bool IsGround()
