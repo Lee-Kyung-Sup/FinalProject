@@ -23,9 +23,9 @@ public class CameraController : SingletonBase<CameraController>
     }
     private void Start()
     {
-        target = FindObjectOfType<PlayerController>().gameObject.transform; //이후 게임 매니저로부터 모든게 만들어질때 같이 할당
+        target = FindObjectOfType<PlayerController>().gameObject.transform;
     }
-    private void Update()
+    private void LateUpdate()
     {
         CameraMove();
     }
@@ -51,7 +51,7 @@ public class CameraController : SingletonBase<CameraController>
     {
         target = viewPos;
     }
-    void CameraMove() // 약간 하단에 위치하게 y값 조절 need
+    void CameraMove()
     {
         float moveSpeed = Vector2.Distance(target.position,transform.position);
         cameraPos.Set(target.position.x, target.position.y, transform.position.z);

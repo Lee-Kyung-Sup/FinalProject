@@ -12,7 +12,7 @@ public class OneWayMovePlatform : MonoBehaviour
         rigi = GetComponent<Rigidbody2D>();
         col = GetComponent<BoxCollider2D>();
     }
-    private void Update()
+    private void FixedUpdate()
     {
         //Todo if is start
         rigi.velocity = new Vector2(-speed, rigi.velocity.y);
