@@ -7,6 +7,10 @@ public class PlayerStatus : MonoBehaviour, IDamageable
 {
     private PlayerAnimations playerAnimations;
     private PlayerUI playerUI;
+    private Rigidbody2D rb;
+
+    [SerializeField] private float knockbackSpeed = 2f; // 넉백 속도
+    [SerializeField] private float knockbackDuration = 0.1f; // 넉백 지속 시간
 
     //[SerializeField] private Collider2D hitCollider; // 피격용 콜라이더
     [SerializeField] private int health = 3; // 캐릭터 체력
@@ -30,11 +34,14 @@ public class PlayerStatus : MonoBehaviour, IDamageable
     // Start is called before the first frame update
     void Start()
     {
-        playerAnimations = GetComponent<PlayerAnimations>();
-        //hitCollider = GetComponent<Collider2D>();
         playerUI = FindObjectOfType<PlayerUI>();
-        maxStamina = stamina;
+
+        playerAnimations = GetComponent<PlayerAnimations>();
+        rb = GetComponent<Rigidbody2D>();
+
         lastStaminaUseTime = Time.time;
+        maxStamina = stamina;
+        //hitCollider = GetComponent<Collider2D>();
     }
 
     // Update is called once per frame
@@ -49,16 +56,20 @@ public class PlayerStatus : MonoBehaviour, IDamageable
         playerUI.UpdateStaminaUI(Stamina);
     }
 
+    void FixedUpdate()
+    {
+    }
+
     public void TakeDamage(int damage)
     {
-        health -= damage;
-        playerUI.UpdateHeartUI(health);
-        playerAnimations.GetHit();
+            health -= damage;
+            playerUI.UpdateHeartUI(health);
+            playerAnimations.GetHit();
 
-        if (health <= 0)
-        {
-            Die();
-        }
+            if (health <= 0)
+            {
+                Die();
+            }
 
         // 피해 시 넉백 메서드
         // 피해 시 일정시간 무적 메서드
@@ -102,7 +113,16 @@ public class PlayerStatus : MonoBehaviour, IDamageable
     {
         if (collision.CompareTag("EnemyBullet") || collision.CompareTag("Monster"))
         {
+
+            Vector3 knockbackDirection = (transform.position - collision.transform.position).normalized;
+            
+            knockbackDirection += new Vector3(0, 0.2f, 0);
+
+            Vector3 knockbackPosition = transform.position + knockbackDirection * knockbackSpeed;
+            StartCoroutine(KnockbackPlayer(knockbackPosition));
+
             TakeDamage(1);
+
             //if (collision == hitCollider) // 충돌한 콜라이더가 플레이어의 피격용 콜라이더면
             //{
 
@@ -110,5 +130,20 @@ public class PlayerStatus : MonoBehaviour, IDamageable
         }
     }
 
+    private IEnumerator KnockbackPlayer(Vector3 knockbackPosition)
+    {
+        float elapsedTime = 0;
+        Vector2 startPosition = transform.position;
 
+        while (elapsedTime < knockbackDuration)
+        {
+            transform.position = Vector3.Lerp(startPosition, knockbackPosition, (elapsedTime / knockbackDuration));
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+    }
 }
+
+
+
+
