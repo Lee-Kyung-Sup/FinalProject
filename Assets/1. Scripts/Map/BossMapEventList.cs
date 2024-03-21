@@ -19,15 +19,15 @@ public class BossMapEventList
                 return null;
         }
     }
-    public void ChBoss1()
+    void ChBoss1()
     {
 
     }
-    public void ChBoss2()
+    void ChBoss2()
     {
         OneWayMovePlatform.isStart = true;
     }
-    public void ChBoss3()
+    void ChBoss3()
     {
 
     }
