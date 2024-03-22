@@ -21,6 +21,7 @@ public class Character
     public CharacterType CharacterType;
     public Sprite CharacterSprite;
     public RuntimeAnimatorController AnimatorController;
+    
 }
 
 
@@ -28,8 +29,11 @@ public class Character
 
 public class GameManager : MonoBehaviour
 {
+
     public static GameManager instance;
     public GameObject player; // 플레이어 오브젝트 위치 추적
+
+    PlayerUI playerUI;
 
     public List <Character> CharacterList = new List<Character>();
 
@@ -52,7 +56,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        playerUI = FindObjectOfType<PlayerUI>();
     }
 
     // Update is called once per frame
@@ -73,5 +77,12 @@ public class GameManager : MonoBehaviour
         PlayerName.text = name;
     }
 
-   
+    public void GameOver()
+    {
+        // 게임 오버 
+        playerUI.OnGameOverUI();
+        Time.timeScale = 0;
+    }
+
+
 }

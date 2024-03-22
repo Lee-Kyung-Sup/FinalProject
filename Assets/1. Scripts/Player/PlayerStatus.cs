@@ -140,19 +140,16 @@ public class PlayerStatus : MonoBehaviour, IDamageable
 
     private void Die()
     {
-        playerAnimations.Dead(); // die �ִϸ��̼�
+        playerAnimations.Dead(); 
+        GameManager.instance.GameOver();
 
-        // �÷��̾� ��� �� ���� TODO
-        // DisableControls();
-        // ShowGameOver();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
         if (collision.CompareTag("EnemyBullet") || collision.CompareTag("Monster"))
-        {
-            Debug.Log("충돌한 오브젝트 : " + collision.gameObject.name);
+        { 
 
             TakeDamage(1);
             playerMovement.OnKnockback(collision.transform.position);

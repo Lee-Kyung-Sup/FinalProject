@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/0. Scenes/WJJScene.unity
     guid: a4144f1a5f42ea148a52d6cbf304217b
+  - enabled: 1
+    path: Assets/0. Scenes/GameScenes.unity
+    guid: e899db3df76a8b344a7a884b56aabdc8
   m_configObjects: {}

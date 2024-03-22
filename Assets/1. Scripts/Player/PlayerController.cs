@@ -9,7 +9,6 @@ public class PlayerController : MonoBehaviour
     private PlayerMovement _playerMovement; // PlayerMovement 스크립트 참조
     private PlayerAttacks _playerAttacks;
     private Vector2 _inputVector; // 플레이어의 움직임 입력을 저장하는 벡터
-    private float lastInputDirection = 0f;
 
     Dictionary<Paction, bool> lockAction = new Dictionary<Paction, bool>(); 
     void Awake()
