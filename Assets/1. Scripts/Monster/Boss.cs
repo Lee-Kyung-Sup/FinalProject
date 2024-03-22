@@ -27,8 +27,9 @@ public class Boss : MonoBehaviour
     
     void Awake()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();  
-        
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        player = GameManager.instance.player;
+        objectManager = FindObjectOfType<ObjectManager>();
         if(enemyName == "B")
         {
             anim = GetComponent<Animator>();

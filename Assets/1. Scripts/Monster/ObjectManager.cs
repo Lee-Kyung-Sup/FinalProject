@@ -21,11 +21,7 @@ public class ObjectManager : MonoBehaviour
 
     void Generate()
     {
-        for (int index = 0; index < enemyB.Length; index++)
-        {
-            enemyB[index] = Instantiate(enemyBPrefab);
-            enemyB[index].SetActive(false);
-        }
+
 
         for (int index = 0; index < bulletBossA.Length; index++)
         {

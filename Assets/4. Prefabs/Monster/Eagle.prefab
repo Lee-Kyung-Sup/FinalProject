@@ -34,7 +34,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7099650708095864398
 SpriteRenderer:
@@ -185,8 +185,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: B
   speed: 2
-  health: 100
+  currentHp: 100
   sprites: []
+  bossDir: 0
   maxShotDelay: 1
   curShotDelay: 1
   player: {fileID: 0}
