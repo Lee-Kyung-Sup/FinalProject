@@ -103,5 +103,9 @@ public class PlayerController : MonoBehaviour
     public void UnLockAction(Paction unLockAction)
     {
         lockAction[unLockAction] = true;
+        if (unLockAction == Paction.DoubleJump)
+        {
+            _playerMovement.SetDoubleJumpEnabled(lockAction[unLockAction]);
+        }
     }
 }

@@ -74,8 +74,8 @@ public class ItemLoad
 
     public ItemLoad(int id, int amount, int SLOTINDEX)
     {
-        id = id;
-        amount = amount;
+        this.id = id;
+        this.amount = amount;
         slotIndex = SLOTINDEX;
     }
 

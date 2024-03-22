@@ -164,15 +164,15 @@ public class Frog : Monster
         currentState = State.Idle;
     }
 
-    IEnumerator Hit()
-    {
-        yield return null;
+    //IEnumerator Hit()
+    //{
+    //    yield return null;
 
-        TakeDamage(1);
+    //    TakeDamage(1);
        
-        yield return null;
-        currentState = State.Idle;
-    }
+    //    yield return null;
+    //    currentState = State.Idle;
+    //}
 
     IEnumerator Die()
     {

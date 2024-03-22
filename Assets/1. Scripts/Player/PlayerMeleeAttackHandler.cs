@@ -16,21 +16,19 @@ public class PlayerMeleeAttackHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.TryGetComponent<IDamageable>(out IDamageable a))
-        {
-            a.TakeDamage(playerStatus.Atk);
-            if (collision.CompareTag("Monster"))
-            {
-                Instantiate(meleeHitEffect, collision.transform.position, Quaternion.identity);
 
-                //collision.SendMessage("TakeDamage", playerStatus.Atk);  // 몬스터에게 데미지
-            }
+        if (collision.CompareTag("Monster"))
+        {
+            Instantiate(meleeHitEffect, collision.transform.position, Quaternion.identity);
+
+            //collision.SendMessage("TakeDamage", playerStatus.Atk);  // 몬스터에게 데미지
         }
+
 
 
 
