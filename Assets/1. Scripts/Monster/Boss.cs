@@ -7,8 +7,9 @@ public class Boss : MonoBehaviour
 {
     public string enemyName;
     public float speed;
-    public int health;
+    public int currentHp;
     public Sprite[] sprites;
+    public bool bossDir;
 
     public float maxShotDelay;
     public float curShotDelay;
@@ -18,6 +19,7 @@ public class Boss : MonoBehaviour
 
     SpriteRenderer spriteRenderer;
     Animator anim;
+    protected CircleCollider2D circleCollider;
 
     public int patternIndex;
     public int curPatternCount;
@@ -37,8 +39,9 @@ public class Boss : MonoBehaviour
     {
         if(enemyName == "B")
         {
-            health = 100;
+            currentHp = 100;
             Invoke("Stop", 1);
+            //InvokeRepeating("Stop", 1, 1);
         }
     }
 
@@ -58,43 +61,49 @@ public class Boss : MonoBehaviour
     //패턴 케이스 로직
     void Think()
     {
+       
         //현재 패턴이 패턴 갯수를 넘기면 0으로 돌아오는 로직
         //patternIndex = patternIndex == 3 ? 0 : patternIndex + 1;
+        
+        
+            if (currentHp > 70)
+            {
+                patternIndex = 0; // 체력이 70 이상이면 패턴 0 실행
+            }
+            else if (currentHp > 40)
+            {
+                patternIndex = 1; // 체력이 40 이상이면 패턴 1 실행
+            }
+            else if (currentHp > 10)
+            {
+                patternIndex = 2; // 체력이 10이상이면 패턴 2 실행
+            }
+            else
+            {
+                patternIndex = 3; // 나머지 패턴 실행
+            }
+            curPatternCount = 0;
 
-        if (health > 70)
-        {
-            patternIndex = 0; // 체력이 80 이상이면 패턴 0 실행
-        }
-        else if (health > 40)
-        {
-            patternIndex = 1; // 체력이 50 이상이면 패턴 1 실행
-        }
-        else if(health > 10)
-        {
-            patternIndex = 2; // 체력이 15이상이면 패턴 2 실행
-        }
-        else
-        {
-            patternIndex = 3; // 나머지 패턴 실행
-        }
-        curPatternCount = 0;
+            switch (patternIndex)
+            {
+                case 0:
+                    FireForward();
+                    break;
+                case 1:
+                    FireShot();
+                    
+                    break;
+                case 2:
+                    FireArc();
+                    break;
+                case 3:
+                    FireAround();
+                    break;
 
-        switch(patternIndex)
-        {
-            case 0:
-                FireForward();
-                break;
-            case 1:
-                FireShot();
-                break;
-            case 2:
-                FireArc();
-                break;
-            case 3:
-                FireAround();
-                break;
+            }
+        
 
-        }
+        
     }
 
     void FireForward()
@@ -225,9 +234,47 @@ public class Boss : MonoBehaviour
         float randomX = Random.Range(-7f, 4f); // 랜덤한 x 좌표 생성
         float randomY = Random.Range(-3f, 4f); // 랜덤한 y 좌표 생성
         _targetPosition = new Vector2(randomX, randomY); // 랜덤한 위치 벡터 생성
+        
     }
     void Update()
     {
+        if (transform.position.x < GameManager.instance.GetPlayerPosition().x ? bossDir : !bossDir)
+        {
+            
+            Vector3 thisScale = transform.localScale;
+            Debug.Log(bossDir);
+            if (bossDir)
+            {
+                Debug.Log("b");
+                thisScale.x = -Mathf.Abs(thisScale.x);
+
+            }
+            
+            else
+            {
+                thisScale.x = Mathf.Abs(thisScale.x);
+
+            }
+            transform.localScale = thisScale;
+        }
+        else
+        {
+            Vector3 thisScale = transform.localScale;
+            Debug.Log(bossDir);
+            if (!bossDir)
+            {
+                Debug.Log("b");
+                thisScale.x = -Mathf.Abs(thisScale.x);
+
+            }
+
+            else
+            {
+                thisScale.x = Mathf.Abs(thisScale.x);
+
+            }
+            transform.localScale = thisScale;
+        }
         if (enemyName == "B")
         {
             transform.position = Vector2.Lerp(transform.position, _targetPosition, moveSpeed * Time.deltaTime);
@@ -235,30 +282,66 @@ public class Boss : MonoBehaviour
             return;
 
     }
-   
-    public void OnHit(int dmg)
+
+    public void Destroy()
     {
-        if(health <= 0)
+        Destroy(gameObject);
+    }
+
+    public void Hit(int dmg)
+    {
+        if(currentHp <= 0)
         {
             return;
         }
-        health -= dmg;
+        currentHp -= dmg;
 
-        if(enemyName == "B")
+        if (currentHp <= 0 && enemyName =="B")
         {
-            anim.SetTrigger("OnHit");
+            anim.SetTrigger("Die");
+            Destroy(circleCollider);
+            
+            Debug.Log("Monster Dead");
+            
+        }
+        else
+        {
+            anim.SetTrigger("Hit");
         }
     }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Platform" &&
-           collision.gameObject.tag == "Ground" &&
+        if (collision.gameObject.tag == "Ground" &&
            enemyName != "B")
+
         {
             gameObject.SetActive(false);
             transform.rotation = Quaternion.identity;
         }
+        if (collision.transform.tag == ("PlayerAttackBox"))
+        {
+            Hit(1);
+        }
     }
 
+    //void BossDir()
+    //{
+    //    if (transform.position.x < GameManager.instance.GetPlayerPosition().x ? bossDir : !bossDir)
+    //    {
+    //        Vector3 thisScale = transform.localScale;
+    //        if (bossDir)
+    //        {
+    //            thisScale.x = -Mathf.Abs(thisScale.x);
+
+    //        }
+    //        else
+    //        {
+    //            thisScale.x = Mathf.Abs(thisScale.x);
+
+    //        }
+    //        transform.localScale = thisScale;
+    //    }
+       
+    //}
 }
