@@ -5,10 +5,6 @@ using UnityEngine.UI;
 
 public class PlayerStatus : MonoBehaviour, IDamageable
 {
-    // 3.21 ��ũ��Ʈ���� GetComponen�� Find�� �ʹ� ���Ƽ�
-    // ���� �Ŵ����� �÷��̾� ���� ������ spriteRenderer, Animator ���� �־
-    // �� ��ũ��Ʈ���� ���ܿ����� �ڵ� ���� ��ȹ
-
     private PlayerAnimations playerAnimations;
     private PlayerMovement playerMovement;
     private PlayerUI playerUI;
@@ -74,18 +70,17 @@ public class PlayerStatus : MonoBehaviour, IDamageable
         {
             Die();
         }
-        // ���� �� �˹� �޼���
-        // ���� �� �����ð� ���� �޼���
+
     }
 
 
     public void OnInvincible()
     {
-        gameObject.layer = 18; // �÷��̾� �������� ���̾� (���� / ��������ü �浹 x)
+        gameObject.layer = 18;
         spriteRenderer.color = new Color(1, 1, 1, 0.5f);
 
-        Invoke("OffInvincible", 3); // n�ʰ� ���� �ð�
-        StartCoroutine(BlinkEffect(3f, 0.1f)); // ���İ� ������ �ڷ�ƾ
+        Invoke("OffInvincible", 3); 
+        StartCoroutine(BlinkEffect(3f, 0.1f)); 
     }
     private IEnumerator BlinkEffect(float duration, float interval)
     {
@@ -145,7 +140,6 @@ public class PlayerStatus : MonoBehaviour, IDamageable
 
     private void Die()
     {
-        Debug.Log("�÷��̾� ����");
         playerAnimations.Dead(); // die �ִϸ��̼�
 
         // �÷��̾� ��� �� ���� TODO

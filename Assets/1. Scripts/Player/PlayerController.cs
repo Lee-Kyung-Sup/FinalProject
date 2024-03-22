@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     {
         _playerMovement = GetComponent<PlayerMovement>();
         _playerAttacks = GetComponent<PlayerAttacks>();
-        //InItLockAction(); // 테스트용 주석처리
+        //InItLockAction(); 
 
         // 테스트용 true
         lockAction[Paction.AirAttack] = true;

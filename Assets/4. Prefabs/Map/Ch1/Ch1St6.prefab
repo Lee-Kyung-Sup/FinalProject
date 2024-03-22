@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsters: 0
+  isBoss: 0
   mapPhase:
   - summonMonster:
     - {fileID: 8501922263564177405, guid: f8f5969a521953545bbe4ef31f5568e5, type: 3}
@@ -57,14 +58,14 @@ MonoBehaviour:
     - {x: -2.21, y: -6.79, z: 0}
   - summonMonster:
     - {fileID: 4645182553857910290, guid: f983a39844d0bc3409d626f1d6d2c6bf, type: 3}
-    - {fileID: 6196747271250437490, guid: 0b595e49dafa76d44a84666808c7a2f6, type: 3}
-    - {fileID: 6196747271250437490, guid: 0b595e49dafa76d44a84666808c7a2f6, type: 3}
+    - {fileID: 8660032319998566229, guid: f63a8665aeb0eeb4995173f1473582a2, type: 3}
+    - {fileID: 8660032319998566229, guid: f63a8665aeb0eeb4995173f1473582a2, type: 3}
     summonPos:
     - {x: -2.21, y: -6.79, z: 0}
     - {x: 2.36, y: 0, z: 0}
     - {x: 17.45, y: -0.37, z: 0}
   - summonMonster:
-    - {fileID: 0}
+    - {fileID: 8501922263564177405, guid: f8f5969a521953545bbe4ef31f5568e5, type: 3}
     summonPos:
     - {x: 12.25, y: -6.67, z: 0}
 --- !u!61 &648794810839140337

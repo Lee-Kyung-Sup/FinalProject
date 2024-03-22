@@ -14,7 +14,8 @@ public class MovePlatform : MonoBehaviour
         rigi = GetComponent<Rigidbody2D>();
         startPos = transform.position;
     }
-    private void Update()
+
+    private void FixedUpdate()
     {
         if (isUpDown)
         {

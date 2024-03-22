@@ -14,7 +14,7 @@ public class Piston : MonoBehaviour
         rigi = GetComponent<Rigidbody2D>();
         fLayer = LayerMask.GetMask("Ground","Platform");
     }
-    private void Update()
+    private void FixedUpdate()
     {
         Move();
     }

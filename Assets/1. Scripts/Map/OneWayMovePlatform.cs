@@ -4,23 +4,33 @@ using UnityEngine;
 
 public class OneWayMovePlatform : MonoBehaviour
 {
+    SpriteRenderer sp;
     Rigidbody2D rigi;
-    float speed;
+    float speed = 3;
     BoxCollider2D col;
+    public static bool isStart = false;
     private void Awake()
     {
+        sp = GetComponent<SpriteRenderer>();
         rigi = GetComponent<Rigidbody2D>();
         col = GetComponent<BoxCollider2D>();
     }
-    private void Update()
+    private void FixedUpdate()
     {
-        //Todo if is start
-        rigi.velocity = new Vector2(-speed, rigi.velocity.y);
+        if (isStart)
+        {
+            rigi.velocity = new Vector2(-speed, rigi.velocity.y);
+            if (transform.position.x <= -6.47)
+            {
+                SetPlatform(UnityEngine.Random.Range(2,6),new Vector2(35.44f,UnityEngine.Random.Range(-5.92f, 7.17f)));
+            }
+        }
     }
-    public void SetPlatform(float speed,float colSize)
+    void SetPlatform(float colSize, Vector2 pos)
     {
-        this.speed = speed;
+        sp.size = new Vector2(colSize, sp.size.y);
         col.size = new Vector2(colSize, col.size.y);
+        transform.position = pos;
     }
     private void OnCollisionStay2D(Collision2D collision)
     {

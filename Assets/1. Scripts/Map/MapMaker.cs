@@ -34,4 +34,12 @@ public class MapMaker : SingletonBase<MapMaker>
         CameraController.Instance.SetCameraArea(curMap.GetComponent<BoxCollider2D>());
         potalMaker.MakePotal(mapList.mapData[newMap].poter);
     }
+    public void ClearChapter()
+    {
+        CurChapterId++;
+        curMapId = 0;
+        Destroy(curMap);
+        mapList = Resources.Load<MapDatas>($"Ch{CurChapterId}MapDatas");
+        MakeRoom(curMapId);
+    }
 }
