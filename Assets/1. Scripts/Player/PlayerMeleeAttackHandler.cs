@@ -20,7 +20,13 @@ public class PlayerMeleeAttackHandler : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
-    { 
+    {
+        if (collision.TryGetComponent<IDamageable>(out IDamageable a))
+        {
+            a.TakeDamage((int)playerStatus.Atk);
+        }
+
+
             if (collision.CompareTag("Monster"))
             {
                 Instantiate(meleeHitEffect, collision.transform.position, Quaternion.identity);

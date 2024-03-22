@@ -11,7 +11,7 @@ public class PlayerStatus : MonoBehaviour, IDamageable
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rb;
 
-    [SerializeField] private Collider2D hitCollider; // �ǰݿ� �ݶ��̴�
+
     [SerializeField] private int health = 3; // ĳ���� ü��
     [SerializeField] private float stamina = 100; // ĳ���� ���¹̳�
     [SerializeField] private float staminaRecoveryRate = 100; // �ʴ� ���¹̳� ȸ����
