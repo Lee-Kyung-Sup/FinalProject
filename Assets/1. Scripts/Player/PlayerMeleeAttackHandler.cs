@@ -21,11 +21,15 @@ public class PlayerMeleeAttackHandler : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Monster"))
-        {
-            Debug.Log("몬스터에게 근접 공격!");
-            //collision.SendMessage("Damaged", 10);  // TODO
-            Instantiate(meleeHitEffect, collision.transform.position, Quaternion.identity);
-        }
+        Debug.Log("충돌한 녀석은? : " + collision.gameObject.name);
+
+            if (collision.CompareTag("Monster"))
+            {
+                Debug.Log("몬스터에게 근접 공격!");
+                Instantiate(meleeHitEffect, collision.transform.position, Quaternion.identity);
+
+                //collision.SendMessage("TakeDamage", 1);  // 몬스터에게 데미지
+            }
+      
     }
 }

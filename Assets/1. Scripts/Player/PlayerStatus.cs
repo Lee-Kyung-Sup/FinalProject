@@ -57,6 +57,7 @@ public class PlayerStatus : MonoBehaviour, IDamageable
 
     void FixedUpdate()
     {
+
     }
 
     public void TakeDamage(int damage)
@@ -149,14 +150,15 @@ public class PlayerStatus : MonoBehaviour, IDamageable
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("EnemyBullet") || collision.CompareTag("Monster"))
+
+        if (collision.CompareTag("EnemyBullet") || collision.CompareTag("Monster") &&
+        gameObject.layer == LayerMask.NameToLayer("Player"))
         {
+            Debug.Log("충돌한 오브젝트 : " + collision.gameObject.name);
+
             TakeDamage(1);
             playerMovement.OnKnockback(collision.transform.position);
 
-            //if (collision == hitCollider) // �浹�� �ݶ��̴��� �÷��̾��� �ǰݿ� �ݶ��̴���
-            //{
-            //}
         }
     }
 }

@@ -48,6 +48,7 @@ public class PlayerAttacks : MonoBehaviour
 
     public void Attack()
     {
+        //meleeAttackCollider.gameObject.transform.SetParent(null);
         meleeAttackCollider.enabled = true;
         //meleeAttackSprite.enabled = true;
         //meleeAttackAnimator.SetTrigger("Attack");
@@ -57,6 +58,7 @@ public class PlayerAttacks : MonoBehaviour
 
     private void DisableAttack()
     {
+        //meleeAttackCollider.gameObject.transform.SetParent(this.transform);
         meleeAttackCollider.enabled = false;
         //meleeAttackSprite.enabled = false;
         //meleeAttackAnimator.ResetTrigger("Attack");
