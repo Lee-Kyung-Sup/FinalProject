@@ -23,16 +23,16 @@ public class PlayerMeleeAttackHandler : MonoBehaviour
     {
         if (collision.TryGetComponent<IDamageable>(out IDamageable a))
         {
-            a.TakeDamage((int)playerStatus.Atk);
-        }
-
-
+            a.TakeDamage(playerStatus.Atk);
             if (collision.CompareTag("Monster"))
             {
                 Instantiate(meleeHitEffect, collision.transform.position, Quaternion.identity);
 
-            //collision.SendMessage("TakeDamage", playerStatus.Atk);  // 몬스터에게 데미지
+                //collision.SendMessage("TakeDamage", playerStatus.Atk);  // 몬스터에게 데미지
+            }
         }
+
+
 
     }
 }
