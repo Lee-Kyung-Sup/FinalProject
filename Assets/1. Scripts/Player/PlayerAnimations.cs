@@ -13,32 +13,31 @@ public class PlayerAnimations : MonoBehaviour
     }
 
     private static readonly int IsMoving = Animator.StringToHash("IsMoving");
-    private static readonly int IsJumping = Animator.StringToHash("IsJumping");
     private static readonly int IsFalling = Animator.StringToHash("IsFalling");
 
+    private static readonly int Jump = Animator.StringToHash("Jump");
     private static readonly int Dash = Animator.StringToHash("Dash");
     private static readonly int Attack = Animator.StringToHash("Attack");
     private static readonly int Fire = Animator.StringToHash("Fire");
     private static readonly int Hit = Animator.StringToHash("Hit");
     private static readonly int Invincible = Animator.StringToHash("Invincible");
     private static readonly int Die = Animator.StringToHash("Die");
-
+    
 
     public void Moving(bool isMoving)
     {
         animator.SetBool(IsMoving, isMoving);
     }
 
-    public void Jumping(bool isJumping)
+    public void Jumping()
     {
-        animator.SetBool(IsJumping, isJumping);
+        animator.SetTrigger(Jump);
     }
 
     public void Falling(bool isFalling)
     {
-        animator.SetBool(IsJumping, isFalling);
+        animator.SetBool(IsFalling, isFalling);
     }
-
 
     public void Dashing()
     {

@@ -34,6 +34,7 @@ public class PlayerMovement : MonoBehaviour,IsGroundable
     private bool isPressingDown = false;
 
     private bool isKnockedBack = false;
+
     [SerializeField] private float knockbackTime = 0.25f; // 넉백 지속 시간
     [SerializeField] private float knockbackForceY = 1.5f;
     [SerializeField] private float knockbackForceX = 5.0f;
@@ -70,7 +71,7 @@ public class PlayerMovement : MonoBehaviour,IsGroundable
             if (rb.velocity.y <= 0)
             {
                 jumpCount = 0; // 땅에 닿으면 점프 횟수 초기화
-                playerAnimations.Jumping(false);
+                //playerAnimations.Jumping(false);
             }
         }
 
@@ -153,7 +154,9 @@ public class PlayerMovement : MonoBehaviour,IsGroundable
             rb.velocity = new Vector2(rb.velocity.x, 0); // 수직 속도 초기화
             rb.AddForce(Vector2.up * playerStatus.JumpPower, ForceMode2D.Impulse);
             jumpCount++; // 점프 횟수 증가 (첫 번째 점프)
-            playerAnimations.Jumping(true);
+
+            playerAnimations.Jumping();
+            //playerAnimations.Jumping(true);
         }
 
         else if (!isGrounded && canDoubleJump && jumpCount > 0 && jumpCount < playerStatus.MaxJumpCount && playerStatus.Stamina >= 25)  // 공중에서 추가 점프
@@ -163,7 +166,9 @@ public class PlayerMovement : MonoBehaviour,IsGroundable
 
             playerStatus.UseStamina(25);
             jumpCount++;
-            playerAnimations.Jumping(true);
+
+            playerAnimations.Jumping();
+            //playerAnimations.Jumping(true);
         }
     }
 
@@ -210,7 +215,6 @@ public class PlayerMovement : MonoBehaviour,IsGroundable
     }
 
 
-
     public void SetIsPressingDown(bool isPressing)
     {
         isPressingDown = isPressing;
@@ -251,7 +255,7 @@ public class PlayerMovement : MonoBehaviour,IsGroundable
     public void OnKnockback(Vector2 targetPosition)
     {
         isKnockedBack = true;
-        rb.velocity = Vector2.zero; // 플레이어가 이동 힘과 넉백 힘의 상쇄 방지
+        rb.velocity = Vector2.zero; // 플레이어의 이동 방향 힘과 넉백 방향 힘의 상쇄 방지
 
 
         int dirc = targetPosition.x - transform.position.x < 0 ? 1 : -1;
@@ -259,6 +263,7 @@ public class PlayerMovement : MonoBehaviour,IsGroundable
 
         StartCoroutine(OffKnockback(knockbackTime));
     }
+
     private IEnumerator OffKnockback(float delay)
     {
         yield return new WaitForSeconds(delay);
@@ -266,7 +271,5 @@ public class PlayerMovement : MonoBehaviour,IsGroundable
         rb.velocity = Vector2.zero;
         isKnockedBack = false;
     }
-
-
 
 }

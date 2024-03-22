@@ -16,7 +16,7 @@ public class PlayerStatus : MonoBehaviour, IDamageable
     [SerializeField] private float stamina = 100; // ĳ���� ���¹̳�
     [SerializeField] private float staminaRecoveryRate = 100; // �ʴ� ���¹̳� ȸ����
     [SerializeField] private float staminaRecoveryDelay = 1f; // ���¹̳� ȸ�� ���� �ð�
-    //[SerializeField] private int Atk = 1; // ĳ���� ���ݷ� (���� ���� ��ĵ��� ���� TODO)
+    [SerializeField] private float atk = 1; // ĳ���� ���ݷ� (���� ���� ��ĵ��� ���� TODO)
 
     private float lastStaminaUseTime;
     private float maxStamina;
@@ -30,6 +30,8 @@ public class PlayerStatus : MonoBehaviour, IDamageable
     public float JumpPower => jumpPower;
     public int MaxJumpCount => maxJumpCount;
     public float Stamina => stamina;
+
+    public float Atk => atk;
 
     void Start()
     {
@@ -80,7 +82,7 @@ public class PlayerStatus : MonoBehaviour, IDamageable
         gameObject.layer = 18;
         spriteRenderer.color = new Color(1, 1, 1, 0.5f);
 
-        Invoke("OffInvincible", 3); 
+        //Invoke("OffInvincible", 3); 
         StartCoroutine(BlinkEffect(3f, 0.1f)); 
     }
     private IEnumerator BlinkEffect(float duration, float interval)
@@ -98,19 +100,16 @@ public class PlayerStatus : MonoBehaviour, IDamageable
             }
 
             yield return new WaitForSeconds(interval); // ��ȯ ���ݸ�ŭ ���
-
-            // �ð� ������Ʈ
             time += interval;
         }
-    }
-
-    public void OffInvincible()
-    {
-        StopAllCoroutines();
-
         gameObject.layer = 6; // �÷��̾� ���̾�
         spriteRenderer.color = new Color(1, 1, 1, 1); // ���İ� �ʱ�ȭ
     }
+
+    //public void OffInvincible()
+    //{
+    //    StopAllCoroutines();
+    //}
 
 
 
@@ -151,8 +150,7 @@ public class PlayerStatus : MonoBehaviour, IDamageable
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
-        if (collision.CompareTag("EnemyBullet") || collision.CompareTag("Monster") &&
-        gameObject.layer == LayerMask.NameToLayer("Player"))
+        if (collision.CompareTag("EnemyBullet") || collision.CompareTag("Monster"))
         {
             Debug.Log("충돌한 오브젝트 : " + collision.gameObject.name);
 

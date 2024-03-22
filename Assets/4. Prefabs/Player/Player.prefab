@@ -729,7 +729,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.4}
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 0.7
 --- !u!114 &1756893326375499926
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -771,6 +771,7 @@ MonoBehaviour:
   stamina: 100
   staminaRecoveryRate: 100
   staminaRecoveryDelay: 1
+  atk: 1
   speed: 10
   jumpPower: 20
   maxJumpCount: 2
@@ -1076,7 +1077,7 @@ GameObject:
   - component: {fileID: 6198198559188364953}
   - component: {fileID: 9094434115529792470}
   - component: {fileID: 3181884910156171366}
-  m_Layer: 19
+  m_Layer: 0
   m_Name: MeleeAttackHitBox
   m_TagString: PlayerAttackBox
   m_Icon: {fileID: 0}

@@ -21,7 +21,6 @@ public class PlayerAttacks : MonoBehaviour
     private void Start()
     {
         playerAnimations = GetComponent<PlayerAnimations>();
-
         meleeAttackCollider.enabled = false;
         //meleeAttackSprite.enabled = false;
     }
