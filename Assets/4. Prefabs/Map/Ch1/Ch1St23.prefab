@@ -170,7 +170,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsters: 0
-  mapPhase: []
+  mapPhase:
+  - summonMonster:
+    - {fileID: 2355385529216811586, guid: e9f6260a3fc5198478a65982e7a9409d, type: 3}
+    summonPos:
+    - {x: 14.83, y: 6.26571, z: 0}
 --- !u!1 &1704895707161460970
 GameObject:
   m_ObjectHideFlags: 0
