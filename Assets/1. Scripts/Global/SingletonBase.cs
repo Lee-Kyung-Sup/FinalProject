@@ -21,15 +21,4 @@ public class SingletonBase<T> : MonoBehaviour where T: MonoBehaviour
             return instance;
         }
     }
-    protected virtual void Awake()
-    {
-        if (transform.parent != null && transform.root != null)
-        {
-            DontDestroyOnLoad(transform.root.gameObject);
-        }
-        else
-        {
-            DontDestroyOnLoad(gameObject);
-        }
-    }
 }

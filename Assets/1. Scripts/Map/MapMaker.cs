@@ -15,10 +15,6 @@ public class MapMaker : SingletonBase<MapMaker>
 
     public BossMapEventList BossMapEvents { get; private set; }
 
-    protected override void Awake()
-    {
-        base.Awake();
-    }
     private void Start()
     {
         mapList = Resources.Load<MapDatas>($"Ch{CurChapterId}MapDatas");
