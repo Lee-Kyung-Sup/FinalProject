@@ -84,11 +84,11 @@ public class Dino : Monster
 
                 if ((!Physics2D.OverlapCircle(wallCheck[0].position, 0.1f, layerMask) &&  //벽체크 0번 플랫폼이없고
                       Physics2D.OverlapCircle(wallCheck[1].position, 0.1f, layerMask)))  /*&&  //1번이 플랫폼이면 몬스터 점프
-                       !Physics2D.Raycast(transform.position, -transform.localScale.x * transform.right, 1f, layerMask)*/  //플랫폼과 너무 가까우면 올라가기 힘들기 때문에 넣음
+                      !Physics2D.Raycast(transform.position, -transform.localScale.x * transform.right, 1f, layerMask)*/  //플랫폼과 너무 가까우면 올라가기 힘들기 때문에 넣음
                 {
 
                     rb.velocity = new Vector2(rb.velocity.x, jumpPower);
-
+                    Debug.Log("b");
                     Debug.Log(rb.velocity);
                 }
                 if ((Physics2D.OverlapCircle(wallCheck[0].position, 0.1f, layerMask) &&
