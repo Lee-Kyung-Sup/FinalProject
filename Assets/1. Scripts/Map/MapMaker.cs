@@ -10,9 +10,9 @@ public class MapMaker : SingletonBase<MapMaker>
     GameObject curMap;
     MapDatas mapList;
     PotalMaker potalMaker;
-    public MapEventChecker mapEventCheker { get; private set; }
+    public MapEventChecker MapEventCheker { get; private set; }
 
-    public BossMapEventList bossMapEvents { get; private set; }
+    public BossMapEventList BossMapEvents { get; private set; }
 
     protected override void Awake()
     {
@@ -21,9 +21,9 @@ public class MapMaker : SingletonBase<MapMaker>
     private void Start()
     {
         mapList = Resources.Load<MapDatas>($"Ch{CurChapterId}MapDatas");
-        mapEventCheker = gameObject.AddComponent<MapEventChecker>();
+        MapEventCheker = gameObject.AddComponent<MapEventChecker>();
         potalMaker = gameObject.AddComponent<PotalMaker>();
-        bossMapEvents = new BossMapEventList();
+        BossMapEvents = new BossMapEventList();
         MakeRoom(curMapId);
     }
     public void MakeRoom(int newMap)

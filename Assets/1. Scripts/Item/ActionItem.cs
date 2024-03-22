@@ -8,7 +8,7 @@ public class ActionItem : PlayerEnterTrigger
     MapEventChecker checker;
     private void Start()
     {
-        checker = MapMaker.Instance.mapEventCheker;
+        checker = MapMaker.Instance.MapEventCheker;
         if (!checker.isGet.ContainsKey(actionType))
         {
             checker.isGet.Add(actionType, false);

@@ -10,7 +10,7 @@ public class DestroyTile : MonoBehaviour
     private void Start()
     {
         tile = GetComponent<Tilemap>();
-        checker = MapMaker.Instance.mapEventCheker;
+        checker = MapMaker.Instance.MapEventCheker;
         if (checker.isBroken.ContainsKey(transform.parent.root.name))
         {
             if (checker.isBroken[transform.parent.root.name])
