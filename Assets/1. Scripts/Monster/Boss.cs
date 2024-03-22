@@ -14,7 +14,7 @@ public class Boss : MonoBehaviour
     public float maxShotDelay;
     public float curShotDelay;
 
-    public Vector3 player;
+    public GameObject player;
     public ObjectManager objectManager;
 
     SpriteRenderer spriteRenderer;
@@ -28,12 +28,7 @@ public class Boss : MonoBehaviour
     void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        player = GameManager.instance.GetPlayerPosition();
-        objectManager = GameManager.instance.objectManager;
-        if(enemyName == "B")
-        {
-            anim = GetComponent<Animator>();
-        }
+       
     }
 
     void OnEnable()
@@ -119,7 +114,7 @@ public class Boss : MonoBehaviour
         Rigidbody2D rbR = bulletR.GetComponent<Rigidbody2D>();
         //Rigidbody2D rbL = bulletL.GetComponent<Rigidbody2D>();
         
-        Vector2 dirVec = player - transform.position;
+        Vector2 dirVec = player.transform.position - transform.position;
 
         rbR.AddForce(dirVec * 3, ForceMode2D.Impulse);
         //rbL.AddForce(dirVec * 3, ForceMode2D.Impulse);
@@ -146,7 +141,7 @@ public class Boss : MonoBehaviour
             bullet.transform.position = transform.position;
 
             Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-            Vector2 dirVec = player - transform.position;
+            Vector2 dirVec = player.transform.position - transform.position;
             //위치가 겹치지 않게 랜덤벡터를 더하여 구현
             Vector2 ranVec = new Vector2(Random.Range(-4f, 4f), Random.Range(0f, 2f));
             dirVec += ranVec;
@@ -227,6 +222,13 @@ public class Boss : MonoBehaviour
         if(enemyName == "B")
         {
             InvokeRepeating("Patrol", 1f, 5f);
+        }
+        player = GameManager.instance.player;
+        //objectManager = FindObjectOfType<ObjectManager>();
+        objectManager = GameManager.instance.objectManager;
+        if (enemyName == "B")
+        {
+            anim = GetComponent<Animator>();
         }
     }
 

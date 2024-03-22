@@ -11,7 +11,9 @@ public class ObjectManager : MonoBehaviour
     public GameObject bulletBossAPrefab;
     public GameObject enemyBPrefab;
 
-    
+    GameObject[] PlayerBullet;
+    GameObject[] PlayerMeleeHit;
+    GameObject[] PlayerRangeHit;
     GameObject[] enemyB;
     GameObject[] bulletBossA;
     GameObject[] targetPool;
