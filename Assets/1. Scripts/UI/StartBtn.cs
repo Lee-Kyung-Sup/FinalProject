@@ -9,7 +9,7 @@ public class StartBtn : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(0))
         {
-            SceneManager.LoadScene("JHPScene");
+            SceneManager.LoadScene("MainScene");
         }
     }
 
