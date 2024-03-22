@@ -7,9 +7,11 @@ public class ObjectManager : MonoBehaviour
     public GameObject bulletBossAPrefab;
     public GameObject enemyBPrefab;
 
+    
     GameObject[] enemyB;
     GameObject[] bulletBossA;
     GameObject[] targetPool;
+    private List<GameObject> frogbullet = new List<GameObject>();
 
     void Awake()
     {
@@ -21,7 +23,7 @@ public class ObjectManager : MonoBehaviour
 
     void Generate()
     {
-
+        
 
         for (int index = 0; index < bulletBossA.Length; index++)
         {
