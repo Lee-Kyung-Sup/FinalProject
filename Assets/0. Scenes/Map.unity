@@ -159,6 +159,7 @@ MonoBehaviour:
   redHeart: {fileID: 44474366, guid: 0c1fcd0978628ce418b0f7f426699785, type: 3}
   blackHeart: {fileID: 1901298777, guid: 0c1fcd0978628ce418b0f7f426699785, type: 3}
   healthUI: {fileID: 797963391}
+  gameOverUI: {fileID: 0}
   staminaUI: {fileID: 7532550551117305873}
 --- !u!4 &797963392
 Transform:
@@ -327,7 +328,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59d06293f199e6e499465c7597fd358b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curMapId: 0
+  CurChapterId: 1
+  curMapId: 10
 --- !u!1 &1625029004
 GameObject:
   m_ObjectHideFlags: 0
@@ -802,6 +804,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 3949886978298069631}
+  objectManager: {fileID: 0}
   CharacterList: []
   PlayerAnimator: {fileID: 0}
   PlayerName: {fileID: 0}
@@ -902,11 +905,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee63044ee86a21d4ca376d84a760400c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitCollider: {fileID: 2243918333608759078}
   health: 3
   stamina: 100
   staminaRecoveryRate: 100
   staminaRecoveryDelay: 1
+  atk: 1
   speed: 10
   jumpPower: 20
   maxJumpCount: 2
