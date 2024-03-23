@@ -1555,8 +1555,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8519638908309358184}
-  - component: {fileID: 2518423683862821711}
   - component: {fileID: 6985010680592944468}
+  - component: {fileID: 5245184664810035623}
   m_Layer: 0
   m_Name: MapEvent
   m_TagString: Untagged
@@ -1581,20 +1581,6 @@ Transform:
   m_Father: {fileID: 3191752625027318965}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2518423683862821711
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2904495373235343192}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 769c18b465de0554f9b589a4215dccb0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  monsters: 0
-  mapPhase: []
 --- !u!61 &6985010680592944468
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1640,6 +1626,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 5.888756, y: 16.65937}
   m_EdgeRadius: 0
+--- !u!114 &5245184664810035623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2904495373235343192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4010c7924f766d94c98fcc654ce319fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monsters: 0
+  mapPhase:
+  - summonMonster:
+    - {fileID: 8660032319998566229, guid: f63a8665aeb0eeb4995173f1473582a2, type: 3}
+    summonPos:
+    - {x: 0, y: 0, z: 0}
 --- !u!1 &4791863385023567560
 GameObject:
   m_ObjectHideFlags: 0
