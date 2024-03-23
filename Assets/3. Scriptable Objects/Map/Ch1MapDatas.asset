@@ -85,7 +85,7 @@ MonoBehaviour:
     poter:
     - goMapIndex: 5
       potalPos: {x: 26.04, y: -9.79, z: 0}
-      targetPos: {x: -13.75, y: 0, z: 0}
+      targetPos: {x: -13.75, y: -9.58, z: 0}
       potalSize: {x: 1, y: 20}
   - maps: {fileID: 3553484345699825413, guid: 70423cb906edeef46b23f9f387a393be, type: 3}
     poter:
