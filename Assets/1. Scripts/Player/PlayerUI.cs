@@ -19,7 +19,6 @@ public class PlayerUI : MonoBehaviour
         gameOverUI.SetActive(false);
     }
 
-
     public void UpdateHeartUI(int health)
     {
         for (int i = 0; i < hearts.Length; i++)

@@ -52,7 +52,7 @@ public class PlayerMovement : MonoBehaviour,IsGroundable
         groundLayer = LayerMask.GetMask("Ground", "Platform");
         platformLayer = LayerMask.GetMask("Platform");
 
-        //SetDoubleJumpEnabled(true); // 더블 점프 해금 코드 (테스트 true)
+        SetDoubleJumpEnabled(true); // 더블 점프 해금 코드 (테스트 true)
     }
 
 

@@ -71,7 +71,7 @@ public class PlayerStatus : MonoBehaviour, IDamageable
 
         if (health <= 0)
         {
-            Die();
+            PlayerDead();
         }
 
     }
@@ -137,12 +137,10 @@ public class PlayerStatus : MonoBehaviour, IDamageable
     }
 
 
-
-    private void Die()
+    private void PlayerDead() // 플레이어 죽음
     {
-        playerAnimations.Dead(); 
-        GameManager.instance.GameOver();
-
+        playerAnimations.Dead();
+        //GameManager.instance.OnGameOver();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

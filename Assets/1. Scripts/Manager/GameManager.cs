@@ -90,7 +90,9 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         // 게임 오버 
+
         playerUI.OnGameOverUI();
+
         Time.timeScale = 0;
     }
 
