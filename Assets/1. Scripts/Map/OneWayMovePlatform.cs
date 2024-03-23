@@ -19,7 +19,7 @@ public class OneWayMovePlatform : MonoBehaviour
     {
         if (isStart)
         {
-            rigi.velocity = new Vector2(-speed, rigi.velocity.y);
+            transform.position += new Vector3(-speed,0,0) * Time.fixedDeltaTime;
             if (transform.position.x <= -6.47)
             {
                 SetPlatform(UnityEngine.Random.Range(2,6),new Vector2(35.44f,UnityEngine.Random.Range(-5.92f, 7.17f)));
