@@ -324,7 +324,7 @@ public class Boss : MonoBehaviour
         }
         if (collision.transform.tag == ("PlayerAttackBox"))
         {
-            Hit(1);
+            Hit(10); // 임시로 데미지 10함
         }
     }
 

@@ -21,7 +21,7 @@ public class Character
     public CharacterType CharacterType;
     public Sprite CharacterSprite;
     public RuntimeAnimatorController AnimatorController;
-    
+
 }
 
 
@@ -37,14 +37,14 @@ public class GameManager : MonoBehaviour
 
     PlayerUI playerUI;
 
-    public List <Character> CharacterList = new List<Character>();
+    public List<Character> CharacterList = new List<Character>();
 
     public Animator PlayerAnimator;
     public TMP_Text PlayerName;
 
     private void Awake()
     {
-        
+
         if (instance == null)
         {
             instance = this;
@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-       //player = GameObject.FindGameObjectWithTag("Player");
+        //player = GameObject.FindGameObjectWithTag("Player");
         objectManager = GetComponent<ObjectManager>();
 
     }
@@ -75,10 +75,11 @@ public class GameManager : MonoBehaviour
         return player.transform.position;
     }
 
-    //public GameObject GetPlayerObject()
-    //{
-    //    return player.gameObject;
-    //}
+    public GameObject GetPlayerObject()
+    {
+        return player.gameObject;
+    }
+
     public void SetCharacter(CharacterType characterType, string name)
     {
         var character = GameManager.instance.CharacterList.Find(item => item.CharacterType == characterType);
@@ -87,10 +88,14 @@ public class GameManager : MonoBehaviour
         PlayerName.text = name;
     }
 
-    public void GameOver()
+    public void OnGameOver()
     {
         // 게임 오버 
+        Invoke("InvokeGameOver", 1.5f);
+    }
 
+    private void InvokeGameOver()
+    {
         playerUI.OnGameOverUI();
 
         Time.timeScale = 0;

@@ -140,7 +140,7 @@ public class PlayerStatus : MonoBehaviour, IDamageable
     private void PlayerDead() // 플레이어 죽음
     {
         playerAnimations.Dead();
-        //GameManager.instance.OnGameOver();
+        GameManager.instance.OnGameOver();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

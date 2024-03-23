@@ -7,10 +7,12 @@ public class StartBtn : MonoBehaviour
 {
     void Update()
     {
-        if(Input.GetMouseButtonDown(0))
-        {
-            SceneManager.LoadScene("GameScenes");
-        }
+
+    }
+
+    public void StartGame()
+    {
+            SceneManager.LoadScene("2. GameScenes");
     }
 
 }
