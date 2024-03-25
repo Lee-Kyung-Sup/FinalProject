@@ -15,15 +15,15 @@ public class PlayerController : MonoBehaviour
     {
         _playerMovement = GetComponent<PlayerMovement>();
         _playerAttacks = GetComponent<PlayerAttacks>();
-        InItLockAction(); 
+        //InItLockAction();
 
-        // 테스트용 true
-        //lockAction[Paction.AirAttack] = true;
-        //lockAction[Paction.ChargeShot] = true;
-        //lockAction[Paction.Dash] = true;
-        //lockAction[Paction.DoubleJump] = true;
-        //lockAction[Paction.MeleeAttack] = true;
-        //lockAction[Paction.RangeAttack] = true;
+        //테스트용 true
+        lockAction[Paction.AirAttack] = true;
+        lockAction[Paction.ChargeShot] = true;
+        lockAction[Paction.Dash] = true;
+        lockAction[Paction.DoubleJump] = true;
+        lockAction[Paction.MeleeAttack] = true;
+        lockAction[Paction.RangeAttack] = true;
     }
 
     void FixedUpdate()
@@ -103,5 +103,9 @@ public class PlayerController : MonoBehaviour
     public void UnLockAction(Paction unLockAction)
     {
         lockAction[unLockAction] = true;
+        if (unLockAction == Paction.DoubleJump)
+        {
+            _playerMovement.SetDoubleJumpEnabled(lockAction[unLockAction]);
+        }
     }
 }

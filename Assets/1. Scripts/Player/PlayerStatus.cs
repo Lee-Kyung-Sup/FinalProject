@@ -16,7 +16,7 @@ public class PlayerStatus : MonoBehaviour, IDamageable
     [SerializeField] private float stamina = 100; // ĳ���� ���¹̳�
     [SerializeField] private float staminaRecoveryRate = 100; // �ʴ� ���¹̳� ȸ����
     [SerializeField] private float staminaRecoveryDelay = 1f; // ���¹̳� ȸ�� ���� �ð�
-    [SerializeField] private float atk = 1; // ĳ���� ���ݷ� (���� ���� ��ĵ��� ���� TODO)
+    [SerializeField] private int atk = 1; // ĳ���� ���ݷ� (���� ���� ��ĵ��� ���� TODO)
 
     private float lastStaminaUseTime;
     private float maxStamina;
@@ -31,7 +31,7 @@ public class PlayerStatus : MonoBehaviour, IDamageable
     public int MaxJumpCount => maxJumpCount;
     public float Stamina => stamina;
 
-    public float Atk => atk;
+    public int Atk => atk;
 
     void Start()
     {
@@ -71,7 +71,7 @@ public class PlayerStatus : MonoBehaviour, IDamageable
 
         if (health <= 0)
         {
-            Die();
+            PlayerDead();
         }
 
     }
@@ -137,12 +137,10 @@ public class PlayerStatus : MonoBehaviour, IDamageable
     }
 
 
-
-    private void Die()
+    private void PlayerDead() // 플레이어 죽음
     {
-        playerAnimations.Dead(); 
-        GameManager.instance.GameOver();
-
+        playerAnimations.Dead();
+        GameManager.instance.OnGameOver();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

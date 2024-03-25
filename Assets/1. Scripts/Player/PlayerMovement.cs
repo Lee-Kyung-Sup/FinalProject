@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour,IsGroundable
     private int jumpCount = 0; // 점프 횟수
     bool isGrounded = false;
 
-    private bool canDoubleJump = false; // 더블 점프 가능 여부 (아이템으로 해금)
+    private bool canDoubleJump = false; // 더블 점프 가능 여부
 
     private bool canDash = true; // 대쉬 가능한지
     private bool isDashing; // 현재 대쉬 중인지
@@ -48,12 +48,11 @@ public class PlayerMovement : MonoBehaviour,IsGroundable
         rb = GetComponent<Rigidbody2D>();
         playerAnimations = GetComponent<PlayerAnimations>();
 
-
         originalGravityScale = rb.gravityScale;
         groundLayer = LayerMask.GetMask("Ground", "Platform");
         platformLayer = LayerMask.GetMask("Platform");
 
-        SetDoubleJumpEnabled(true); // 더블 점프 해금 (테스트)
+        SetDoubleJumpEnabled(true); // 더블 점프 해금 코드 (테스트 true)
     }
 
 
@@ -220,7 +219,7 @@ public class PlayerMovement : MonoBehaviour,IsGroundable
         isPressingDown = isPressing;
     }
 
-    public void SetDoubleJumpEnabled(bool enabled) // 더블 점프 해제
+    public void SetDoubleJumpEnabled(bool enabled) // 더블 점프 해제 메서드
     {
         canDoubleJump = enabled;
     }
@@ -237,7 +236,7 @@ public class PlayerMovement : MonoBehaviour,IsGroundable
         {
             rb.velocity = new Vector2(rb.velocity.x, playerStatus.JumpPower * 0.25f); // 살짝 점프
             Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"),LayerMask.NameToLayer("Platform"),true);
-            Invoke("Platform", 0.3f); // ignore False
+            Invoke("Platform", 0.5f); // ignore False
         }
     }
 

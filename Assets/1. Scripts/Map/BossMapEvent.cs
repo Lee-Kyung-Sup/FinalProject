@@ -33,20 +33,20 @@ public class BossMapEventList
         switch (MapMaker.Instance.CurChapterId)
         {
             case 0:
-                return ChBoss1;
+                return NoneEvent;
             case 1:
-                return ChBoss2;
+                return OnWayEvent;
             case 2:
                 return ChBoss3;
             default:
                 return null;
         }
     }
-    void ChBoss1()
+    void NoneEvent()
     {
 
     }
-    void ChBoss2()
+    void OnWayEvent()
     {
         OneWayMovePlatform.isStart = true;
     }

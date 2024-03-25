@@ -28,12 +28,7 @@ public class Boss : MonoBehaviour
     void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        player = GameManager.instance.player;
-        objectManager = FindObjectOfType<ObjectManager>();
-        if(enemyName == "B")
-        {
-            anim = GetComponent<Animator>();
-        }
+       
     }
 
     void OnEnable()
@@ -228,6 +223,13 @@ public class Boss : MonoBehaviour
         {
             InvokeRepeating("Patrol", 1f, 5f);
         }
+        player = GameManager.instance.player;
+        //objectManager = FindObjectOfType<ObjectManager>();
+        objectManager = GameManager.instance.objectManager;
+        if (enemyName == "B")
+        {
+            anim = GetComponent<Animator>();
+        }
     }
 
     void Patrol()
@@ -322,7 +324,7 @@ public class Boss : MonoBehaviour
         }
         if (collision.transform.tag == ("PlayerAttackBox"))
         {
-            Hit(1);
+            Hit(10); // 임시로 데미지 10함
         }
     }
 
