@@ -16,7 +16,9 @@ public class PlayerMovement : MonoBehaviour,IsGroundable
     private LayerMask groundLayer; // 땅으로 간주할 레이어
     private LayerMask platformLayer; // 플랫폼으로 간주할 레이어
 
-    private float groundCheckRange = 0.3f; // 땅 감지 범위
+    //private float groundCheckRange = 0.3f; // 땅 감지 범위
+    float boxWidth = 1f; // 땅 감지 박스
+    float boxHeight = 0.1f; 
     private int jumpCount = 0; // 점프 횟수
     bool isGrounded = false;
 
@@ -58,7 +60,8 @@ public class PlayerMovement : MonoBehaviour,IsGroundable
 
     void FixedUpdate()
     {
-        RaycastHit2D hit = Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckRange, groundLayer);
+        Vector2 boxCenter = groundCheck.position + Vector3.down * boxHeight * 0.5f;
+        RaycastHit2D hit = Physics2D.BoxCast(boxCenter, new Vector2(boxWidth, boxHeight), 0f, Vector2.down, 0, groundLayer);
         isGrounded = hit.collider != null;
         if (isGrounded)
         { 
@@ -97,6 +100,22 @@ public class PlayerMovement : MonoBehaviour,IsGroundable
         else if (isGrounded)
         {
             playerAnimations.Falling(false);
+        }
+    }
+
+    void OnDrawGizmos()
+    {
+        if (groundCheck != null)
+        {
+            float boxWidth = 1f;
+            float boxHeight = 0.1f;
+
+            Vector2 boxCenter = groundCheck.position + Vector3.down * boxHeight * 0.5f;
+
+            Gizmos.color = Color.red;
+
+        
+            Gizmos.DrawWireCube(boxCenter, new Vector3(boxWidth, boxHeight, 1));
         }
     }
 
@@ -226,7 +245,8 @@ public class PlayerMovement : MonoBehaviour,IsGroundable
 
     private bool IsPlatformLayer()
     {
-        RaycastHit2D hit = Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckRange, platformLayer);
+        Vector2 boxCenter = groundCheck.position + Vector3.down * boxHeight * 0.5f;
+        RaycastHit2D hit = Physics2D.BoxCast(boxCenter, new Vector2(boxWidth, boxHeight), 0f, Vector2.down, 0, groundLayer);
         return hit.collider != null;
     }
 
