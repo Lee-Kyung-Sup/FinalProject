@@ -11,11 +11,13 @@ public class ObjectManager : MonoBehaviour
     public GameObject bulletBossAPrefab;
     public GameObject bulletBossBTPrefab;
     public GameObject enemyBPrefab;
+    public GameObject enemyBTPrefab;
 
     GameObject[] PlayerBullet;
     GameObject[] PlayerMeleeHit;
     GameObject[] PlayerRangeHit;
     GameObject[] enemyB;
+    GameObject[] enemyBT;
     GameObject[] bulletBossA;
     GameObject[] bulletBossBT;
     GameObject[] targetPool;
@@ -28,6 +30,7 @@ public class ObjectManager : MonoBehaviour
         PlayerRangeHit = new GameObject[5];
 
         enemyB = new GameObject[1];
+        enemyBT = new GameObject[1];
         bulletBossA = new GameObject[300];
         bulletBossBT = new GameObject[10];
 
@@ -85,6 +88,9 @@ public class ObjectManager : MonoBehaviour
             case "BulletBossA":
                 targetPool = bulletBossA;
                 break;
+            case "enemyBT":
+                targetPool = enemyBT;
+                break;
             case "BulletBossBT":
                 targetPool = bulletBossBT;
                 break;
@@ -118,6 +124,12 @@ public class ObjectManager : MonoBehaviour
                 break;
             case "BulletBossA":
                 targetPool = bulletBossA;
+                break;
+            case "enemyBT":
+                targetPool = enemyBT;
+                break;
+            case "BulletBossBT":
+                targetPool = bulletBossBT;
                 break;
         }
 

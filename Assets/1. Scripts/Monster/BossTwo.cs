@@ -100,6 +100,22 @@ public class BossTwo : MonoBehaviour
     void DragonFire()
     {
         //드래곤이 불 오브젝트를 발사
+        GameObject bulletD = objectManager.MakeObj("BulletBossBT");
+        bulletD.transform.position = transform.position + Vector3.up * 2f + Vector3.right * 1.5f;
+        Rigidbody2D rb = bulletD.GetComponent<Rigidbody2D>();
+
+        rb.AddForce(transform.right * 3, ForceMode2D.Impulse);
+
+        curPatternCount++;
+
+        if (curPatternCount < maxPatternCount[patternIndex])
+        {
+            Invoke("DragonFire", 1);
+        }
+        else
+        {
+            Invoke("Think", 2);
+        }
     }
 
     void DragonAttack()
