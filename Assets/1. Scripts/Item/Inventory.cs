@@ -130,7 +130,7 @@ public class Inventory : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision) //충돌시 아이템 습득
     {
         if (collision.GetComponent<Item>())
         {

@@ -35,6 +35,10 @@ public class GameManager : MonoBehaviour
     public ObjectManager objectManager;
     //public Transform playerPosition;
 
+    public TextAsset ItemDatabase;
+
+
+
     PlayerUI playerUI;
 
     public List<Character> CharacterList = new List<Character>();
