@@ -9,6 +9,7 @@ public class ObjectManager : MonoBehaviour
     public GameObject PlayerRangeHitPrefab;
 
     public GameObject bulletBossAPrefab;
+    public GameObject bulletBossBTPrefab;
     public GameObject enemyBPrefab;
 
     GameObject[] PlayerBullet;
@@ -16,6 +17,7 @@ public class ObjectManager : MonoBehaviour
     GameObject[] PlayerRangeHit;
     GameObject[] enemyB;
     GameObject[] bulletBossA;
+    GameObject[] bulletBossBT;
     GameObject[] targetPool;
     private List<GameObject> frogbullet = new List<GameObject>();
 
@@ -27,6 +29,7 @@ public class ObjectManager : MonoBehaviour
 
         enemyB = new GameObject[1];
         bulletBossA = new GameObject[300];
+        bulletBossBT = new GameObject[10];
 
         Generate();
     }
@@ -56,6 +59,11 @@ public class ObjectManager : MonoBehaviour
             bulletBossA[index] = Instantiate(bulletBossAPrefab);
             bulletBossA[index].SetActive(false);
         }
+        for (int index = 0; index < bulletBossBT.Length; index++)
+        {
+            bulletBossBT[index] = Instantiate(bulletBossBTPrefab);
+            bulletBossBT[index].SetActive(false);
+        }
     }
 
     public GameObject MakeObj(string type)
@@ -76,6 +84,9 @@ public class ObjectManager : MonoBehaviour
                 break;
             case "BulletBossA":
                 targetPool = bulletBossA;
+                break;
+            case "BulletBossBT":
+                targetPool = bulletBossBT;
                 break;
         }   
         for(int index = 0; index < targetPool.Length; index++)
