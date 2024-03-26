@@ -27,6 +27,16 @@ public class BossTwo : MonoBehaviour
 
     }
 
+    void Start()
+    {
+        objectManager = GameManager.instance.objectManager;
+        anim = GetComponent<Animator>();
+    }
+
+    void Update()
+    {
+        //transform.position = transform.position;    
+    }
     void OnEnable()
     {
         if (enemyName == "BT")
@@ -99,9 +109,10 @@ public class BossTwo : MonoBehaviour
 
     void DragonFire()
     {
+        Debug.Log("D");
         //드래곤이 불 오브젝트를 발사
         GameObject bulletD = objectManager.MakeObj("BulletBossBT");
-        bulletD.transform.position = transform.position + Vector3.up * 2f + Vector3.right * 1.5f;
+        bulletD.transform.position = transform.position + Vector3.up * 0.1f;
         Rigidbody2D rb = bulletD.GetComponent<Rigidbody2D>();
 
         rb.AddForce(transform.right * 3, ForceMode2D.Impulse);
@@ -110,7 +121,9 @@ public class BossTwo : MonoBehaviour
 
         if (curPatternCount < maxPatternCount[patternIndex])
         {
+            anim.SetTrigger("Fire");
             Invoke("DragonFire", 1);
+           
         }
         else
         {
