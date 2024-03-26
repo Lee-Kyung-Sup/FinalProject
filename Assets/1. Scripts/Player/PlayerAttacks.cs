@@ -5,24 +5,37 @@ using UnityEngine;
 public class PlayerAttacks : MonoBehaviour
 {
     private PlayerAnimations playerAnimations;
+    private PlayerMovement playerMovement;
 
     [SerializeField] GameObject bulletPref;
 
-    [SerializeField] private float firePower = 15f; // 발사 힘
-    [SerializeField] private float fireDelay = 0.1f; // 발사 딜레이
-    private float lastFireTime = 0; // 마지막 발사 시간
+    [SerializeField] private float firePower = 15f;
+    [SerializeField] private float fireDelay = 0.1f;
+    private float lastFireTime = 0;
 
 
     [SerializeField] private Collider2D meleeAttackCollider;
+    [SerializeField] private Collider2D jumpAttackCollider;
     [SerializeField] private Transform rangeAttackPosition;
-    //[SerializeField] private SpriteRenderer meleeAttackSprite;
-    //[SerializeField] private Animator meleeAttackAnimator;
+
+    private bool canJumpAttack = true;
+
 
     private void Start()
     {
         playerAnimations = GetComponent<PlayerAnimations>();
+        playerMovement = GetComponent<PlayerMovement>();
+
         meleeAttackCollider.enabled = false;
-        //meleeAttackSprite.enabled = false;
+        jumpAttackCollider.enabled = false;
+    }
+
+    private void FixedUpdate()
+    {
+        if (playerMovement.IsGround())
+        {
+            canJumpAttack = true;
+        }
     }
 
 
@@ -47,26 +60,32 @@ public class PlayerAttacks : MonoBehaviour
 
     public void Attack()
     {
-        //meleeAttackCollider.gameObject.transform.SetParent(null);
+        if (playerMovement.IsGround())
         meleeAttackCollider.enabled = true;
-        //meleeAttackSprite.enabled = true;
-        //meleeAttackAnimator.SetTrigger("Attack");
         Invoke("DisableAttack", 0.25f);
         playerAnimations.Attacking();
     }
 
     private void DisableAttack()
     {
-        //meleeAttackCollider.gameObject.transform.SetParent(this.transform);
         meleeAttackCollider.enabled = false;
-        //meleeAttackSprite.enabled = false;
-        //meleeAttackAnimator.ResetTrigger("Attack");
     }
-
-    // Attack 2, 3  TODO (콤보 공격)
 
     public void JumpAttack()
     {
+        if (canJumpAttack && !playerMovement.IsGround())
+        {
+            jumpAttackCollider.enabled = true;
+            canJumpAttack = false;
+            Invoke("DisableJumpAttack", 0.4f);
 
+            playerAnimations.JumpAttacking();
+            playerAnimations.JumpAttackEffect();
+        }
+    }
+
+    private void DisableJumpAttack()
+    {
+        jumpAttackCollider.enabled = false;
     }
 }

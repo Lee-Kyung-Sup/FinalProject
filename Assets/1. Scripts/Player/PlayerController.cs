@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
         lockAction[Paction.DoubleJump] = true;
         lockAction[Paction.MeleeAttack] = true;
         lockAction[Paction.RangeAttack] = true;
+        lockAction[Paction.JumpAttack] = true;
     }
 
     void FixedUpdate()
@@ -39,6 +40,7 @@ public class PlayerController : MonoBehaviour
         lockAction.Add(Paction.DoubleJump,false);
         lockAction.Add(Paction.MeleeAttack,false);
         lockAction.Add(Paction.RangeAttack,false);
+        lockAction.Add(Paction.JumpAttack, false);
     }
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -68,19 +70,27 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    public void OnFire(InputAction.CallbackContext context)
+    public void OnFire(InputAction.CallbackContext context) // 원거리 공격
     {
-        if (context.performed && lockAction[Paction.RangeAttack]) // 발사 버튼이 눌렸을 때만
+        if (context.performed && lockAction[Paction.RangeAttack])
         {
             _playerAttacks.Fire();
         }
     }
 
-    public void OnAttack(InputAction.CallbackContext context) // 근접 공격 임시
+    public void OnAttack(InputAction.CallbackContext context) // 근접 공격
     {
-        if (context.performed && lockAction[Paction.MeleeAttack]) 
+        if (context.performed)
         {
-            _playerAttacks.Attack();
+            if (lockAction[Paction.MeleeAttack])
+            {
+                _playerAttacks.Attack();
+            }
+            if (!_playerMovement.IsGround() && lockAction[Paction.JumpAttack])
+            {
+                _playerAttacks.JumpAttack();
+                Debug.Log("점프 어택!");
+            }
         }
     }
 
@@ -95,11 +105,12 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    public void OnDown(InputAction.CallbackContext context)
+    public void OnDown(InputAction.CallbackContext context) // 아래 점프
     {
         bool isPressing = context.ReadValue<float>() > 0;
         _playerMovement.SetIsPressingDown(isPressing);
     }
+
     public void UnLockAction(Paction unLockAction)
     {
         lockAction[unLockAction] = true;

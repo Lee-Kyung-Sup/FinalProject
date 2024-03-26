@@ -63,11 +63,20 @@ public class PlayerMovement : MonoBehaviour,IsGroundable
         Vector2 boxCenter = groundCheck.position + Vector3.down * boxHeight * 0.5f;
         RaycastHit2D hit = Physics2D.BoxCast(boxCenter, new Vector2(boxWidth, boxHeight), 0f, Vector2.down, 0, groundLayer);
         isGrounded = hit.collider != null;
+
+        if (!isGrounded && rb.velocity.y < 0) // 낙하 중
+        {
+            playerAnimations.Falling(true);
+        }
+
         if (isGrounded)
-        { 
+        {
+            playerAnimations.Falling(false);
+
             if (!canDash && isDashCooldownComplete)
             {
                 canDash = true;  // 땅에 닿음 + 쿨다운이 완료되었다면 대쉬 가능
+
             }
 
             if (rb.velocity.y <= 0)
@@ -93,14 +102,7 @@ public class PlayerMovement : MonoBehaviour,IsGroundable
 
     void Update()
     {
-        if (!isGrounded && rb.velocity.y < 0) // 낙하 중
-        {
-            playerAnimations.Falling(true);
-        }
-        else if (isGrounded)
-        {
-            playerAnimations.Falling(false);
-        }
+
     }
 
     void OnDrawGizmos()
