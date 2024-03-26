@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     private PlayerMovement _playerMovement; // PlayerMovement 스크립트 참조
     private PlayerAttacks _playerAttacks;
     private Vector2 _inputVector; // 플레이어의 움직임 입력을 저장하는 벡터
+    private bool _isWeaponChange = true; // true 근거리, false 원거리 공격
 
     Dictionary<Paction, bool> lockAction = new Dictionary<Paction, bool>(); 
     void Awake()
@@ -77,28 +78,39 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    public void OnFire(InputAction.CallbackContext context) // 원거리 공격
-    {
-        if (context.performed && lockAction[Paction.RangeAttack])
-        {
-            _playerAttacks.Fire();
-        }
-    }
-
     public void OnAttack(InputAction.CallbackContext context) // 근접 공격
     {
         if (context.performed)
         {
-            if (lockAction[Paction.MeleeAttack])
+            if (_isWeaponChange && lockAction[Paction.MeleeAttack])
             {
                 _playerAttacks.Attack();
             }
-            if (!_playerMovement.IsGround() && lockAction[Paction.JumpAttack])
+
+            if (!_isWeaponChange && lockAction[Paction.RangeAttack])
+            {
+                _playerAttacks.Fire();
+            }
+
+            if (_isWeaponChange && !_playerMovement.IsGround() && lockAction[Paction.JumpAttack])
             {
                 _playerAttacks.JumpAttack();
-                Debug.Log("점프 어택!");
             }
         }
+    }
+
+    public void OnSwap(InputAction.CallbackContext context) // 근,원거리 공격 스왑
+    {
+        if (context.performed)
+        {
+            _isWeaponChange = !_isWeaponChange;
+            Debug.Log(_isWeaponChange ? "근거리 무기" : "원거리 무기");
+        }
+    }
+
+    public void OnDeflect(InputAction.CallbackContext context) // 반사
+    {
+
     }
 
 
