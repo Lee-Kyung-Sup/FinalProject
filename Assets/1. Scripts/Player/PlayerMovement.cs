@@ -8,7 +8,6 @@ public class PlayerMovement : MonoBehaviour,IsGroundable
     private PlayerAnimations playerAnimations;
     private Rigidbody2D rb;
 
-
     [SerializeField] private Transform playerUI;
     [SerializeField] private TrailRenderer tr; // 대시 효과용 TrailRenderer
     [SerializeField] private Transform groundCheck; // 플레이어의 하단에 위치
@@ -114,7 +113,6 @@ public class PlayerMovement : MonoBehaviour,IsGroundable
 
             Gizmos.color = Color.red;
 
-        
             Gizmos.DrawWireCube(boxCenter, new Vector3(boxWidth, boxHeight, 1));
         }
     }
