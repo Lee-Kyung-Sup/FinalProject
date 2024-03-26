@@ -6,6 +6,7 @@ public class PlayerAttacks : MonoBehaviour
 {
     private PlayerAnimations playerAnimations;
     private PlayerMovement playerMovement;
+    private PlayerStatus playerStatus;
 
     [SerializeField] GameObject bulletPref;
 
@@ -25,6 +26,7 @@ public class PlayerAttacks : MonoBehaviour
     {
         playerAnimations = GetComponent<PlayerAnimations>();
         playerMovement = GetComponent<PlayerMovement>();
+        playerStatus = GetComponent<PlayerStatus>();
 
         meleeAttackCollider.enabled = false;
         jumpAttackCollider.enabled = false;
@@ -77,6 +79,8 @@ public class PlayerAttacks : MonoBehaviour
         {
             jumpAttackCollider.enabled = true;
             canJumpAttack = false;
+            playerStatus.UseStamina(25);
+
             Invoke("DisableJumpAttack", 0.4f);
 
             playerAnimations.JumpAttacking();

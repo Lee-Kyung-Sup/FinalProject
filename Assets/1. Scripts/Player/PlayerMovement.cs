@@ -2,27 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour,IsGroundable
+public class PlayerMovement : MonoBehaviour, IsGroundable
 {
     private PlayerStatus playerStatus;
     private PlayerAnimations playerAnimations;
     private Rigidbody2D rb;
-
-
     [SerializeField] private Transform playerUI;
-    [SerializeField] private TrailRenderer tr; // 대시 효과용 TrailRenderer
-    [SerializeField] private Transform groundCheck; // 플레이어의 하단에 위치
+    [SerializeField] private TrailRenderer tr;
+    [SerializeField] private Transform groundCheck;
 
-    private LayerMask groundLayer; // 땅으로 간주할 레이어
-    private LayerMask platformLayer; // 플랫폼으로 간주할 레이어
+    private LayerMask groundLayer;
+    private LayerMask platformLayer;
 
-    //private float groundCheckRange = 0.3f; // 땅 감지 범위
     float boxWidth = 1f; // 땅 감지 박스
-    float boxHeight = 0.1f; 
-    private int jumpCount = 0; // 점프 횟수
-    bool isGrounded = false;
+    float boxHeight = 0.1f;
+    private bool isGrounded = false;
 
-    private bool canDoubleJump = false; // 더블 점프 가능 여부
+    private int jumpCount = 0; // 점프 횟수
+    private bool hasJumped = false; // 점프 했는지
 
     private bool canDash = true; // 대쉬 가능한지
     private bool isDashing; // 현재 대쉬 중인지
@@ -33,16 +30,13 @@ public class PlayerMovement : MonoBehaviour,IsGroundable
     private float dashStartTime; // 대쉬 시작 시간
 
     private float originalGravityScale; // 기본 중력 값
+
     private bool isPressingDown = false;
 
     private bool isKnockedBack = false;
-
     [SerializeField] private float knockbackTime = 0.25f; // 넉백 지속 시간
     [SerializeField] private float knockbackForceY = 1.5f;
     [SerializeField] private float knockbackForceX = 5.0f;
-
-
-
 
     void Awake()
     {
@@ -53,10 +47,7 @@ public class PlayerMovement : MonoBehaviour,IsGroundable
         originalGravityScale = rb.gravityScale;
         groundLayer = LayerMask.GetMask("Ground", "Platform");
         platformLayer = LayerMask.GetMask("Platform");
-
-        SetDoubleJumpEnabled(true); // 더블 점프 해금 코드 (테스트 true)
     }
-
 
     void FixedUpdate()
     {
@@ -116,7 +107,7 @@ public class PlayerMovement : MonoBehaviour,IsGroundable
 
             Gizmos.color = Color.red;
 
-        
+
             Gizmos.DrawWireCube(boxCenter, new Vector3(boxWidth, boxHeight, 1));
         }
     }
@@ -157,10 +148,6 @@ public class PlayerMovement : MonoBehaviour,IsGroundable
         }
     }
 
-
-
-
-
     public void Jump()
     {
         if (isPressingDown && IsPlatformLayer()) // 아래 방향키를 누르면서 점프 키 + 플랫폼인 경우
@@ -173,13 +160,21 @@ public class PlayerMovement : MonoBehaviour,IsGroundable
         {
             rb.velocity = new Vector2(rb.velocity.x, 0); // 수직 속도 초기화
             rb.AddForce(Vector2.up * playerStatus.JumpPower, ForceMode2D.Impulse);
+            
             jumpCount++; // 점프 횟수 증가 (첫 번째 점프)
-
+            hasJumped = true;
             playerAnimations.Jumping();
-            //playerAnimations.Jumping(true);
         }
 
-        else if (!isGrounded && canDoubleJump && jumpCount > 0 && jumpCount < playerStatus.MaxJumpCount && playerStatus.Stamina >= 25)  // 공중에서 추가 점프
+        //if ((!isGrounded && canDoubleJump && jumpCount > 0 && jumpCount < playerStatus.MaxJumpCount && playerStatus.Stamina >= 25))
+        //{
+        //    DoubleJump();
+        //}
+    }
+
+    public void DoubleJump()
+    {
+        if ((!isGrounded && hasJumped && jumpCount > 0 && jumpCount < playerStatus.MaxJumpCount && playerStatus.Stamina >= 25))
         {
             rb.velocity = new Vector2(rb.velocity.x, 0); // 수직 속도 초기화
             rb.AddForce(Vector2.up * playerStatus.JumpPower, ForceMode2D.Impulse);
@@ -188,16 +183,21 @@ public class PlayerMovement : MonoBehaviour,IsGroundable
             jumpCount++;
 
             playerAnimations.Jumping();
-            //playerAnimations.Jumping(true);
         }
     }
+    public bool HasJumped()  // 점프 여부 반환
+    {
+        return hasJumped;
+    }
+
 
     public void Dash()
     {
-        if (canDash && !isDashing && playerStatus.Stamina >= 25) // 대쉬가 가능하고 현재 대쉬 중이 아닐 때 + 플레이어 스태미너 25이상
+        if (canDash && !isDashing && playerStatus.Stamina >= 25) 
+            // 대쉬가 가능하고 현재 대쉬 중이 아닐 때 + 플레이어 스태미너 25이상
         {
             isDashing = true;
-            
+
             gameObject.layer = 18; // 무적 레이어
 
             dashStartTime = Time.time;
@@ -234,15 +234,13 @@ public class PlayerMovement : MonoBehaviour,IsGroundable
         rb.velocity = new Vector2(rb.velocity.x, 0);  // 수평 속도 유지, 수직 속도 0
     }
 
-
+    //public void SetDoubleJumpEnabled(bool enabled) // 더블 점프 해제 메서드
+    //{
+    //    canDoubleJump = enabled;
+    //}
     public void SetIsPressingDown(bool isPressing)
     {
         isPressingDown = isPressing;
-    }
-
-    public void SetDoubleJumpEnabled(bool enabled) // 더블 점프 해제 메서드
-    {
-        canDoubleJump = enabled;
     }
 
     private bool IsPlatformLayer()
@@ -257,7 +255,7 @@ public class PlayerMovement : MonoBehaviour,IsGroundable
         if (isPressingDown)
         {
             rb.velocity = new Vector2(rb.velocity.x, playerStatus.JumpPower * 0.25f); // 살짝 점프
-            Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"),LayerMask.NameToLayer("Platform"),true);
+            Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Platform"), true);
             Invoke("Platform", 0.5f); // ignore False
         }
     }

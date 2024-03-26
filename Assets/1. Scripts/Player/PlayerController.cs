@@ -57,7 +57,14 @@ public class PlayerController : MonoBehaviour
     {
         if (context.performed)
         {
-            _playerMovement.Jump();
+            if (!_playerMovement.HasJumped() || !lockAction[Paction.DoubleJump]) 
+            {
+                _playerMovement.Jump();
+            }
+            else if (_playerMovement.HasJumped() && lockAction[Paction.DoubleJump]) 
+            {
+                _playerMovement.DoubleJump();
+            }
         }
     }
 
@@ -111,12 +118,12 @@ public class PlayerController : MonoBehaviour
         _playerMovement.SetIsPressingDown(isPressing);
     }
 
-    public void UnLockAction(Paction unLockAction)
-    {
-        lockAction[unLockAction] = true;
-        if (unLockAction == Paction.DoubleJump)
-        {
-            _playerMovement.SetDoubleJumpEnabled(lockAction[unLockAction]);
-        }
-    }
+    //public void UnLockAction(Paction unLockAction)
+    //{
+    //    lockAction[unLockAction] = true;
+    //    if (unLockAction == Paction.DoubleJump)
+    //    {
+    //        _playerMovement.SetDoubleJumpEnabled(lockAction[unLockAction]);
+    //    }
+    //}
 }
