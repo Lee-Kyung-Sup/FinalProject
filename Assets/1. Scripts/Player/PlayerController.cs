@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour
     {
         if (context.performed)
         {
-            if (!_playerMovement.HasJumped() || !lockAction[Paction.DoubleJump]) 
+            if (!_playerMovement.HasJumped()) 
             {
                 _playerMovement.Jump();
             }

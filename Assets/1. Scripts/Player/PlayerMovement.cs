@@ -67,13 +67,12 @@ public class PlayerMovement : MonoBehaviour, IsGroundable
             if (!canDash && isDashCooldownComplete)
             {
                 canDash = true;  // 땅에 닿음 + 쿨다운이 완료되었다면 대쉬 가능
-
             }
 
             if (rb.velocity.y <= 0)
             {
-                jumpCount = 0; // 땅에 닿으면 점프 횟수 초기화
-                //playerAnimations.Jumping(false);
+                jumpCount = 0; // 점프 횟수 초기화
+                hasJumped = false;  // 점프 여부 초기화
             }
         }
 
@@ -89,11 +88,6 @@ public class PlayerMovement : MonoBehaviour, IsGroundable
                 EndDash(); // 대쉬 종료 처리 메서드
             }
         }
-    }
-
-    void Update()
-    {
-
     }
 
     void OnDrawGizmos()
@@ -234,10 +228,6 @@ public class PlayerMovement : MonoBehaviour, IsGroundable
         rb.velocity = new Vector2(rb.velocity.x, 0);  // 수평 속도 유지, 수직 속도 0
     }
 
-    //public void SetDoubleJumpEnabled(bool enabled) // 더블 점프 해제 메서드
-    //{
-    //    canDoubleJump = enabled;
-    //}
     public void SetIsPressingDown(bool isPressing)
     {
         isPressingDown = isPressing;
@@ -269,7 +259,6 @@ public class PlayerMovement : MonoBehaviour, IsGroundable
     {
         return isGrounded;
     }
-
 
     public void OnKnockback(Vector2 targetPosition)
     {

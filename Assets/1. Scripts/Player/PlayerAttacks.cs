@@ -75,7 +75,7 @@ public class PlayerAttacks : MonoBehaviour
 
     public void JumpAttack()
     {
-        if (canJumpAttack && !playerMovement.IsGround())
+        if (canJumpAttack && !playerMovement.IsGround() && playerStatus.Stamina >= 25)
         {
             jumpAttackCollider.enabled = true;
             canJumpAttack = false;
@@ -85,6 +85,10 @@ public class PlayerAttacks : MonoBehaviour
 
             playerAnimations.JumpAttacking();
             playerAnimations.JumpAttackEffect();
+        }
+        else
+        {
+            Attack();
         }
     }
 
