@@ -34,23 +34,11 @@ public class BossMapEventList
         {
             case 0:
                 return NoneEvent;
-            case 1:
-                return OnWayEvent;
-            case 2:
-                return ChBoss3;
             default:
                 return null;
         }
     }
     void NoneEvent()
-    {
-
-    }
-    void OnWayEvent()
-    {
-        OneWayMovePlatform.isStart = true;
-    }
-    void ChBoss3()
     {
 
     }

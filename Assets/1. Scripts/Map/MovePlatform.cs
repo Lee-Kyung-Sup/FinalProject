@@ -19,11 +19,11 @@ public class MovePlatform : MonoBehaviour
     {
         if (isUpDown)
         {
-            transform.position = new Vector2(startPos.x, startPos.y + amplitude * Mathf.Sin(Time.time * speed));
+            rigi.transform.position = new Vector2(startPos.x, startPos.y + amplitude * Mathf.Sin(Time.time * speed));
         }
         else
         {
-            transform.position = new Vector2(startPos.x, startPos.y + amplitude * Mathf.Sin(Time.time * speed));
+            rigi.transform.position = new Vector2(startPos.x + amplitude * Mathf.Sin(Time.time * speed), startPos.y);
         }
     }
     private void OnCollisionStay2D(Collision2D collision)
