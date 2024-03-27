@@ -347,6 +347,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 2139200019}
   objectManager: {fileID: 0}
+  ItemDatabase: {fileID: 0}
   CharacterList: []
   PlayerAnimator: {fileID: 0}
   PlayerName: {fileID: 0}
@@ -381,9 +382,9 @@ MonoBehaviour:
   PlayerMeleeHitPrefab: {fileID: 2955623459812423943, guid: f5507a8c6a22c404ab324980c4e8a11b, type: 3}
   PlayerRangeHitPrefab: {fileID: 5024009746357069194, guid: ec3f674830402cc45bce805cf6493db7, type: 3}
   bulletBossAPrefab: {fileID: 6049919993356236047, guid: 72e2d474acd7ae443839e2ebe967738d, type: 3}
-  bulletBossBTPrefab: {fileID: 1223675488665253539, guid: 01a7181830ae0404993ebc8576210650, type: 3}
+  bulletBossBTPrefab: {fileID: 8236698002141129757, guid: 13313f4135099c04fae3f986e4aa9bc2, type: 3}
   enemyBPrefab: {fileID: 37524669}
-  enemyBTPrefab: {fileID: 5035477832104665911, guid: 796646aab3d30a74c8cb07fcaf781cad, type: 3}
+  enemyBTPrefab: {fileID: 3204345873603468968, guid: a127bb7e3cc200a4da77ca1828b9a4f8, type: 3}
 --- !u!95 &903705591
 Animator:
   serializedVersion: 5
@@ -394,7 +395,7 @@ Animator:
   m_GameObject: {fileID: 903705586}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 43da51c48c2c84a4988568af24d24800, type: 2}
+  m_Controller: {fileID: 9100000, guid: c4b0cc5815780c947bf22b9a26280857, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -547,6 +548,10 @@ PrefabInstance:
     - target: {fileID: 3204345873603468968, guid: a127bb7e3cc200a4da77ca1828b9a4f8, type: 3}
       propertyPath: m_Name
       value: Dragon Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 3204345873603468968, guid: a127bb7e3cc200a4da77ca1828b9a4f8, type: 3}
+      propertyPath: m_TagString
+      value: Monster
       objectReference: {fileID: 0}
     - target: {fileID: 8878655849553858880, guid: a127bb7e3cc200a4da77ca1828b9a4f8, type: 3}
       propertyPath: m_RootOrder
