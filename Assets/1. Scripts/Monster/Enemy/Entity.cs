@@ -24,7 +24,7 @@ public class Entity : MonoBehaviour
     {
         gpLayer = LayerMask.GetMask("Ground", "Platform");
         Rigi = GetComponent<Rigidbody2D>();
-        Ani = GetComponent<Animator>();
+        Ani = GetComponentInChildren<Animator>();
     }
     protected virtual void Update()
     {
@@ -48,7 +48,7 @@ public class Entity : MonoBehaviour
     {
         facingDir = facingDir * -1;
         facingRight = !facingRight;
-        transform.Rotate(0, 100, 0);
+        transform.Rotate(0, 180, 0);
     }
     public void FlipController(float x)
     {

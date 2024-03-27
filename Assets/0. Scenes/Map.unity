@@ -318,7 +318,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 4
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -326,9 +326,9 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!4 &1136411283
 Transform:
@@ -589,8 +589,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59d06293f199e6e499465c7597fd358b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurChapterId: 1
-  curMapId: 11
+  CurChapterId: 0
+  curMapId: 0
 --- !u!1 &1625029004
 GameObject:
   m_ObjectHideFlags: 0
