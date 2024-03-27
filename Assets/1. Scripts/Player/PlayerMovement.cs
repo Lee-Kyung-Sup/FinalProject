@@ -184,7 +184,6 @@ public class PlayerMovement : MonoBehaviour, IsGroundable
         return hasJumped;
     }
 
-
     public void Dash()
     {
         if (canDash && !isDashing && playerStatus.Stamina >= 25) 

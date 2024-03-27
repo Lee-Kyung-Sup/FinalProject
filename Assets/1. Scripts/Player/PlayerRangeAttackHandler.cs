@@ -9,7 +9,7 @@ public class PlayerRangeAttackHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Invoke("DestroyTime", 2.0f);
+        Invoke("DestroyTime", 7.0f);
     }
 
     void DestroyTime()

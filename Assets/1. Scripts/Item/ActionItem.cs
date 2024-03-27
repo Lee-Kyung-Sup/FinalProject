@@ -24,7 +24,7 @@ public class ActionItem : PlayerEnterTrigger
         if (pLayer.value == (pLayer.value | (1 << collision.gameObject.layer)))
         {
             //Todo GetUi
-            //collision.GetComponent<PlayerController>().UnLockAction(actionType);
+            collision.GetComponent<PlayerController>().UnLockAction(actionType);
             checker.isGet[actionType] = true;
             Destroy(gameObject);
         }
