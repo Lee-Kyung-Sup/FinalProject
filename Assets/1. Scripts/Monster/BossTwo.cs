@@ -16,7 +16,7 @@ public class BossTwo : MonoBehaviour
     SpriteRenderer spriteRenderer;
     Animator anim;
     protected CircleCollider2D circleCollider;
-    protected CapsuleCollider2D attackCollider;
+    protected CapsuleCollider2D capsuleCollider;
     protected Rigidbody2D rb;
 
     public int patternIndex;
@@ -139,6 +139,7 @@ public class BossTwo : MonoBehaviour
     {
         Debug.Log("DA");
         //드래곤이 근접 공격
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
         rb.velocity = new Vector2(transform.position.x * 7f, 1.5f);
         curPatternCount++;
 
@@ -169,12 +170,12 @@ public class BossTwo : MonoBehaviour
     public void EnableAttackCollider()
     {
         Debug.Log("true");
-        attackCollider.enabled = true;
+        capsuleCollider.enabled = true;
     }
     public void DisableAttackCollider()
     {
         Debug.Log("false");
-        attackCollider.enabled = false;
+        capsuleCollider.enabled = false;
     }
 
     public void Hit(int dmg)
@@ -189,7 +190,7 @@ public class BossTwo : MonoBehaviour
         {
             anim.SetTrigger("Die");
             Destroy(circleCollider);
-            Destroy(attackCollider);
+            Destroy(capsuleCollider);
 
             Debug.Log("Monster Dead");
 
