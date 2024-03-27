@@ -6,15 +6,20 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 
 {
-    private PlayerMovement _playerMovement; // PlayerMovement 스크립트 참조
+    private PlayerMovement _playerMovement;
     private PlayerAttacks _playerAttacks;
-    private Vector2 _inputVector; // 플레이어의 움직임 입력을 저장하는 벡터
 
-    Dictionary<Paction, bool> lockAction = new Dictionary<Paction, bool>(); 
+    private Vector2 _inputVector; 
+    private bool _isWeaponChange = true; // true 근거리, false 원거리 공격
+
+    Dictionary<Paction, bool> lockAction = new Dictionary<Paction, bool>();
+
+
     void Awake()
     {
         _playerMovement = GetComponent<PlayerMovement>();
         _playerAttacks = GetComponent<PlayerAttacks>();
+
         //InItLockAction();
 
         //테스트용 true
@@ -24,6 +29,7 @@ public class PlayerController : MonoBehaviour
         lockAction[Paction.DoubleJump] = true;
         lockAction[Paction.MeleeAttack] = true;
         lockAction[Paction.RangeAttack] = true;
+        lockAction[Paction.JumpAttack] = true;
     }
 
     void FixedUpdate()
@@ -39,6 +45,7 @@ public class PlayerController : MonoBehaviour
         lockAction.Add(Paction.DoubleJump,false);
         lockAction.Add(Paction.MeleeAttack,false);
         lockAction.Add(Paction.RangeAttack,false);
+        lockAction.Add(Paction.JumpAttack, false);
     }
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -55,7 +62,14 @@ public class PlayerController : MonoBehaviour
     {
         if (context.performed)
         {
-            _playerMovement.Jump();
+            if (!_playerMovement.HasJumped()) 
+            {
+                _playerMovement.Jump();
+            }
+            else if (_playerMovement.HasJumped() && lockAction[Paction.DoubleJump]) 
+            {
+                _playerMovement.DoubleJump();
+            }
         }
     }
 
@@ -68,20 +82,47 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    public void OnFire(InputAction.CallbackContext context)
+    public void OnAttack(InputAction.CallbackContext context) // 근접 공격
     {
-        if (context.performed && lockAction[Paction.RangeAttack]) // 발사 버튼이 눌렸을 때만
+        if (context.started && !_isWeaponChange && lockAction[Paction.ChargeShot])
         {
-            _playerAttacks.Fire();
+            _playerAttacks.StartCharging();
+        }
+
+        if (context.performed)
+        {
+            if (!_isWeaponChange && lockAction[Paction.RangeAttack])
+            {
+                _playerAttacks.Fire();
+            }
+            else if (_isWeaponChange && lockAction[Paction.MeleeAttack])
+            {
+                _playerAttacks.Attack();
+            }
+            else if (_isWeaponChange && !_playerMovement.IsGround() && lockAction[Paction.JumpAttack])
+            {
+                _playerAttacks.JumpAttack();
+            }
+        }
+
+        else if (context.canceled && !_isWeaponChange && lockAction[Paction.ChargeShot])
+        {
+            _playerAttacks.ReleaseCharge(); 
         }
     }
 
-    public void OnAttack(InputAction.CallbackContext context) // 근접 공격 임시
+    public void OnSwap(InputAction.CallbackContext context) // 근,원거리 공격 스왑
     {
-        if (context.performed && lockAction[Paction.MeleeAttack]) 
+        if (context.performed)
         {
-            _playerAttacks.Attack();
+            _isWeaponChange = !_isWeaponChange;
+            Debug.Log(_isWeaponChange ? "근거리 무기" : "원거리 무기");
         }
+    }
+
+    public void OnDeflect(InputAction.CallbackContext context) // 반사
+    {
+
     }
 
 
@@ -95,17 +136,18 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    public void OnDown(InputAction.CallbackContext context)
+    public void OnDown(InputAction.CallbackContext context) // 아래 점프
     {
         bool isPressing = context.ReadValue<float>() > 0;
         _playerMovement.SetIsPressingDown(isPressing);
     }
+
     public void UnLockAction(Paction unLockAction)
     {
         lockAction[unLockAction] = true;
-        if (unLockAction == Paction.DoubleJump)
-        {
-            _playerMovement.SetDoubleJumpEnabled(lockAction[unLockAction]);
-        }
+       // if (unLockAction == Paction.DoubleJump)
+       //{
+       //     _playerMovement.SetDoubleJumpEnabled(lockAction[unLockAction]);
+       // }
     }
 }

@@ -7,7 +7,6 @@ public class PlayerMeleeAttackHandler : MonoBehaviour
     [SerializeField] private GameObject meleeHitEffect; // 히트 효과 프리팹
     PlayerStatus playerStatus;
 
-    // Start is called before the first frame update
     void Start()
     {
         playerStatus = GetComponent<PlayerStatus>();
@@ -21,16 +20,11 @@ public class PlayerMeleeAttackHandler : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
         if (collision.CompareTag("Monster"))
         {
             Instantiate(meleeHitEffect, collision.transform.position, Quaternion.identity);
 
             //collision.SendMessage("TakeDamage", playerStatus.Atk);  // 몬스터에게 데미지
         }
-
-
-
-
     }
 }

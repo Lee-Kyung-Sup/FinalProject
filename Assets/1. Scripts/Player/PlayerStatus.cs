@@ -8,22 +8,22 @@ public class PlayerStatus : MonoBehaviour, IDamageable
     private PlayerAnimations playerAnimations;
     private PlayerMovement playerMovement;
     private PlayerUI playerUI;
-    private SpriteRenderer spriteRenderer;
+    [SerializeField] private SpriteRenderer spriteRenderer;
     private Rigidbody2D rb;
 
 
-    [SerializeField] private int health = 3; // ĳ���� ü��
-    [SerializeField] private float stamina = 100; // ĳ���� ���¹̳�
-    [SerializeField] private float staminaRecoveryRate = 100; // �ʴ� ���¹̳� ȸ����
-    [SerializeField] private float staminaRecoveryDelay = 1f; // ���¹̳� ȸ�� ���� �ð�
-    [SerializeField] private int atk = 1; // ĳ���� ���ݷ� (���� ���� ��ĵ��� ���� TODO)
+    [SerializeField] private int health = 3;
+    [SerializeField] private float stamina = 100;
+    [SerializeField] private float staminaRecoveryRate = 100;
+    [SerializeField] private float staminaRecoveryDelay = 1f;
+    [SerializeField] private int atk = 1;
 
     private float lastStaminaUseTime;
     private float maxStamina;
 
     [SerializeField] private float speed = 10f;
     [SerializeField] private float jumpPower = 20f;
-    [SerializeField] private int maxJumpCount = 2; // �ִ� ���� ���� Ƚ��
+    [SerializeField] private int maxJumpCount = 2;
 
 
     public float Speed => speed;
@@ -36,7 +36,7 @@ public class PlayerStatus : MonoBehaviour, IDamageable
     void Start()
     {
         playerUI = FindObjectOfType<PlayerUI>();
-        spriteRenderer = transform.Find("MainSprite").GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         playerMovement = GetComponent<PlayerMovement>();
         playerAnimations = GetComponent<PlayerAnimations>();
         rb = GetComponent<Rigidbody2D>();
@@ -76,15 +76,14 @@ public class PlayerStatus : MonoBehaviour, IDamageable
 
     }
 
-
     public void OnInvincible()
     {
         gameObject.layer = 18;
         spriteRenderer.color = new Color(1, 1, 1, 0.5f);
 
-        //Invoke("OffInvincible", 3); 
         StartCoroutine(BlinkEffect(3f, 0.1f)); 
     }
+
     private IEnumerator BlinkEffect(float duration, float interval)
     {
         float time = 0;
@@ -99,19 +98,12 @@ public class PlayerStatus : MonoBehaviour, IDamageable
                 spriteRenderer.color = new Color(1, 1, 1, 0.5f);
             }
 
-            yield return new WaitForSeconds(interval); // ��ȯ ���ݸ�ŭ ���
+            yield return new WaitForSeconds(interval);
             time += interval;
         }
-        gameObject.layer = 6; // �÷��̾� ���̾�
-        spriteRenderer.color = new Color(1, 1, 1, 1); // ���İ� �ʱ�ȭ
+        gameObject.layer = 6;
+        spriteRenderer.color = new Color(1, 1, 1, 1);
     }
-
-    //public void OffInvincible()
-    //{
-    //    StopAllCoroutines();
-    //}
-
-
 
     public void UseStamina(float value)
     {
@@ -135,7 +127,6 @@ public class PlayerStatus : MonoBehaviour, IDamageable
         }
         maxStamina = stamina;
     }
-
 
     private void PlayerDead() // 플레이어 죽음
     {
