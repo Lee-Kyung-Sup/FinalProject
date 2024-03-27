@@ -25,11 +25,11 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        PlayMusic("FirstChapter");
+        PlayBGM("FirstChapter");
     }
 
 
-    public void PlayMusic(String name)
+    public void PlayBGM(String name)
     {
         Sound s = Array.Find(bgmSounds, x => x.name == name);
 
