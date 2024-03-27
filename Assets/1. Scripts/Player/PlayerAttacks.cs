@@ -47,6 +47,11 @@ public class PlayerAttacks : MonoBehaviour
         if (isCharging)
         {
             chargeTime += Time.deltaTime;
+
+            if (chargeTime > 0.15f)
+            {
+                playerAnimations.Charging(true); // 충전 애니메이션 시작
+            }
         }
     }
 
@@ -73,8 +78,6 @@ public class PlayerAttacks : MonoBehaviour
     {
         Debug.Log("차지 시작");
         isCharging = true;
-        chargeTime = 0f;
-        playerAnimations.Charging(true);
     }
     public void ReleaseCharge()
     {
@@ -87,15 +90,17 @@ public class PlayerAttacks : MonoBehaviour
         else
         {
             Fire();
-            playerAnimations.Charging(false);
+
         }
         chargeTime = 0f; // 충전 시간 리셋
+        playerAnimations.Charging(false);
     }
 
     public void ChargeShot()
     {
         playerAnimations.Charging(false);
-        Debug.Log("차지샷 발사");
+        playerStatus.UseStamina(25);
+
         Vector3 direction = transform.right * transform.localScale.x; // 플레이어의 방향에 따라 발사 방향 결정
         GameObject bullet = Instantiate(ChargedBulletPref, rangeAttackPosition.position + direction, Quaternion.identity);
         playerAnimations.Fired();

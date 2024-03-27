@@ -110,6 +110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RangeHitEffect: {fileID: 5024009746357069194, guid: ec3f674830402cc45bce805cf6493db7, type: 3}
+  isChargeShot: 1
 --- !u!1 &6515893624642573904
 GameObject:
   m_ObjectHideFlags: 0
