@@ -32,8 +32,11 @@ public class GameManager : MonoBehaviour
 
     public static GameManager instance;
     public GameObject player; // 플레이어 오브젝트 위치 추적
+    public GameObject soundPanel;
+
     public ObjectManager objectManager;
     //public Transform playerPosition;
+ 
 
     public TextAsset ItemDatabase;
 
@@ -104,5 +107,20 @@ public class GameManager : MonoBehaviour
 
         Time.timeScale = 0;
     }
+
+    public void ToggleSoundPanel()
+    {
+        soundPanel.SetActive(true);
+
+    }
+
+    public void CanelSoundPanel()
+    {
+        soundPanel.SetActive(false);
+    }
+
+
+
+
 
 }
