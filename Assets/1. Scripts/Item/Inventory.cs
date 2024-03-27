@@ -7,15 +7,15 @@ using UnityEngine.Rendering;
 
 public class Inventory : MonoBehaviour
 {
-    public GameObject inventoryObject;
-    public Slot[] slots;
+    //public GameObject inventoryObject;
     public GameObject inventoryWindow;
 
-
+    public Slot[] slots;
 
     [Header("Events")]
     public UnityEvent onOpenInventory;
     public UnityEvent onCloseInventory;
+
 
 
 
@@ -29,6 +29,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
+
     public void OnInventoryButton(InputAction.CallbackContext callbackContext)
     {
         if (callbackContext.phase == InputActionPhase.Started)
@@ -36,6 +37,7 @@ public class Inventory : MonoBehaviour
             Toggle();
         }
     }
+
 
     public void Toggle()
     {
@@ -55,6 +57,7 @@ public class Inventory : MonoBehaviour
     {
         return inventoryWindow.activeInHierarchy;
     }
+
 
 
 
@@ -127,7 +130,7 @@ public class Inventory : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision) //충돌시 아이템 습득
     {
         if (collision.GetComponent<Item>())
         {

@@ -101,7 +101,6 @@ public class PlayerMovement : MonoBehaviour, IsGroundable
 
             Gizmos.color = Color.red;
 
-
             Gizmos.DrawWireCube(boxCenter, new Vector3(boxWidth, boxHeight, 1));
         }
     }

@@ -29,18 +29,17 @@ public class Slot : MonoBehaviour
 
     public void CheckForItem()
     {
-        //if (slotsItem == null)
-        //    return;
-
         if (transform.childCount > 1)
         {
-            slotsItem = transform.GetChild(1).GetComponent<Item>();
+            //if (slotsItem == null)
+            //       return;
+
+           slotsItem = transform.GetChild(1).GetComponent<Item>();
             GetComponent<Image>().sprite = slotsItem.itemSprite;
             if (slotsItem.amountInStack > 1)
             {
                 amountText.text = slotsItem.amountInStack.ToString();
             }
-
         }
         else
         {

@@ -1,0 +1,6 @@
+Character	Knight	기사	1	FALSE
+Character	Duck	오리	1	FALSE
+Item	Apple	사과	1	FALSE
+Item	Beer	맥주	1	FALSE
+Item	Sword	칼	1	FALSE
+Item	Ax	도끼	1	FALSE
