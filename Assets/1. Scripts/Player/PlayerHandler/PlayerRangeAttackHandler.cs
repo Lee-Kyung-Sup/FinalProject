@@ -7,10 +7,13 @@ public class PlayerRangeAttackHandler : MonoBehaviour
     [SerializeField] private GameObject RangeHitEffect; // È÷Æ® È¿°ú ÇÁ¸®ÆÕ
     [SerializeField] private bool isChargeShot = false; // Â÷Áö¼¦ ÇÁ¸®ÆÕÀº true
 
+    PlayerStatus playerStatus;
+
     // Start is called before the first frame update
     void Start()
     {
         Invoke("DestroyTime", 7.0f);
+        playerStatus = GetComponent<PlayerStatus>();
     }
 
     void DestroyTime()

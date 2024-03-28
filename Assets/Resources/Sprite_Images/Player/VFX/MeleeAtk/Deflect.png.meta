@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b2d5e140069654e4dbe587f2720ab6e8
+guid: fed886925da79fe4a8cc4ebb61b389f1
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 30
+  spritePixelsToUnits: 15
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Charge_0
+      name: Deflect_0
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +124,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6fc95cb19ee38d140a771a26e9247ed8
-      internalID: -1986964719
+      spriteID: d34b3ab434105514bb65119c142b3543
+      internalID: -1353163948
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Charge_1
+      name: Deflect_1
       rect:
         serializedVersion: 2
         x: 64
@@ -145,14 +145,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: be5be93c4b5480440ba74a434c0e98fc
-      internalID: 1372202279
+      spriteID: 3381b8941c167fb428c954bb25783b6e
+      internalID: 656517374
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Charge_2
+      name: Deflect_2
       rect:
         serializedVersion: 2
         x: 128
@@ -166,14 +166,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f2e86d2d4562d82489d652511fcc20f7
-      internalID: -1941591482
+      spriteID: 55240b04908da0d4ba9c38f01da86d4a
+      internalID: -517536666
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Charge_3
+      name: Deflect_3
       rect:
         serializedVersion: 2
         x: 192
@@ -187,14 +187,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 63d2ef2a6456508498154196777c3b10
-      internalID: -1611515606
+      spriteID: 01705f2762128e14a924e5823e449dc3
+      internalID: -1322826121
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Charge_4
+      name: Deflect_4
       rect:
         serializedVersion: 2
         x: 256
@@ -208,14 +208,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 30f47e4ee977aea4aaceefd3959ad0c4
-      internalID: 1913453658
+      spriteID: 33b228492a5f31f4fa63e6390a935907
+      internalID: -1773358554
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Charge_5
+      name: Deflect_5
       rect:
         serializedVersion: 2
         x: 320
@@ -229,14 +229,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0ba7c0ab009d6194f8aca7518e5777cb
-      internalID: 176527579
+      spriteID: 5b98cc3c7f2120e409c571bace87e6be
+      internalID: -2061464214
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Charge_6
+      name: Deflect_6
       rect:
         serializedVersion: 2
         x: 384
@@ -250,14 +250,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6fb557ce1f55a8441b1cfc05769cca41
-      internalID: -1123832147
+      spriteID: 19e9e76d0fe5a854ab17c986a860f9a8
+      internalID: 1078175965
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Charge_7
+      name: Deflect_7
       rect:
         serializedVersion: 2
         x: 448
@@ -271,14 +271,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ad7ded9913e5c124da763e05c42af39c
-      internalID: -796631378
+      spriteID: f9e9cd81eb74b9141a59a245a98315cc
+      internalID: 465274578
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Charge_8
+      name: Deflect_8
       rect:
         serializedVersion: 2
         x: 512
@@ -292,14 +292,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cd7d6508394976042b361dab44f60362
-      internalID: 68117577
+      spriteID: 6679d5733d6babc409f72d683aeb402f
+      internalID: 1518916886
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Charge_9
+      name: Deflect_9
       rect:
         serializedVersion: 2
         x: 576
@@ -313,14 +313,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0f1b538f66918084bbdd93ca6a221641
-      internalID: 953717127
+      spriteID: a77d07f1543598044a79e2dcfa01a7bf
+      internalID: 1343600716
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Charge_10
+      name: Deflect_10
       rect:
         serializedVersion: 2
         x: 0
@@ -334,14 +334,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0202d36ce65bf904b958347be8f00078
-      internalID: 1419985415
+      spriteID: 881909b74b2a5af4197cdcb973be018d
+      internalID: 1114629550
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Charge_11
+      name: Deflect_11
       rect:
         serializedVersion: 2
         x: 64
@@ -355,14 +355,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c5241f50456498f41a66048fce6f5516
-      internalID: 257048201
+      spriteID: 1a74c69e86e4a5d47a9d6d434a5390d3
+      internalID: -1863141046
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Charge_12
+      name: Deflect_12
       rect:
         serializedVersion: 2
         x: 128
@@ -376,14 +376,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: db95840454abc2446bc73b3f90b293ca
-      internalID: -1930344101
+      spriteID: 827969560e537aa43a3be11428b592c0
+      internalID: 1579720301
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Charge_13
+      name: Deflect_13
       rect:
         serializedVersion: 2
         x: 192
@@ -397,14 +397,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e1f2c02d50ef707438958b2b49284ff5
-      internalID: -1613509696
+      spriteID: 6dbf904e87a109e4a8bee2dbce3a74a4
+      internalID: -1396084616
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Charge_14
+      name: Deflect_14
       rect:
         serializedVersion: 2
         x: 256
@@ -418,92 +418,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 203df7a7b1e0c1347b86708cdbd3274c
-      internalID: 1741782863
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Charge_15
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8316d6416a97cea42adf8864f0da033a
-      internalID: 1582824187
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Charge_16
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 96a10710173c73e4298765886c5fe20c
-      internalID: -1784756792
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Charge_17
-      rect:
-        serializedVersion: 2
-        x: 448
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 30128367552e6ad4982dcffed97c18d3
-      internalID: 1984675322
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Charge_18
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 772e2e441de156e408dcb0fa7eb07331
-      internalID: 2040108557
+      spriteID: 7e65d12da83be5b489ba8e56f743b6ef
+      internalID: -1235217058
       vertices: []
       indices: 
       edges: []
@@ -519,25 +435,21 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Charge_0: -1986964719
-      Charge_1: 1372202279
-      Charge_10: 1419985415
-      Charge_11: 257048201
-      Charge_12: -1930344101
-      Charge_13: -1613509696
-      Charge_14: 1741782863
-      Charge_15: 1582824187
-      Charge_16: -1784756792
-      Charge_17: 1984675322
-      Charge_18: 2040108557
-      Charge_2: -1941591482
-      Charge_3: -1611515606
-      Charge_4: 1913453658
-      Charge_5: 176527579
-      Charge_6: -1123832147
-      Charge_7: -796631378
-      Charge_8: 68117577
-      Charge_9: 953717127
+      Deflect_0: -1353163948
+      Deflect_1: 656517374
+      Deflect_10: 1114629550
+      Deflect_11: -1863141046
+      Deflect_12: 1579720301
+      Deflect_13: -1396084616
+      Deflect_14: -1235217058
+      Deflect_2: -517536666
+      Deflect_3: -1322826121
+      Deflect_4: -1773358554
+      Deflect_5: -2061464214
+      Deflect_6: 1078175965
+      Deflect_7: 465274578
+      Deflect_8: 1518916886
+      Deflect_9: 1343600716
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

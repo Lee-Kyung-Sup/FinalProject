@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 697770492126950811}
   - component: {fileID: 7658898541529974717}
   - component: {fileID: 2139472914313833032}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: PlayerBullet_Charged
   m_TagString: PlayerAttackBox
   m_Icon: {fileID: 0}
@@ -122,7 +122,7 @@ GameObject:
   - component: {fileID: 3230976348315714847}
   - component: {fileID: 8726612016517915256}
   - component: {fileID: 7715108472788423773}
-  m_Layer: 6
+  m_Layer: 20
   m_Name: ChargeShotSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

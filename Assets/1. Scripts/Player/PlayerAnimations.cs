@@ -10,11 +10,6 @@ public class PlayerAnimations : MonoBehaviour
     protected virtual void Awake()
     {
         animator = GetComponentsInChildren<Animator>();
-
-        foreach (Animator anim in animator)
-        {
-
-        }
     }
 
     private static readonly int IsMoving = Animator.StringToHash("IsMoving");
@@ -28,6 +23,7 @@ public class PlayerAnimations : MonoBehaviour
     private static readonly int Attack = Animator.StringToHash("Attack");
     private static readonly int JumpAtk = Animator.StringToHash("JumpAtk");
     private static readonly int JumpAtkEffect = Animator.StringToHash("JumpAtkEffect");
+    private static readonly int Deflect = Animator.StringToHash("Deflect");
 
     private static readonly int Hit = Animator.StringToHash("Hit");
     private static readonly int Invincible = Animator.StringToHash("Invincible");
@@ -48,6 +44,11 @@ public class PlayerAnimations : MonoBehaviour
     public void Charging(bool isCharging)
     {
         animator[2].SetBool(IsCharging, isCharging);
+    }
+    public void Deflection()
+    {
+        animator[0].SetTrigger(Deflect);
+        animator[3].SetTrigger(Deflect);
     }
 
     public void Jumping()
@@ -83,7 +84,7 @@ public class PlayerAnimations : MonoBehaviour
     {
         animator[0].SetTrigger(Hit);
     }
-    public void InvincibleEffect() // 무적 이펙트 애니메이션 (피격 시)
+    public void InvincibleEffect() // 무적 이펙트 
     {
         animator[0].SetTrigger(Invincible);
     }

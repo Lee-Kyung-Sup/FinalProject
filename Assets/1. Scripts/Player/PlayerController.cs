@@ -14,7 +14,6 @@ public class PlayerController : MonoBehaviour
 
     Dictionary<Paction, bool> lockAction = new Dictionary<Paction, bool>();
 
-
     void Awake()
     {
         _playerMovement = GetComponent<PlayerMovement>();
@@ -30,6 +29,8 @@ public class PlayerController : MonoBehaviour
         lockAction[Paction.MeleeAttack] = true;
         lockAction[Paction.RangeAttack] = true;
         lockAction[Paction.JumpAttack] = true;
+        lockAction[Paction.Deflect] = true;
+
     }
 
     void FixedUpdate()
@@ -46,6 +47,7 @@ public class PlayerController : MonoBehaviour
         lockAction.Add(Paction.MeleeAttack,false);
         lockAction.Add(Paction.RangeAttack,false);
         lockAction.Add(Paction.JumpAttack, false);
+        lockAction.Add(Paction.Deflect, false);
     }
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -95,11 +97,11 @@ public class PlayerController : MonoBehaviour
             {
                 _playerAttacks.Fire();
             }
-            else if (_isWeaponChange && lockAction[Paction.MeleeAttack])
+            if (_isWeaponChange && lockAction[Paction.MeleeAttack])
             {
                 _playerAttacks.Attack();
             }
-            else if (_isWeaponChange && !_playerMovement.IsGround() && lockAction[Paction.JumpAttack])
+            if (_isWeaponChange && !_playerMovement.IsGround() && lockAction[Paction.JumpAttack])
             {
                 _playerAttacks.JumpAttack();
             }
@@ -115,6 +117,7 @@ public class PlayerController : MonoBehaviour
     {
         if (context.performed)
         {
+            // 무기 스왑 알림 GUI TODO
             _isWeaponChange = !_isWeaponChange;
             Debug.Log(_isWeaponChange ? "근거리 무기" : "원거리 무기");
         }
@@ -122,7 +125,10 @@ public class PlayerController : MonoBehaviour
 
     public void OnDeflect(InputAction.CallbackContext context) // 반사
     {
-
+        if(context.performed && lockAction[Paction.Deflect])
+        {
+            _playerAttacks.Deflect();
+        }
     }
 
 
@@ -145,9 +151,5 @@ public class PlayerController : MonoBehaviour
     public void UnLockAction(Paction unLockAction)
     {
         lockAction[unLockAction] = true;
-       // if (unLockAction == Paction.DoubleJump)
-       //{
-       //     _playerMovement.SetDoubleJumpEnabled(lockAction[unLockAction]);
-       // }
     }
 }
