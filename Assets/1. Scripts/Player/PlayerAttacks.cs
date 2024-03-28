@@ -7,9 +7,10 @@ public class PlayerAttacks : MonoBehaviour
     private PlayerAnimations playerAnimations;
     private PlayerMovement playerMovement;
     private PlayerStatus playerStatus;
+    private Rigidbody2D rb;
 
-    [SerializeField] GameObject bulletPref;
-    [SerializeField] GameObject ChargedBulletPref;
+    [SerializeField] private GameObject bulletPref;
+    [SerializeField] private GameObject ChargedBulletPref;
 
     [SerializeField] private float ShotPower = 15f;
     [SerializeField] private float fireDelay = 0.1f;
@@ -22,9 +23,14 @@ public class PlayerAttacks : MonoBehaviour
 
     [SerializeField] private Collider2D meleeAttackCollider;
     [SerializeField] private Collider2D jumpAttackCollider;
+    [SerializeField] private Collider2D deflectZoneCollider;
+
     [SerializeField] private Transform rangeAttackPosition;
 
     private bool canJumpAttack = true;
+
+    private float lastDeflectTime = 0f;
+    [SerializeField] private float deflectCooldown = 0.5f;
 
 
     private void Start()
@@ -32,9 +38,11 @@ public class PlayerAttacks : MonoBehaviour
         playerAnimations = GetComponent<PlayerAnimations>();
         playerMovement = GetComponent<PlayerMovement>();
         playerStatus = GetComponent<PlayerStatus>();
+        rb = GetComponent<Rigidbody2D>();
 
         meleeAttackCollider.enabled = false;
         jumpAttackCollider.enabled = false;
+        deflectZoneCollider.enabled = false;
     }
 
     private void Update()
@@ -76,7 +84,6 @@ public class PlayerAttacks : MonoBehaviour
 
     public void StartCharging()
     {
-        Debug.Log("차지 시작");
         isCharging = true;
     }
     public void ReleaseCharge()
@@ -85,7 +92,7 @@ public class PlayerAttacks : MonoBehaviour
         if (chargeTime >= maxChargeTime)
         {
             ChargeShot();
-            Debug.Log("차지 완료");
+            // 차지 완료 효과 TODO
         }
         else
         {
@@ -99,6 +106,7 @@ public class PlayerAttacks : MonoBehaviour
     public void ChargeShot()
     {
         playerAnimations.Charging(false);
+        playerAnimations.FireEffect();
         playerStatus.UseStamina(25);
 
         Vector3 direction = transform.right * transform.localScale.x; // 플레이어의 방향에 따라 발사 방향 결정
@@ -113,8 +121,9 @@ public class PlayerAttacks : MonoBehaviour
 
     public void Attack()
     {
+        
         if (playerMovement.IsGround())
-        meleeAttackCollider.enabled = true;
+            meleeAttackCollider.enabled = true;
         Invoke("DisableAttack", 0.25f);
         playerAnimations.Attacking();
     }
@@ -128,7 +137,9 @@ public class PlayerAttacks : MonoBehaviour
     {
         if (canJumpAttack && !playerMovement.IsGround() && playerStatus.Stamina >= 25)
         {
+            Debug.Log("점프어택");
             jumpAttackCollider.enabled = true;
+
             canJumpAttack = false;
             playerStatus.UseStamina(25);
 
@@ -140,11 +151,30 @@ public class PlayerAttacks : MonoBehaviour
         else
         {
             Attack();
+
         }
     }
 
     private void DisableJumpAttack()
     {
         jumpAttackCollider.enabled = false;
+    }
+
+    public void Deflect()
+    {
+        if (Time.time - lastDeflectTime >= deflectCooldown && playerStatus.Stamina >= 25)
+        {
+            lastDeflectTime = Time.time;
+            playerAnimations.Deflection();
+            StartCoroutine(OnDeflectZone());
+            playerStatus.UseStamina(25);
+        }
+    }
+
+    private IEnumerator OnDeflectZone()
+    {
+        deflectZoneCollider.enabled = true;
+        yield return new WaitForSeconds(0.5f);
+        deflectZoneCollider.enabled = false;
     }
 }

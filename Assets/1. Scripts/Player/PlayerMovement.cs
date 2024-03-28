@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour, IsGroundable
     private bool isDashCooldownComplete = true;  // 대쉬 쿨다운이 완료되었는지
     [SerializeField] private float dashPower = 24f;
     [SerializeField] private float dashTime = 0.2f;
-    [SerializeField] private float dashCooldown = 1f;
+    [SerializeField] private float dashCooldown = 0.5f;
     private float dashStartTime; // 대쉬 시작 시간
 
     private float originalGravityScale; // 기본 중력 값
@@ -114,6 +114,7 @@ public class PlayerMovement : MonoBehaviour, IsGroundable
 
     public void Move(float inputX)
     {
+
         // 넉백 중이거나 대쉬 중일 때는 이동 x
         if (isKnockedBack || isDashing) return;
 
@@ -137,6 +138,7 @@ public class PlayerMovement : MonoBehaviour, IsGroundable
                 // 정지 상태
                 rb.velocity = new Vector2(0, rb.velocity.y);
                 playerAnimations.Moving(false);
+
             }
         }
     }
@@ -158,11 +160,6 @@ public class PlayerMovement : MonoBehaviour, IsGroundable
             hasJumped = true;
             playerAnimations.Jumping();
         }
-
-        //if ((!isGrounded && canDoubleJump && jumpCount > 0 && jumpCount < playerStatus.MaxJumpCount && playerStatus.Stamina >= 25))
-        //{
-        //    DoubleJump();
-        //}
     }
 
     public void DoubleJump()
@@ -172,7 +169,7 @@ public class PlayerMovement : MonoBehaviour, IsGroundable
             rb.velocity = new Vector2(rb.velocity.x, 0); // 수직 속도 초기화
             rb.AddForce(Vector2.up * playerStatus.JumpPower, ForceMode2D.Impulse);
 
-            playerStatus.UseStamina(25);
+            //playerStatus.UseStamina(25);
             jumpCount++;
 
             playerAnimations.Jumping();
@@ -189,6 +186,8 @@ public class PlayerMovement : MonoBehaviour, IsGroundable
             // 대쉬가 가능하고 현재 대쉬 중이 아닐 때 + 플레이어 스태미너 25이상
         {
             isDashing = true;
+
+
 
             gameObject.layer = 18; // 무적 레이어
 

@@ -19,5 +19,6 @@ public enum Paction
     Dash,
     RangeAttack,
     ChargeShot,
-    JumpAttack
+    JumpAttack,
+    Deflect
 }
