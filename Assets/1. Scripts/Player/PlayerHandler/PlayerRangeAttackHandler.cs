@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class PlayerRangeAttackHandler : MonoBehaviour
 {
+    [Header("Range Attack Parameters")]
     [SerializeField] private GameObject RangeHitEffect; // 히트 효과 프리팹
     [SerializeField] private bool isChargeShot = false; // 차지샷 프리팹은 true
 
     PlayerStatus playerStatus;
+    private List<Coroutine> hitCoroutines = new List<Coroutine>();
 
     // Start is called before the first frame update
     void Start()
@@ -30,18 +32,52 @@ public class PlayerRangeAttackHandler : MonoBehaviour
                 Instantiate(RangeHitEffect, transform.position, Quaternion.identity);
                 Destroy(gameObject);
             }
-
         }
 
         else if (((1 << collision.gameObject.layer) & (1 << 7)) != 0) // 7: 몬스터
         {
-            Instantiate(RangeHitEffect, transform.position, Quaternion.identity); // 히트 효과 생성
-            // collision.SendMessage("Demaged", 1); // Demaged 함수 호출, 원거리 공격력(1, 임시)만큼 피해  TODO
-            
-            if (!isChargeShot) 
+            if (isChargeShot) // 차지 샷
             {
+                Coroutine hitCoroutine = StartCoroutine(MultiHit(collision));
+                hitCoroutines.Add(hitCoroutine);
+            }
+            else // 일반 샷
+            {
+                HitEffectAndDamage(collision);
                 Destroy(gameObject);
             }
         }
+    }
+
+    private IEnumerator MultiHit(Collider2D collision)
+    {
+        while (collision != null && gameObject != null)
+        {
+            HitEffectAndDamage(collision);
+            yield return new WaitForSeconds(0.05f);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (((1 << collision.gameObject.layer) & (1 << 7)) != 0) // 7: 몬스터
+        {
+            StopAllCoroutines();
+            hitCoroutines.Clear();
+        }
+    }
+
+    private void HitEffectAndDamage(Collider2D collision)
+    {
+        Vector3 bulletColliderCenter = GetComponent<Collider2D>().bounds.center;
+        Vector3 monsterColliderCenter = collision.bounds.center;
+
+        Vector3 directionToMonster = (monsterColliderCenter - bulletColliderCenter).normalized;
+
+        Vector3 hitEffectPosition = monsterColliderCenter - directionToMonster * 0.2f;
+
+        Instantiate(RangeHitEffect, hitEffectPosition, Quaternion.identity);
+
+        // collision.SendMessage("Damaged", 1);
     }
 }

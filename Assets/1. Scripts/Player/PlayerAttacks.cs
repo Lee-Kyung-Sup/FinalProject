@@ -1,53 +1,59 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class PlayerAttacks : MonoBehaviour
 {
     private PlayerAnimations playerAnimations;
     private PlayerMovement playerMovement;
     private PlayerStatus playerStatus;
-    private Rigidbody2D rb;
 
+    [Header("Bullet Setting")]
     [SerializeField] private GameObject bulletPref;
     [SerializeField] private GameObject ChargedBulletPref;
 
+    [Header("Attack Parameter")]
     [SerializeField] private float ShotPower = 15f;
-    [SerializeField] private float fireDelay = 0.1f;
-    private float lastFireTime = 0;
-
-    private bool isCharging = false;
+    [SerializeField] private float fireDelay = 0.15f;
     [SerializeField] private float ChargeShotPower = 20f;
-    private float chargeTime = 0f;
-    [SerializeField] private float maxChargeTime = 2f;
+    [SerializeField] private float maxChargeTime = 1.5f;
+    [SerializeField] private float deflectCooldown = 0.5f;
 
+    private float lastFireTime = 0;
+    private float chargeTime = 0f;
+    private float lastDeflectTime = 0f;
+
+    [Header("Hit Boxes & Position")]
     [SerializeField] private Collider2D meleeAttackCollider;
     [SerializeField] private Collider2D jumpAttackCollider;
     [SerializeField] private Collider2D deflectZoneCollider;
-
     [SerializeField] private Transform rangeAttackPosition;
 
+    [Header("Charging Effect")]
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    private Material originalMaterial;
+    [SerializeField] public Material chargingMaterial;
+    [SerializeField] public Color color1 = new Color(1f, 170f / 255f, 70f / 255f, 1f);
+    [SerializeField] public Color color2 = new Color(150f / 255f, 100f / 255f, 50f / 255f, 1f);
+
     private bool canJumpAttack = true;
-
-    private float lastDeflectTime = 0f;
-    [SerializeField] private float deflectCooldown = 0.5f;
-
+    private bool isCharging = false;
+    private bool isFullCharge = false;
 
     private void Start()
     {
         playerAnimations = GetComponent<PlayerAnimations>();
         playerMovement = GetComponent<PlayerMovement>();
         playerStatus = GetComponent<PlayerStatus>();
-        rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
 
-        meleeAttackCollider.enabled = false;
-        jumpAttackCollider.enabled = false;
-        deflectZoneCollider.enabled = false;
+        originalMaterial = spriteRenderer.material;
     }
 
     private void Update()
     {
-        if (playerMovement.IsGround())
+        if (playerMovement.IsGround() && !canJumpAttack)
         {
             canJumpAttack = true;
         }
@@ -60,6 +66,12 @@ public class PlayerAttacks : MonoBehaviour
             {
                 playerAnimations.Charging(true); // 충전 애니메이션 시작
             }
+        }
+        if (isCharging && !isFullCharge && chargeTime >= maxChargeTime)
+        {
+            isFullCharge = true;
+            spriteRenderer.material = chargingMaterial; // 차지 머테리얼로 변경
+            StartCoroutine(ChargingBlinkEffect()); // 색상 변경 코루틴 시작
         }
     }
 
@@ -89,10 +101,15 @@ public class PlayerAttacks : MonoBehaviour
     public void ReleaseCharge()
     {
         isCharging = false;
+        isFullCharge = false;
+        StopAllCoroutines();
+
+        spriteRenderer.material = originalMaterial;
+        spriteRenderer.color = Color.white;
+
         if (chargeTime >= maxChargeTime)
         {
             ChargeShot();
-            // 차지 완료 효과 TODO
         }
         else
         {
@@ -103,8 +120,22 @@ public class PlayerAttacks : MonoBehaviour
         playerAnimations.Charging(false);
     }
 
+    private IEnumerator ChargingBlinkEffect()
+    {
+        Debug.Log("깜빡임 시작");
+        while (isCharging)
+        {
+            spriteRenderer.material.SetColor("_Color", color1);
+            yield return new WaitForSeconds(0.05f);
+            spriteRenderer.material.SetColor("_Color", color2);
+            yield return new WaitForSeconds(0.05f);
+        }
+        spriteRenderer.material.SetColor("_Color", Color.white);
+    }
+
     public void ChargeShot()
     {
+        spriteRenderer.material = originalMaterial;
         playerAnimations.Charging(false);
         playerAnimations.FireEffect();
         playerStatus.UseStamina(25);
@@ -121,7 +152,6 @@ public class PlayerAttacks : MonoBehaviour
 
     public void Attack()
     {
-        
         if (playerMovement.IsGround())
             meleeAttackCollider.enabled = true;
         Invoke("DisableAttack", 0.25f);
@@ -143,7 +173,7 @@ public class PlayerAttacks : MonoBehaviour
             canJumpAttack = false;
             playerStatus.UseStamina(25);
 
-            Invoke("DisableJumpAttack", 0.4f);
+            StartCoroutine(MultiHitJumpAttack());
 
             playerAnimations.JumpAttacking();
             playerAnimations.JumpAttackEffect();
@@ -151,14 +181,27 @@ public class PlayerAttacks : MonoBehaviour
         else
         {
             Attack();
-
         }
     }
 
-    private void DisableJumpAttack()
+    private IEnumerator MultiHitJumpAttack()
     {
+        jumpAttackCollider.enabled = true;
+        yield return new WaitForSeconds(0.1f);
         jumpAttackCollider.enabled = false;
+        yield return new WaitForSeconds(0.1f);
+        jumpAttackCollider.enabled = true;
+        yield return new WaitForSeconds(0.1f);
+        jumpAttackCollider.enabled = false;
+        yield return new WaitForSeconds(0.1f);
+        jumpAttackCollider.enabled = true;
+        yield return new WaitForSeconds(0.1f);
+        jumpAttackCollider.enabled = false;
+
+        canJumpAttack = true;
     }
+
+
 
     public void Deflect()
     {

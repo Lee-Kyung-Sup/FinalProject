@@ -1225,7 +1225,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 0}
-  health: 3
   stamina: 100
   staminaRecoveryRate: 100
   staminaRecoveryDelay: 1
@@ -1269,14 +1268,14 @@ MonoBehaviour:
   bulletPref: {fileID: 2633405581603700037, guid: f574287d5d7544a48ac02a90207fdadc, type: 3}
   ChargedBulletPref: {fileID: 5730628734833746102, guid: a103c943f5b6c2242b2ceed650182a41, type: 3}
   ShotPower: 20
-  fireDelay: 0.1
+  fireDelay: 0.15
   ChargeShotPower: 28
   maxChargeTime: 1.5
+  deflectCooldown: 0.5
   meleeAttackCollider: {fileID: 6198198559188364953}
   jumpAttackCollider: {fileID: 1882601594729494635}
   deflectZoneCollider: {fileID: 5511129389222801695}
   rangeAttackPosition: {fileID: 4725015911969058207}
-  deflectCooldown: 0.5
 --- !u!1 &5354008962644317265
 GameObject:
   m_ObjectHideFlags: 0
@@ -1650,7 +1649,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7881519933033148006}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -1691,6 +1690,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meleeHitEffect: {fileID: 5024009746357069194, guid: ec3f674830402cc45bce805cf6493db7, type: 3}
+  hitInterval: 0.25
 --- !u!1 &8424520208955895740
 GameObject:
   m_ObjectHideFlags: 0
@@ -1765,7 +1765,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8695184988574916669}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -1816,6 +1816,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meleeHitEffect: {fileID: 2955623459812423943, guid: f5507a8c6a22c404ab324980c4e8a11b, type: 3}
+  hitInterval: 0.25
 --- !u!50 &3181884910156171366
 Rigidbody2D:
   serializedVersion: 4
