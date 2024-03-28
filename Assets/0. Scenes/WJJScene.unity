@@ -1436,7 +1436,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2629860545646752947, guid: 5ea784b956f4a564ea1a6ea255629d76, type: 3}
       propertyPath: color1.g
-      value: 0.6666667
+      value: 0.7058824
       objectReference: {fileID: 0}
     - target: {fileID: 2629860545646752947, guid: 5ea784b956f4a564ea1a6ea255629d76, type: 3}
       propertyPath: color1.r
@@ -1444,15 +1444,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2629860545646752947, guid: 5ea784b956f4a564ea1a6ea255629d76, type: 3}
       propertyPath: color2.b
-      value: 0.19607843
+      value: 0.15686275
       objectReference: {fileID: 0}
     - target: {fileID: 2629860545646752947, guid: 5ea784b956f4a564ea1a6ea255629d76, type: 3}
       propertyPath: color2.g
-      value: 0.39215687
+      value: 0.627451
       objectReference: {fileID: 0}
     - target: {fileID: 2629860545646752947, guid: 5ea784b956f4a564ea1a6ea255629d76, type: 3}
       propertyPath: color2.r
-      value: 0.5882353
+      value: 0.8627451
       objectReference: {fileID: 0}
     - target: {fileID: 2629860545646752947, guid: 5ea784b956f4a564ea1a6ea255629d76, type: 3}
       propertyPath: spriteRenderer

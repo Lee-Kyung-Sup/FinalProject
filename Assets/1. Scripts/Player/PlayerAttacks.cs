@@ -34,8 +34,8 @@ public class PlayerAttacks : MonoBehaviour
     [SerializeField] private SpriteRenderer spriteRenderer;
     private Material originalMaterial;
     [SerializeField] public Material chargingMaterial;
-    [SerializeField] public Color color1 = new Color(1f, 170f / 255f, 70f / 255f, 1f);
-    [SerializeField] public Color color2 = new Color(150f / 255f, 100f / 255f, 50f / 255f, 1f);
+    [SerializeField] public Color color1 = new Color(1f, 180f / 255f, 70f / 255f, 1f);
+    [SerializeField] public Color color2 = new Color(220f / 255f, 160f / 255f, 40f / 255f, 1f);
 
     private bool canJumpAttack = true;
     private bool isCharging = false;
@@ -114,7 +114,6 @@ public class PlayerAttacks : MonoBehaviour
         else
         {
             Fire();
-
         }
         chargeTime = 0f; // 충전 시간 리셋
         playerAnimations.Charging(false);
