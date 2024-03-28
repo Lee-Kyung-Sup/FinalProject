@@ -137,7 +137,7 @@ public class PlayerStatus : MonoBehaviour, IDamageable
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
-        if (collision.CompareTag("EnemyBullet") || collision.CompareTag("Monster"))
+        if (((1 << collision.gameObject.layer) & ((1 << 7) | (1 << 12))) != 0) // 7. 몬스터 ,  12. 에네미 불렛
         { 
 
             TakeDamage(1);

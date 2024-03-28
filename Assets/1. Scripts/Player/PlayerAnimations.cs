@@ -29,6 +29,7 @@ public class PlayerAnimations : MonoBehaviour
     private static readonly int Invincible = Animator.StringToHash("Invincible");
     private static readonly int Die = Animator.StringToHash("Die");
 
+    private static readonly int ShotEffect = Animator.StringToHash("ShotEffect");
 
 
     public void Moving(bool isMoving)
@@ -48,7 +49,7 @@ public class PlayerAnimations : MonoBehaviour
     public void Deflection()
     {
         animator[0].SetTrigger(Deflect);
-        animator[3].SetTrigger(Deflect);
+        animator[4].SetTrigger(Deflect);
     }
 
     public void Jumping()
@@ -78,6 +79,11 @@ public class PlayerAnimations : MonoBehaviour
     public void Fired()
     {
         animator[0].SetTrigger(Fire);
+    }
+
+    public void FireEffect()
+    {
+        animator[3].SetTrigger(ShotEffect);
     }
 
     public void GetHit()

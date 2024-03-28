@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
     }
     public void OnMove(InputAction.CallbackContext context)
     {
-        AudioManager.Instance.PlaySFX("Step"); // 걸음소리 JHP
+        //AudioManager.Instance.PlaySFX("Step"); // 걸음소리 JHP
         // 입력 벡터를 업데이트
         float inputX = context.ReadValue<Vector2>().x;
 
@@ -69,12 +69,12 @@ public class PlayerController : MonoBehaviour
             if (!_playerMovement.HasJumped()) 
             {
                 _playerMovement.Jump();
-                AudioManager.Instance.PlaySFX("Jump"); // 점프소리 JHP
+                //AudioManager.Instance.PlaySFX("Jump"); // 점프소리 JHP
             }
             else if (_playerMovement.HasJumped() && lockAction[Paction.DoubleJump]) 
             {
                 _playerMovement.DoubleJump();
-                AudioManager.Instance.PlaySFX("Jump"); // 점프소리 JHP
+                //AudioManager.Instance.PlaySFX("Jump"); // 점프소리 JHP
             }
         }
     }
@@ -84,7 +84,7 @@ public class PlayerController : MonoBehaviour
         if (context.performed && lockAction[Paction.Dash]) // 대시 버튼이 눌렸을 때만
         {
             _playerMovement.Dash();
-            AudioManager.Instance.PlaySFX("Dash"); // 대시소리 JHP
+            //AudioManager.Instance.PlaySFX("Dash"); // 대시소리 JHP
         }
     }
 
@@ -105,7 +105,7 @@ public class PlayerController : MonoBehaviour
             if (_isWeaponChange && lockAction[Paction.MeleeAttack])
             {
                 _playerAttacks.Attack();
-                AudioManager.Instance.PlaySFX("Attack"); // 근접공격소리 JHP
+                //AudioManager.Instance.PlaySFX("Attack"); // 근접공격소리 JHP
 
             }
             if (_isWeaponChange && !_playerMovement.IsGround() && lockAction[Paction.JumpAttack])

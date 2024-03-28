@@ -20,7 +20,7 @@ public class PlayerMeleeAttackHandler : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Monster"))
+        if (((1 << collision.gameObject.layer) & (1 << 7)) != 0)
         {
             Instantiate(meleeHitEffect, collision.transform.position, Quaternion.identity);
 

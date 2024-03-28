@@ -84,7 +84,6 @@ public class PlayerAttacks : MonoBehaviour
 
     public void StartCharging()
     {
-        Debug.Log("차지 시작");
         isCharging = true;
     }
     public void ReleaseCharge()
@@ -93,7 +92,7 @@ public class PlayerAttacks : MonoBehaviour
         if (chargeTime >= maxChargeTime)
         {
             ChargeShot();
-            Debug.Log("차지 완료");
+            // 차지 완료 효과 TODO
         }
         else
         {
@@ -107,6 +106,7 @@ public class PlayerAttacks : MonoBehaviour
     public void ChargeShot()
     {
         playerAnimations.Charging(false);
+        playerAnimations.FireEffect();
         playerStatus.UseStamina(25);
 
         Vector3 direction = transform.right * transform.localScale.x; // 플레이어의 방향에 따라 발사 방향 결정
