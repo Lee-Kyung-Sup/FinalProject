@@ -7,6 +7,7 @@ public class EnemyIceGolem : Enemy
     public IceGolemIdle Idle { get; private set; }
     public IceGolemMove Move { get; private set; }
     public IceGolemBattle Battle { get; private set; }
+    public IceGolemAttack Attack { get; private set; }
 
     protected override void Awake()
     {
@@ -14,6 +15,7 @@ public class EnemyIceGolem : Enemy
         Idle = new IceGolemIdle(this,stateMachine,"Idle",this);
         Move = new IceGolemMove(this,stateMachine,"Move",this);
         Battle = new IceGolemBattle(this, stateMachine, "Move", this);
+        Attack = new IceGolemAttack(this, stateMachine, "Attack", this);
     }
     protected override void Start()
     {
@@ -25,6 +27,33 @@ public class EnemyIceGolem : Enemy
         base.Update();
     }
 }
+public class IceGolemGroundState : EnemyState
+{
+    protected EnemyIceGolem iceGolem;
+    protected Transform player;
+    public IceGolemGroundState(Enemy enemyBase, EnemyStateMachine stateMachine, string animBoolName, EnemyIceGolem iceGolem) : base(enemyBase, stateMachine, animBoolName)
+    {
+        this.iceGolem = iceGolem;
+    }
+    public override void Enter()
+    {
+        base.Enter();
+        player = GameManager.instance.player.transform;
+    }
+    public override void Exit()
+    {
+        base.Exit();
+    }
+    public override void Update()
+    {
+        base.Update();
+        if (iceGolem.IsPlayerDetected() || Vector2.Distance(iceGolem.transform.position, player.position) < 3)
+        {
+            stateMachine.ChangeState(iceGolem.Battle);
+        }
+    }
+}
+
 public class IceGolemIdle : IceGolemGroundState
 {
     public IceGolemIdle(Enemy enemyBase, EnemyStateMachine stateMachine, string animBoolName, EnemyIceGolem iceGolem) : base(enemyBase, stateMachine, animBoolName, iceGolem)
@@ -76,17 +105,17 @@ public class IceGolemMove : IceGolemGroundState
 }
 public class IceGolemBattle : EnemyState
 {
-    EnemyIceGolem IceGolem;
+    EnemyIceGolem iceGolem;
     Transform player;
     int moveDir;
-    public IceGolemBattle(Enemy enemyBase, EnemyStateMachine stateMachine, string animBoolName, EnemyIceGolem IceGolem) : base(IceGolem, stateMachine, animBoolName)
+    public IceGolemBattle(Enemy enemyBase, EnemyStateMachine stateMachine, string animBoolName, EnemyIceGolem iceGolem) : base(iceGolem, stateMachine, animBoolName)
     {
-        this.IceGolem = IceGolem;
+        this.iceGolem = iceGolem;
     }
     public override void Enter()
     {
         base.Enter();
-        player = IceGolem.IsPlayerDetected().transform;
+        player = GameManager.instance.player.transform;
     }
     public override void Exit()
     {
@@ -95,15 +124,25 @@ public class IceGolemBattle : EnemyState
     public override void Update()
     {
         base.Update();
-        if (enemyBase.IsPlayerDetected())
+        if (iceGolem.IsPlayerDetected())
         {
-            if (IceGolem.IsPlayerDetected().distance < enemyBase.attackDistance)
+            stateTimer = iceGolem.BattleTime;
+            if (iceGolem.IsPlayerDetected().distance < iceGolem.attackDistance)
             {
-                enemyBase.ZeroVelocity();
-                return;
+                if (CanAttack())
+                {
+                    stateMachine.ChangeState(iceGolem.Attack);
+                }
             }
         }
-        if (player.position.x > enemyBase.transform.position.x)
+        else
+        {
+            if (stateTimer < 0 || Vector2.Distance(player.position,iceGolem.transform.position) > 15)
+            {
+                stateMachine.ChangeState(iceGolem.Idle);
+            }
+        }
+        if (player.position.x > iceGolem.transform.position.x)
         {
             moveDir = 1;
         }
@@ -111,6 +150,41 @@ public class IceGolemBattle : EnemyState
         {
             moveDir = -1;
         }
-        enemyBase.SetVelocity(enemyBase.moveSpeed * moveDir, enemyBase.Rigi.velocity.y);
+        iceGolem.SetVelocity(iceGolem.moveSpeed * moveDir, iceGolem.Rigi.velocity.y);
+    }
+    bool CanAttack()
+    {
+        if (Time.time >= iceGolem.lastTimeAttacked + iceGolem.attackDelay)
+        {
+            iceGolem.lastTimeAttacked = Time.time;
+            return true;
+        }
+        return false;
+    }
+}
+public class IceGolemAttack : EnemyState
+{
+    EnemyIceGolem iceGolem;
+    public IceGolemAttack(Enemy enemyBase, EnemyStateMachine stateMachine, string animBoolName, EnemyIceGolem IceGolem) : base(IceGolem, stateMachine, animBoolName)
+    {
+        this.iceGolem = IceGolem;
+    }
+    public override void Enter()
+    {
+        base.Enter();
+    }
+    public override void Exit()
+    {
+        base.Exit();
+        iceGolem.lastTimeAttacked = Time.time;
+    }
+    public override void Update()
+    {
+        base.Update();
+        iceGolem.SetZeroVelocity();
+        if (triggerCalled)
+        {
+            stateMachine.ChangeState(iceGolem.Battle);
+        }
     }
 }

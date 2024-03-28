@@ -31,7 +31,7 @@ public class Entity : MonoBehaviour
 
     }
 
-    public void ZeroVelocity() => Rigi.velocity = new Vector2(0, 0);
+    public void SetZeroVelocity() => Rigi.velocity = new Vector2(0, 0);
     public void SetVelocity(float xVelocity,float yVelocity)
     {
         Rigi.velocity = new Vector2(xVelocity, yVelocity);
