@@ -93,12 +93,10 @@ public class BossTwo : MonoBehaviour
         switch (patternIndex)
         {
             case 0:
-                anim.SetTrigger("Fire");
-                //DragonFire();
+                DragonFire();
                 break;
             case 1:
-                anim.SetTrigger("Attack");
-                //DragonAttack();
+                DragonAttack();
                 break;
             case 2:
                 DragonBurn();
@@ -125,12 +123,13 @@ public class BossTwo : MonoBehaviour
 
         if (curPatternCount < maxPatternCount[patternIndex])
         {
-           
+            anim.SetTrigger("Fire");
             Invoke("DragonFire", 3);
            
         }
         else
         {
+            anim.SetTrigger("Run");
             Invoke("Think", 2);
         }
     }
@@ -140,17 +139,18 @@ public class BossTwo : MonoBehaviour
         Debug.Log("DA");
         //드래곤이 근접 공격
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        rb.velocity = new Vector2(transform.position.x * 7f, 1.5f);
+        //rb.velocity = new Vector2(transform.position.x * 7f, 1.5f);
         curPatternCount++;
 
         if (curPatternCount < maxPatternCount[patternIndex])
         {
-
+            anim.SetTrigger("Attack");
             Invoke("DragonAttack", 3);
 
         }
         else
         {
+            anim.SetTrigger("Run");
             Invoke("Think", 2);
         }
     }
