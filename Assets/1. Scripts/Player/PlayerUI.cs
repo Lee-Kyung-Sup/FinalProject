@@ -37,6 +37,7 @@ public class PlayerUI : MonoBehaviour
     public void OnGameOverUI()
     {
         gameOverUI.SetActive(true);
+        AudioManager.Instance.PlaySFX("GameOver");
     }
 
 
@@ -48,7 +49,9 @@ public class PlayerUI : MonoBehaviour
     public void RetryGame()
     {
         Time.timeScale = 1;
+        AudioManager.Instance.PlayBGM("FirstChapter"); // 점프소리 JHP
         SceneManager.LoadScene("2. GameScenes");
+
     }
 }
 

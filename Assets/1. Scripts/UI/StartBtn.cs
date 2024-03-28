@@ -12,7 +12,10 @@ public class StartBtn : MonoBehaviour
 
     public void StartGame()
     {
-            SceneManager.LoadScene("2. GameScenes");
+
+        AudioManager.Instance.StopBGM();
+        AudioManager.Instance.PlayBGM("FirstChapter");
+        SceneManager.LoadScene("2. GameScenes");
     }
 
 }
