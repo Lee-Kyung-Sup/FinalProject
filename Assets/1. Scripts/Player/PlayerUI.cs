@@ -37,6 +37,7 @@ public class PlayerUI : MonoBehaviour
     public void OnGameOverUI()
     {
         gameOverUI.SetActive(true);
+        AudioManager.Instance.PlaySFX("GameOver");
     }
 
 
@@ -48,9 +49,9 @@ public class PlayerUI : MonoBehaviour
     public void RetryGame()
     {
         Time.timeScale = 1;
-        SceneManager.LoadScene("2. GameScenes"); // 메인 게임 씬으로
-        // 현재 '본인이 작업하는 씬'에서 위의 GameScenes으로 넘어갈 경우,
-        // 작업하던 씬의 메인 카메라를 가져가기 때문에 메인 카메라 2개 중복으로 오류 발생함.
+        AudioManager.Instance.PlayBGM("FirstChapter"); // 점프소리 JHP
+        SceneManager.LoadScene("2. GameScenes");
+
     }
 }
 
