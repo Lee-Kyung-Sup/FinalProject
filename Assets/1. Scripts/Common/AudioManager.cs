@@ -25,11 +25,11 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        PlayMusic("FirstChapter");
+        PlayBGM("Intro");
     }
 
 
-    public void PlayMusic(String name)
+    public void PlayBGM(string name)
     {
         Sound s = Array.Find(bgmSounds, x => x.name == name);
 
@@ -48,7 +48,7 @@ public class AudioManager : MonoBehaviour
 
     public void PlaySFX(string name)
     {
-        Sound s = Array.Find(bgmSounds, x => x.name == name);
+        Sound s = Array.Find(sfxSounds, x => x.name == name);
 
         if (s == null)
         {
@@ -82,5 +82,8 @@ public class AudioManager : MonoBehaviour
         sfxSource.volume = volume;
     }
 
-
+    public void StopBGM()
+    {
+        bgmSource.Stop(); 
+    }
 }

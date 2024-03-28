@@ -114,6 +114,7 @@ public class PlayerMovement : MonoBehaviour, IsGroundable
 
     public void Move(float inputX)
     {
+
         // 넉백 중이거나 대쉬 중일 때는 이동 x
         if (isKnockedBack || isDashing) return;
 
@@ -137,6 +138,7 @@ public class PlayerMovement : MonoBehaviour, IsGroundable
                 // 정지 상태
                 rb.velocity = new Vector2(0, rb.velocity.y);
                 playerAnimations.Moving(false);
+
             }
         }
     }
@@ -184,6 +186,8 @@ public class PlayerMovement : MonoBehaviour, IsGroundable
             // 대쉬가 가능하고 현재 대쉬 중이 아닐 때 + 플레이어 스태미너 25이상
         {
             isDashing = true;
+
+
 
             gameObject.layer = 18; // 무적 레이어
 

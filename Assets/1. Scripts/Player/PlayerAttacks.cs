@@ -121,6 +121,7 @@ public class PlayerAttacks : MonoBehaviour
 
     public void Attack()
     {
+        
         if (playerMovement.IsGround())
             meleeAttackCollider.enabled = true;
         Invoke("DisableAttack", 0.25f);
@@ -138,6 +139,7 @@ public class PlayerAttacks : MonoBehaviour
         {
             Debug.Log("점프어택");
             jumpAttackCollider.enabled = true;
+
             canJumpAttack = false;
             playerStatus.UseStamina(25);
 
@@ -149,6 +151,7 @@ public class PlayerAttacks : MonoBehaviour
         else
         {
             Attack();
+
         }
     }
 
