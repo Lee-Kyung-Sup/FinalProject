@@ -6,16 +6,27 @@ using static UnityEditor.Progress;
 public class EnemyAnimationTriggers : MonoBehaviour
 {
     EnemyIceGolem enemy => GetComponentInParent<EnemyIceGolem>();
+    LayerMask pLayer;
+    private void Start()
+    {
+        pLayer = LayerMask.GetMask("Player");
+    }
     void AnimationTrigger()
     {
         enemy.AnimationFinishTrigger();
     }
     void AttackTrigger()
     {
-        Collider2D col = Physics2D.OverlapCircle(enemy.attackCheck.position, enemy.attackCheckRadius);
-        if (col.TryGetComponent<IDamageable>(out IDamageable a))
+        Collider2D[] col = Physics2D.OverlapCircleAll(enemy.attackCheck.position, enemy.attackCheckRadius);
+        foreach (var item in col)
         {
-            a.TakeDamage(1);
+            if (pLayer.value == (pLayer.value | (1 << item.gameObject.layer)))
+            {
+                if (item.TryGetComponent<IDamageable>(out IDamageable a))
+                {
+                    a.TakeDamage(enemy.dmg);
+                }
+            }
         }
     }
 }

@@ -12,7 +12,7 @@ public class Enemy : Entity,IDamageable
     [Header("AttackThings")]
     public float attackDistance;
     public float attackDelay;
-    public float dmg;
+    public int dmg;
     public float hp;
     [HideInInspector]public float lastTimeAttacked;
     public EnemyStateMachine stateMachine { get; private set; }
