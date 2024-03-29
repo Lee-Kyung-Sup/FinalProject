@@ -447,7 +447,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1895874880365318448}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -1502,7 +1502,7 @@ MonoBehaviour:
   fireDelay: 0.15
   ChargeShotPower: 28
   maxChargeTime: 1.5
-  attackDelay: 0.2
+  attackDelay: 0.18
   comboDelay: 0.5
   deflectCooldown: 0.5
   meleeAttackCollider: {fileID: 6198198559188364953}
@@ -2345,7 +2345,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8695184988574916669}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
