@@ -18,6 +18,7 @@ public class BossTwo : MonoBehaviour
     protected CircleCollider2D circleCollider;
     protected CapsuleCollider2D capsuleCollider;
     protected Rigidbody2D rb;
+    protected Vector2 initialPosition;
 
     public int patternIndex;
     public int curPatternCount;
@@ -26,14 +27,14 @@ public class BossTwo : MonoBehaviour
     void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-
+        capsuleCollider = GetComponent<CapsuleCollider2D>();
     }
 
     void Start()
     {
         objectManager = GameManager.instance.objectManager;
         anim = GetComponent<Animator>();
-        
+        initialPosition = transform.position;
     }
 
     void Update()
@@ -60,7 +61,7 @@ public class BossTwo : MonoBehaviour
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         rb.velocity = Vector2.zero;
 
-        Invoke("Think", 1);
+        Invoke("Think", 2);
     }
 
     //패턴 케이스 로직
@@ -84,27 +85,25 @@ public class BossTwo : MonoBehaviour
         //    patternIndex = 3; // 나머지 패턴 실행
         //}
 
-
+        anim.SetTrigger("Run");
         //현재 패턴이 패턴 갯수를 넘기면 0으로 돌아오는 로직
-        patternIndex = patternIndex == 3 ? 0 : patternIndex + 1;
+        patternIndex = patternIndex == 4 ? 0 : patternIndex + 1;
 
         curPatternCount = 0;
-        anim.SetTrigger("Run");
+       // anim.SetTrigger("Run");
         switch (patternIndex)
         {
-            case 0:
-                anim.SetTrigger("Fire");
-                //DragonFire();
-                break;
             case 1:
-                anim.SetTrigger("Attack");
-                //DragonAttack();
+                DragonFire();
                 break;
             case 2:
-                DragonBurn();
+                DragonAttack();
                 break;
             case 3:
-                DragonRun();
+                DragonBurn();
+                break;
+            case 4:
+                DragonRunAttack();
                 break;
 
         }
@@ -122,15 +121,16 @@ public class BossTwo : MonoBehaviour
         rb.AddForce(transform.right * 5, ForceMode2D.Impulse);
 
         curPatternCount++;
-
+        
         if (curPatternCount < maxPatternCount[patternIndex])
         {
-           
+            anim.SetTrigger("Fire");
             Invoke("DragonFire", 3);
            
         }
         else
         {
+           
             Invoke("Think", 2);
         }
     }
@@ -140,18 +140,24 @@ public class BossTwo : MonoBehaviour
         Debug.Log("DA");
         //드래곤이 근접 공격
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        rb.velocity = new Vector2(transform.position.x * 7f, 1.5f);
+
         curPatternCount++;
 
         if (curPatternCount < maxPatternCount[patternIndex])
         {
-
-            Invoke("DragonAttack", 3);
-
+           
+            rb.velocity = new Vector2(transform.localScale.x * 7f, 1.5f);
+            anim.SetTrigger("Attack");
+            Invoke("DragonAttack", 2);
+            
         }
         else
         {
+            rb.velocity = new Vector2(transform.localScale.x * -7f, 1.5f);
+
             Invoke("Think", 2);
+            
+
         }
     }
 
@@ -159,12 +165,65 @@ public class BossTwo : MonoBehaviour
     {
         Debug.Log("DB");
         //드래곤이 불길을 뿜음
+        for (int index = 0; index < 5; index++)
+        {     
+            GameObject bulletD = objectManager.MakeObj("BulletBossBT");
+            Rigidbody2D rb = bulletD.GetComponent<Rigidbody2D>();
+            rb.gravityScale = 0f;
+            bulletD.transform.position = transform.position + Vector3.right * 7f;
+           // Vector2 dirVec = player.transform.position - transform.position;
+            Vector2 ranVec = new Vector2(Random.Range(0f, 1f), Random.Range(-5f, 5f));
+            //dirVec += ranVec;
+            rb.AddForce(ranVec.normalized * 6, ForceMode2D.Impulse);
+        }
+            
+        curPatternCount++;
+        //패턴이 maxpattenrcount까지 가지 않았을 때 다시 실행
+        if (curPatternCount < maxPatternCount[patternIndex])
+        {
+            anim.SetTrigger("Burn");
+            Invoke("DragonBurn", 1f);
+        }
+        else
+        {
+           
+            Invoke("Think", 2);
+        }
     }
 
-    void DragonRun()
+    private Vector2 _targetPosition;
+    public float moveSpeed = 3f;
+    public bool isPatrolling = false;
+    void DragonRunAttack()
     {
         Debug.Log("DR");
         //드래곤이 플레이어 가까이 다가왔다가 돌아감
+       
+        curPatternCount++;
+        //패턴이 maxpattenrcount까지 가지 않았을 때 다시 실행
+        if (curPatternCount < maxPatternCount[patternIndex])
+        {
+            anim.SetTrigger("RunAttack");
+            if (!isPatrolling)
+            {
+                isPatrolling = true;
+                InvokeRepeating("Patrol", 1f, 4f); 
+            }
+        }
+        else
+        {
+            CancelInvoke("Patrol");
+            Invoke("Think", 2);
+        }
+
+    }
+
+    public void Patrol()
+    {
+        float randomX = Random.Range(0f, 5f);
+        _targetPosition = new Vector2(randomX, 0);
+        transform.position = Vector2.Lerp(transform.position, _targetPosition, moveSpeed * Time.deltaTime);
+        Invoke("DragonRunAttack", 3f);
     }
 
     public void EnableAttackCollider()
@@ -178,6 +237,12 @@ public class BossTwo : MonoBehaviour
         capsuleCollider.enabled = false;
     }
 
+    public void returnInitialPosition()
+    {
+        float distance = Vector2.Distance(transform.position, initialPosition);
+        rb.velocity = (initialPosition - (Vector2)transform.position).normalized * distance * 1f;
+       
+    }
     public void Hit(int dmg)
     {
         if (currentHp <= 0)
@@ -207,8 +272,9 @@ public class BossTwo : MonoBehaviour
 
         //{
         //    gameObject.SetActive(false);
-        //    transform.rotation = Quaternion.identity;
+        //    //transform.rotation = Quaternion.identity;
         //}
+       
         if (collision.transform.tag == ("PlayerAttackBox"))
         {
             Hit(10); // 임시로 데미지 10함

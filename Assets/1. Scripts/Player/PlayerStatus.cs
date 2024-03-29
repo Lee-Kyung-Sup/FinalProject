@@ -5,14 +5,25 @@ using UnityEngine.UI;
 
 public class PlayerStatus : MonoBehaviour, IDamageable
 {
+    public class Stat
+    {
+        public int health { get; set; }
+
+        public Stat(int health)
+        {
+            this.health = health; 
+        }
+    }
+
     private PlayerAnimations playerAnimations;
     private PlayerMovement playerMovement;
     private PlayerUI playerUI;
+
+    [Header("Components")]
     [SerializeField] private SpriteRenderer spriteRenderer;
-    private Rigidbody2D rb;
 
-
-    [SerializeField] private int health = 3;
+    [Header("Stats Parameter")]
+    public Stat playerHealth;
     [SerializeField] private float stamina = 100;
     [SerializeField] private float staminaRecoveryRate = 100;
     [SerializeField] private float staminaRecoveryDelay = 1f;
@@ -21,30 +32,38 @@ public class PlayerStatus : MonoBehaviour, IDamageable
     private float lastStaminaUseTime;
     private float maxStamina;
 
+    [Header("Movement Parameter")]
     [SerializeField] private float speed = 10f;
     [SerializeField] private float jumpPower = 20f;
     [SerializeField] private int maxJumpCount = 2;
+
+    private bool isDamaged = false;
 
 
     public float Speed => speed;
     public float JumpPower => jumpPower;
     public int MaxJumpCount => maxJumpCount;
     public float Stamina => stamina;
-
     public int Atk => atk;
+
+    void StatInit()
+    {
+        playerHealth = new Stat(3);
+    }
 
     void Start()
     {
+        StatInit();
+
         playerUI = FindObjectOfType<PlayerUI>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         playerMovement = GetComponent<PlayerMovement>();
         playerAnimations = GetComponent<PlayerAnimations>();
-        rb = GetComponent<Rigidbody2D>();
 
         lastStaminaUseTime = Time.time;
         maxStamina = stamina;
-        //hitCollider = GetComponent<Collider2D>();
     }
+
 
     void Update()
     {
@@ -57,23 +76,26 @@ public class PlayerStatus : MonoBehaviour, IDamageable
         playerUI.UpdateStaminaUI(Stamina);
     }
 
-    void FixedUpdate()
-    {
-
-    }
-
     public void TakeDamage(int damage)
     {
-        OnInvincible();
-        playerAnimations.GetHit();
-        health -= damage;
-        playerUI.UpdateHeartUI(health);
+        if (isDamaged) return;
 
-        if (health <= 0)
+        OnInvincible();
+        isDamaged = true;
+        playerAnimations.GetHit();
+        playerHealth.health -= damage;
+        playerUI.UpdateHeartUI(playerHealth.health);
+
+        if (playerHealth.health <= 0)
         {
             PlayerDead();
         }
-
+        StartCoroutine(ResetDamage()); // 일정 시간 후에 isDamaged 리셋
+    }
+    private IEnumerator ResetDamage()
+    {
+        yield return new WaitForSeconds(3.0f); 
+        isDamaged = false;
     }
 
     public void OnInvincible()
@@ -137,7 +159,7 @@ public class PlayerStatus : MonoBehaviour, IDamageable
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
-        if (((1 << collision.gameObject.layer) & ((1 << 7) | (1 << 12))) != 0) // 7. 몬스터 ,  12. 에네미 불렛
+        if (((1 << collision.gameObject.layer) & (1 << 12)) != 0) // 7. 몬스터 ,  12. 에네미 불렛
         { 
 
             TakeDamage(1);

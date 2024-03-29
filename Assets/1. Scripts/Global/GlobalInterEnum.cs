@@ -20,5 +20,6 @@ public enum Paction
     RangeAttack,
     ChargeShot,
     JumpAttack,
-    Deflect
+    Deflect,
+    ComboAttack
 }
