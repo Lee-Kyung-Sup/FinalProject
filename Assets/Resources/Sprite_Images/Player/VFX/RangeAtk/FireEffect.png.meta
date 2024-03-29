@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 657a5bd4e8c3ada43910081e281a7555
+guid: 76945e2618aa5c44f927bdb06bf0f63b
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 12
+  spritePixelsToUnits: 20
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -110,196 +110,70 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 11
+      name: FireEffect_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 64
+        y: 0
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4a0c10df28d2e4040a296f8b8b58eab6
-      internalID: -241051938
+      spriteID: 96820bf3fa9566c4f8ddc041e18f9708
+      internalID: 792896007
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 12
+      name: FireEffect_1
       rect:
         serializedVersion: 2
         x: 64
-        y: 64
+        y: 0
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2d35ea00deca72b42b240f44d8bb1611
-      internalID: -705975912
+      spriteID: 434b33b8aac0a2c478c223523d37283f
+      internalID: -1095783634
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 13
+      name: FireEffect_2
       rect:
         serializedVersion: 2
         x: 128
-        y: 64
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f0c23478ff3716c468ffb9955b895f93
-      internalID: 292913975
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 14
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 64
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8cfc6374af9fa344bbf3da7d961435d5
-      internalID: 1142508852
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 15
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 64
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d425a9d281661a2459fd3d09a0f13661
-      internalID: -263910782
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 16
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 64
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 668b9385bd7a3b64d81c893350035439
-      internalID: 1168143689
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 1
-      rect:
-        serializedVersion: 2
-        x: 0
         y: 0
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e1b2bd52eab72cc4c9bc4577b6717186
-      internalID: -333727761
+      spriteID: 90a806f5f61b0d1449d91839627febc3
+      internalID: -9660760
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 2
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a7298c27d976459448736211fdbc5b7c
-      internalID: -1003637276
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 3
-      rect:
-        serializedVersion: 2
-        x: 129
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1191511ffbe93514dbec5414a675461a
-      internalID: 1693647601
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 4
+      name: FireEffect_3
       rect:
         serializedVersion: 2
         x: 192
@@ -307,20 +181,20 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c1c15b3836154174d851d2e31ed1aa1c
-      internalID: 904114839
+      spriteID: 73072e2a56997fa4f98ae6c5b54818cb
+      internalID: 1335956206
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 5
+      name: FireEffect_4
       rect:
         serializedVersion: 2
         x: 256
@@ -328,20 +202,20 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eac4a22be23cee4439e90a2590f082f4
-      internalID: -1399516666
+      spriteID: 68e921b5fc26e954283df23f14419f51
+      internalID: 422723074
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 6
+      name: FireEffect_5
       rect:
         serializedVersion: 2
         x: 320
@@ -349,20 +223,20 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b1fa8c13e109e34469e0503ba33f3e89
-      internalID: -115250267
+      spriteID: a06052f8800c7f341b8962f81f0425d7
+      internalID: -2133868442
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 7
+      name: FireEffect_6
       rect:
         serializedVersion: 2
         x: 384
@@ -370,41 +244,41 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ebca190a8c4d37942a186dd32598373f
-      internalID: -1938215690
+      spriteID: 9d2dfcfea30d24843a8e5105848e0fd8
+      internalID: 1635840280
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 8
+      name: FireEffect_7
       rect:
         serializedVersion: 2
         x: 448
-        y: 1
+        y: 0
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 71e941441c3d3a2479d406d288f622c2
-      internalID: 1040921977
+      spriteID: e03c0d7c3bdfdc443893cd490b3f746c
+      internalID: 1307237610
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9
+      name: FireEffect_8
       rect:
         serializedVersion: 2
         x: 512
@@ -412,20 +286,20 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7e8b664790fc4794c97f883e8060e0f2
-      internalID: 1695218966
+      spriteID: 3a1a76e420e37c343be749cc8a646237
+      internalID: -633061086
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 10
+      name: FireEffect_9
       rect:
         serializedVersion: 2
         x: 576
@@ -433,14 +307,14 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e9e8eeb573128374ca4997c5904d49eb
-      internalID: -1777248620
+      spriteID: c0c691676700fa54e868433f369963ce
+      internalID: -1780675553
       vertices: []
       indices: 
       edges: []
@@ -456,22 +330,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      1: -333727761
-      10: -1777248620
-      11: -241051938
-      12: -705975912
-      13: 292913975
-      14: 1142508852
-      15: -263910782
-      16: 1168143689
-      2: -1003637276
-      3: 1693647601
-      4: 904114839
-      5: -1399516666
-      6: -115250267
-      7: -1938215690
-      8: 1040921977
-      9: 1695218966
+      FireEffect_0: 792896007
+      FireEffect_1: -1095783634
+      FireEffect_2: -9660760
+      FireEffect_3: 1335956206
+      FireEffect_4: 422723074
+      FireEffect_5: -2133868442
+      FireEffect_6: 1635840280
+      FireEffect_7: 1307237610
+      FireEffect_8: -633061086
+      FireEffect_9: -1780675553
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -346,6 +346,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2139200019}
+  soundPanel: {fileID: 0}
   objectManager: {fileID: 0}
   ItemDatabase: {fileID: 0}
   CharacterList: []
@@ -384,7 +385,7 @@ MonoBehaviour:
   bulletBossAPrefab: {fileID: 6049919993356236047, guid: 72e2d474acd7ae443839e2ebe967738d, type: 3}
   bulletBossBTPrefab: {fileID: 8236698002141129757, guid: 13313f4135099c04fae3f986e4aa9bc2, type: 3}
   enemyBPrefab: {fileID: 37524669}
-  enemyBTPrefab: {fileID: 3204345873603468968, guid: a127bb7e3cc200a4da77ca1828b9a4f8, type: 3}
+  enemyBTPrefab: {fileID: 6358674297495471827, guid: 9a686f1f256b09a428723832918c79a3, type: 3}
 --- !u!95 &903705591
 Animator:
   serializedVersion: 5
@@ -2805,6 +2806,18 @@ PrefabInstance:
       propertyPath: objectManager
       value: 
       objectReference: {fileID: 903705589}
+    - target: {fileID: 4704089439412106358, guid: 9a686f1f256b09a428723832918c79a3, type: 3}
+      propertyPath: maxPatternCount.Array.data[0]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4704089439412106358, guid: 9a686f1f256b09a428723832918c79a3, type: 3}
+      propertyPath: maxPatternCount.Array.data[2]
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4704089439412106358, guid: 9a686f1f256b09a428723832918c79a3, type: 3}
+      propertyPath: maxPatternCount.Array.data[3]
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6358674297495471827, guid: 9a686f1f256b09a428723832918c79a3, type: 3}
       propertyPath: m_Name
       value: Dragon Variant

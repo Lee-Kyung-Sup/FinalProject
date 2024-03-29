@@ -32,7 +32,7 @@ public class ObjectManager : MonoBehaviour
         enemyB = new GameObject[1];
         enemyBT = new GameObject[1];
         bulletBossA = new GameObject[300];
-        bulletBossBT = new GameObject[30];
+        bulletBossBT = new GameObject[300];
 
         Generate();
     }

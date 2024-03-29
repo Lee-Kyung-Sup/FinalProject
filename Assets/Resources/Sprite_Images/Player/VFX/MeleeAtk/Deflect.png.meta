@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 657a5bd4e8c3ada43910081e281a7555
+guid: fed886925da79fe4a8cc4ebb61b389f1
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 12
+  spritePixelsToUnits: 15
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 11
+      name: Deflect_0
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +124,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4a0c10df28d2e4040a296f8b8b58eab6
-      internalID: -241051938
+      spriteID: d34b3ab434105514bb65119c142b3543
+      internalID: -1353163948
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 12
+      name: Deflect_1
       rect:
         serializedVersion: 2
         x: 64
@@ -145,14 +145,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2d35ea00deca72b42b240f44d8bb1611
-      internalID: -705975912
+      spriteID: 3381b8941c167fb428c954bb25783b6e
+      internalID: 656517374
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 13
+      name: Deflect_2
       rect:
         serializedVersion: 2
         x: 128
@@ -166,14 +166,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f0c23478ff3716c468ffb9955b895f93
-      internalID: 292913975
+      spriteID: 55240b04908da0d4ba9c38f01da86d4a
+      internalID: -517536666
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 14
+      name: Deflect_3
       rect:
         serializedVersion: 2
         x: 192
@@ -187,14 +187,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8cfc6374af9fa344bbf3da7d961435d5
-      internalID: 1142508852
+      spriteID: 01705f2762128e14a924e5823e449dc3
+      internalID: -1322826121
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 15
+      name: Deflect_4
       rect:
         serializedVersion: 2
         x: 256
@@ -208,14 +208,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d425a9d281661a2459fd3d09a0f13661
-      internalID: -263910782
+      spriteID: 33b228492a5f31f4fa63e6390a935907
+      internalID: -1773358554
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16
+      name: Deflect_5
       rect:
         serializedVersion: 2
         x: 320
@@ -229,14 +229,98 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 668b9385bd7a3b64d81c893350035439
-      internalID: 1168143689
+      spriteID: 5b98cc3c7f2120e409c571bace87e6be
+      internalID: -2061464214
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 1
+      name: Deflect_6
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19e9e76d0fe5a854ab17c986a860f9a8
+      internalID: 1078175965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Deflect_7
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9e9cd81eb74b9141a59a245a98315cc
+      internalID: 465274578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Deflect_8
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6679d5733d6babc409f72d683aeb402f
+      internalID: 1518916886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Deflect_9
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a77d07f1543598044a79e2dcfa01a7bf
+      internalID: 1343600716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Deflect_10
       rect:
         serializedVersion: 2
         x: 0
@@ -250,14 +334,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e1b2bd52eab72cc4c9bc4577b6717186
-      internalID: -333727761
+      spriteID: 881909b74b2a5af4197cdcb973be018d
+      internalID: 1114629550
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 2
+      name: Deflect_11
       rect:
         serializedVersion: 2
         x: 64
@@ -271,17 +355,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a7298c27d976459448736211fdbc5b7c
-      internalID: -1003637276
+      spriteID: 1a74c69e86e4a5d47a9d6d434a5390d3
+      internalID: -1863141046
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 3
+      name: Deflect_12
       rect:
         serializedVersion: 2
-        x: 129
+        x: 128
         y: 0
         width: 64
         height: 64
@@ -292,14 +376,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1191511ffbe93514dbec5414a675461a
-      internalID: 1693647601
+      spriteID: 827969560e537aa43a3be11428b592c0
+      internalID: 1579720301
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 4
+      name: Deflect_13
       rect:
         serializedVersion: 2
         x: 192
@@ -313,14 +397,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c1c15b3836154174d851d2e31ed1aa1c
-      internalID: 904114839
+      spriteID: 6dbf904e87a109e4a8bee2dbce3a74a4
+      internalID: -1396084616
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 5
+      name: Deflect_14
       rect:
         serializedVersion: 2
         x: 256
@@ -334,113 +418,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eac4a22be23cee4439e90a2590f082f4
-      internalID: -1399516666
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 6
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b1fa8c13e109e34469e0503ba33f3e89
-      internalID: -115250267
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 7
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ebca190a8c4d37942a186dd32598373f
-      internalID: -1938215690
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 8
-      rect:
-        serializedVersion: 2
-        x: 448
-        y: 1
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 71e941441c3d3a2479d406d288f622c2
-      internalID: 1040921977
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 9
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7e8b664790fc4794c97f883e8060e0f2
-      internalID: 1695218966
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 10
-      rect:
-        serializedVersion: 2
-        x: 576
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e9e8eeb573128374ca4997c5904d49eb
-      internalID: -1777248620
+      spriteID: 7e65d12da83be5b489ba8e56f743b6ef
+      internalID: -1235217058
       vertices: []
       indices: 
       edges: []
@@ -456,22 +435,21 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      1: -333727761
-      10: -1777248620
-      11: -241051938
-      12: -705975912
-      13: 292913975
-      14: 1142508852
-      15: -263910782
-      16: 1168143689
-      2: -1003637276
-      3: 1693647601
-      4: 904114839
-      5: -1399516666
-      6: -115250267
-      7: -1938215690
-      8: 1040921977
-      9: 1695218966
+      Deflect_0: -1353163948
+      Deflect_1: 656517374
+      Deflect_10: 1114629550
+      Deflect_11: -1863141046
+      Deflect_12: 1579720301
+      Deflect_13: -1396084616
+      Deflect_14: -1235217058
+      Deflect_2: -517536666
+      Deflect_3: -1322826121
+      Deflect_4: -1773358554
+      Deflect_5: -2061464214
+      Deflect_6: 1078175965
+      Deflect_7: 465274578
+      Deflect_8: 1518916886
+      Deflect_9: 1343600716
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

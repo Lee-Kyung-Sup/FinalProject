@@ -8,6 +8,8 @@ public class Entity : MonoBehaviour
     public Rigidbody2D Rigi { get; private set; }
 
     [Header("Collision info")]
+    public Transform attackCheck;
+    public float attackCheckRadius;
     [SerializeField] protected Transform groundCheck;
     [SerializeField] protected float groundCheckDistance;
     [SerializeField] protected Transform wallCheck;
@@ -24,14 +26,14 @@ public class Entity : MonoBehaviour
     {
         gpLayer = LayerMask.GetMask("Ground", "Platform");
         Rigi = GetComponent<Rigidbody2D>();
-        Ani = GetComponent<Animator>();
+        Ani = GetComponentInChildren<Animator>();
     }
     protected virtual void Update()
     {
 
     }
 
-    public void ZeroVelocity() => Rigi.velocity = new Vector2(0, 0);
+    public void SetZeroVelocity() => Rigi.velocity = new Vector2(0, 0);
     public void SetVelocity(float xVelocity,float yVelocity)
     {
         Rigi.velocity = new Vector2(xVelocity, yVelocity);
@@ -43,12 +45,13 @@ public class Entity : MonoBehaviour
     {
         Gizmos.DrawLine(groundCheck.position, new Vector3(groundCheck.position.x, groundCheck.position.y - groundCheckDistance));
         Gizmos.DrawLine(wallCheck.position, new Vector3(wallCheck.position.x + wallCheckDistance, wallCheck.position.y));
+        Gizmos.DrawWireSphere(attackCheck.position, attackCheckRadius);
     }
     public void Flip()
     {
         facingDir = facingDir * -1;
         facingRight = !facingRight;
-        transform.Rotate(0, 100, 0);
+        transform.Rotate(0, 180, 0);
     }
     public void FlipController(float x)
     {

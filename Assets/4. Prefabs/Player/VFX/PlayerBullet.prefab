@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3715118601404483015}
   - component: {fileID: 1349778169691544831}
   - component: {fileID: -56679899322023883}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: PlayerBullet
   m_TagString: PlayerAttackBox
   m_Icon: {fileID: 0}
@@ -110,6 +110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RangeHitEffect: {fileID: 5024009746357069194, guid: 4c1772bab074aba43b18a392dcd9d360, type: 3}
+  isChargeShot: 0
 --- !u!1 &3187700625739107172
 GameObject:
   m_ObjectHideFlags: 0
@@ -121,7 +122,7 @@ GameObject:
   - component: {fileID: 4300336429924115825}
   - component: {fileID: 8158960664529319132}
   - component: {fileID: 8825395990394769437}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: BulletSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
