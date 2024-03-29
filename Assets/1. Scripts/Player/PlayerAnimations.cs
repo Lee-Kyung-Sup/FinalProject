@@ -21,6 +21,12 @@ public class PlayerAnimations : MonoBehaviour
 
     private static readonly int Fire = Animator.StringToHash("Fire");
     private static readonly int Attack = Animator.StringToHash("Attack");
+    private static readonly int Attack2 = Animator.StringToHash("Attack2");
+    private static readonly int Attack3 = Animator.StringToHash("Attack3");
+    private static readonly int AttackEffect = Animator.StringToHash("AttackEffect");
+    private static readonly int AttackEffect2 = Animator.StringToHash("AttackEffect2");
+    private static readonly int AttackEffect3 = Animator.StringToHash("AttackEffect3");
+
     private static readonly int JumpAtk = Animator.StringToHash("JumpAtk");
     private static readonly int JumpAtkEffect = Animator.StringToHash("JumpAtkEffect");
     private static readonly int Deflect = Animator.StringToHash("Deflect");
@@ -65,6 +71,30 @@ public class PlayerAnimations : MonoBehaviour
     public void Attacking()
     {
         animator[0].SetTrigger(Attack);
+    }
+
+    public void Attacking2()
+    {
+        animator[0].SetTrigger(Attack2);
+    }
+
+    public void Attacking3()
+    {
+        animator[0].SetTrigger(Attack3);
+    }
+
+    public void MeleeAttackEffect()
+    {
+        animator[5].SetTrigger(AttackEffect);
+    }
+    public void MeleeAttackEffect2()
+    {
+        animator[6].SetTrigger(AttackEffect2);
+    }
+
+    public void MeleeAttackEffect3()
+    {
+        animator[7].SetTrigger(AttackEffect3);
     }
 
     public void JumpAttacking()

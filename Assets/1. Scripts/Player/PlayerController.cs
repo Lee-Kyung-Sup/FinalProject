@@ -13,6 +13,10 @@ public class PlayerController : MonoBehaviour
     private bool _isWeaponChange = true; // true 근거리, false 원거리 공격
 
     Dictionary<Paction, bool> lockAction = new Dictionary<Paction, bool>();
+    public Dictionary<Paction, bool> LockAction
+    {
+        get { return lockAction; }
+    }
 
     void Awake()
     {
@@ -21,22 +25,13 @@ public class PlayerController : MonoBehaviour
 
         //InItLockAction();
 
-        //테스트용 true
-        lockAction[Paction.AirAttack] = true;
-        lockAction[Paction.ChargeShot] = true;
-        lockAction[Paction.Dash] = true;
-        lockAction[Paction.DoubleJump] = true;
-        lockAction[Paction.MeleeAttack] = true;
-        lockAction[Paction.RangeAttack] = true;
-        lockAction[Paction.JumpAttack] = true;
-        lockAction[Paction.Deflect] = true;
-
+        //테스트용
+        TestingOnActions();
     }
 
     void FixedUpdate()
     {
         _playerMovement.Move(_inputVector.x);
-        
     }
 
     void InItLockAction()
@@ -49,10 +44,12 @@ public class PlayerController : MonoBehaviour
         lockAction.Add(Paction.RangeAttack,false);
         lockAction.Add(Paction.JumpAttack, false);
         lockAction.Add(Paction.Deflect, false);
+        lockAction.Add(Paction.ComboAttack, false);
     }
     public void OnMove(InputAction.CallbackContext context)
     {
         //AudioManager.Instance.PlaySFX("Step"); // 걸음소리 JHP
+
         // 입력 벡터를 업데이트
         float inputX = context.ReadValue<Vector2>().x;
 
@@ -104,7 +101,7 @@ public class PlayerController : MonoBehaviour
             }
             if (_isWeaponChange && lockAction[Paction.MeleeAttack])
             {
-                _playerAttacks.Attack();
+                _playerAttacks.MeleeAttack();
                 //AudioManager.Instance.PlaySFX("Attack"); // 근접공격소리 JHP
 
             }
@@ -154,11 +151,23 @@ public class PlayerController : MonoBehaviour
     {
         bool isPressing = context.ReadValue<float>() > 0;
         _playerMovement.SetIsPressingDown(isPressing);
-
     }
 
     public void UnLockAction(Paction unLockAction)
     {
         lockAction[unLockAction] = true;
+    }
+
+    void TestingOnActions()
+    {
+        lockAction[Paction.AirAttack] = true;
+        lockAction[Paction.ChargeShot] = true;
+        lockAction[Paction.Dash] = true;
+        lockAction[Paction.DoubleJump] = true;
+        lockAction[Paction.MeleeAttack] = true;
+        lockAction[Paction.RangeAttack] = true;
+        lockAction[Paction.JumpAttack] = true;
+        lockAction[Paction.Deflect] = true;
+        lockAction[Paction.ComboAttack] = true;
     }
 }

@@ -7,36 +7,41 @@ public class PlayerMovement : MonoBehaviour, IsGroundable
     private PlayerStatus playerStatus;
     private PlayerAnimations playerAnimations;
     private Rigidbody2D rb;
+
+    [Header("UI & Trail")]
     [SerializeField] private Transform playerUI;
     [SerializeField] private TrailRenderer tr;
-    [SerializeField] private Transform groundCheck;
 
-    private LayerMask groundLayer;
-    private LayerMask platformLayer;
-
-    float boxWidth = 1f; // 땅 감지 박스
-    float boxHeight = 0.1f;
+    [Header("Jump Parameters")]
+    private int jumpCount = 0;
     private bool isGrounded = false;
+    private bool hasJumped = false; 
 
-    private int jumpCount = 0; // 점프 횟수
-    private bool hasJumped = false; // 점프 했는지
-
-    private bool canDash = true; // 대쉬 가능한지
-    private bool isDashing; // 현재 대쉬 중인지
-    private bool isDashCooldownComplete = true;  // 대쉬 쿨다운이 완료되었는지
+    [Header("Dash Parameters")]
     [SerializeField] private float dashPower = 24f;
     [SerializeField] private float dashTime = 0.2f;
     [SerializeField] private float dashCooldown = 0.5f;
+    private bool canDash = true; // 대쉬 가능한지
+    private bool isDashing; // 현재 대쉬 중인지
+    private bool isDashCooldownComplete = true;  // 대쉬 쿨다운이 완료되었는지
     private float dashStartTime; // 대쉬 시작 시간
 
-    private float originalGravityScale; // 기본 중력 값
-
+    private float originalGravityScale;
     private bool isPressingDown = false;
 
-    private bool isKnockedBack = false;
+    [Header("Knockback Parameters")]
     [SerializeField] private float knockbackTime = 0.25f; // 넉백 지속 시간
     [SerializeField] private float knockbackForceY = 1.5f;
     [SerializeField] private float knockbackForceX = 5.0f;
+    private bool isKnockedBack = false;
+
+
+    [Header("Ground Check Options")]
+    [SerializeField] private Transform groundCheck;
+    [SerializeField] private float boxWidth = 1f; // 땅 감지 박스
+    [SerializeField] private float boxHeight = 0.1f;
+    private LayerMask groundLayer;
+    private LayerMask platformLayer;
 
     void Awake()
     {

@@ -4,16 +4,13 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
-public class StartBtn : MonoBehaviour, IPointerEnterHandler
+public class OptionBtn : MonoBehaviour, IPointerEnterHandler
 {
-
-    public void StartGame()
+    public void StartOption()
     {
-        AudioManager.Instance.PlaySFX("Click");
-        AudioManager.Instance.StopBGM();
-        AudioManager.Instance.PlayBGM("FirstChapter");
-        SceneManager.LoadScene("2. GameScenes");
+        GameManager.instance.ToggleSoundPanel();
     }
+
 
     public void OnPointerEnter(PointerEventData eventData)
     {
