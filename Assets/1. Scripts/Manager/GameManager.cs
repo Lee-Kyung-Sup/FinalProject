@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
@@ -27,7 +28,7 @@ public class Character
 
 
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviour, IPointerEnterHandler
 {
 
     public static GameManager instance;
@@ -111,16 +112,17 @@ public class GameManager : MonoBehaviour
     public void ToggleSoundPanel()
     {
         soundPanel.SetActive(true);
-
+        AudioManager.Instance.PlaySFX("Click");
     }
 
     public void CanelSoundPanel()
     {
         soundPanel.SetActive(false);
+        AudioManager.Instance.PlaySFX("Click");
     }
 
-
-
-
-
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        AudioManager.Instance.PlaySFX("Cursor");
+    }
 }
