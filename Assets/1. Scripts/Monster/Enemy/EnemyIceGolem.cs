@@ -8,6 +8,7 @@ public class EnemyIceGolem : Enemy
     public IceGolemMove Move { get; private set; }
     public IceGolemBattle Battle { get; private set; }
     public IceGolemAttack Attack { get; private set; }
+    public IceGolemDie Die { get; private set; }
 
     protected override void Awake()
     {
@@ -16,6 +17,7 @@ public class EnemyIceGolem : Enemy
         Move = new IceGolemMove(this,stateMachine,"Move",this);
         Battle = new IceGolemBattle(this, stateMachine, "Move", this);
         Attack = new IceGolemAttack(this, stateMachine, "Attack", this);
+        Die = new IceGolemDie(this, stateMachine, "Die", this);
     }
     protected override void Start()
     {
@@ -47,6 +49,11 @@ public class IceGolemGroundState : EnemyState
     public override void Update()
     {
         base.Update();
+        if (iceGolem.hp < 1)
+        {
+            stateMachine.ChangeState(iceGolem.Die);
+            return;
+        }
         if (iceGolem.IsPlayerDetected() || Vector2.Distance(iceGolem.transform.position, player.position) < 3)
         {
             stateMachine.ChangeState(iceGolem.Battle);
@@ -72,6 +79,11 @@ public class IceGolemIdle : IceGolemGroundState
     public override void Update()
     {
         base.Update();
+        if (iceGolem.hp < 1)
+        {
+            stateMachine.ChangeState(iceGolem.Die);
+            return;
+        }
         if (stateTimer < 0)
         {
             stateMachine.ChangeState(iceGolem.Move);
@@ -95,6 +107,11 @@ public class IceGolemMove : IceGolemGroundState
     public override void Update()
     {
         base.Update();
+        if (iceGolem.hp < 1)
+        {
+            stateMachine.ChangeState(iceGolem.Die);
+            return;
+        }
         iceGolem.SetVelocity(iceGolem.moveSpeed * iceGolem.facingDir, iceGolem.Rigi.velocity.y);
         if (iceGolem.IsWallDetected() || iceGolem.IsGroundDetected())
         {
@@ -124,6 +141,11 @@ public class IceGolemBattle : EnemyState
     public override void Update()
     {
         base.Update();
+        if (iceGolem.hp < 1)
+        {
+            stateMachine.ChangeState(iceGolem.Die);
+            return;
+        }
         if (iceGolem.IsPlayerDetected())
         {
             stateTimer = iceGolem.BattleTime;
@@ -181,10 +203,35 @@ public class IceGolemAttack : EnemyState
     public override void Update()
     {
         base.Update();
+        if (iceGolem.hp < 1)
+        {
+            stateMachine.ChangeState(iceGolem.Die);
+            return;
+        }
         iceGolem.SetZeroVelocity();
         if (triggerCalled)
         {
             stateMachine.ChangeState(iceGolem.Battle);
         }
+    }
+}
+public class IceGolemDie : EnemyState
+{
+    EnemyIceGolem iceGolem;
+    public IceGolemDie(Enemy enemyBase, EnemyStateMachine stateMachine, string animBoolName, EnemyIceGolem IceGolem) : base(IceGolem, stateMachine, animBoolName)
+    {
+        this.iceGolem = IceGolem;
+    }
+    public override void Enter()
+    {
+        base.Enter();
+    }
+    public override void Exit()
+    {
+        base.Exit();
+    }
+    public override void Update()
+    {
+        base.Update();
     }
 }

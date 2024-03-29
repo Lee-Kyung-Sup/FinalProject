@@ -394,6 +394,7 @@ GameObject:
   - component: {fileID: 1136411282}
   - component: {fileID: 1136411281}
   - component: {fileID: 1136411284}
+  - component: {fileID: 1136411285}
   m_Layer: 7
   m_Name: Enemy_IceGolem
   m_TagString: Monster
@@ -515,7 +516,22 @@ MonoBehaviour:
   BattleTime: 7
   attackDistance: 1.8
   attackDelay: 1
+  dmg: 1
+  hp: 3
   lastTimeAttacked: 0
+--- !u!114 &1136411285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1136411279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5152ea555b257ed42b3721ee8c931da0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitMat: {fileID: 2100000, guid: 207cbc825acec1541b4b1bf7a7aae333, type: 2}
 --- !u!1 &1284001699
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Entity : MonoBehaviour
 {
+    public EntityEffect Fx { get; private set; }
     public Animator Ani { get; private set; }
     public Rigidbody2D Rigi { get; private set; }
 
@@ -27,6 +28,7 @@ public class Entity : MonoBehaviour
         gpLayer = LayerMask.GetMask("Ground", "Platform");
         Rigi = GetComponent<Rigidbody2D>();
         Ani = GetComponentInChildren<Animator>();
+        Fx = GetComponent<EntityEffect>();
     }
     protected virtual void Update()
     {
