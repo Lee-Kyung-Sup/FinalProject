@@ -121,11 +121,11 @@ public class BossTwo : MonoBehaviour
         rb.AddForce(transform.right * 5, ForceMode2D.Impulse);
 
         curPatternCount++;
-
+        
         if (curPatternCount < maxPatternCount[patternIndex])
         {
             anim.SetTrigger("Fire");
-            //Invoke("DragonFire", 5);
+            Invoke("DragonFire", 3);
            
         }
         else
@@ -139,8 +139,7 @@ public class BossTwo : MonoBehaviour
     {
         Debug.Log("DA");
         //드래곤이 근접 공격
-        //Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        //rb.velocity = new Vector2(transform.localScale.x * 7f, 1.5f);
+        
        
         curPatternCount++;
 
@@ -149,7 +148,7 @@ public class BossTwo : MonoBehaviour
             Rigidbody2D rb = GetComponent<Rigidbody2D>();
             rb.velocity = new Vector2(transform.localScale.x * 7f, 1.5f);
             anim.SetTrigger("Attack");
-            //Invoke("DragonAttack", 2);
+            Invoke("DragonAttack", 2);
             
         }
         else
@@ -183,7 +182,7 @@ public class BossTwo : MonoBehaviour
         if (curPatternCount < maxPatternCount[patternIndex])
         {
             anim.SetTrigger("Burn");
-            //Invoke("DragonBurn", 1f);
+            Invoke("DragonBurn", 1f);
         }
         else
         {
@@ -198,9 +197,7 @@ public class BossTwo : MonoBehaviour
     {
         Debug.Log("DR");
         //드래곤이 플레이어 가까이 다가왔다가 돌아감
-        //float randomX = Random.Range(-7f, 4f);
-        //_targetPosition = new Vector2(randomX, 0);
-        //transform.position = Vector2.Lerp(transform.position, _targetPosition, moveSpeed * Time.deltaTime);
+       
         curPatternCount++;
         //패턴이 maxpattenrcount까지 가지 않았을 때 다시 실행
         if (curPatternCount < maxPatternCount[patternIndex])
