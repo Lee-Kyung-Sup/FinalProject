@@ -37,7 +37,7 @@ public class PlayerUI : MonoBehaviour
     public void OnGameOverUI()
     {
         gameOverUI.SetActive(true);
-        AudioManager.Instance.PlaySFX("GameOver");
+        //AudioManager.Instance.PlaySFX("GameOver");
     }
 
 

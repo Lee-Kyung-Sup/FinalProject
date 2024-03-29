@@ -8,16 +8,27 @@ public class PlayerAttacks : MonoBehaviour
     private PlayerAnimations playerAnimations;
     private PlayerMovement playerMovement;
     private PlayerStatus playerStatus;
+    private PlayerController _playerController;
 
     [Header("Bullet Setting")]
     [SerializeField] private GameObject bulletPref;
     [SerializeField] private GameObject ChargedBulletPref;
 
-    [Header("Attack Parameter")]
+    [Header("Range Attack Parameter")]
     [SerializeField] private float ShotPower = 15f;
     [SerializeField] private float fireDelay = 0.15f;
     [SerializeField] private float ChargeShotPower = 20f;
     [SerializeField] private float maxChargeTime = 1.5f;
+
+    [Header("Melee Attack Parameter")]
+    [SerializeField] private float attackDelay = 0.2f;
+    [SerializeField] private float comboDelay = 0.5f;
+    private int attackSequence = 0;
+    private float attackTimer = 0f;
+    private float comboTimer = 0f;
+
+
+    [Header("Other Skill Parameter")]
     [SerializeField] private float deflectCooldown = 0.5f;
 
     private float lastFireTime = 0;
@@ -26,6 +37,8 @@ public class PlayerAttacks : MonoBehaviour
 
     [Header("Hit Boxes & Position")]
     [SerializeField] private Collider2D meleeAttackCollider;
+    [SerializeField] private Collider2D meleeAttackCollider_2;
+    [SerializeField] private Collider2D meleeAttackCollider_3;
     [SerializeField] private Collider2D jumpAttackCollider;
     [SerializeField] private Collider2D deflectZoneCollider;
     [SerializeField] private Transform rangeAttackPosition;
@@ -41,18 +54,37 @@ public class PlayerAttacks : MonoBehaviour
     private bool isCharging = false;
     private bool isFullCharge = false;
 
-    private void Start()
+    private void Awake()
     {
         playerAnimations = GetComponent<PlayerAnimations>();
         playerMovement = GetComponent<PlayerMovement>();
         playerStatus = GetComponent<PlayerStatus>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        _playerController = GetComponentInParent<PlayerController>();
+    }
 
+    private void Start()
+    {
         originalMaterial = spriteRenderer.material;
     }
 
     private void Update()
     {
+        if (attackTimer > 0)
+        {
+            attackTimer -= Time.deltaTime;
+        }
+
+        if (comboTimer > 0)
+        {
+            comboTimer -= Time.deltaTime;
+        }
+        else if (comboTimer <= 0 && attackSequence != 0)
+        {
+            attackSequence = 0;  
+        }
+
+
         if (playerMovement.IsGround() && !canJumpAttack)
         {
             canJumpAttack = true;
@@ -149,18 +181,76 @@ public class PlayerAttacks : MonoBehaviour
         bullet.GetComponent<Rigidbody2D>().AddForce(direction * ChargeShotPower, ForceMode2D.Impulse);
     }
 
-    public void Attack()
+    public void MeleeAttack()
     {
-        if (playerMovement.IsGround())
-            meleeAttackCollider.enabled = true;
-        Invoke("DisableAttack", 0.25f);
-        playerAnimations.Attacking();
+        if (attackTimer <= 0 && playerMovement.IsGround())
+        {
+            switch (attackSequence)
+            {
+                case 0:
+                    PerformAttack(meleeAttackCollider);
+                    playerAnimations.Attacking();
+                    playerAnimations.MeleeAttackEffect();
+                    attackSequence = 1; 
+                    break;
+                case 1:
+                    if (_playerController.LockAction[Paction.ComboAttack])
+                    {
+                        PerformAttack(meleeAttackCollider_2);
+                        playerAnimations.Attacking2();
+                        playerAnimations.MeleeAttackEffect2();
+                        attackSequence = 2;
+                    }
+                    else
+                    {
+                        // 콤보 공격이 잠겨있으면 첫 번째 공격으로
+                        attackSequence = 0;
+                    }
+                    break;
+                case 2:
+                    if (_playerController.LockAction[Paction.ComboAttack])
+                    {
+                        PerformAttack(meleeAttackCollider_3);
+                        playerAnimations.Attacking3();
+                        playerAnimations.MeleeAttackEffect3();
+                        attackSequence = 0;
+                        attackTimer = attackDelay; // 기본 공격으로 돌아가기 전 딜레이
+                    }
+                    else
+                    {
+                        attackSequence = 0;
+                    }
+                    break;
+            }
+
+            attackTimer = attackDelay;
+            comboTimer = comboDelay;
+        }
+    }
+
+    private void PerformAttack(Collider2D attackCollider)
+    {
+        attackCollider.enabled = true;
+        Invoke("DisableAttack", 0.25f); 
     }
 
     private void DisableAttack()
     {
         meleeAttackCollider.enabled = false;
+        meleeAttackCollider_2.enabled = false;
+        meleeAttackCollider_3.enabled = false;
     }
+
+    //public void Attack()
+    //{
+    //    if (playerMovement.IsGround())
+    //    {
+    //        meleeAttackCollider.enabled = true;
+    //        Invoke("DisableAttack", 0.25f);
+    //        playerAnimations.Attacking();
+    //        playerAnimations.MeleeAttackEffect();
+    //    }
+    //}
 
     public void JumpAttack()
     {
@@ -176,10 +266,6 @@ public class PlayerAttacks : MonoBehaviour
 
             playerAnimations.JumpAttacking();
             playerAnimations.JumpAttackEffect();
-        }
-        else
-        {
-            Attack();
         }
     }
 

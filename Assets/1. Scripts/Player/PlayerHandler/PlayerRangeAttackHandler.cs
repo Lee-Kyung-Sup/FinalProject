@@ -11,7 +11,6 @@ public class PlayerRangeAttackHandler : MonoBehaviour
     PlayerStatus playerStatus;
     private List<Coroutine> hitCoroutines = new List<Coroutine>();
 
-    // Start is called before the first frame update
     void Start()
     {
         Invoke("DestroyTime", 7.0f);

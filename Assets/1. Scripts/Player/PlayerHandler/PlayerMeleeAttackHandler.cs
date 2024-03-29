@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMeleeAttackHandler : MonoBehaviour
 {
-    [Header("RangeBullet Parameters")]
+    [Header("Melee Attack Parameters")]
     [SerializeField] private GameObject meleeHitEffect; // 히트 효과 프리팹
     [SerializeField] private float hitInterval = 0.25f;
 
