@@ -193,6 +193,7 @@ public class BossTwo : MonoBehaviour
 
     private Vector2 _targetPosition;
     public float moveSpeed = 3f;
+    public bool isPatrolling = false;
     void DragonRunAttack()
     {
         Debug.Log("DR");
@@ -203,11 +204,15 @@ public class BossTwo : MonoBehaviour
         if (curPatternCount < maxPatternCount[patternIndex])
         {
             anim.SetTrigger("RunAttack");
-            InvokeRepeating("Patrol", 1f, 4f);
+            if (!isPatrolling)
+            {
+                isPatrolling = true;
+                InvokeRepeating("Patrol", 1f, 4f); 
+            }
         }
         else
         {
-           
+            CancelInvoke("Patrol");
             Invoke("Think", 2);
         }
 
