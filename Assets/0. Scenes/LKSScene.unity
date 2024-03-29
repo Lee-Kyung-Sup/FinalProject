@@ -252,7 +252,7 @@ PrefabInstance:
     - target: {fileID: 1266215942943952612, guid: e9f6260a3fc5198478a65982e7a9409d, type: 3}
       propertyPath: objectManager
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 903705589}
     - target: {fileID: 2355385529216811586, guid: e9f6260a3fc5198478a65982e7a9409d, type: 3}
       propertyPath: m_Name
       value: Eagle
@@ -2807,8 +2807,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 903705589}
     - target: {fileID: 4704089439412106358, guid: 9a686f1f256b09a428723832918c79a3, type: 3}
+      propertyPath: maxPatternCount.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4704089439412106358, guid: 9a686f1f256b09a428723832918c79a3, type: 3}
       propertyPath: maxPatternCount.Array.data[0]
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4704089439412106358, guid: 9a686f1f256b09a428723832918c79a3, type: 3}
       propertyPath: maxPatternCount.Array.data[2]
@@ -2816,6 +2820,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4704089439412106358, guid: 9a686f1f256b09a428723832918c79a3, type: 3}
       propertyPath: maxPatternCount.Array.data[3]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4704089439412106358, guid: 9a686f1f256b09a428723832918c79a3, type: 3}
+      propertyPath: maxPatternCount.Array.data[4]
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6358674297495471827, guid: 9a686f1f256b09a428723832918c79a3, type: 3}
