@@ -417,7 +417,7 @@ GameObject:
   - component: {fileID: 7094727744726404964}
   - component: {fileID: 6766965627751088032}
   - component: {fileID: 9155896204700355135}
-  m_Layer: 6
+  m_Layer: 19
   m_Name: MeleeAttackZone2
   m_TagString: PlayerAttackBox
   m_Icon: {fileID: 0}
@@ -1142,7 +1142,7 @@ Transform:
   - {fileID: 3145523589203839341}
   - {fileID: 7452848560659514459}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2758978147879318403
 MonoBehaviour:
@@ -1333,7 +1333,7 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 2
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
@@ -1708,7 +1708,7 @@ GameObject:
   - component: {fileID: 169816082512722026}
   - component: {fileID: 5511129389222801695}
   - component: {fileID: 4095222915793023988}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: DeflectZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2043,7 +2043,7 @@ GameObject:
   - component: {fileID: 3640400367494402171}
   - component: {fileID: 4428070045164347335}
   - component: {fileID: 4215060159381921105}
-  m_Layer: 6
+  m_Layer: 19
   m_Name: MeleeAttackZone3
   m_TagString: PlayerAttackBox
   m_Icon: {fileID: 0}
@@ -2171,7 +2171,7 @@ GameObject:
   - component: {fileID: 4794853379874375234}
   - component: {fileID: 1882601594729494635}
   - component: {fileID: 6514337194977867871}
-  m_Layer: 6
+  m_Layer: 19
   m_Name: JumpAttackZone
   m_TagString: PlayerAttackBox
   m_Icon: {fileID: 0}
@@ -2315,7 +2315,7 @@ GameObject:
   - component: {fileID: 6198198559188364953}
   - component: {fileID: 9094434115529792470}
   - component: {fileID: 3181884910156171366}
-  m_Layer: 6
+  m_Layer: 19
   m_Name: MeleeAttackZone
   m_TagString: PlayerAttackBox
   m_Icon: {fileID: 0}
