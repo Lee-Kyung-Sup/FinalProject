@@ -5,7 +5,7 @@ using static UnityEditor.Progress;
 
 public class EnemyAnimationTriggers : MonoBehaviour
 {
-    EnemyIceGolem enemy => GetComponentInParent<EnemyIceGolem>();
+    EnemyMelee enemy => GetComponentInParent<EnemyMelee>();
     LayerMask pLayer;
     private void Start()
     {
