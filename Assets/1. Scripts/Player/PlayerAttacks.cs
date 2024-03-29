@@ -194,14 +194,13 @@ public class PlayerAttacks : MonoBehaviour
                     attackSequence = 1; 
                     break;
                 case 1:
-                    if (playerStatus.Stamina >= 10 && _playerController.LockAction[Paction.ComboAttack])
+                    if (_playerController.LockAction[Paction.ComboAttack])
                     {
                         PerformAttack(meleeAttackCollider_2);
                         playerAnimations.Attacking2();
                         playerAnimations.MeleeAttackEffect2();
                         attackSequence = 2;
 
-                        playerStatus.UseStamina(10);
                     }
                     else
                     {
@@ -210,7 +209,7 @@ public class PlayerAttacks : MonoBehaviour
                     }
                     break;
                 case 2:
-                    if (playerStatus.Stamina >= 20 && _playerController.LockAction[Paction.ComboAttack])
+                    if (playerStatus.Stamina >= 25 && _playerController.LockAction[Paction.ComboAttack])
                     {
                         PerformAttack(meleeAttackCollider_3);
                         playerAnimations.Attacking3();
@@ -218,7 +217,7 @@ public class PlayerAttacks : MonoBehaviour
                         attackSequence = 0;
                         attackTimer = attackDelay; // 기본 공격으로 돌아가기 전 딜레이
 
-                        playerStatus.UseStamina(20);
+                        playerStatus.UseStamina(25);
                     }
                     else
                     {
