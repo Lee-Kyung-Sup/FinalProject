@@ -27,7 +27,7 @@ public class BossTwo : MonoBehaviour
     void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-
+        capsuleCollider = GetComponent<CapsuleCollider2D>();
     }
 
     void Start()
@@ -85,24 +85,24 @@ public class BossTwo : MonoBehaviour
         //    patternIndex = 3; // 나머지 패턴 실행
         //}
 
-
+        anim.SetTrigger("Run");
         //현재 패턴이 패턴 갯수를 넘기면 0으로 돌아오는 로직
-        patternIndex = patternIndex == 3 ? 0 : patternIndex + 1;
+        patternIndex = patternIndex == 4 ? 0 : patternIndex + 1;
 
         curPatternCount = 0;
        // anim.SetTrigger("Run");
         switch (patternIndex)
         {
-            case 0:
+            case 1:
                 DragonFire();
                 break;
-            case 1:
+            case 2:
                 DragonAttack();
                 break;
-            case 2:
+            case 3:
                 DragonBurn();
                 break;
-            case 3:
+            case 4:
                 DragonRunAttack();
                 break;
 
@@ -130,7 +130,7 @@ public class BossTwo : MonoBehaviour
         }
         else
         {
-            anim.SetTrigger("Run");
+           
             Invoke("Think", 2);
         }
     }
@@ -139,13 +139,13 @@ public class BossTwo : MonoBehaviour
     {
         Debug.Log("DA");
         //드래곤이 근접 공격
-        
-       
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+
         curPatternCount++;
 
         if (curPatternCount < maxPatternCount[patternIndex])
         {
-            Rigidbody2D rb = GetComponent<Rigidbody2D>();
+           
             rb.velocity = new Vector2(transform.localScale.x * 7f, 1.5f);
             anim.SetTrigger("Attack");
             Invoke("DragonAttack", 2);
@@ -154,7 +154,7 @@ public class BossTwo : MonoBehaviour
         else
         {
             rb.velocity = new Vector2(transform.localScale.x * -7f, 1.5f);
-            anim.SetTrigger("Run");
+
             Invoke("Think", 2);
             
 
@@ -166,7 +166,7 @@ public class BossTwo : MonoBehaviour
         Debug.Log("DB");
         //드래곤이 불길을 뿜음
         for (int index = 0; index < 5; index++)
-        {
+        {     
             GameObject bulletD = objectManager.MakeObj("BulletBossBT");
             Rigidbody2D rb = bulletD.GetComponent<Rigidbody2D>();
             rb.gravityScale = 0f;
@@ -186,7 +186,7 @@ public class BossTwo : MonoBehaviour
         }
         else
         {
-            anim.SetTrigger("Run");
+           
             Invoke("Think", 2);
         }
     }
@@ -207,11 +207,9 @@ public class BossTwo : MonoBehaviour
         }
         else
         {
-            anim.SetTrigger("Run");
+           
             Invoke("Think", 2);
         }
-
-
 
     }
 
