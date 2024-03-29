@@ -1740,6 +1740,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meleeHitEffect: {fileID: 2955623459812423943, guid: f5507a8c6a22c404ab324980c4e8a11b, type: 3}
+  hitInterval: 0.25
 --- !u!4 &431221758
 Transform:
   m_ObjectHideFlags: 0
@@ -6251,6 +6252,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meleeHitEffect: {fileID: 5024009746357069194, guid: ec3f674830402cc45bce805cf6493db7, type: 3}
+  hitInterval: 0.25
 --- !u!50 &1294577015
 Rigidbody2D:
   serializedVersion: 4
@@ -6867,9 +6869,19 @@ MonoBehaviour:
   fireDelay: 0.1
   ChargeShotPower: 20
   maxChargeTime: 2
+  attackDelay: 0.2
+  comboDelay: 0.5
+  deflectCooldown: 0.5
   meleeAttackCollider: {fileID: 431221755}
+  meleeAttackCollider_2: {fileID: 0}
+  meleeAttackCollider_3: {fileID: 0}
   jumpAttackCollider: {fileID: 1294577013}
+  deflectZoneCollider: {fileID: 0}
   rangeAttackPosition: {fileID: 1916479338}
+  spriteRenderer: {fileID: 0}
+  chargingMaterial: {fileID: 0}
+  color1: {r: 1, g: 0.7058824, b: 0.27450982, a: 1}
+  color2: {r: 0.8627451, g: 0.627451, b: 0.15686275, a: 1}
 --- !u!114 &1372430766
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6884,13 +6896,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerUI: {fileID: 1119980836}
   tr: {fileID: 853200609}
-  groundCheck: {fileID: 848857035}
   dashPower: 70
   dashTime: 0.1
   dashCooldown: 0.5
   knockbackTime: 0.5
   knockbackForceY: 5
   knockbackForceX: 1.5
+  groundCheck: {fileID: 848857035}
+  boxWidth: 1
+  boxHeight: 0.1
 --- !u!114 &1372430767
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6904,7 +6918,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 0}
-  health: 3
   stamina: 100
   staminaRecoveryRate: 100
   staminaRecoveryDelay: 1
