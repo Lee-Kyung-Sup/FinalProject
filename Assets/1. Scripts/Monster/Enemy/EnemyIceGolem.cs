@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class EnemyIceGolem : Enemy
@@ -8,7 +9,7 @@ public class EnemyIceGolem : Enemy
     public IceGolemMove Move { get; private set; }
     public IceGolemBattle Battle { get; private set; }
     public IceGolemAttack Attack { get; private set; }
-    public IceGolemDie Die { get; private set; }
+    public IceGolemDie Diea { get; private set; }
 
     protected override void Awake()
     {
@@ -17,7 +18,7 @@ public class EnemyIceGolem : Enemy
         Move = new IceGolemMove(this,stateMachine,"Move",this);
         Battle = new IceGolemBattle(this, stateMachine, "Move", this);
         Attack = new IceGolemAttack(this, stateMachine, "Attack", this);
-        Die = new IceGolemDie(this, stateMachine, "Die", this);
+        Diea = new IceGolemDie(this, stateMachine, "Die", this);
     }
     protected override void Start()
     {
@@ -51,7 +52,7 @@ public class IceGolemGroundState : EnemyState
         base.Update();
         if (iceGolem.hp < 1)
         {
-            stateMachine.ChangeState(iceGolem.Die);
+            stateMachine.ChangeState(iceGolem.Diea);
             return;
         }
         if (iceGolem.IsPlayerDetected() || Vector2.Distance(iceGolem.transform.position, player.position) < 3)
@@ -81,7 +82,7 @@ public class IceGolemIdle : IceGolemGroundState
         base.Update();
         if (iceGolem.hp < 1)
         {
-            stateMachine.ChangeState(iceGolem.Die);
+            stateMachine.ChangeState(iceGolem.Diea);
             return;
         }
         if (stateTimer < 0)
@@ -109,7 +110,7 @@ public class IceGolemMove : IceGolemGroundState
         base.Update();
         if (iceGolem.hp < 1)
         {
-            stateMachine.ChangeState(iceGolem.Die);
+            stateMachine.ChangeState(iceGolem.Diea);
             return;
         }
         iceGolem.SetVelocity(iceGolem.moveSpeed * iceGolem.facingDir, iceGolem.Rigi.velocity.y);
@@ -143,7 +144,7 @@ public class IceGolemBattle : EnemyState
         base.Update();
         if (iceGolem.hp < 1)
         {
-            stateMachine.ChangeState(iceGolem.Die);
+            stateMachine.ChangeState(iceGolem.Diea);
             return;
         }
         if (iceGolem.IsPlayerDetected())
@@ -205,7 +206,7 @@ public class IceGolemAttack : EnemyState
         base.Update();
         if (iceGolem.hp < 1)
         {
-            stateMachine.ChangeState(iceGolem.Die);
+            stateMachine.ChangeState(iceGolem.Diea);
             return;
         }
         iceGolem.SetZeroVelocity();
@@ -225,6 +226,7 @@ public class IceGolemDie : EnemyState
     public override void Enter()
     {
         base.Enter();
+        iceGolem.Die();
     }
     public override void Exit()
     {
@@ -233,5 +235,9 @@ public class IceGolemDie : EnemyState
     public override void Update()
     {
         base.Update();
+        if (iceGolem.Ani.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1)
+        {
+            iceGolem.Destroy();
+        }
     }
 }

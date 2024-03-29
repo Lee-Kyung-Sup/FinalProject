@@ -46,4 +46,13 @@ public class Enemy : Entity,IDamageable
             StartCoroutine(Fx.HitFlash());
         }
     }
+    public void Die()
+    {
+        Destroy(Rigi);//Todo Drop Item
+        Destroy(box);
+    }
+    public void Destroy()
+    {
+        Destroy(gameObject);
+    }
 }

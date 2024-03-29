@@ -7,6 +7,7 @@ public class Entity : MonoBehaviour
     public EntityEffect Fx { get; private set; }
     public Animator Ani { get; private set; }
     public Rigidbody2D Rigi { get; private set; }
+    public BoxCollider2D box { get; private set; }
 
     [Header("Collision info")]
     public Transform attackCheck;
@@ -29,6 +30,7 @@ public class Entity : MonoBehaviour
         Rigi = GetComponent<Rigidbody2D>();
         Ani = GetComponentInChildren<Animator>();
         Fx = GetComponent<EntityEffect>();
+        box = GetComponent<BoxCollider2D>();
     }
     protected virtual void Update()
     {
