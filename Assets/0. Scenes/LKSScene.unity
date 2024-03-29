@@ -252,7 +252,7 @@ PrefabInstance:
     - target: {fileID: 1266215942943952612, guid: e9f6260a3fc5198478a65982e7a9409d, type: 3}
       propertyPath: objectManager
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 903705589}
     - target: {fileID: 2355385529216811586, guid: e9f6260a3fc5198478a65982e7a9409d, type: 3}
       propertyPath: m_Name
       value: Eagle
