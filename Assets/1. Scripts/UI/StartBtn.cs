@@ -12,7 +12,7 @@ public class StartBtn : MonoBehaviour, IPointerEnterHandler
         AudioManager.Instance.PlaySFX("Click");
         AudioManager.Instance.StopBGM();
         AudioManager.Instance.PlayBGM("FirstChapter");
-        SceneManager.LoadScene("2. GameScenes");
+        SceneManager.LoadScene("LoadingScene");
     }
 
     //"2. GameScenes"

@@ -456,7 +456,7 @@ MonoBehaviour:
   ItemDatabase: {fileID: 0}
   CharacterList: []
   PlayerAnimator: {fileID: 0}
-  PlayerName: {fileID: 0}
+  PlayerName: {fileID: 1028272109284025669, guid: 7dcb2db77edf1c94da62fbb48724952c, type: 3}
 --- !u!4 &234998504
 Transform:
   m_ObjectHideFlags: 0
