@@ -3,8 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
+
 public class PlayerStatus : MonoBehaviour, IDamageable
 {
+    public Dictionary<AttackTypes, int> attackPower;
+
     public class Stat
     {
         public int health { get; set; }
@@ -14,6 +18,19 @@ public class PlayerStatus : MonoBehaviour, IDamageable
             this.health = health; 
         }
     }
+    void StatInit()
+    {
+        attackPower = new Dictionary<AttackTypes, int>
+        {
+            { AttackTypes.MeleeAttack, 3 },
+            { AttackTypes.RangeAttack, 1 },
+            { AttackTypes.JumpAttack, 3 },
+            { AttackTypes.ComboAttack1, 3 },
+            { AttackTypes.ComboAttack2, 5 },
+            { AttackTypes.ChargeShot, 3 }
+        };
+    }
+
 
     private PlayerAnimations playerAnimations;
     private PlayerMovement playerMovement;
@@ -46,10 +63,9 @@ public class PlayerStatus : MonoBehaviour, IDamageable
     public float Stamina => stamina;
     public int Atk => atk;
 
-    void StatInit()
-    {
-        playerHealth = new Stat(3);
-    }
+
+
+
 
     void Start()
     {

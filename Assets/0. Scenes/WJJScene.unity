@@ -843,6 +843,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Frog 1 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8475805114555840434, guid: f983a39844d0bc3409d626f1d6d2c6bf, type: 3}
+      propertyPath: currentHp
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1231,6 +1235,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Frog 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8475805114555840434, guid: f983a39844d0bc3409d626f1d6d2c6bf, type: 3}
+      propertyPath: currentHp
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1609,7 +1617,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1973752608}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 15.25, y: 3.4, z: 0}
+  m_LocalPosition: {x: -5.41, y: 1.87, z: 0}
   m_LocalScale: {x: 15, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
