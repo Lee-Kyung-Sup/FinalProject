@@ -106,33 +106,5 @@ public class ObjectManager : MonoBehaviour
         return null;
     }
 
-    public GameObject[] GetPool(string type)
-    {
-        switch (type)
-        {
-            case "PlayerBullet":
-                targetPool = PlayerBullet;
-                break;
-            case "PlayerMeleeHit":
-                targetPool = PlayerMeleeHit;
-                break;
-            case "PlayerRangeHit":
-                targetPool = PlayerRangeHit;
-                break;
-            case "enemyB":
-                targetPool = enemyB;
-                break;
-            case "BulletBossA":
-                targetPool = bulletBossA;
-                break;
-            case "enemyBT":
-                targetPool = enemyBT;
-                break;
-            case "BulletBossBT":
-                targetPool = bulletBossBT;
-                break;
-        }
-
-        return targetPool;
-    }
+   
 }
