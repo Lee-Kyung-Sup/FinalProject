@@ -120,7 +120,8 @@ public class PlayerAttacks : MonoBehaviour
 
     public void ChargeShot()
     {
-        currentAttackType = AttackTypes.ChargeShot; 
+        currentAttackType = AttackTypes.ChargeShot;
+        playerAnimations.FireEffect();
         CreateBullet(ChargedBulletPref, ChargeShotPower, true);
     }
 
@@ -138,9 +139,10 @@ public class PlayerAttacks : MonoBehaviour
             handler.playerStatus = playerStatus;
         }
 
+        float ChargebulletDirection = transform.localScale.x > 0 ? 1f : -1f;
         if (isChargeShot)
         {
-            bullet.transform.localScale = new Vector3(-2.5f, 2.5f, 1f);
+            bullet.transform.localScale = new Vector3(-2.5f * ChargebulletDirection, 2.5f, 1f);
         }
         else
         {
