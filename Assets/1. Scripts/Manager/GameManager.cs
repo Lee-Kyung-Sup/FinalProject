@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour, IPointerEnterHandler
         {
             Destroy(gameObject);
         }
-        //player = GameObject.FindGameObjectWithTag("Player");
+        player = GameObject.FindGameObjectWithTag("Player");
         objectManager = GetComponent<ObjectManager>();
 
     }

@@ -229,13 +229,15 @@ public class Boss : MonoBehaviour
         objectManager = GameManager.instance.objectManager;
         if (enemyName == "B")
         {
+           
+            
             anim = GetComponent<Animator>();
         }
     }
 
     void Patrol()
     {
-        float randomX = Random.Range(-7f, 4f); // ·£´ýÇÑ x ÁÂÇ¥ »ý¼º
+        float randomX = Random.Range(-5f, 4f); // ·£´ýÇÑ x ÁÂÇ¥ »ý¼º
         float randomY = Random.Range(-3f, 4f); // ·£´ýÇÑ y ÁÂÇ¥ »ý¼º
         _targetPosition = new Vector2(randomX, randomY); // ·£´ýÇÑ À§Ä¡ º¤ÅÍ »ý¼º
         
@@ -281,7 +283,8 @@ public class Boss : MonoBehaviour
         }
         if (enemyName == "B")
         {
-            transform.position = Vector2.Lerp(transform.position, _targetPosition, moveSpeed * Time.deltaTime);
+            Vector2 newPosition = Vector2.Lerp(transform.position, _targetPosition, moveSpeed * Time.deltaTime);
+            transform.position = newPosition;
         }
             return;
 
