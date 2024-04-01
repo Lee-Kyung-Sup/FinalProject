@@ -192,8 +192,6 @@ public class PlayerMovement : MonoBehaviour, IsGroundable
         {
             isDashing = true;
 
-
-
             gameObject.layer = 18; // 무적 레이어
 
             dashStartTime = Time.time;

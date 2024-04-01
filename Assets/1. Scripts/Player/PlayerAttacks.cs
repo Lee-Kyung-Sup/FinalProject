@@ -19,6 +19,10 @@ public class PlayerAttacks : MonoBehaviour
     [SerializeField] private float fireDelay = 0.15f;
     [SerializeField] private float ChargeShotPower = 20f;
     [SerializeField] private float maxChargeTime = 1.5f;
+    private float lastFireTime = 0;
+    private float chargeTime = 0f;
+    private bool isCharging = false;
+    private bool isFullCharge = false;
 
     [Header("Melee Attack Parameter")]
     [SerializeField] private float attackDelay = 0.2f;
@@ -26,14 +30,13 @@ public class PlayerAttacks : MonoBehaviour
     private int attackSequence = 0;
     private float attackTimer = 0f;
     private float comboTimer = 0f;
+    private bool canJumpAttack = true;
 
 
     [Header("Other Skill Parameter")]
     [SerializeField] private float deflectCooldown = 0.5f;
-
-    private float lastFireTime = 0;
-    private float chargeTime = 0f;
     private float lastDeflectTime = 0f;
+
 
     [Header("Hit Boxes & Position")]
     [SerializeField] private Collider2D meleeAttackCollider;
@@ -50,9 +53,7 @@ public class PlayerAttacks : MonoBehaviour
     [SerializeField] public Color color1 = new Color(1f, 180f / 255f, 70f / 255f, 1f);
     [SerializeField] public Color color2 = new Color(220f / 255f, 160f / 255f, 40f / 255f, 1f);
 
-    private bool canJumpAttack = true;
-    private bool isCharging = false;
-    private bool isFullCharge = false;
+
 
     private void Awake()
     {
@@ -130,6 +131,7 @@ public class PlayerAttacks : MonoBehaviour
     {
         isCharging = true;
     }
+
     public void ReleaseCharge()
     {
         isCharging = false;
@@ -244,17 +246,6 @@ public class PlayerAttacks : MonoBehaviour
         meleeAttackCollider_3.enabled = false;
     }
 
-    //public void Attack()
-    //{
-    //    if (playerMovement.IsGround())
-    //    {
-    //        meleeAttackCollider.enabled = true;
-    //        Invoke("DisableAttack", 0.25f);
-    //        playerAnimations.Attacking();
-    //        playerAnimations.MeleeAttackEffect();
-    //    }
-    //}
-
     public void JumpAttack()
     {
         if (canJumpAttack && !playerMovement.IsGround() && playerStatus.Stamina >= 25)
@@ -288,8 +279,6 @@ public class PlayerAttacks : MonoBehaviour
 
         canJumpAttack = true;
     }
-
-
 
     public void Deflect()
     {
