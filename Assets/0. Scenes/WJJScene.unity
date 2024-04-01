@@ -843,6 +843,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Frog 1 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8475805114555840434, guid: f983a39844d0bc3409d626f1d6d2c6bf, type: 3}
+      propertyPath: currentHp
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1231,6 +1235,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Frog 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8475805114555840434, guid: f983a39844d0bc3409d626f1d6d2c6bf, type: 3}
+      propertyPath: currentHp
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1437,14 +1445,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 7452848560659514459, guid: 5ea784b956f4a564ea1a6ea255629d76, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -1.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8226669703730961352, guid: 5ea784b956f4a564ea1a6ea255629d76, type: 3}
-      propertyPath: boxHeight
-      value: 0.1
-      objectReference: {fileID: 0}
     - target: {fileID: 8419139054370907626, guid: 5ea784b956f4a564ea1a6ea255629d76, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1488,18 +1488,6 @@ PrefabInstance:
     - target: {fileID: 8419139054370907626, guid: 5ea784b956f4a564ea1a6ea255629d76, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8591395843573410377, guid: 5ea784b956f4a564ea1a6ea255629d76, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 689e83efb879f0242ae38da027594087, type: 2}
-    - target: {fileID: 8591395843573410377, guid: 5ea784b956f4a564ea1a6ea255629d76, type: 3}
-      propertyPath: m_ApplyRootMotion
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9197108407005593866, guid: 5ea784b956f4a564ea1a6ea255629d76, type: 3}
-      propertyPath: m_Parameters.colorGradient.m_ColorSpace
-      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1629,7 +1617,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1973752608}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 15.25, y: 3.4, z: 0}
+  m_LocalPosition: {x: -5.41, y: 1.87, z: 0}
   m_LocalScale: {x: 15, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
