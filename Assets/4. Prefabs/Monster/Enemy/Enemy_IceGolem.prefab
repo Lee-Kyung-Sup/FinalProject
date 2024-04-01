@@ -360,5 +360,5 @@ MonoBehaviour:
   attackDistance: 1.8
   attackDelay: 1
   dmg: 1
-  hp: 5
+  hp: 60
   lastTimeAttacked: 0

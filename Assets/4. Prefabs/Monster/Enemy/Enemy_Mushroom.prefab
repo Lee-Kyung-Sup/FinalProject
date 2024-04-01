@@ -179,7 +179,7 @@ MonoBehaviour:
   attackDistance: 1.8
   attackDelay: 1
   dmg: 1
-  hp: 5
+  hp: 40
   lastTimeAttacked: 0
 --- !u!1 &5207646476977921394
 GameObject:
