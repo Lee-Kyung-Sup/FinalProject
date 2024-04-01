@@ -4,13 +4,38 @@ using UnityEngine;
 
 public class Ending : MonoBehaviour
 {
-    public GameObject go;
+    public GameObject congratmention;
+    public GameObject credit;
+    public GameObject endingmention;
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void Start()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
-        {
-            go.SetActive(true);
-        }
+        Invoke("congratsMent", 2f);
+        Invoke("congratsCancel", 5f);
+        Invoke("endCredit", 10f);
+        Invoke("endingMent", 25f);
     }
+
+    void congratsMent()
+    {
+        congratmention.SetActive(true);
+    }
+    void congratsCancel()
+    {
+        congratmention.SetActive(false);
+    }
+    void endCredit()
+    {
+        credit.SetActive(true);
+    }
+
+    void endingMent()
+    {
+        endingmention.SetActive(true);
+    }
+
+
+
+
+
 }
