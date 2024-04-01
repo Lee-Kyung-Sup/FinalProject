@@ -15,6 +15,7 @@ public class StartBtn : MonoBehaviour, IPointerEnterHandler
         SceneManager.LoadScene("2. GameScenes");
     }
 
+    //"2. GameScenes"
     public void OnPointerEnter(PointerEventData eventData)
     {
         AudioManager.Instance.PlaySFX("Cursor");

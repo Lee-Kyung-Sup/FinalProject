@@ -73,7 +73,6 @@ public class PlayerMovement : MonoBehaviour, IsGroundable
             {
                 canDash = true;  // 땅에 닿음 + 쿨다운이 완료되었다면 대쉬 가능
             }
-
             if (rb.velocity.y <= 0)
             {
                 jumpCount = 0; // 점프 횟수 초기화
