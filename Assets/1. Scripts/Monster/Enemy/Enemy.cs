@@ -20,7 +20,7 @@ public class Enemy : Entity,IDamageable
     {
         base.Awake();
         stateMachine = new EnemyStateMachine();
-        pLayer = LayerMask.GetMask("Player");
+        pLayer = LayerMask.GetMask("Player", "PlayerInvincible");
     }
     protected override void Update()
     {
