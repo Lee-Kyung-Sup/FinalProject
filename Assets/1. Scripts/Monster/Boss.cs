@@ -215,15 +215,19 @@ public class Boss : MonoBehaviour
         }
     }
 
-    private Vector2 _targetPosition; // 목표 위치
+    public Vector2 _targetPosition; // 목표 위치
     public float moveSpeed = 3f; // 이동 속도
     void Start()
     {
-        AudioManager.Instance.PlayBGM("FirstBoss"); //원래 BGM 재생 JHP
-        if (enemyName == "B")
+        if (AudioManager.Instance != null)
         {
-            InvokeRepeating("Patrol", 1f, 5f);
+            AudioManager.Instance.PlayBGM("FirstBoss"); //원래 BGM 재생 JHP
         }
+
+
+        InvokeRepeating("Patrol", 1f, 3f);
+        
+       
         player = GameManager.instance.player;
         //objectManager = FindObjectOfType<ObjectManager>();
         objectManager = GameManager.instance.objectManager;
@@ -237,10 +241,10 @@ public class Boss : MonoBehaviour
 
     void Patrol()
     {
-        float randomX = Random.Range(-5f, 4f); // 랜덤한 x 좌표 생성
-        float randomY = Random.Range(-3f, 4f); // 랜덤한 y 좌표 생성
+        float randomX = Random.Range(-6f, 7f); // 랜덤한 x 좌표 생성
+        float randomY = Random.Range(-3f, 6f); // 랜덤한 y 좌표 생성
         _targetPosition = new Vector2(randomX, randomY); // 랜덤한 위치 벡터 생성
-        
+        Debug.Log(_targetPosition);
     }
     void Update()
     {
@@ -281,12 +285,11 @@ public class Boss : MonoBehaviour
             }
             transform.localScale = thisScale;
         }
-        if (enemyName == "B")
-        {
-            Vector2 newPosition = Vector2.Lerp(transform.position, _targetPosition, moveSpeed * Time.deltaTime);
-            transform.position = newPosition;
-        }
-            return;
+      
+        transform.position = Vector2.Lerp(transform.position, _targetPosition, moveSpeed * Time.deltaTime);
+       
+
+
 
     }
 
