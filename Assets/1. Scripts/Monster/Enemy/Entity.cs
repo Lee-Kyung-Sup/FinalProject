@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Entity : MonoBehaviour
+public class Entity : MonoBehaviour,IsGroundable
 {
     public EntityEffect Fx { get; private set; }
     public Animator Ani { get; private set; }
@@ -43,7 +43,9 @@ public class Entity : MonoBehaviour
         Rigi.velocity = new Vector2(xVelocity, yVelocity);
         FlipController(xVelocity);
     }
-    public virtual bool IsGroundDetected() => Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, gpLayer);
+
+    public virtual bool IsGround() => Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, gpLayer);
+
     public virtual bool IsWallDetected() => Physics2D.Raycast(wallCheck.position, Vector2.right * facingDir, wallCheckDistance, gpLayer);
     protected virtual void OnDrawGizmos()
     {
