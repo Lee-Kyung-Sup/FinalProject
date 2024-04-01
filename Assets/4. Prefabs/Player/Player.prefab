@@ -499,6 +499,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   meleeHitEffect: {fileID: 2955623459812423943, guid: f5507a8c6a22c404ab324980c4e8a11b, type: 3}
   hitInterval: 0.25
+  playerAttacks: {fileID: 0}
 --- !u!50 &9155896204700355135
 Rigidbody2D:
   serializedVersion: 4
@@ -656,7 +657,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2205255469149638541}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.35, z: 0}
+  m_LocalPosition: {x: 0, y: -1.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1142,7 +1143,7 @@ Transform:
   - {fileID: 3145523589203839341}
   - {fileID: 7452848560659514459}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2758978147879318403
 MonoBehaviour:
@@ -1496,6 +1497,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4eccb95e46b8274aafb328222fa3adb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentAttackType: 0
   bulletPref: {fileID: 2633405581603700037, guid: f574287d5d7544a48ac02a90207fdadc, type: 3}
   ChargedBulletPref: {fileID: 5730628734833746102, guid: a103c943f5b6c2242b2ceed650182a41, type: 3}
   ShotPower: 20
@@ -2016,7 +2018,7 @@ TrailRenderer:
       atime6: 0
       atime7: 0
       m_Mode: 0
-      m_ColorSpace: 0
+      m_ColorSpace: -1
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
     numCornerVertices: 0
@@ -2132,6 +2134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   meleeHitEffect: {fileID: 2955623459812423943, guid: f5507a8c6a22c404ab324980c4e8a11b, type: 3}
   hitInterval: 0.25
+  playerAttacks: {fileID: 0}
 --- !u!50 &4215060159381921105
 Rigidbody2D:
   serializedVersion: 4
@@ -2270,6 +2273,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   meleeHitEffect: {fileID: 5024009746357069194, guid: ec3f674830402cc45bce805cf6493db7, type: 3}
   hitInterval: 0.25
+  playerAttacks: {fileID: 0}
 --- !u!1 &8424520208955895740
 GameObject:
   m_ObjectHideFlags: 0
@@ -2397,6 +2401,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   meleeHitEffect: {fileID: 2955623459812423943, guid: f5507a8c6a22c404ab324980c4e8a11b, type: 3}
   hitInterval: 0.25
+  playerAttacks: {fileID: 0}
 --- !u!50 &3181884910156171366
 Rigidbody2D:
   serializedVersion: 4

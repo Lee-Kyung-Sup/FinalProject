@@ -185,11 +185,15 @@ public class Monster : MonoBehaviour, IsGroundable, IDamageable
     }
 
     //특정태그에 따른 충돌 피해
+
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.transform.tag ==("PlayerAttackBox"))
         {
-            TakeDamage(1);
+            //TakeDamage(1); 
+            
+            // 플레이어가 몬스터의 TakeDamage에
+            //직접적으로 데미지를 전달하기 때문에 요게 필요읍슴
         }
     }
 

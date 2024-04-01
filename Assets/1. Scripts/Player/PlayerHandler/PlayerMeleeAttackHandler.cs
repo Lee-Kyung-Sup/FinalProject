@@ -8,11 +8,13 @@ public class PlayerMeleeAttackHandler : MonoBehaviour
     [SerializeField] private GameObject meleeHitEffect; // 히트 효과 프리팹
     [SerializeField] private float hitInterval = 0.25f;
 
+    public PlayerAttacks playerAttacks;
     PlayerStatus playerStatus;
 
     void Start()
     {
-        playerStatus = GetComponent<PlayerStatus>();
+        playerAttacks = GetComponentInParent<PlayerAttacks>();
+        playerStatus = GetComponentInParent<PlayerStatus>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -29,8 +31,11 @@ public class PlayerMeleeAttackHandler : MonoBehaviour
 
             Instantiate(meleeHitEffect, hitEffectPosition, Quaternion.identity);
 
-            // 몬스터에게 데미지를 주는 로직 (추가적인 구현 필요)
-            //collision.SendMessage("TakeDamage", playerStatus.Atk);
+            AttackTypes attackType = playerAttacks.currentAttackType;
+            int damage = playerStatus.attackPower[attackType];
+            collision.gameObject.GetComponent<IDamageable>()?.TakeDamage(damage);
+
+            Debug.Log($"{collision.gameObject.name}에게 {attackType} 공격 {damage}의 데미지");
         }
     }
 }

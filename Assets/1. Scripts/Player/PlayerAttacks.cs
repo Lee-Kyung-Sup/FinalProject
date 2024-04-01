@@ -10,6 +10,8 @@ public class PlayerAttacks : MonoBehaviour
     private PlayerStatus playerStatus;
     private PlayerController _playerController;
 
+    public AttackTypes currentAttackType;
+
     [Header("Bullet Setting")]
     [SerializeField] private GameObject bulletPref;
     [SerializeField] private GameObject ChargedBulletPref;
@@ -19,6 +21,10 @@ public class PlayerAttacks : MonoBehaviour
     [SerializeField] private float fireDelay = 0.15f;
     [SerializeField] private float ChargeShotPower = 20f;
     [SerializeField] private float maxChargeTime = 1.5f;
+    private float lastFireTime = 0;
+    private float chargeTime = 0f;
+    private bool isCharging = false;
+    private bool isFullCharge = false;
 
     [Header("Melee Attack Parameter")]
     [SerializeField] private float attackDelay = 0.2f;
@@ -26,14 +32,13 @@ public class PlayerAttacks : MonoBehaviour
     private int attackSequence = 0;
     private float attackTimer = 0f;
     private float comboTimer = 0f;
+    private bool canJumpAttack = true;
 
 
     [Header("Other Skill Parameter")]
     [SerializeField] private float deflectCooldown = 0.5f;
-
-    private float lastFireTime = 0;
-    private float chargeTime = 0f;
     private float lastDeflectTime = 0f;
+
 
     [Header("Hit Boxes & Position")]
     [SerializeField] private Collider2D meleeAttackCollider;
@@ -49,10 +54,6 @@ public class PlayerAttacks : MonoBehaviour
     [SerializeField] public Material chargingMaterial;
     [SerializeField] public Color color1 = new Color(1f, 180f / 255f, 70f / 255f, 1f);
     [SerializeField] public Color color2 = new Color(220f / 255f, 160f / 255f, 40f / 255f, 1f);
-
-    private bool canJumpAttack = true;
-    private bool isCharging = false;
-    private bool isFullCharge = false;
 
     private void Awake()
     {
@@ -112,24 +113,52 @@ public class PlayerAttacks : MonoBehaviour
     {
         if (Time.time - lastFireTime >= fireDelay)
         {
-            Vector3 direction = transform.right * transform.localScale.x; // 플레이어의 방향에 따라 발사 방향 결정
-            GameObject bullet = Instantiate(bulletPref, rangeAttackPosition.position + direction, Quaternion.identity);
-            playerAnimations.Fired();
-
-            // 플레이어의 방향에 따른 투사체 스프라이트 스케일 반전
-            float bulletDirection = transform.localScale.x > 0 ? 1f : -1f;
-            bullet.transform.localScale = new Vector3(bulletDirection, 1f, 1f);
-
-            bullet.GetComponent<Rigidbody2D>().AddForce(direction * ShotPower, ForceMode2D.Impulse);
-
-            lastFireTime = Time.time; // 마지막 발사 시간 업데이트
+            currentAttackType = AttackTypes.RangeAttack;
+            CreateBullet(bulletPref, ShotPower, false);
         }
     }
+
+    public void ChargeShot()
+    {
+        currentAttackType = AttackTypes.ChargeShot;
+        playerAnimations.FireEffect();
+        CreateBullet(ChargedBulletPref, ChargeShotPower, true);
+    }
+
+
+    private void CreateBullet(GameObject bulletPrefab, float shotPower, bool isChargeShot)
+    {
+        Vector3 direction = transform.right * transform.localScale.x;
+        GameObject bullet = Instantiate(bulletPrefab, rangeAttackPosition.position + direction, Quaternion.identity);
+        playerAnimations.Fired();
+
+        PlayerRangeAttackHandler handler = bullet.GetComponent<PlayerRangeAttackHandler>();
+        if (handler != null)
+        {
+            handler.playerAttacks = this;
+            handler.playerStatus = playerStatus;
+        }
+
+        float ChargebulletDirection = transform.localScale.x > 0 ? 1f : -1f;
+        if (isChargeShot)
+        {
+            bullet.transform.localScale = new Vector3(-2.5f * ChargebulletDirection, 2.5f, 1f);
+        }
+        else
+        {
+            bullet.transform.localScale = new Vector3(transform.localScale.x, 1f, 1f);
+        }
+
+        bullet.GetComponent<Rigidbody2D>().AddForce(direction * shotPower, ForceMode2D.Impulse);
+        lastFireTime = Time.time;
+    }
+
 
     public void StartCharging()
     {
         isCharging = true;
     }
+
     public void ReleaseCharge()
     {
         isCharging = false;
@@ -164,22 +193,7 @@ public class PlayerAttacks : MonoBehaviour
         spriteRenderer.material.SetColor("_Color", Color.white);
     }
 
-    public void ChargeShot()
-    {
-        spriteRenderer.material = originalMaterial;
-        playerAnimations.Charging(false);
-        playerAnimations.FireEffect();
-        playerStatus.UseStamina(25);
 
-        Vector3 direction = transform.right * transform.localScale.x; // 플레이어의 방향에 따라 발사 방향 결정
-        GameObject bullet = Instantiate(ChargedBulletPref, rangeAttackPosition.position + direction, Quaternion.identity);
-        playerAnimations.Fired();
-
-        float bulletDirection = transform.localScale.x < 0 ? 2.5f : -2.5f;
-        bullet.transform.localScale = new Vector3(bulletDirection, 2.5f, 1f);
-
-        bullet.GetComponent<Rigidbody2D>().AddForce(direction * ChargeShotPower, ForceMode2D.Impulse);
-    }
 
     public void MeleeAttack()
     {
@@ -188,7 +202,8 @@ public class PlayerAttacks : MonoBehaviour
             switch (attackSequence)
             {
                 case 0:
-                    PerformAttack(meleeAttackCollider);
+                    currentAttackType = AttackTypes.MeleeAttack;
+                    PerformAttack(AttackTypes.MeleeAttack, meleeAttackCollider);
                     playerAnimations.Attacking();
                     playerAnimations.MeleeAttackEffect();
                     attackSequence = 1; 
@@ -196,7 +211,8 @@ public class PlayerAttacks : MonoBehaviour
                 case 1:
                     if (_playerController.LockAction[Paction.ComboAttack])
                     {
-                        PerformAttack(meleeAttackCollider_2);
+                        currentAttackType = AttackTypes.ComboAttack1;
+                        PerformAttack(AttackTypes.ComboAttack1, meleeAttackCollider_2);
                         playerAnimations.Attacking2();
                         playerAnimations.MeleeAttackEffect2();
                         attackSequence = 2;
@@ -211,7 +227,8 @@ public class PlayerAttacks : MonoBehaviour
                 case 2:
                     if (playerStatus.Stamina >= 25 && _playerController.LockAction[Paction.ComboAttack])
                     {
-                        PerformAttack(meleeAttackCollider_3);
+                        currentAttackType = AttackTypes.ComboAttack2;
+                        PerformAttack(AttackTypes.ComboAttack2, meleeAttackCollider_2);
                         playerAnimations.Attacking3();
                         playerAnimations.MeleeAttackEffect3();
                         attackSequence = 0;
@@ -231,7 +248,7 @@ public class PlayerAttacks : MonoBehaviour
         }
     }
 
-    private void PerformAttack(Collider2D attackCollider)
+    private void PerformAttack(AttackTypes attackType, Collider2D attackCollider)
     {
         attackCollider.enabled = true;
         Invoke("DisableAttack", 0.25f); 
@@ -244,23 +261,13 @@ public class PlayerAttacks : MonoBehaviour
         meleeAttackCollider_3.enabled = false;
     }
 
-    //public void Attack()
-    //{
-    //    if (playerMovement.IsGround())
-    //    {
-    //        meleeAttackCollider.enabled = true;
-    //        Invoke("DisableAttack", 0.25f);
-    //        playerAnimations.Attacking();
-    //        playerAnimations.MeleeAttackEffect();
-    //    }
-    //}
-
     public void JumpAttack()
     {
         if (canJumpAttack && !playerMovement.IsGround() && playerStatus.Stamina >= 25)
         {
-            Debug.Log("점프어택");
             jumpAttackCollider.enabled = true;
+
+            currentAttackType = AttackTypes.JumpAttack;
 
             canJumpAttack = false;
             playerStatus.UseStamina(25);
@@ -274,22 +281,17 @@ public class PlayerAttacks : MonoBehaviour
 
     private IEnumerator MultiHitJumpAttack()
     {
-        jumpAttackCollider.enabled = true;
-        yield return new WaitForSeconds(0.1f);
-        jumpAttackCollider.enabled = false;
-        yield return new WaitForSeconds(0.1f);
-        jumpAttackCollider.enabled = true;
-        yield return new WaitForSeconds(0.1f);
-        jumpAttackCollider.enabled = false;
-        yield return new WaitForSeconds(0.1f);
-        jumpAttackCollider.enabled = true;
-        yield return new WaitForSeconds(0.1f);
-        jumpAttackCollider.enabled = false;
+        int hit = 3; 
+        for (int i = 0; i < hit; i++)
+        {
+            jumpAttackCollider.enabled = true;
+            yield return new WaitForSeconds(0.1f);
+            jumpAttackCollider.enabled = false;
+            yield return new WaitForSeconds(0.1f);
+        }
 
         canJumpAttack = true;
     }
-
-
 
     public void Deflect()
     {
