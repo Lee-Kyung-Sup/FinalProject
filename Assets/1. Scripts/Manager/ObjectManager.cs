@@ -6,8 +6,11 @@ public class ObjectManager : MonoBehaviour
 {
 
     public GameObject PlayerBulletPrefab;
+    public GameObject PlayerChargeBulletPrefab;
     public GameObject PlayerMeleeHitPrefab;
     public GameObject PlayerRangeHitPrefab;
+    public GameObject PlayerJumpHitEffectPrefab;
+    public GameObject PlayerDeflectEffectPrefab;
 
     public GameObject bulletBossAPrefab;
     public GameObject bulletBossBTPrefab;
@@ -15,8 +18,11 @@ public class ObjectManager : MonoBehaviour
     public GameObject enemyBTPrefab;
 
     GameObject[] PlayerBullet;
+    GameObject[] PlayerChargeBullet;
     GameObject[] PlayerMeleeHit;
     GameObject[] PlayerRangeHit;
+    GameObject[] PlayerJumpHit;
+    GameObject[] PlayerDeflectEffect;
     GameObject[] enemyB;
     GameObject[] enemyBT;
     GameObject[] bulletBossA;
@@ -37,9 +43,12 @@ public class ObjectManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        PlayerBullet = new GameObject[10];
-        PlayerMeleeHit = new GameObject[5];
-        PlayerRangeHit = new GameObject[5];
+        PlayerBullet = new GameObject[45];
+        PlayerChargeBullet = new GameObject[5];
+        PlayerMeleeHit = new GameObject[10];
+        PlayerRangeHit = new GameObject[15];
+        PlayerJumpHit = new GameObject[15];
+        PlayerDeflectEffect = new GameObject[10];
 
         enemyB = new GameObject[1];
         enemyBT = new GameObject[1];
@@ -57,6 +66,12 @@ public class ObjectManager : MonoBehaviour
             PlayerBullet[i].SetActive(false);
         }
 
+        for (int i = 0; i < PlayerChargeBullet.Length; i++)
+        {
+            PlayerChargeBullet[i] = Instantiate(PlayerChargeBulletPrefab);
+            PlayerChargeBullet[i].SetActive(false);
+        }
+
         for (int i = 0; i < PlayerMeleeHit.Length; i++)
         {
             PlayerMeleeHit[i] = Instantiate(PlayerMeleeHitPrefab);
@@ -67,6 +82,18 @@ public class ObjectManager : MonoBehaviour
         {
             PlayerRangeHit[i] = Instantiate(PlayerRangeHitPrefab);
             PlayerRangeHit[i].SetActive(false);
+        }
+
+        for (int i = 0; i < PlayerJumpHit.Length; i++)
+        {
+            PlayerJumpHit[i] = Instantiate(PlayerJumpHitEffectPrefab);
+            PlayerJumpHit[i].SetActive(false);
+        }
+
+        for (int i = 0; i < PlayerDeflectEffect.Length; i++)
+        {
+            PlayerDeflectEffect[i] = Instantiate(PlayerDeflectEffectPrefab);
+            PlayerDeflectEffect[i].SetActive(false);
         }
 
         for (int index = 0; index < bulletBossA.Length; index++)
@@ -88,11 +115,20 @@ public class ObjectManager : MonoBehaviour
             case "PlayerBullet":
                 targetPool = PlayerBullet;
                 break;
+            case "PlayerChargeBullet":
+                targetPool = PlayerChargeBullet;
+                break;
             case "PlayerMeleeHit":
                 targetPool = PlayerMeleeHit;
                 break;
             case "PlayerRangeHit":
                 targetPool = PlayerRangeHit;
+                break;
+            case "PlayerJumpHit":
+                targetPool = PlayerJumpHit;
+                break;
+            case "PlayerDeflectEffect":
+                targetPool = PlayerDeflectEffect;
                 break;
             case "enemyB":
                 targetPool = enemyB;
@@ -125,11 +161,20 @@ public class ObjectManager : MonoBehaviour
             case "PlayerBullet":
                 targetPool = PlayerBullet;
                 break;
+            case "PlayerChargeBullet":
+                targetPool = PlayerChargeBullet;
+                break;
             case "PlayerMeleeHit":
                 targetPool = PlayerMeleeHit;
                 break;
             case "PlayerRangeHit":
                 targetPool = PlayerRangeHit;
+                break;
+            case "PlayerJumpHit":
+                targetPool = PlayerJumpHit;
+                break;
+            case "PlayerDeflectEffect":
+                targetPool = PlayerDeflectEffect;
                 break;
             case "enemyB":
                 targetPool = enemyB;
@@ -147,4 +192,5 @@ public class ObjectManager : MonoBehaviour
 
         return targetPool;
     }
+
 }

@@ -114,7 +114,7 @@ public class PlayerAttacks : MonoBehaviour
         if (Time.time - lastFireTime >= fireDelay)
         {
             currentAttackType = AttackTypes.RangeAttack;
-            CreateBullet(bulletPref, ShotPower, false);
+            CreateBullet("PlayerBullet", ShotPower, false);
         }
     }
 
@@ -122,35 +122,40 @@ public class PlayerAttacks : MonoBehaviour
     {
         currentAttackType = AttackTypes.ChargeShot;
         playerAnimations.FireEffect();
-        CreateBullet(ChargedBulletPref, ChargeShotPower, true);
+        CreateBullet("PlayerChargeBullet", ChargeShotPower, true);
     }
 
 
-    private void CreateBullet(GameObject bulletPrefab, float shotPower, bool isChargeShot)
+    private void CreateBullet(string bulletType, float shotPower, bool isChargeShot)
     {
         Vector3 direction = transform.right * transform.localScale.x;
-        GameObject bullet = Instantiate(bulletPrefab, rangeAttackPosition.position + direction, Quaternion.identity);
-        playerAnimations.Fired();
-
-        PlayerRangeAttackHandler handler = bullet.GetComponent<PlayerRangeAttackHandler>();
-        if (handler != null)
+        GameObject bullet = ObjectManager.Instance.MakeObj(bulletType); // 오브젝트 풀에서 투사체 가져오기
+        if (bullet != null) 
         {
-            handler.playerAttacks = this;
-            handler.playerStatus = playerStatus;
-        }
+            bullet.transform.position = rangeAttackPosition.position + direction;
+            bullet.transform.rotation = Quaternion.identity;
+            playerAnimations.Fired();
 
-        float ChargebulletDirection = transform.localScale.x > 0 ? 1f : -1f;
-        if (isChargeShot)
-        {
-            bullet.transform.localScale = new Vector3(-2.5f * ChargebulletDirection, 2.5f, 1f);
-        }
-        else
-        {
-            bullet.transform.localScale = new Vector3(transform.localScale.x, 1f, 1f);
-        }
+            PlayerRangeAttackHandler handler = bullet.GetComponent<PlayerRangeAttackHandler>();
+            if (handler != null)
+            {
+                handler.playerAttacks = this;
+                handler.playerStatus = playerStatus;
+            }
 
-        bullet.GetComponent<Rigidbody2D>().AddForce(direction * shotPower, ForceMode2D.Impulse);
-        lastFireTime = Time.time;
+            float ChargebulletDirection = transform.localScale.x > 0 ? 1f : -1f;
+            if (isChargeShot)
+            {
+                bullet.transform.localScale = new Vector3(-2.5f * ChargebulletDirection, 2.5f, 1f);
+            }
+            else
+            {
+                bullet.transform.localScale = new Vector3(transform.localScale.x, 1f, 1f);
+            }
+
+            bullet.GetComponent<Rigidbody2D>().AddForce(direction * shotPower, ForceMode2D.Impulse);
+            lastFireTime = Time.time;
+        }
     }
 
 

@@ -14716,7 +14716,7 @@ GameObject:
   - component: {fileID: 5024009746357069192}
   - component: {fileID: 5024009746357069195}
   m_Layer: 0
-  m_Name: JumpHitEffect
+  m_Name: PlayerJumpHit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14750,7 +14750,7 @@ ParticleSystem:
   serializedVersion: 8
   lengthInSec: 0.9
   simulationSpeed: 1
-  stopAction: 2
+  stopAction: 1
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}

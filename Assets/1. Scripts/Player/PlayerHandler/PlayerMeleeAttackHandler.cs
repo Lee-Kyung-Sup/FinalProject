@@ -5,10 +5,11 @@ using UnityEngine;
 public class PlayerMeleeAttackHandler : MonoBehaviour
 {
     [Header("Melee Attack Parameters")]
-    [SerializeField] private GameObject meleeHitEffect; // 히트 효과 프리팹
+    [SerializeField] private GameObject meleeHitEffect; 
+    [SerializeField] private GameObject JumpHitEffect;
     [SerializeField] private float hitInterval = 0.25f;
 
-    public PlayerAttacks playerAttacks;
+    PlayerAttacks playerAttacks;
     PlayerStatus playerStatus;
 
     void Start()
@@ -29,7 +30,25 @@ public class PlayerMeleeAttackHandler : MonoBehaviour
 
             Vector3 hitEffectPosition = monsterColliderCenter - directionToMonster * hitInterval;
 
-            Instantiate(meleeHitEffect, hitEffectPosition, Quaternion.identity);
+
+            string effectType = "";
+            switch (playerAttacks.currentAttackType)
+            {
+                case AttackTypes.MeleeAttack:
+                    effectType = "PlayerMeleeHit";
+                    break;
+                case AttackTypes.JumpAttack:
+                    effectType = "PlayerJumpHit";
+                    break;
+            }
+
+            GameObject effect = ObjectManager.Instance.MakeObj(effectType);
+            if (effect != null)
+            {
+                effect.transform.position = hitEffectPosition;
+                effect.transform.rotation = Quaternion.identity;
+                effect.SetActive(true);
+            }
 
             AttackTypes attackType = playerAttacks.currentAttackType;
             int damage = playerStatus.attackPower[attackType];

@@ -1458,7 +1458,6 @@ MonoBehaviour:
   stamina: 100
   staminaRecoveryRate: 100
   staminaRecoveryDelay: 1
-  atk: 1
   speed: 10
   jumpPower: 20
   maxJumpCount: 2
@@ -1504,7 +1503,7 @@ MonoBehaviour:
   fireDelay: 0.15
   ChargeShotPower: 28
   maxChargeTime: 1.5
-  attackDelay: 0.18
+  attackDelay: 0.19
   comboDelay: 0.5
   deflectCooldown: 0.5
   meleeAttackCollider: {fileID: 6198198559188364953}

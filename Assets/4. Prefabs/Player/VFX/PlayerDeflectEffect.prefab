@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8460667080445658518}
   - component: {fileID: 8460667080445658519}
   m_Layer: 0
-  m_Name: DeflectEffect
+  m_Name: PlayerDeflectEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43,7 +43,7 @@ ParticleSystem:
   serializedVersion: 8
   lengthInSec: 1
   simulationSpeed: 0.7
-  stopAction: 2
+  stopAction: 1
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}

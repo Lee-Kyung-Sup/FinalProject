@@ -12,14 +12,23 @@ public class PlayerRangeAttackHandler : MonoBehaviour
     public PlayerAttacks playerAttacks;
     private List<Coroutine> hitCoroutines = new List<Coroutine>();
 
-    void Start()
+    private void OnEnable()
     {
-        Invoke("DestroyTime", 7.0f);
+        StartCoroutine(DisableBulletPrefabs(5.0f));
     }
 
-    void DestroyTime()
+    IEnumerator DisableBulletPrefabs(float time)
     {
-        Destroy(gameObject);
+        yield return new WaitForSeconds(time);
+        if (gameObject.activeSelf)
+        {
+            gameObject.SetActive(false);
+        }
+    }
+
+    private void OnDisable()
+    {
+        StopAllCoroutines();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -29,7 +38,7 @@ public class PlayerRangeAttackHandler : MonoBehaviour
             if (!isChargeShot) // 일반 샷인 경우에만 벽이나 플랫폼에 부딪혔을 때 사라짐
             {
                 Instantiate(RangeHitEffect, transform.position, Quaternion.identity);
-                Destroy(gameObject);
+                gameObject.SetActive(false);
             }
         }
 
@@ -43,24 +52,32 @@ public class PlayerRangeAttackHandler : MonoBehaviour
             else // 일반 샷
             {
                 HitEffectAndDamage(collision);
-                Destroy(gameObject);
+                gameObject.SetActive(false);
             }
         }
     }
 
     private IEnumerator MultiHit(Collider2D collision)
     {
-        while (collision != null && gameObject != null)
+        while (collision != null && gameObject.activeSelf)
         {
             HitEffectAndDamage(collision);
             yield return new WaitForSeconds(0.05f);
         }
     }
 
+
     private void HitEffectAndDamage(Collider2D collision) // 히트효과 & 데미지 적용
     {
         Vector3 hitEffectPosition = GetHitEffectPosition(collision);
-        Instantiate(RangeHitEffect, hitEffectPosition, Quaternion.identity);
+
+        GameObject effect = ObjectManager.Instance.MakeObj("PlayerRangeHit"); 
+        if (effect != null)
+        {
+            effect.transform.position = hitEffectPosition;
+            effect.transform.rotation = Quaternion.identity;
+            effect.SetActive(true);
+        }
 
         AttackTypes attackType = playerAttacks.currentAttackType;
         int damage = playerStatus.attackPower[attackType];
@@ -69,7 +86,7 @@ public class PlayerRangeAttackHandler : MonoBehaviour
         Debug.Log($"{collision.gameObject.name}에게 {attackType} 공격 {damage}의 데미지");
     }
 
-    private Vector3 GetHitEffectPosition(Collider2D collision) // 히트 효과의 위치 계산
+    private Vector3 GetHitEffectPosition(Collider2D collision) // 히트 효과 위치 조정
     {
         Vector3 bulletColliderCenter = GetComponent<Collider2D>().bounds.center;
         Vector3 monsterColliderCenter = collision.bounds.center;
@@ -81,7 +98,10 @@ public class PlayerRangeAttackHandler : MonoBehaviour
     {
         if (((1 << collision.gameObject.layer) & (1 << 7)) != 0) // 7: 몬스터
         {
-            StopAllCoroutines();
+            foreach (var hitCoroutine in hitCoroutines)
+            {
+                StopCoroutine(hitCoroutine);
+            }
             hitCoroutines.Clear();
         }
     }
