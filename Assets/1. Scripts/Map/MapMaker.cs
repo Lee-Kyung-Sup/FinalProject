@@ -30,11 +30,11 @@ public class MapMaker : SingletonBase<MapMaker>
         CameraController.Instance.SetCameraArea(curMap.GetComponent<BoxCollider2D>());
         potalMaker.MakePotal(mapList.mapData[newMap].poter);
     }
-    public void EnterChapterPotal(int chapter)
+    public void EnterChapterPotal(int goMapid,int chapter)
     {
-        curMapId = 0;
+        curMapId = goMapid;
         CurChapterId = chapter;
-        mapList = Resources.Load<MapDatas>($"Ch{CurChapterId}MapDates");
+        mapList = Resources.Load<MapDatas>($"Ch{CurChapterId}MapDatas");
         MakeRoom(curMapId);
     }
 }
