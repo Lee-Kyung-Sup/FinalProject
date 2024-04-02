@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ObjectManager : MonoBehaviour
 {
+
     public GameObject PlayerBulletPrefab;
     public GameObject PlayerMeleeHitPrefab;
     public GameObject PlayerRangeHitPrefab;
@@ -23,8 +24,19 @@ public class ObjectManager : MonoBehaviour
     GameObject[] targetPool;
     private List<GameObject> frogbullet = new List<GameObject>();
 
+    public static ObjectManager Instance { get; private set; }
+
     void Awake()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
         PlayerBullet = new GameObject[10];
         PlayerMeleeHit = new GameObject[5];
         PlayerRangeHit = new GameObject[5];

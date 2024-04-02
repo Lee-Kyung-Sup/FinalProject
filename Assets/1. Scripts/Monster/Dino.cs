@@ -121,7 +121,7 @@ public class Dino : Monster
 
                 if (canAtk && IsPlayerDir() && isGround)
                 {
-                    if (Vector2.Distance(transform.position, GameManager.instance.GetPlayerPosition()) < 5f)
+                    if (Vector2.Distance(transform.position, GameManager.Instance.GetPlayerPosition()) < 5f)
                     {
                         currentState = State.Attack;
                         break;

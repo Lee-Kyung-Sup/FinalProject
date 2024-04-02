@@ -33,17 +33,15 @@ public class PlayerUI : MonoBehaviour
             }
         }
     }
+    public void UpdateStaminaUI(float stamina)
+    {
+        staminaUI.value = stamina;
+    }
 
     public void OnGameOverUI()
     {
         gameOverUI.SetActive(true);
         //AudioManager.Instance.PlaySFX("GameOver");
-    }
-
-
-    public void UpdateStaminaUI(float stamina)
-    {
-        staminaUI.value = stamina;
     }
 
     public void RetryGame()

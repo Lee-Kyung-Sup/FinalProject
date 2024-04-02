@@ -193,8 +193,6 @@ public class PlayerAttacks : MonoBehaviour
         spriteRenderer.material.SetColor("_Color", Color.white);
     }
 
-
-
     public void MeleeAttack()
     {
         if (attackTimer <= 0 && playerMovement.IsGround())
@@ -216,7 +214,6 @@ public class PlayerAttacks : MonoBehaviour
                         playerAnimations.Attacking2();
                         playerAnimations.MeleeAttackEffect2();
                         attackSequence = 2;
-
                     }
                     else
                     {

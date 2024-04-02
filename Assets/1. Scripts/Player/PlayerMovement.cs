@@ -43,6 +43,9 @@ public class PlayerMovement : MonoBehaviour, IsGroundable
     private LayerMask groundLayer;
     private LayerMask platformLayer;
 
+
+    // 점프 감지 범위를 올려서 점프중에 감지 안되게
+
     void Awake()
     {
         playerStatus = GetComponent<PlayerStatus>();

@@ -57,7 +57,6 @@ public class PlayerRangeAttackHandler : MonoBehaviour
         }
     }
 
-
     private void HitEffectAndDamage(Collider2D collision) // 히트효과 & 데미지 적용
     {
         Vector3 hitEffectPosition = GetHitEffectPosition(collision);

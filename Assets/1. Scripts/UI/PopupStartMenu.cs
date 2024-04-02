@@ -11,7 +11,7 @@ public class PopupStartMenu : MonoBehaviour
     [SerializeField] private GameObject SelectCharacter;
     [SerializeField] private Image characterSprite;
 
-    private CharacterType characterType;
+    //private CharacterType characterType;
 
     public void OnclickCharacter()
     {
@@ -21,16 +21,14 @@ public class PopupStartMenu : MonoBehaviour
 
     public void OnclickSelectCharacter(int index)
     {
-        characterType = (CharacterType)index;
-        var character = GameManager.instance.CharacterList.Find(item => item.CharacterType == characterType);
-        characterSprite.sprite = character.CharacterSprite;
-        characterSprite.SetNativeSize();
+        //characterType = (CharacterType)index;
+        //var character = GameManager.instance.CharacterList.Find(item => item.CharacterType == characterType);
+        //characterSprite.sprite = character.CharacterSprite;
+        //characterSprite.SetNativeSize();
 
-        Information.SetActive(true);
-        SelectCharacter.SetActive(false);
+        //Information.SetActive(true);
+        //SelectCharacter.SetActive(false);
     }
-
-
 
     public void OnClickJoin()
     {
@@ -39,10 +37,9 @@ public class PopupStartMenu : MonoBehaviour
             return;
         }
 
-        GameManager.instance.SetCharacter(characterType, inputField.text);
+        //GameManager.Instance.SetCharacter(characterType, inputField.text);
 
         Destroy(gameObject);
-
     }
 
 

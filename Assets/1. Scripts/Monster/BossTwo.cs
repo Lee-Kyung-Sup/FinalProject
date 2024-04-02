@@ -32,7 +32,7 @@ public class BossTwo : MonoBehaviour
 
     void Start()
     {
-        objectManager = GameManager.instance.objectManager;
+        objectManager = ObjectManager.Instance;
         anim = GetComponent<Animator>();
         initialPosition = transform.position;
     }

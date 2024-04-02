@@ -7,77 +7,37 @@ using UnityEngine.Rendering.Universal;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 
-
-
-
-public enum CharacterType
-{
-    Duck,
-    Unknown
-}
-
 [System.Serializable]
 public class Character
 {
-    public CharacterType CharacterType;
     public Sprite CharacterSprite;
-    public RuntimeAnimatorController AnimatorController;
-
 }
 
-
-
-
-public class GameManager : MonoBehaviour, IPointerEnterHandler
+public class GameManager : SingletonBase<GameManager>
 {
-
-    public static GameManager instance;
-    public GameObject player; // 플레이어 오브젝트 위치 추적
-    public GameObject soundPanel;
-
-    public ObjectManager objectManager;
-    //public Transform playerPosition;
- 
-
-    public TextAsset ItemDatabase;
-
-
-
-    PlayerUI playerUI;
-
-    public List<Character> CharacterList = new List<Character>();
-
+    public GameObject player;
+    public PlayerUI playerUI;
     public Animator PlayerAnimator;
     public TMP_Text PlayerName;
 
+    public ObjectManager objectManager;
+
     private void Awake()
     {
-
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else if (instance != this)
+        if (Instance != this)
         {
             Destroy(gameObject);
+            return;
         }
-        //player = GameObject.FindGameObjectWithTag("Player");
+        DontDestroyOnLoad(this.gameObject);
+
         objectManager = GetComponent<ObjectManager>();
-
     }
-
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         playerUI = FindObjectOfType<PlayerUI>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
     public Vector3 GetPlayerPosition() // 플레이어 위치 추적용
     {
         return player.transform.position;
@@ -88,11 +48,8 @@ public class GameManager : MonoBehaviour, IPointerEnterHandler
         return player.gameObject;
     }
 
-    public void SetCharacter(CharacterType characterType, string name)
+    public void SetCharacter(string name)
     {
-        var character = GameManager.instance.CharacterList.Find(item => item.CharacterType == characterType);
-
-        //PlayerAnimator.runtimeAnimatorController = character.AnimatorController; //애니메이터 안 넣으면 게임작동 안할 수 있음
         PlayerName.text = name;
     }
 
@@ -107,22 +64,5 @@ public class GameManager : MonoBehaviour, IPointerEnterHandler
         playerUI.OnGameOverUI();
 
         Time.timeScale = 0;
-    }
-
-    public void ToggleSoundPanel()
-    {
-        soundPanel.SetActive(true);
-        AudioManager.Instance.PlaySFX("Click");
-    }
-
-    public void CanelSoundPanel()
-    {
-        soundPanel.SetActive(false);
-        AudioManager.Instance.PlaySFX("Click");
-    }
-
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        AudioManager.Instance.PlaySFX("Cursor");
     }
 }
