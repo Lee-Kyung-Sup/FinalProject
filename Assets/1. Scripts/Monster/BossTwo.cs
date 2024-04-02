@@ -43,12 +43,11 @@ public class BossTwo : MonoBehaviour
     }
     void OnEnable()
     {
-        if (enemyName == "BT")
-        {
+        
             currentHp = 100;
             Invoke("Stop", 1);
             //InvokeRepeating("Stop", 1, 1);
-        }
+        
     }
 
     //보스가 현재 존재하는지 판단
@@ -122,7 +121,7 @@ public class BossTwo : MonoBehaviour
         Rigidbody2D rb = bulletD.GetComponent<Rigidbody2D>();
         rb.gravityScale = 0f;
         rb.AddForce(transform.right * 5, ForceMode2D.Impulse);
-
+        
         curPatternCount++;
         
         if (curPatternCount < maxPatternCount[patternIndex])
