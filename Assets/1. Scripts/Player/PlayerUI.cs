@@ -47,8 +47,8 @@ public class PlayerUI : MonoBehaviour
     public void RetryGame()
     {
         Time.timeScale = 1;
-        AudioManager.Instance.PlayBGM("FirstChapter"); // 痢橇家府 JHP
-        SceneManager.LoadScene("2. GameScenes");
+        //AudioManager.Instance.PlayBGM("FirstChapter"); // 痢橇家府 JHP
+        SceneManager.LoadScene("2. GameScene");
 
     }
 }

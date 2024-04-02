@@ -1382,6 +1382,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager_Initializer
       objectReference: {fileID: 0}
+    - target: {fileID: 7653055390991857452, guid: e6458981762ded244902f97b2d47a81b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

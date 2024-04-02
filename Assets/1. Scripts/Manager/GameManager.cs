@@ -36,6 +36,11 @@ public class GameManager : SingletonBase<GameManager>
     private void Start()
     {
         playerUI = FindObjectOfType<PlayerUI>();
+
+        if (player == null)
+        {
+            player = GameObject.FindGameObjectWithTag("Player"); 
+        }
     }
 
     public Vector3 GetPlayerPosition() // 플레이어 위치 추적용

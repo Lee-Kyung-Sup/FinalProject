@@ -121,13 +121,11 @@ public class PlayerMovement : MonoBehaviour, IsGroundable
 
     public void Move(float inputX)
     {
-
         // 넉백 중이거나 대쉬 중일 때는 이동 x
         if (isKnockedBack || isDashing) return;
 
         if (!isDashing && !isKnockedBack)
         {
-
             // 대쉬 중 + 넉백 상태가 아닐 때만 이동
             rb.velocity = new Vector2(inputX * playerStatus.Speed, rb.velocity.y);
 
