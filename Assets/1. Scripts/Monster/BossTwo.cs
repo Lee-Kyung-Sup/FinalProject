@@ -85,7 +85,7 @@ public class BossTwo : MonoBehaviour
         //    patternIndex = 3; // 나머지 패턴 실행
         //}
 
-        anim.SetTrigger("Run");
+        
         //현재 패턴이 패턴 갯수를 넘기면 0으로 돌아오는 로직
         patternIndex = patternIndex == 4 ? 0 : patternIndex + 1;
 
@@ -93,6 +93,9 @@ public class BossTwo : MonoBehaviour
        // anim.SetTrigger("Run");
         switch (patternIndex)
         {
+            case 0:
+                anim.SetTrigger("Run");
+                break;
             case 1:
                 DragonFire();
                 break;
@@ -182,7 +185,7 @@ public class BossTwo : MonoBehaviour
         if (curPatternCount < maxPatternCount[patternIndex])
         {
             anim.SetTrigger("Burn");
-            Invoke("DragonBurn", 1f);
+            Invoke("DragonBurn", 2f);
         }
         else
         {
@@ -207,7 +210,8 @@ public class BossTwo : MonoBehaviour
             if (!isPatrolling)
             {
                 isPatrolling = true;
-                InvokeRepeating("Patrol", 1f, 4f); 
+                Invoke("Patrol", 2f);
+                Invoke("returnInitialPosition",2f);
             }
         }
         else

@@ -2812,7 +2812,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4704089439412106358, guid: 9a686f1f256b09a428723832918c79a3, type: 3}
       propertyPath: maxPatternCount.Array.data[0]
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4704089439412106358, guid: 9a686f1f256b09a428723832918c79a3, type: 3}
       propertyPath: maxPatternCount.Array.data[2]
