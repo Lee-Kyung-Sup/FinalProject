@@ -43,7 +43,7 @@ public class BossTwo : MonoBehaviour
     }
     void OnEnable()
     {
-        
+        //Debug.Log("check");
             currentHp = 100;
             Invoke("Stop", 1);
             //InvokeRepeating("Stop", 1, 1);
@@ -60,7 +60,7 @@ public class BossTwo : MonoBehaviour
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         rb.velocity = Vector2.zero;
 
-        Invoke("Think", 2);
+        //Invoke("Think", 2);
     }
 
     //패턴 케이스 로직
@@ -86,29 +86,30 @@ public class BossTwo : MonoBehaviour
 
         
         //현재 패턴이 패턴 갯수를 넘기면 0으로 돌아오는 로직
-        patternIndex = patternIndex == 4 ? 0 : patternIndex + 1;
+       // patternIndex = patternIndex == 4 ? 0 : patternIndex + 1;
+       // Debug.Log(patternIndex);
+       // curPatternCount = 0;
+       //// anim.SetTrigger("Run");
+       // switch (patternIndex)
+       // {
+       //     case 0:
+       //         anim.SetTrigger("Run");
+       //         break;
+       //     case 1:
+       //         DragonFire();
 
-        curPatternCount = 0;
-       // anim.SetTrigger("Run");
-        switch (patternIndex)
-        {
-            case 0:
-                anim.SetTrigger("Run");
-                break;
-            case 1:
-                DragonFire();
-                break;
-            case 2:
-                DragonAttack();
-                break;
-            case 3:
-                DragonBurn();
-                break;
-            case 4:
-                DragonRunAttack();
-                break;
+       //         break;
+       //     case 2:
+       //         DragonAttack();
+       //         break;
+       //     case 3:
+       //         DragonBurn();
+       //         break;
+       //     case 4:
+       //         DragonRunAttack();
+       //         break;
 
-        }
+       // }
 
     }
 
@@ -122,45 +123,52 @@ public class BossTwo : MonoBehaviour
         rb.gravityScale = 0f;
         rb.AddForce(transform.right * 5, ForceMode2D.Impulse);
         
-        curPatternCount++;
+        //curPatternCount++;
         
-        if (curPatternCount < maxPatternCount[patternIndex])
-        {
-            anim.SetTrigger("Fire");
-            Invoke("DragonFire", 3);
+        //if (curPatternCount < maxPatternCount[patternIndex])
+        //{
+        //    anim.SetTrigger("Fire");
+        //    Invoke("DragonFire", 3);
            
-        }
-        else
-        {
-           
-            Invoke("Think", 2);
-        }
+        //}
+        //else
+        //{
+        //    CancelInvoke("Think"); 
+        //    Invoke("Think", 2);
+        //}
     }
 
-    void DragonAttack()
+    void DragonAttackF()
     {
         Debug.Log("DA");
         //드래곤이 근접 공격
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        rb.velocity = new Vector2(transform.localScale.x * 7f, 1.5f);
+        //    anim.SetTrigger("Attack");
+        //curPatternCount++;
 
-        curPatternCount++;
+        //if (curPatternCount < maxPatternCount[patternIndex])
+        //{
 
-        if (curPatternCount < maxPatternCount[patternIndex])
-        {
-           
-            rb.velocity = new Vector2(transform.localScale.x * 7f, 1.5f);
-            anim.SetTrigger("Attack");
-            Invoke("DragonAttack", 2);
-            
-        }
-        else
-        {
-            rb.velocity = new Vector2(transform.localScale.x * -7f, 1.5f);
+        //    rb.velocity = new Vector2(transform.localScale.x * 7f, 1.5f);
+        //    anim.SetTrigger("Attack");
+        //    Invoke("DragonAttack", 2);
 
-            Invoke("Think", 2);
-            
+        //}
+        //else
+        //{
+        //    rb.velocity = new Vector2(transform.localScale.x * -7f, 1.5f);
+        //    CancelInvoke("Think");
+        //    Invoke("Think", 2);
 
-        }
+
+        //}
+    }
+
+    void DragonAttackB()
+    {
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        rb.velocity = new Vector2(transform.localScale.x * -7f, 1.5f);
     }
 
     void DragonBurn()
@@ -179,18 +187,18 @@ public class BossTwo : MonoBehaviour
             rb.AddForce(ranVec.normalized * 6, ForceMode2D.Impulse);
         }
             
-        curPatternCount++;
-        //패턴이 maxpattenrcount까지 가지 않았을 때 다시 실행
-        if (curPatternCount < maxPatternCount[patternIndex])
-        {
-            anim.SetTrigger("Burn");
-            Invoke("DragonBurn", 2f);
-        }
-        else
-        {
-           
-            Invoke("Think", 2);
-        }
+        //curPatternCount++;
+        ////패턴이 maxpattenrcount까지 가지 않았을 때 다시 실행
+        //if (curPatternCount < maxPatternCount[patternIndex])
+        //{
+        //    anim.SetTrigger("Burn");
+        //    Invoke("DragonBurn", 2f);
+        //}
+        //else
+        //{
+        //    CancelInvoke("Think");
+        //    Invoke("Think", 2);
+        //}
     }
 
     private Vector2 _targetPosition;
@@ -201,23 +209,24 @@ public class BossTwo : MonoBehaviour
         Debug.Log("DR");
         //드래곤이 플레이어 가까이 다가왔다가 돌아감
        
-        curPatternCount++;
-        //패턴이 maxpattenrcount까지 가지 않았을 때 다시 실행
-        if (curPatternCount < maxPatternCount[patternIndex])
-        {
-            anim.SetTrigger("RunAttack");
-            if (!isPatrolling)
-            {
-                isPatrolling = true;
-                Invoke("Patrol", 2f);
-                Invoke("returnInitialPosition",2f);
-            }
-        }
-        else
-        {
-            CancelInvoke("Patrol");
-            Invoke("Think", 2);
-        }
+        //curPatternCount++;
+        ////패턴이 maxpattenrcount까지 가지 않았을 때 다시 실행
+        //if (curPatternCount < maxPatternCount[patternIndex])
+        //{
+        //    anim.SetTrigger("RunAttack");
+        //    if (!isPatrolling)
+        //    {
+        //        isPatrolling = true;
+        //        Invoke("Patrol", 2f);
+        //        Invoke("returnInitialPosition",2f);
+        //    }
+        //}
+        //else
+        //{
+        //    CancelInvoke("Patrol");
+        //    CancelInvoke("Think");
+        //    Invoke("Think", 2);
+        //}
 
     }
 
@@ -226,7 +235,7 @@ public class BossTwo : MonoBehaviour
         float randomX = Random.Range(0f, 5f);
         _targetPosition = new Vector2(randomX, 0);
         transform.position = Vector2.Lerp(transform.position, _targetPosition, moveSpeed * Time.deltaTime);
-        Invoke("DragonRunAttack", 3f);
+        //Invoke("DragonRunAttack", 3f);
     }
 
     public void EnableAttackCollider()
