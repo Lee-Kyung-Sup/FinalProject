@@ -35,11 +35,14 @@ public class PlayerRangeAttackHandler : MonoBehaviour
     {
         if (((1 << collision.gameObject.layer) & ((1 << 8) | (1 << 9))) != 0) // 8: ±×¶ó¿îµå , 9: ÇÃ·§Æû
         {
-            if (!isChargeShot) // ÀÏ¹Ý ¼¦ÀÎ °æ¿ì¿¡¸¸ º®ÀÌ³ª ÇÃ·§Æû¿¡ ºÎµúÇûÀ» ¶§ »ç¶óÁü
+            GameObject effect = ObjectManager.Instance.MakeObj("PlayerRangeHit");
+            if (effect != null)
             {
-                Instantiate(RangeHitEffect, transform.position, Quaternion.identity);
-                gameObject.SetActive(false);
+                effect.transform.position = transform.position;
+                effect.transform.rotation = Quaternion.identity;
+                effect.SetActive(true);
             }
+            gameObject.SetActive(false);
         }
 
         else if (((1 << collision.gameObject.layer) & (1 << 7)) != 0) // 7: ¸ó½ºÅÍ
