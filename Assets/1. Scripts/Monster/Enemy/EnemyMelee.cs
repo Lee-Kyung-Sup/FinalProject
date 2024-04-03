@@ -41,7 +41,7 @@ public class EnemyMeleeGroundState : EnemyState
     public override void Enter()
     {
         base.Enter();
-        player = GameManager.instance.player.transform;
+        player = GameManager.Instance.player.transform;
     }
     public override void Exit()
     {
@@ -133,7 +133,7 @@ public class EnemyMeleeBattle : EnemyState
     public override void Enter()
     {
         base.Enter();
-        player = GameManager.instance.player.transform;
+        player = GameManager.Instance.player.transform;
     }
     public override void Exit()
     {

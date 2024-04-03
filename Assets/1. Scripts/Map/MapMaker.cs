@@ -5,8 +5,7 @@ using UnityEngine;
 
 public class MapMaker : SingletonBase<MapMaker>
 {
-    public int CurChapterId;
-    //public int CurChapterId { get; private set; }
+    public int CurChapterId { get; private set; }
     [SerializeField] int curMapId = 0;
     GameObject curMap;
     MapDatas mapList;
@@ -31,11 +30,10 @@ public class MapMaker : SingletonBase<MapMaker>
         CameraController.Instance.SetCameraArea(curMap.GetComponent<BoxCollider2D>());
         potalMaker.MakePotal(mapList.mapData[newMap].poter);
     }
-    public void ClearChapter()
+    public void EnterChapterPotal(int goMapid,int chapter)
     {
-        CurChapterId++;
-        curMapId = 0;
-        Destroy(curMap);
+        curMapId = goMapid;
+        CurChapterId = chapter;
         mapList = Resources.Load<MapDatas>($"Ch{CurChapterId}MapDatas");
         MakeRoom(curMapId);
     }

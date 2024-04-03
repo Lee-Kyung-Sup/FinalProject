@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8252573395195254675
 MonoBehaviour:
@@ -45,7 +45,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerBulletPrefab: {fileID: 2633405581603700037, guid: f574287d5d7544a48ac02a90207fdadc, type: 3}
+  PlayerChargeBulletPrefab: {fileID: 5730628734833746102, guid: a103c943f5b6c2242b2ceed650182a41, type: 3}
   PlayerMeleeHitPrefab: {fileID: 2955623459812423943, guid: f5507a8c6a22c404ab324980c4e8a11b, type: 3}
-  PlayerRangeHitPrefab: {fileID: 5024009746357069194, guid: ec3f674830402cc45bce805cf6493db7, type: 3}
+  PlayerRangeHitPrefab: {fileID: 5024009746357069194, guid: 4c1772bab074aba43b18a392dcd9d360, type: 3}
+  PlayerJumpHitEffectPrefab: {fileID: 5024009746357069194, guid: ec3f674830402cc45bce805cf6493db7, type: 3}
+  PlayerDeflectEffectPrefab: {fileID: 8460667080445658512, guid: ba8e712051900cb46866634ab919de23, type: 3}
   bulletBossAPrefab: {fileID: 6049919993356236047, guid: 72e2d474acd7ae443839e2ebe967738d, type: 3}
+  bulletBossBTPrefab: {fileID: 8236698002141129757, guid: 13313f4135099c04fae3f986e4aa9bc2, type: 3}
   enemyBPrefab: {fileID: 2355385529216811586, guid: e9f6260a3fc5198478a65982e7a9409d, type: 3}
+  enemyBTPrefab: {fileID: 6358674297495471827, guid: 9a686f1f256b09a428723832918c79a3, type: 3}

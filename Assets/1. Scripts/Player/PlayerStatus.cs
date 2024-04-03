@@ -20,6 +20,8 @@ public class PlayerStatus : MonoBehaviour, IDamageable
     }
     void StatInit()
     {
+        playerHealth = new Stat(3);
+
         attackPower = new Dictionary<AttackTypes, int>
         {
             { AttackTypes.MeleeAttack, 3 },
@@ -44,7 +46,6 @@ public class PlayerStatus : MonoBehaviour, IDamageable
     [SerializeField] private float stamina = 100;
     [SerializeField] private float staminaRecoveryRate = 100;
     [SerializeField] private float staminaRecoveryDelay = 1f;
-    [SerializeField] private int atk = 1;
 
     private float lastStaminaUseTime;
     private float maxStamina;
@@ -61,9 +62,6 @@ public class PlayerStatus : MonoBehaviour, IDamageable
     public float JumpPower => jumpPower;
     public int MaxJumpCount => maxJumpCount;
     public float Stamina => stamina;
-    public int Atk => atk;
-
-
 
 
 
@@ -169,13 +167,13 @@ public class PlayerStatus : MonoBehaviour, IDamageable
     private void PlayerDead() // 플레이어 죽음
     {
         playerAnimations.Dead();
-        GameManager.instance.OnGameOver();
+        GameManager.Instance.OnGameOver();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
-        if (((1 << collision.gameObject.layer) & (1 << 12)) != 0) // 7. 몬스터 ,  12. 에네미 불렛
+        if (((1 << collision.gameObject.layer) & ((1 << 7) | (1 << 12))) != 0) // 7. 몬스터 ,  12. 에네미 불렛
         { 
 
             TakeDamage(1);

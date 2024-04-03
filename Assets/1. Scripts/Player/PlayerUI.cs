@@ -33,6 +33,10 @@ public class PlayerUI : MonoBehaviour
             }
         }
     }
+    public void UpdateStaminaUI(float stamina)
+    {
+        staminaUI.value = stamina;
+    }
 
     public void OnGameOverUI()
     {
@@ -40,17 +44,11 @@ public class PlayerUI : MonoBehaviour
         //AudioManager.Instance.PlaySFX("GameOver");
     }
 
-
-    public void UpdateStaminaUI(float stamina)
-    {
-        staminaUI.value = stamina;
-    }
-
     public void RetryGame()
     {
         Time.timeScale = 1;
-        AudioManager.Instance.PlayBGM("FirstChapter"); // 痢橇家府 JHP
-        SceneManager.LoadScene("2. GameScenes");
+        //AudioManager.Instance.PlayBGM("FirstChapter"); // 痢橇家府 JHP
+        SceneManager.LoadScene("2. GameScene");
 
     }
 }

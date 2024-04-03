@@ -126,7 +126,7 @@ public class Frog : Monster
                 }
                 if (canAtk && IsPlayerDir() && isGround)
                 {
-                    if (Vector2.Distance(transform.position, GameManager.instance.GetPlayerPosition()) < 15f)
+                    if (Vector2.Distance(transform.position, GameManager.Instance.GetPlayerPosition()) < 15f)
                     {
                         currentState = State.Attack;
                         break;

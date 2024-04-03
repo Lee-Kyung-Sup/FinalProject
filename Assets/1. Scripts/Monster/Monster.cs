@@ -122,7 +122,7 @@ public class Monster : MonoBehaviour, IsGroundable, IDamageable
     //플레이어 위치값 받아와서 몬스터 방향조정
     protected bool IsPlayerDir()
     {
-        if (transform.position.x < GameManager.instance.GetPlayerPosition().x ? monsterDirRight : !monsterDirRight)
+        if (transform.position.x < GameManager.Instance.GetPlayerPosition().x ? monsterDirRight : !monsterDirRight)
         {
             return true;
         }
@@ -171,7 +171,7 @@ public class Monster : MonoBehaviour, IsGroundable, IDamageable
         {
             MyAnimSetTrigger("Hit");
             rb.velocity = Vector2.zero;
-            if (transform.position.x > GameManager.instance.GetPlayerPosition().x) 
+            if (transform.position.x > GameManager.Instance.GetPlayerPosition().x) 
             {
                 rb.velocity = new Vector2(10f, 0);
             }

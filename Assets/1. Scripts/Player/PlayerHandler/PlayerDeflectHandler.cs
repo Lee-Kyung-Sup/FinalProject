@@ -15,7 +15,14 @@ public class PlayerDeflectHandler : MonoBehaviour
 
             if(bulletRb != null )
             {
-                Instantiate(deflectEffect, collision.transform.position, Quaternion.identity);
+                GameObject effect = ObjectManager.Instance.MakeObj("PlayerDeflectEffect"); // «Æø°º≠ ¿Ã∆Â∆Æ ∞°¡Æø»
+                if (effect != null)
+                {
+                    effect.transform.position = collision.transform.position;
+                    effect.transform.rotation = Quaternion.identity;
+                    effect.SetActive(true); // ¿Ã∆Â∆Æ »∞º∫»≠
+                }
+
                 Vector2 deflectDirection = new Vector2(-bulletRb.velocity.x * deflectPower, -bulletRb.velocity.y * deflectPower);
                 bulletRb.velocity = deflectDirection;
 
