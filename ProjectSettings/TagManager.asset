@@ -11,6 +11,7 @@ TagManager:
   - Projectile
   - EnemyBullet
   - PlayerAttackBox
+  - FieldItem
   layers:
   - Default
   - TransparentFX
