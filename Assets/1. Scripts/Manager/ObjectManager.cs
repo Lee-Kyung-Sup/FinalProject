@@ -6,7 +6,6 @@ using UnityEngine;
 public class ObjectManager : MonoBehaviour
 {
     private Transform poolingObjectParent;
-
     public GameObject PlayerBulletPrefab;
     public GameObject PlayerChargeBulletPrefab;
     public GameObject PlayerMeleeHitPrefab;
@@ -57,8 +56,8 @@ public class ObjectManager : MonoBehaviour
 
         enemyB = new GameObject[1];
         enemyBT = new GameObject[1];
-        bulletBossA = new GameObject[300];
-        bulletBossBT = new GameObject[300];
+        bulletBossA = new GameObject[200];
+        bulletBossBT = new GameObject[200];
 
         Generate();
     }
