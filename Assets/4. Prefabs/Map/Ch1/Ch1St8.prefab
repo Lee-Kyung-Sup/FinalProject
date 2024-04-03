@@ -8480,6 +8480,74 @@ PrefabInstance:
       propertyPath: m_Name
       value: MapEvent
       objectReference: {fileID: 0}
+    - target: {fileID: 4265464941613925447, guid: 8b0f36aa2e27fe54abb6d6a2e50288f2, type: 3}
+      propertyPath: mapPhase.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4265464941613925447, guid: 8b0f36aa2e27fe54abb6d6a2e50288f2, type: 3}
+      propertyPath: mapPhase.Array.data[0].summonPos.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4265464941613925447, guid: 8b0f36aa2e27fe54abb6d6a2e50288f2, type: 3}
+      propertyPath: mapPhase.Array.data[1].summonPos.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4265464941613925447, guid: 8b0f36aa2e27fe54abb6d6a2e50288f2, type: 3}
+      propertyPath: mapPhase.Array.data[0].summonMonster.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4265464941613925447, guid: 8b0f36aa2e27fe54abb6d6a2e50288f2, type: 3}
+      propertyPath: mapPhase.Array.data[1].summonMonster.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4265464941613925447, guid: 8b0f36aa2e27fe54abb6d6a2e50288f2, type: 3}
+      propertyPath: mapPhase.Array.data[0].summonPos.Array.data[0].x
+      value: -9.19
+      objectReference: {fileID: 0}
+    - target: {fileID: 4265464941613925447, guid: 8b0f36aa2e27fe54abb6d6a2e50288f2, type: 3}
+      propertyPath: mapPhase.Array.data[0].summonPos.Array.data[0].y
+      value: -8.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 4265464941613925447, guid: 8b0f36aa2e27fe54abb6d6a2e50288f2, type: 3}
+      propertyPath: mapPhase.Array.data[0].summonPos.Array.data[1].x
+      value: 9.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 4265464941613925447, guid: 8b0f36aa2e27fe54abb6d6a2e50288f2, type: 3}
+      propertyPath: mapPhase.Array.data[0].summonPos.Array.data[1].y
+      value: -8.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 4265464941613925447, guid: 8b0f36aa2e27fe54abb6d6a2e50288f2, type: 3}
+      propertyPath: mapPhase.Array.data[1].summonPos.Array.data[0].x
+      value: 0.31
+      objectReference: {fileID: 0}
+    - target: {fileID: 4265464941613925447, guid: 8b0f36aa2e27fe54abb6d6a2e50288f2, type: 3}
+      propertyPath: mapPhase.Array.data[1].summonPos.Array.data[0].y
+      value: -8.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 4265464941613925447, guid: 8b0f36aa2e27fe54abb6d6a2e50288f2, type: 3}
+      propertyPath: mapPhase.Array.data[1].summonPos.Array.data[1].x
+      value: 9.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 4265464941613925447, guid: 8b0f36aa2e27fe54abb6d6a2e50288f2, type: 3}
+      propertyPath: mapPhase.Array.data[1].summonPos.Array.data[1].y
+      value: -8.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 4265464941613925447, guid: 8b0f36aa2e27fe54abb6d6a2e50288f2, type: 3}
+      propertyPath: mapPhase.Array.data[0].summonMonster.Array.data[0]
+      value: 
+      objectReference: {fileID: 7574052208653376922, guid: e175f4399e81f7649b5db83a507d4460, type: 3}
+    - target: {fileID: 4265464941613925447, guid: 8b0f36aa2e27fe54abb6d6a2e50288f2, type: 3}
+      propertyPath: mapPhase.Array.data[0].summonMonster.Array.data[1]
+      value: 
+      objectReference: {fileID: 7574052208653376922, guid: e175f4399e81f7649b5db83a507d4460, type: 3}
+    - target: {fileID: 4265464941613925447, guid: 8b0f36aa2e27fe54abb6d6a2e50288f2, type: 3}
+      propertyPath: mapPhase.Array.data[1].summonMonster.Array.data[0]
+      value: 
+      objectReference: {fileID: 7365301863307134542, guid: 6c2b4117a4301684d996b9ce3d590954, type: 3}
+    - target: {fileID: 4265464941613925447, guid: 8b0f36aa2e27fe54abb6d6a2e50288f2, type: 3}
+      propertyPath: mapPhase.Array.data[1].summonMonster.Array.data[1]
+      value: 
+      objectReference: {fileID: 7574052208653376922, guid: e175f4399e81f7649b5db83a507d4460, type: 3}
     - target: {fileID: 5166394590204251596, guid: 8b0f36aa2e27fe54abb6d6a2e50288f2, type: 3}
       propertyPath: m_Size.x
       value: 16.537678
