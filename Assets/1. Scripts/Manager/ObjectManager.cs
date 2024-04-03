@@ -1,9 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ObjectManager : MonoBehaviour
 {
+    private Transform poolingObjectParent;
 
     public GameObject PlayerBulletPrefab;
     public GameObject PlayerChargeBulletPrefab;
@@ -43,6 +45,9 @@ public class ObjectManager : MonoBehaviour
             Destroy(gameObject);
         }
 
+        GameObject bulletsParent = new GameObject("PrefabContainer");
+        poolingObjectParent = bulletsParent.transform;
+
         PlayerBullet = new GameObject[45];
         PlayerChargeBullet = new GameObject[5];
         PlayerMeleeHit = new GameObject[10];
@@ -62,49 +67,62 @@ public class ObjectManager : MonoBehaviour
     {
         for (int i = 0; i < PlayerBullet.Length; i++)
         {
-            PlayerBullet[i] = Instantiate(PlayerBulletPrefab);
+            PlayerBullet[i] = Instantiate(PlayerBulletPrefab, poolingObjectParent);
             PlayerBullet[i].SetActive(false);
         }
 
         for (int i = 0; i < PlayerChargeBullet.Length; i++)
         {
-            PlayerChargeBullet[i] = Instantiate(PlayerChargeBulletPrefab);
+            PlayerChargeBullet[i] = Instantiate(PlayerChargeBulletPrefab, poolingObjectParent);
             PlayerChargeBullet[i].SetActive(false);
         }
 
         for (int i = 0; i < PlayerMeleeHit.Length; i++)
         {
-            PlayerMeleeHit[i] = Instantiate(PlayerMeleeHitPrefab);
+            PlayerMeleeHit[i] = Instantiate(PlayerMeleeHitPrefab, poolingObjectParent);
             PlayerMeleeHit[i].SetActive(false);
         }
 
         for (int i = 0; i < PlayerRangeHit.Length; i++)
         {
-            PlayerRangeHit[i] = Instantiate(PlayerRangeHitPrefab);
+            PlayerRangeHit[i] = Instantiate(PlayerRangeHitPrefab, poolingObjectParent);
             PlayerRangeHit[i].SetActive(false);
         }
 
         for (int i = 0; i < PlayerJumpHit.Length; i++)
         {
-            PlayerJumpHit[i] = Instantiate(PlayerJumpHitEffectPrefab);
+            PlayerJumpHit[i] = Instantiate(PlayerJumpHitEffectPrefab, poolingObjectParent);
             PlayerJumpHit[i].SetActive(false);
         }
 
         for (int i = 0; i < PlayerDeflectEffect.Length; i++)
         {
-            PlayerDeflectEffect[i] = Instantiate(PlayerDeflectEffectPrefab);
+            PlayerDeflectEffect[i] = Instantiate(PlayerDeflectEffectPrefab, poolingObjectParent);
             PlayerDeflectEffect[i].SetActive(false);
         }
 
         for (int index = 0; index < bulletBossA.Length; index++)
         {
-            bulletBossA[index] = Instantiate(bulletBossAPrefab);
+            bulletBossA[index] = Instantiate(bulletBossAPrefab, poolingObjectParent);
             bulletBossA[index].SetActive(false);
         }
+
         for (int index = 0; index < bulletBossBT.Length; index++)
         {
-            bulletBossBT[index] = Instantiate(bulletBossBTPrefab);
+            bulletBossBT[index] = Instantiate(bulletBossBTPrefab, poolingObjectParent);
             bulletBossBT[index].SetActive(false);
+        }
+
+        for (int i = 0; i < enemyB.Length; i++)
+        {
+            enemyB[i] = Instantiate(enemyBPrefab, poolingObjectParent);
+            enemyB[i].SetActive(false);
+        }
+
+        for (int i = 0; i < enemyBT.Length; i++)
+        {
+            enemyBT[i] = Instantiate(enemyBTPrefab, poolingObjectParent);
+            enemyBT[i].SetActive(false);
         }
     }
 
@@ -151,6 +169,7 @@ public class ObjectManager : MonoBehaviour
                 return targetPool[index];
             }
         }
+
         return null;
     }
 
