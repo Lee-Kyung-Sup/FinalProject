@@ -12,3 +12,4 @@ public enum AttackTypes
     ComboAttack2,
     ChargeShot
 }
+

@@ -15,12 +15,18 @@ public class PlayerDeflectHandler : MonoBehaviour
 
             if(bulletRb != null )
             {
-                Instantiate(deflectEffect, collision.transform.position, Quaternion.identity);
+                GameObject effect = ObjectManager.Instance.MakeObj("PlayerDeflectEffect"); // 풀에서 이펙트 가져옴
+                if (effect != null)
+                {
+                    effect.transform.position = collision.transform.position;
+                    effect.transform.rotation = Quaternion.identity;
+                    effect.SetActive(true); // 이펙트 활성화
+                }
+
                 Vector2 deflectDirection = new Vector2(-bulletRb.velocity.x * deflectPower, -bulletRb.velocity.y * deflectPower);
                 bulletRb.velocity = deflectDirection;
 
-                //collision.gameObject.layer = LayerMask.NameToLayer("PlayerBullet");
-                collision.gameObject.layer = 20;
+                collision.gameObject.layer = 20; // 플레이어 bullet
                 // 몬스터가 PlayerBullet에 닿을 때 데미지를 주도록 데미지 로직 수정 TODO
             }
         }

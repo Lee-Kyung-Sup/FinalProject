@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SingletonBase<T> : MonoBehaviour where T: MonoBehaviour
 {
-    static T instance;
+    private static T instance;
     public static T Instance
     {
         get
@@ -17,6 +17,7 @@ public class SingletonBase<T> : MonoBehaviour where T: MonoBehaviour
                     GameObject go = new GameObject(typeof(T).Name,typeof(T));
                     instance = go.GetComponent<T>();
                 }
+                DontDestroyOnLoad(instance.gameObject);
             }
             return instance;
         }

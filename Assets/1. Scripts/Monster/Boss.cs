@@ -224,9 +224,9 @@ public class Boss : MonoBehaviour
         {
             InvokeRepeating("Patrol", 1f, 5f);
         }
-        player = GameManager.instance.player;
+        player = GameManager.Instance.player;
         //objectManager = FindObjectOfType<ObjectManager>();
-        objectManager = GameManager.instance.objectManager;
+        objectManager = GameManager.Instance.objectManager;
         if (enemyName == "B")
         {
             anim = GetComponent<Animator>();
@@ -242,7 +242,7 @@ public class Boss : MonoBehaviour
     }
     void Update()
     {
-        if (transform.position.x < GameManager.instance.GetPlayerPosition().x ? bossDir : !bossDir)
+        if (transform.position.x < GameManager.Instance.GetPlayerPosition().x ? bossDir : !bossDir)
         {
             
             Vector3 thisScale = transform.localScale;

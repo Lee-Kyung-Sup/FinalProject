@@ -39,9 +39,12 @@ public class PlayerMovement : MonoBehaviour, IsGroundable
     [Header("Ground Check Options")]
     [SerializeField] private Transform groundCheck;
     [SerializeField] private float boxWidth = 1f; // 땅 감지 박스
-    [SerializeField] private float boxHeight = 0.1f;
+    [SerializeField] private float boxHeight = 0.2f;
     private LayerMask groundLayer;
     private LayerMask platformLayer;
+
+
+    // 점프 감지 범위를 올려서 점프중에 감지 안되게
 
     void Awake()
     {
@@ -73,7 +76,7 @@ public class PlayerMovement : MonoBehaviour, IsGroundable
             {
                 canDash = true;  // 땅에 닿음 + 쿨다운이 완료되었다면 대쉬 가능
             }
-            if (rb.velocity.y <= 0)
+            if (rb.velocity.y <= 0.1)
             {
                 jumpCount = 0; // 점프 횟수 초기화
                 hasJumped = false;  // 점프 여부 초기화
@@ -99,7 +102,7 @@ public class PlayerMovement : MonoBehaviour, IsGroundable
         if (groundCheck != null)
         {
             float boxWidth = 1f;
-            float boxHeight = 0.1f;
+            float boxHeight = 0.2f;
 
             Vector2 boxCenter = groundCheck.position + Vector3.down * boxHeight * 0.5f;
 
@@ -118,13 +121,11 @@ public class PlayerMovement : MonoBehaviour, IsGroundable
 
     public void Move(float inputX)
     {
-
         // 넉백 중이거나 대쉬 중일 때는 이동 x
         if (isKnockedBack || isDashing) return;
 
         if (!isDashing && !isKnockedBack)
         {
-
             // 대쉬 중 + 넉백 상태가 아닐 때만 이동
             rb.velocity = new Vector2(inputX * playerStatus.Speed, rb.velocity.y);
 
