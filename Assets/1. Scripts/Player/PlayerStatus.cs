@@ -98,7 +98,7 @@ public class PlayerStatus : MonoBehaviour, IDamageable
         isDamaged = true;
         playerAnimations.GetHit();
         playerHealth.health -= damage;
-        playerUI.UpdateHeartUI(playerHealth.health);
+        //playerUI.UpdateHeartUI(playerHealth.health);
 
         //if (playerHealth.health <= 0)
         //{
