@@ -90,7 +90,7 @@ public class PlayerStatus : MonoBehaviour, IDamageable
         playerUI.UpdateStaminaUI(Stamina);
     }
 
-    public void TakeDamage(int damage)
+    public virtual void TakeDamage(int damage)
     {
         if (isDamaged) return;
 
