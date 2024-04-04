@@ -49,7 +49,6 @@ public class PlayerUI : MonoBehaviour
         Time.timeScale = 1;
         //AudioManager.Instance.PlayBGM("FirstChapter"); // 점프소리 JHP
         SceneManager.LoadScene("2. GameScene");
-
     }
 }
 

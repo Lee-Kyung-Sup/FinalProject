@@ -15,12 +15,13 @@ public class Character
 
 public class GameManager : SingletonBase<GameManager>
 {
-    public GameObject player;
+    public GameObject Player { get {if (player == null) return player = GameObject.FindGameObjectWithTag("Player");
+            else return player;
+        } }
+    private GameObject player; 
     public PlayerUI playerUI;
     public Animator PlayerAnimator;
     public TMP_Text PlayerName;
-
-    public ObjectManager objectManager;
 
     private void Awake()
     {
@@ -31,16 +32,11 @@ public class GameManager : SingletonBase<GameManager>
         }
         DontDestroyOnLoad(this.gameObject);
 
-        objectManager = GetComponent<ObjectManager>();
+        playerUI = FindObjectOfType<PlayerUI>();
     }
     private void Start()
     {
-        playerUI = FindObjectOfType<PlayerUI>();
 
-        if (player == null)
-        {
-            player = GameObject.FindGameObjectWithTag("Player"); 
-        }
     }
 
     public Vector3 GetPlayerPosition() // 플레이어 위치 추적용
