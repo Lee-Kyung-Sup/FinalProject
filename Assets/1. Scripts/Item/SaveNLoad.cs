@@ -24,7 +24,7 @@ public class SaveNLoad : MonoBehaviour
     {
         SAVE_DATA_DIRECTORY = Application.dataPath + "/Saves/";
 
-        if(Directory.Exists(SAVE_DATA_DIRECTORY))
+        if(!Directory.Exists(SAVE_DATA_DIRECTORY))
             Directory.CreateDirectory(SAVE_DATA_DIRECTORY);
     }
 
@@ -44,7 +44,19 @@ public class SaveNLoad : MonoBehaviour
 
     public void LoadData()
     {
+        if (File.Exists(SAVE_DATA_DIRECTORY + SAVE_FILENAME))
+        {
+            string loadJson = File.ReadAllText(SAVE_DATA_DIRECTORY + SAVE_FILENAME);
+            saveData = JsonUtility.FromJson<SaveData>(loadJson);
 
+            thePlayer = FindObjectOfType<PlayerController>();
+
+            thePlayer.transform.position = saveData.playerPos;
+
+            Debug.Log("로드 완료");
+        }
+        else
+            Debug.Log("세이브 파일이 없습니다");
     }
 
 
