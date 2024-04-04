@@ -14,7 +14,7 @@ public class PlayerRangeAttackHandler : MonoBehaviour
 
     private void OnEnable()
     {
-        StartCoroutine(DisableBulletPrefabs(5.0f));
+        StartCoroutine(DisableBulletPrefabs(3.0f));
     }
 
     IEnumerator DisableBulletPrefabs(float time)
