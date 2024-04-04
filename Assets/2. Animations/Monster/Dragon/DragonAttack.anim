@@ -20,18 +20,32 @@ AnimationClip:
   m_PPtrCurves:
   - serializedVersion: 2
     curve:
-    - time: 0
+    - time: 0.016666668
       value: {fileID: -371974518, guid: 0e0c49562085468e8b180291b8414bf8, type: 3}
-    - time: 0.11666667
+    - time: 0.15
       value: {fileID: -1385904201, guid: 0e0c49562085468e8b180291b8414bf8, type: 3}
-    - time: 0.2
+    - time: 0.25
       value: {fileID: -400770547, guid: 0e0c49562085468e8b180291b8414bf8, type: 3}
-    - time: 0.33333334
+    - time: 0.43333334
       value: {fileID: -2021326081, guid: 0e0c49562085468e8b180291b8414bf8, type: 3}
-    - time: 0.41666666
-      value: {fileID: 1021590853, guid: 0e0c49562085468e8b180291b8414bf8, type: 3}
     - time: 0.53333336
+      value: {fileID: 1021590853, guid: 0e0c49562085468e8b180291b8414bf8, type: 3}
+    - time: 0.68333334
       value: {fileID: 421781986, guid: 0e0c49562085468e8b180291b8414bf8, type: 3}
+    - time: 0.75
+      value: {fileID: -371974518, guid: 0e0c49562085468e8b180291b8414bf8, type: 3}
+    - time: 0.9
+      value: {fileID: -1385904201, guid: 0e0c49562085468e8b180291b8414bf8, type: 3}
+    - time: 1
+      value: {fileID: -400770547, guid: 0e0c49562085468e8b180291b8414bf8, type: 3}
+    - time: 1.1833333
+      value: {fileID: -2021326081, guid: 0e0c49562085468e8b180291b8414bf8, type: 3}
+    - time: 1.2833333
+      value: {fileID: 1021590853, guid: 0e0c49562085468e8b180291b8414bf8, type: 3}
+    - time: 1.4333333
+      value: {fileID: 421781986, guid: 0e0c49562085468e8b180291b8414bf8, type: 3}
+    - time: 1.4833333
+      value: {fileID: -371974518, guid: 0e0c49562085468e8b180291b8414bf8, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -60,12 +74,19 @@ AnimationClip:
     - {fileID: -2021326081, guid: 0e0c49562085468e8b180291b8414bf8, type: 3}
     - {fileID: 1021590853, guid: 0e0c49562085468e8b180291b8414bf8, type: 3}
     - {fileID: 421781986, guid: 0e0c49562085468e8b180291b8414bf8, type: 3}
+    - {fileID: -371974518, guid: 0e0c49562085468e8b180291b8414bf8, type: 3}
+    - {fileID: -1385904201, guid: 0e0c49562085468e8b180291b8414bf8, type: 3}
+    - {fileID: -400770547, guid: 0e0c49562085468e8b180291b8414bf8, type: 3}
+    - {fileID: -2021326081, guid: 0e0c49562085468e8b180291b8414bf8, type: 3}
+    - {fileID: 1021590853, guid: 0e0c49562085468e8b180291b8414bf8, type: 3}
+    - {fileID: 421781986, guid: 0e0c49562085468e8b180291b8414bf8, type: 3}
+    - {fileID: -371974518, guid: 0e0c49562085468e8b180291b8414bf8, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.55
+    m_StopTime: 1.5
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -86,14 +107,56 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.4
+    functionName: DragonAttackF
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.43333334
     functionName: EnableAttackCollider
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.53333336
+  - time: 0.68333334
     functionName: DisableAttackCollider
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.71666664
+    functionName: DragonAttackB
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.1166667
+    functionName: DragonAttackF
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.1833333
+    functionName: EnableAttackCollider
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.4333333
+    functionName: DisableAttackCollider
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.4833333
+    functionName: DragonAttackB
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

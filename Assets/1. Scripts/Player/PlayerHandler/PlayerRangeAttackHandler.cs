@@ -37,7 +37,13 @@ public class PlayerRangeAttackHandler : MonoBehaviour
         {
             if (!isChargeShot) // ÀÏ¹Ý ¼¦ÀÎ °æ¿ì¿¡¸¸ º®ÀÌ³ª ÇÃ·§Æû¿¡ ºÎµúÇûÀ» ¶§ »ç¶óÁü
             {
-                Instantiate(RangeHitEffect, transform.position, Quaternion.identity);
+                GameObject effect = ObjectManager.Instance.MakeObj("PlayerRangeHit");
+                if (effect != null)
+                {
+                    effect.transform.position = transform.position;
+                    effect.transform.rotation = Quaternion.identity;
+                    effect.SetActive(true);
+                }
                 gameObject.SetActive(false);
             }
         }

@@ -26,8 +26,7 @@ public class PlayerDeflectHandler : MonoBehaviour
                 Vector2 deflectDirection = new Vector2(-bulletRb.velocity.x * deflectPower, -bulletRb.velocity.y * deflectPower);
                 bulletRb.velocity = deflectDirection;
 
-                //collision.gameObject.layer = LayerMask.NameToLayer("PlayerBullet");
-                collision.gameObject.layer = 20;
+                collision.gameObject.layer = 20; // 플레이어 bullet
                 // 몬스터가 PlayerBullet에 닿을 때 데미지를 주도록 데미지 로직 수정 TODO
             }
         }
