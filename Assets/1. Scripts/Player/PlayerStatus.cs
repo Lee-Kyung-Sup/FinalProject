@@ -86,8 +86,8 @@ public class PlayerStatus : MonoBehaviour, IDamageable
             RecoverStamina(staminaRecoveryRate * Time.deltaTime);
         }
 
-        float Stamina = Mathf.Lerp(playerUI.staminaUI.value, maxStamina, Time.deltaTime * 10);
-        playerUI.UpdateStaminaUI(Stamina);
+        //float Stamina = Mathf.Lerp(playerUI.staminaUI.value, maxStamina, Time.deltaTime * 10);
+        //playerUI.UpdateStaminaUI(Stamina);
     }
 
     public virtual void TakeDamage(int damage)
@@ -100,11 +100,11 @@ public class PlayerStatus : MonoBehaviour, IDamageable
         playerHealth.health -= damage;
         playerUI.UpdateHeartUI(playerHealth.health);
 
-        if (playerHealth.health <= 0)
-        {
-            PlayerDead();
-        }
-        StartCoroutine(ResetDamage()); // 일정 시간 후에 isDamaged 리셋
+        //if (playerHealth.health <= 0)
+        //{
+        //    PlayerDead();
+        //}
+        //StartCoroutine(ResetDamage()); // 일정 시간 후에 isDamaged 리셋
     }
     private IEnumerator ResetDamage()
     {

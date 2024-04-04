@@ -28,6 +28,7 @@ public class BossTwo : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         capsuleCollider = GetComponent<CapsuleCollider2D>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     void Start()
@@ -45,19 +46,19 @@ public class BossTwo : MonoBehaviour
     {
         //Debug.Log("check");
             currentHp = 100;
-            Invoke("Stop", 1);
+           // Invoke("Stop", 1);
             //InvokeRepeating("Stop", 1, 1);
         
     }
 
     //보스가 현재 존재하는지 판단
-    void Stop()
+    public void Stop()
     {
         if (!gameObject.activeSelf)
         {
             return;
         }
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        //Rigidbody2D rb = GetComponent<Rigidbody2D>();
         rb.velocity = Vector2.zero;
 
         //Invoke("Think", 2);
@@ -115,13 +116,14 @@ public class BossTwo : MonoBehaviour
 
     void DragonFire()
     {
+        
         Debug.Log("DF");
         //드래곤이 불 오브젝트를 발사
         GameObject bulletD = objectManager.MakeObj("BulletBossBT");
         bulletD.transform.position = transform.position + Vector3.right * 13f;
         Rigidbody2D rb = bulletD.GetComponent<Rigidbody2D>();
         rb.gravityScale = 0f;
-        rb.AddForce(transform.right * 5, ForceMode2D.Impulse);
+        rb.AddForce(transform.right * 6, ForceMode2D.Impulse);
         
         //curPatternCount++;
         
@@ -142,8 +144,8 @@ public class BossTwo : MonoBehaviour
     {
         Debug.Log("DA");
         //드래곤이 근접 공격
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        rb.velocity = new Vector2(transform.localScale.x * 10f, 1.5f);
+        
+        rb.velocity = new Vector2(10f, 1.5f);
         //    anim.SetTrigger("Attack");
         //curPatternCount++;
 
@@ -167,26 +169,31 @@ public class BossTwo : MonoBehaviour
 
     void DragonAttackB()
     {
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        rb.velocity = new Vector2(transform.localScale.x * -10f, 1.5f);
+       
+        rb.velocity = new Vector2(-10f, 1.5f);
     }
 
     void DragonBurn()
     {
+        rb.velocity = Vector2.zero;
         Debug.Log("DB");
         //드래곤이 불길을 뿜음
         for (int index = 0; index < 5; index++)
         {     
+
             GameObject bulletD = objectManager.MakeObj("BulletBossBT");
+            //bulletD.transform.position = transform.position;
             Rigidbody2D rb = bulletD.GetComponent<Rigidbody2D>();
-            rb.gravityScale = 0f;
-            bulletD.transform.position = transform.position + Vector3.right * 7f;
-           // Vector2 dirVec = player.transform.position - transform.position;
-            Vector2 ranVec = new Vector2(Random.Range(0f, 1f), Random.Range(-5f, 5f));
-            //dirVec += ranVec;
-            rb.AddForce(ranVec.normalized * 6, ForceMode2D.Impulse);
-        }
             
+
+            //rb.gravityScale = 0f;
+            bulletD.transform.position = transform.position + Vector3.right * 7f;
+            Vector2 dirVec = player.transform.position - transform.position;
+            Vector2 ranVec = new Vector2(Random.Range(-3f, 3f), Random.Range(0f, 2f));
+            dirVec += ranVec;
+            rb.AddForce(dirVec.normalized * 6, ForceMode2D.Impulse);
+        }
+        
         //curPatternCount++;
         ////패턴이 maxpattenrcount까지 가지 않았을 때 다시 실행
         //if (curPatternCount < maxPatternCount[patternIndex])
