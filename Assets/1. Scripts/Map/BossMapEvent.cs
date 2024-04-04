@@ -28,15 +28,9 @@ public class BossMapEvent : MapEvent
 }
 public class BossMapEventList
 {
-    public Action GiveBossEvent()
+    public Action GiveBossEvent() //Todo
     {
-        switch (MapMaker.Instance.CurChapterId)
-        {
-            case 1:
-                return StartOneWayMove;
-            default:
-                return null;
-        }
+        return null;
     }
     void StartOneWayMove()
     {
