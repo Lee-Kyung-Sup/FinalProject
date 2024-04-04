@@ -13,10 +13,12 @@ public class ObjectManager : MonoBehaviour
     public GameObject PlayerJumpHitEffectPrefab;
     public GameObject PlayerDeflectEffectPrefab;
 
+
     public GameObject bulletBossAPrefab;
     public GameObject bulletBossBTPrefab;
     public GameObject enemyBPrefab;
     public GameObject enemyBTPrefab;
+    public GameObject frogBulletPrefab;
 
     GameObject[] PlayerBullet;
     GameObject[] PlayerChargeBullet;
@@ -29,7 +31,7 @@ public class ObjectManager : MonoBehaviour
     GameObject[] bulletBossA;
     GameObject[] bulletBossBT;
     GameObject[] targetPool;
-    private List<GameObject> frogbullet = new List<GameObject>();
+    GameObject[] frogBullet;
 
     public static ObjectManager Instance { get; private set; }
 
@@ -56,6 +58,7 @@ public class ObjectManager : MonoBehaviour
 
         enemyB = new GameObject[1];
         enemyBT = new GameObject[1];
+        frogBullet = new GameObject[15];
         bulletBossA = new GameObject[200];
         bulletBossBT = new GameObject[200];
 
@@ -123,6 +126,12 @@ public class ObjectManager : MonoBehaviour
             enemyBT[i] = Instantiate(enemyBTPrefab, poolingObjectParent);
             enemyBT[i].SetActive(false);
         }
+
+        for (int i = 0; i < frogBullet.Length; i++)
+        {
+            frogBullet[i] = Instantiate(frogBulletPrefab, poolingObjectParent);
+            frogBullet[i].SetActive(false);
+        }
     }
 
     public GameObject MakeObj(string type)
@@ -158,6 +167,9 @@ public class ObjectManager : MonoBehaviour
                 break;
             case "BulletBossBT":
                 targetPool = bulletBossBT;
+                break;
+            case "FrogBullet":
+                targetPool = frogBullet;
                 break;
         }   
         for(int index = 0; index < targetPool.Length; index++)

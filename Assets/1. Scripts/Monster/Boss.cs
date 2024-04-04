@@ -219,14 +219,14 @@ public class Boss : MonoBehaviour
     public float moveSpeed = 3f; // 이동 속도
     void Start()
     {
-        AudioManager.Instance.PlayBGM("FirstBoss"); //원래 BGM 재생 JHP
+        //AudioManager.Instance.PlayBGM("FirstBoss"); //원래 BGM 재생 JHP
         if (enemyName == "B")
         {
             InvokeRepeating("Patrol", 1f, 5f);
         }
-        player = GameManager.Instance.player;
-        //objectManager = FindObjectOfType<ObjectManager>();
-        objectManager = GameManager.Instance.objectManager;
+        player = GameManager.Instance.Player;
+        objectManager = ObjectManager.Instance;
+        
         if (enemyName == "B")
         {
             anim = GetComponent<Animator>();
@@ -289,8 +289,8 @@ public class Boss : MonoBehaviour
 
     public void Destroy()
     {
-        AudioManager.Instance.StopBGM(); // 기존 BGM 정지 JHP
-        AudioManager.Instance.PlayBGM("FirstChapter"); //원래 BGM 재생 JHP
+        //AudioManager.Instance.StopBGM(); // 기존 BGM 정지 JHP
+        //AudioManager.Instance.PlayBGM("FirstChapter"); //원래 BGM 재생 JHP
         Destroy(gameObject);
     }
 

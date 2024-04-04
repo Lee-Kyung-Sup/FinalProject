@@ -39,7 +39,7 @@ public class BossTwo : MonoBehaviour
 
     void Update()
     {
-        //transform.position = transform.position;    
+        transform.position = transform.position;    
     }
     void OnEnable()
     {
@@ -143,7 +143,7 @@ public class BossTwo : MonoBehaviour
         Debug.Log("DA");
         //드래곤이 근접 공격
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        rb.velocity = new Vector2(transform.localScale.x * 7f, 1.5f);
+        rb.velocity = new Vector2(transform.localScale.x * 10f, 1.5f);
         //    anim.SetTrigger("Attack");
         //curPatternCount++;
 
@@ -168,7 +168,7 @@ public class BossTwo : MonoBehaviour
     void DragonAttackB()
     {
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        rb.velocity = new Vector2(transform.localScale.x * -7f, 1.5f);
+        rb.velocity = new Vector2(transform.localScale.x * -10f, 1.5f);
     }
 
     void DragonBurn()
@@ -232,7 +232,7 @@ public class BossTwo : MonoBehaviour
 
     public void Patrol()
     {
-        float randomX = Random.Range(0f, 5f);
+        float randomX = Random.Range(0f, 7f);
         _targetPosition = new Vector2(randomX, 0);
         transform.position = Vector2.Lerp(transform.position, _targetPosition, moveSpeed * Time.deltaTime);
         //Invoke("DragonRunAttack", 3f);

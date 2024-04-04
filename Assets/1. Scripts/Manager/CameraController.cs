@@ -20,10 +20,12 @@ public class CameraController : SingletonBase<CameraController>
     {
         _camera = GetComponent<Camera>();
     }
+
     private void Start()
     {
-        target = FindObjectOfType<PlayerController>().gameObject.transform;
+        target = GameManager.Instance.Player.transform;
     }
+
     private void LateUpdate()
     {
         CameraMove();

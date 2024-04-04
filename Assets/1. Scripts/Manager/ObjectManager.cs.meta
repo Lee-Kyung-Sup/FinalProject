@@ -3,7 +3,17 @@ guid: 21cdca57a3bc1754587ffa755a7c61dc
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - PlayerBulletPrefab: {instanceID: 0}
+  - PlayerChargeBulletPrefab: {instanceID: 0}
+  - PlayerMeleeHitPrefab: {instanceID: 0}
+  - PlayerRangeHitPrefab: {instanceID: 0}
+  - PlayerJumpHitEffectPrefab: {instanceID: 0}
+  - PlayerDeflectEffectPrefab: {instanceID: 0}
+  - bulletBossAPrefab: {instanceID: 0}
+  - bulletBossBTPrefab: {instanceID: 0}
+  - enemyBPrefab: {instanceID: 0}
+  - enemyBTPrefab: {fileID: 8236698002141129757, guid: 13313f4135099c04fae3f986e4aa9bc2, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
