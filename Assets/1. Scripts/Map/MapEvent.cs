@@ -19,6 +19,7 @@ public class MapEvent : PlayerEnterTrigger
     protected BoxCollider2D col;
     protected Transform playerTrans;
     protected PlayerInput playerAction;
+    protected bool isEnter;
 
     [HideInInspector] public int monsters;
 
@@ -50,12 +51,18 @@ public class MapEvent : PlayerEnterTrigger
         if (pLayer.value == (pLayer.value | (1 << collision.gameObject.layer)))
         {
             col.enabled = false;
-            if (!checker.isClear[transform.parent.root.name])
+            
+            if (!isEnter)
             {
-                playerTrans = collision.transform;
-                playerAction = playerTrans.GetComponent<PlayerInput>();
-                StartEvent();
+                isEnter = true;
+                if (!checker.isClear[transform.parent.root.name])
+                {
+                    playerTrans = collision.transform;
+                    playerAction = playerTrans.GetComponent<PlayerInput>();
+                    StartEvent();
+                }
             }
+
         }
     }
     protected void StartEvent()

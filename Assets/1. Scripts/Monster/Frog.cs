@@ -185,7 +185,15 @@ public class Frog : Monster
     private List<GameObject> frogbullet = new List<GameObject>();
     public void Fire()
     {
+        //GameObject bulletClone = ObjectManager.Instance.MakeObj("FrogBullet"); 
+        //if (bulletClone != null)
+        //{
+        //    bulletClone.transform.position = collision.transform.position;
+        //    bulletClone.transform.rotation = Quaternion.identity;
+        //}
+
         GameObject bulletClone = Instantiate(bullet, genPoint.position, transform.rotation);
+
         bulletClone.GetComponent<Rigidbody2D>().velocity = transform.right * -transform.localScale.x * 10f;
         bulletClone.transform.localScale = new Vector2(transform.localScale.x, 1f);
         frogbullet.Add(bulletClone);
