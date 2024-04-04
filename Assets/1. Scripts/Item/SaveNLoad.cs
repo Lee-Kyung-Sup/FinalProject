@@ -10,9 +10,6 @@ public class SaveData
     public Vector3 playerPos;
 }
 
-
-
-
 public class SaveNLoad : MonoBehaviour
 {
     private SaveData saveData = new SaveData();

@@ -29,8 +29,6 @@ public class Inventory : MonoBehaviour
     public TextMeshProUGUI selectedItemStatNames;
     public TextMeshProUGUI selectedItemStatValues;
     public GameObject useButton;
-    public GameObject equipButton;
-    public GameObject unEquipButton;
     public GameObject dropButton;
 
     private int curEquipIndex;
@@ -79,13 +77,13 @@ public class Inventory : MonoBehaviour
         {
             inventoryWindow.SetActive(false);
             onCloseInventory?.Invoke();
-            controller.ToggleCursor(false);
+            //controller.ToggleCursor(false);
         }
         else
         {
             inventoryWindow.SetActive(true);
             onOpenInventory?.Invoke();
-            controller.ToggleCursor(true);
+            //controller.ToggleCursor(true);
         }
     }
 
@@ -183,8 +181,6 @@ public class Inventory : MonoBehaviour
         }
 
         useButton.SetActive(selectedItem.item.type == ItemType.Consumable);
-        //equipButton.SetActive(selectedItem.item.type == ItemType.Equipable && !uiSlots[index].equipped);
-        //unEquipButton.SetActive(selectedItem.item.type == ItemType.Equipable && uiSlots[index].equipped);
         dropButton.SetActive(true);
     }
 
@@ -198,8 +194,6 @@ public class Inventory : MonoBehaviour
         selectedItemStatValues.text = string.Empty;
 
         useButton.SetActive(false);
-        //equipButton.SetActive(false);
-        //unEquipButton.SetActive(false);
         dropButton.SetActive(false);
     }
 
@@ -227,20 +221,7 @@ public class Inventory : MonoBehaviour
         RemoveSelectedItem();
     }
 
-    public void OnEquipButton()
-    {
 
-    }
-
-    void UnEquip(int index)
-    {
-
-    }
-
-    public void OnUnEquipButton()
-    {
-
-    }
 
     public void OnDropButton()
     {
@@ -256,7 +237,7 @@ public class Inventory : MonoBehaviour
         {
             if (uiSlots[selectedItemIndex].equipped)
             {
-                UnEquip(selectedItemIndex);
+                
             }
 
             selectedItem.item = null;

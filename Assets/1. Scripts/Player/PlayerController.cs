@@ -169,10 +169,4 @@ public class PlayerController : MonoBehaviour
         lockAction[Paction.Deflect] = true;
         lockAction[Paction.ComboAttack] = true;
     }
-
-    public void ToggleCursor(bool toggle)
-    {
-        
-    }
-
 }
