@@ -49,8 +49,8 @@ public class ObjectManager : MonoBehaviour
         GameObject bulletsParent = new GameObject("PrefabContainer");
         poolingObjectParent = bulletsParent.transform;
 
-        PlayerBullet = new GameObject[45];
-        PlayerChargeBullet = new GameObject[5];
+        PlayerBullet = new GameObject[30];
+        PlayerChargeBullet = new GameObject[3];
         PlayerMeleeHit = new GameObject[10];
         PlayerRangeHit = new GameObject[15];
         PlayerJumpHit = new GameObject[15];
