@@ -24,9 +24,16 @@ public class BossTwo : MonoBehaviour
     public int curPatternCount;
     public int[] maxPatternCount;
 
+    public Color hitColor = Color.red;
+    public float hitDuration = 0.1f;
+
+    private Color originalColor;
+    private bool isHit = false;
+
     void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        originalColor = spriteRenderer.color;
         capsuleCollider = GetComponent<CapsuleCollider2D>();
         rb = GetComponent<Rigidbody2D>();
     }
@@ -41,7 +48,14 @@ public class BossTwo : MonoBehaviour
 
     void Update()
     {
-        transform.position = transform.position;    
+        //transform.position = transform.position;
+        if(isHit)
+        {
+            spriteRenderer.color = hitColor;
+            Invoke("ResetColor", hitDuration);
+            isHit = false;
+        }
+
     }
     void OnEnable()
     {
@@ -238,13 +252,13 @@ public class BossTwo : MonoBehaviour
 
     }
 
-    public void Patrol()
-    {
-        float randomX = Random.Range(0f, 7f);
-        _targetPosition = new Vector2(randomX, 0);
-        transform.position = Vector2.Lerp(transform.position, _targetPosition, moveSpeed * Time.deltaTime);
-        //Invoke("DragonRunAttack", 3f);
-    }
+    //public void Patrol()
+    //{
+    //    float randomX = Random.Range(0f, 7f);
+    //    _targetPosition = new Vector2(randomX, 0);
+    //    transform.position = Vector2.Lerp(transform.position, _targetPosition, moveSpeed * Time.deltaTime);
+    //    //Invoke("DragonRunAttack", 3f);
+    //}
 
     public void EnableAttackCollider()
     {
@@ -257,12 +271,12 @@ public class BossTwo : MonoBehaviour
         capsuleCollider.enabled = false;
     }
 
-    public void returnInitialPosition()
-    {
-        float distance = Vector2.Distance(transform.position, initialPosition);
-        rb.velocity = (initialPosition - (Vector2)transform.position).normalized * distance * 1f;
+    //public void returnInitialPosition()
+    //{
+    //    float distance = Vector2.Distance(transform.position, initialPosition);
+    //    rb.velocity = (initialPosition - (Vector2)transform.position).normalized * distance * 1f;
        
-    }
+    //}
     public void Hit(int dmg)
     {
         if (currentHp <= 0)
@@ -280,10 +294,10 @@ public class BossTwo : MonoBehaviour
             Debug.Log("Monster Dead");
 
         }
-        else
-        {
-            anim.SetTrigger("Hit");
-        }
+        //else
+        //{
+        //    anim.SetTrigger("Hit");
+        //}
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
@@ -298,6 +312,12 @@ public class BossTwo : MonoBehaviour
         if (collision.transform.tag == ("PlayerAttackBox"))
         {
             Hit(10); // 임시로 데미지 10함
+            isHit= true;
         }
+    }
+
+    private void ResetColor()
+    {
+        spriteRenderer.color = originalColor;
     }
 }
