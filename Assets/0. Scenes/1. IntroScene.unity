@@ -4473,8 +4473,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 8147623467679872765}
   - {fileID: 47156347536079898}
+  - {fileID: 8147623467679872765}
   - {fileID: 5824184173141577901}
   - {fileID: 7759354174299697508}
   - {fileID: 1363047113201320676}
@@ -5092,11 +5092,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fcbae380f3cad846adb1c58309b559d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 3949886980107114563, guid: 5ea784b956f4a564ea1a6ea255629d76, type: 3}
-  playerUI: {fileID: 0}
   PlayerAnimator: {fileID: 0}
   PlayerName: {fileID: 0}
-  objectManager: {fileID: 0}
 --- !u!114 &7609429034621880072
 MonoBehaviour:
   m_ObjectHideFlags: 0
