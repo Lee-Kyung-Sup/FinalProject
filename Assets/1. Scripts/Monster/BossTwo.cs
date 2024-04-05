@@ -121,9 +121,9 @@ public class BossTwo : MonoBehaviour
         Debug.Log("DF");
         //드래곤이 불 오브젝트를 발사
         GameObject bulletD = objectManager.MakeObj("BulletBossBT");
-        bulletD.transform.position = transform.position + Vector3.right * 13f;
+        bulletD.transform.position = transform.position + new Vector3(13f, 2f, 0);
         Rigidbody2D rb = bulletD.GetComponent<Rigidbody2D>();
-        rb.gravityScale = 0f;
+        
         rb.AddForce(transform.right * 6, ForceMode2D.Impulse);
         
         //curPatternCount++;
@@ -146,7 +146,7 @@ public class BossTwo : MonoBehaviour
         Debug.Log("DA");
         //드래곤이 근접 공격
         
-        rb.velocity = new Vector2(10f, 1.5f);
+        rb.velocity = new Vector2(15f, 1.5f);
         //    anim.SetTrigger("Attack");
         //curPatternCount++;
 
@@ -171,7 +171,7 @@ public class BossTwo : MonoBehaviour
     void DragonAttackB()
     {
        
-        rb.velocity = new Vector2(-10f, 1.5f);
+        rb.velocity = new Vector2(-15f, 1.5f);
     }
 
     void DragonBurn()
@@ -188,9 +188,9 @@ public class BossTwo : MonoBehaviour
             
 
             //rb.gravityScale = 0f;
-            bulletD.transform.position = transform.position + Vector3.right * 7f;
+            bulletD.transform.position = transform.position + new Vector3(7f, 4f, 0);
             Vector2 dirVec = player.transform.position - transform.position;
-            Vector2 ranVec = new Vector2(Random.Range(-2f, 2f), Random.Range(-5f, 5f));
+            Vector2 ranVec = new Vector2(Random.Range(-1f, 1f), Random.Range(-10f, 10f));
             dirVec += ranVec;
             rba.AddForce(dirVec.normalized * 6, ForceMode2D.Impulse);
         }
