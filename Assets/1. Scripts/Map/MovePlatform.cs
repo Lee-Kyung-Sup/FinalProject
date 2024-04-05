@@ -26,7 +26,7 @@ public class MovePlatform : MonoBehaviour
             rigi.transform.position = new Vector2(startPos.x + amplitude * Mathf.Sin(Time.time * speed), startPos.y);
         }
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.TryGetComponent<IsGroundable>(out IsGroundable ound) && ound.IsGround())
         {

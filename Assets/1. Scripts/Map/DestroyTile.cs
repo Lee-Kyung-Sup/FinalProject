@@ -6,22 +6,6 @@ using UnityEngine.Tilemaps;
 public class DestroyTile : MonoBehaviour
 {
     Tilemap tile;
-    MapEventChecker checker;
-    private void Start()
-    {
-        tile = GetComponent<Tilemap>();
-        checker = MapMaker.Instance.MapEventCheker;
-        if (checker.isBroken.ContainsKey(transform.parent.root.name))
-        {
-            if (checker.isBroken[transform.parent.root.name])
-            {
-                Destroy(gameObject);
-                return;
-            }
-            return;
-        }
-        checker.isBroken.Add(transform.parent.root.name, false);
-    }
     public void MakeDot(Vector3 pos)
     {
         Vector3Int cellPosition = tile.WorldToCell(pos);
@@ -34,7 +18,6 @@ public class DestroyTile : MonoBehaviour
         tile.SetTile(cellPosition + new Vector3Int(1, -1, 0), null);
         tile.SetTile(cellPosition + new Vector3Int(-1, 1, 0), null);
         tile.SetTile(cellPosition, null);
-        checker.isBroken[transform.parent.root.name] = true;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

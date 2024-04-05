@@ -223,11 +223,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &283774027 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3949886980107114563, guid: 5ea784b956f4a564ea1a6ea255629d76, type: 3}
-  m_PrefabInstance: {fileID: 283774025}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &846020789
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -341,7 +336,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59d06293f199e6e499465c7597fd358b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curMapId: 9
+  curMapId: 6
 --- !u!1 &1744592445
 GameObject:
   m_ObjectHideFlags: 0
@@ -521,11 +516,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fcbae380f3cad846adb1c58309b559d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 283774027}
-  soundPanel: {fileID: 0}
-  objectManager: {fileID: 0}
-  ItemDatabase: {fileID: 0}
-  CharacterList: []
   PlayerAnimator: {fileID: 0}
   PlayerName: {fileID: 0}
 --- !u!4 &2038007276

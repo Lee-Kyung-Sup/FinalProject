@@ -70,7 +70,8 @@ public class MapEvent : PlayerEnterTrigger
         playerAction.enabled = false;//알수 없지만 페이즈 설정을 하지 않으면 이곳에서 멈춤
         transform.GetChild(0).gameObject.SetActive(true);//이 컴퍼넌트의 첫 자식은 타일맵임
         tempCameraArea = cameraController.CameraArea;
-        cameraController.SetCameraArea(transform.GetChild(1).GetComponent<BoxCollider2D>());//두 번째 자식은 카메라 고정 위치
+        cameraController.SetTarget(transform.GetChild(1));
+        cameraController.SetCameraArea(transform.GetChild(1).GetComponent<BoxCollider2D>() , true);//두 번째 자식은 카메라 고정 위치
         StartCoroutine(Eventing());
 
     }
