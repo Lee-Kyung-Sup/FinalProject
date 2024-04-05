@@ -12,8 +12,18 @@ public class UIManager : SingletonBase<UIManager>, IPointerEnterHandler
     [SerializeField] private Image FadeImage;
     [SerializeField] GameObject soundPanel;
 
+    public SaveNLoad theSaveNLoad; //저장테스트
+
+    private void Awake()
+    {
+        theSaveNLoad = GetComponent<SaveNLoad>();
+    }
+
+
+
     private void Start()
     {
+
         OnFadeOut();
     }
 
@@ -47,7 +57,24 @@ public class UIManager : SingletonBase<UIManager>, IPointerEnterHandler
         Application.Quit();
     }
 
+    public void ClickLoad() //불러오기 테스트
+    {
+        Debug.Log("불러오기");
+        StartCoroutine(LoadCoroutine()); //불러오기에 선행되는 대기메서드
+    }
 
+    IEnumerator LoadCoroutine()  //불러오기에 선행되는 대기메서드
+    {
+        AsyncOperation operation = SceneManager.LoadSceneAsync("2. GameScene");
+
+        while(!operation.isDone)
+        {
+            yield return null;
+        }
+        //theSaveNLoad = FindObjectOfType<SaveNLoad>();
+        theSaveNLoad.LoadData();
+        //Destroy(gameObject);
+    }
 
 
     // -------------------------Fade In & Out--------------------------------

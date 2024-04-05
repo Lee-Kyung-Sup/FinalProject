@@ -41,6 +41,20 @@ public class Inventory : MonoBehaviour
     public UnityEvent onCloseInventory;
 
     public static Inventory instance;
+
+    //public void LoadToInventory(int _itemNumber, string _displayName, string _description)
+    //{
+    //    for (int i = 0; i < slots.Length; i++)
+    //    {
+    //        if (slots[i].displayName == _displayName)
+    //        {
+    //            AddItem();
+    //        }
+
+    //    }
+    //}
+
+
     void Awake()
     {
         instance = this;

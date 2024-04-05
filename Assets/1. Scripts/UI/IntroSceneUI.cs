@@ -29,6 +29,8 @@ public class IntroSceneUI : MonoBehaviour, IPointerEnterHandler
 
         SceneManager.LoadScene("2. GameScene");
     }
+    //2. GameScene
+
 
     public void IntroOptions()
     {
