@@ -193,7 +193,7 @@ public class BossTwo : MonoBehaviour
         rb.velocity = Vector2.zero;
         Debug.Log("DB");
         //µÂ∑°∞Ô¿Ã ∫“±Ê¿ª ª’¿Ω
-        for (int index = 0; index < 5; index++)
+        for (int index = 0; index < 3; index++)
         {     
 
             GameObject bulletD = objectManager.MakeObj("BulletBossBT");
