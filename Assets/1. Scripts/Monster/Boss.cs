@@ -235,8 +235,8 @@ public class Boss : MonoBehaviour
 
     void Patrol()
     {
-        float randomX = Random.Range(-7f, 4f); // ·£´ıÇÑ x ÁÂÇ¥ »ı¼º
-        float randomY = Random.Range(-3f, 4f); // ·£´ıÇÑ y ÁÂÇ¥ »ı¼º
+        float randomX = Random.Range(-5f, 6f); // ·£´ıÇÑ x ÁÂÇ¥ »ı¼º
+        float randomY = Random.Range(-2f, 5f); // ·£´ıÇÑ y ÁÂÇ¥ »ı¼º
         _targetPosition = new Vector2(randomX, randomY); // ·£´ıÇÑ À§Ä¡ º¤ÅÍ »ı¼º
         
     }
