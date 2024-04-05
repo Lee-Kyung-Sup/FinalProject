@@ -7,6 +7,11 @@ public class Checkpoint : MonoBehaviour
     [SerializeField] private SaveNLoad theSaveNLoad;
 
 
+    private void Start()
+    {
+        theSaveNLoad = UIManager.Instance.theSaveNLoad;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
