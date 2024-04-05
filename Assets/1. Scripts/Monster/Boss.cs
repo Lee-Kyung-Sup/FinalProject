@@ -222,7 +222,7 @@ public class Boss : MonoBehaviour
         //AudioManager.Instance.PlayBGM("FirstBoss"); //¿ø·¡ BGM Àç»ı JHP
         if (enemyName == "B")
         {
-            InvokeRepeating("Patrol", 1f, 5f);
+            InvokeRepeating("Patrol", 1f, 2f);
         }
         player = GameManager.Instance.Player;
         objectManager = ObjectManager.Instance;
@@ -235,8 +235,8 @@ public class Boss : MonoBehaviour
 
     void Patrol()
     {
-        float randomX = Random.Range(-5f, 6f); // ·£´ıÇÑ x ÁÂÇ¥ »ı¼º
-        float randomY = Random.Range(-2f, 5f); // ·£´ıÇÑ y ÁÂÇ¥ »ı¼º
+        float randomX = Random.Range(-5f, 7f); // ·£´ıÇÑ x ÁÂÇ¥ »ı¼º
+        float randomY = Random.Range(-2f, 7f); // ·£´ıÇÑ y ÁÂÇ¥ »ı¼º
         _targetPosition = new Vector2(randomX, randomY); // ·£´ıÇÑ À§Ä¡ º¤ÅÍ »ı¼º
         
     }
