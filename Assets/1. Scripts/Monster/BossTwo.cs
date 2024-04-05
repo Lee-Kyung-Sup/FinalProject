@@ -160,7 +160,7 @@ public class BossTwo : MonoBehaviour
         Debug.Log("DA");
         //드래곤이 근접 공격
         
-        rb.velocity = new Vector2(15f, 1.5f);
+        rb.velocity = new Vector2(20f, 1.5f);
         //    anim.SetTrigger("Attack");
         //curPatternCount++;
 
@@ -185,7 +185,7 @@ public class BossTwo : MonoBehaviour
     void DragonAttackB()
     {
        
-        rb.velocity = new Vector2(-15f, 1.5f);
+        rb.velocity = new Vector2(-20f, 1.5f);
     }
 
     void DragonBurn()
