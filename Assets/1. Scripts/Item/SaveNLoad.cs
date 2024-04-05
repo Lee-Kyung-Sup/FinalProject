@@ -51,7 +51,7 @@ public class SaveData
     public void SaveData()
     {
         thePlayer = FindObjectOfType<PlayerController>();
-        theInventory = FindObjectOfType<Inventory>(); //인벤토리 찾아옴
+        //theInventory = FindObjectOfType<Inventory>(); //인벤토리 찾아옴
 
         //---------------------------------------------------------------
         saveData.playerPos = thePlayer.transform.position; //위치값저장
