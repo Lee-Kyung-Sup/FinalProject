@@ -33,6 +33,7 @@ public class BossTwo : MonoBehaviour
 
     void Start()
     {
+        player = GameManager.Instance.Player;
         objectManager = ObjectManager.Instance;
         anim = GetComponent<Animator>();
         initialPosition = transform.position;
@@ -183,15 +184,15 @@ public class BossTwo : MonoBehaviour
 
             GameObject bulletD = objectManager.MakeObj("BulletBossBT");
             //bulletD.transform.position = transform.position;
-            Rigidbody2D rb = bulletD.GetComponent<Rigidbody2D>();
+            Rigidbody2D rba = bulletD.GetComponent<Rigidbody2D>();
             
 
             //rb.gravityScale = 0f;
             bulletD.transform.position = transform.position + Vector3.right * 7f;
             Vector2 dirVec = player.transform.position - transform.position;
-            Vector2 ranVec = new Vector2(Random.Range(-3f, 3f), Random.Range(0f, 2f));
+            Vector2 ranVec = new Vector2(Random.Range(-2f, 2f), Random.Range(-5f, 5f));
             dirVec += ranVec;
-            rb.AddForce(dirVec.normalized * 6, ForceMode2D.Impulse);
+            rba.AddForce(dirVec.normalized * 6, ForceMode2D.Impulse);
         }
         
         //curPatternCount++;
