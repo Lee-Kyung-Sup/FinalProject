@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43e6d876c0037f14d8664179cf816cf5, type: 3}
   m_Name: Beer
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
+  itemNumber: 1002
   displayName: "\uB9E5\uC8FC"
   description: "\uC2A4\uD14C\uBBF8\uB098\uB97C \uD68C\uBCF5\uD569\uB2C8\uB2E4."
   type: 2
