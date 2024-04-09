@@ -24,14 +24,23 @@ public class BossTwo : MonoBehaviour
     public int curPatternCount;
     public int[] maxPatternCount;
 
+    public Color hitColor = Color.red;
+    public float hitDuration = 0.1f;
+
+    private Color originalColor;
+    private bool isHit = false;
+
     void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        originalColor = spriteRenderer.color;
         capsuleCollider = GetComponent<CapsuleCollider2D>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     void Start()
     {
+        player = GameManager.Instance.Player;
         objectManager = ObjectManager.Instance;
         anim = GetComponent<Animator>();
         initialPosition = transform.position;
@@ -39,25 +48,32 @@ public class BossTwo : MonoBehaviour
 
     void Update()
     {
-        transform.position = transform.position;    
+        //transform.position = transform.position;
+        if(isHit)
+        {
+            spriteRenderer.color = hitColor;
+            Invoke("ResetColor", hitDuration);
+            isHit = false;
+        }
+
     }
     void OnEnable()
     {
         //Debug.Log("check");
             currentHp = 100;
-            Invoke("Stop", 1);
+           // Invoke("Stop", 1);
             //InvokeRepeating("Stop", 1, 1);
         
     }
 
     //보스가 현재 존재하는지 판단
-    void Stop()
+    public void Stop()
     {
         if (!gameObject.activeSelf)
         {
             return;
         }
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        //Rigidbody2D rb = GetComponent<Rigidbody2D>();
         rb.velocity = Vector2.zero;
 
         //Invoke("Think", 2);
@@ -115,13 +131,14 @@ public class BossTwo : MonoBehaviour
 
     void DragonFire()
     {
+        
         Debug.Log("DF");
         //드래곤이 불 오브젝트를 발사
         GameObject bulletD = objectManager.MakeObj("BulletBossBT");
-        bulletD.transform.position = transform.position + Vector3.right * 13f;
+        bulletD.transform.position = transform.position + new Vector3(13f, 2f, 0);
         Rigidbody2D rb = bulletD.GetComponent<Rigidbody2D>();
-        rb.gravityScale = 0f;
-        rb.AddForce(transform.right * 5, ForceMode2D.Impulse);
+        
+        rb.AddForce(transform.right * 6, ForceMode2D.Impulse);
         
         //curPatternCount++;
         
@@ -142,8 +159,8 @@ public class BossTwo : MonoBehaviour
     {
         Debug.Log("DA");
         //드래곤이 근접 공격
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        rb.velocity = new Vector2(transform.localScale.x * 10f, 1.5f);
+        
+        rb.velocity = new Vector2(15f, 2f);
         //    anim.SetTrigger("Attack");
         //curPatternCount++;
 
@@ -167,26 +184,31 @@ public class BossTwo : MonoBehaviour
 
     void DragonAttackB()
     {
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        rb.velocity = new Vector2(transform.localScale.x * -10f, 1.5f);
+       
+        rb.velocity = new Vector2(-15f, 2f);
     }
 
     void DragonBurn()
     {
+        rb.velocity = Vector2.zero;
         Debug.Log("DB");
         //드래곤이 불길을 뿜음
-        for (int index = 0; index < 5; index++)
+        for (int index = 0; index < 3; index++)
         {     
+
             GameObject bulletD = objectManager.MakeObj("BulletBossBT");
-            Rigidbody2D rb = bulletD.GetComponent<Rigidbody2D>();
-            rb.gravityScale = 0f;
-            bulletD.transform.position = transform.position + Vector3.right * 7f;
-           // Vector2 dirVec = player.transform.position - transform.position;
-            Vector2 ranVec = new Vector2(Random.Range(0f, 1f), Random.Range(-5f, 5f));
-            //dirVec += ranVec;
-            rb.AddForce(ranVec.normalized * 6, ForceMode2D.Impulse);
-        }
+            //bulletD.transform.position = transform.position;
+            Rigidbody2D rba = bulletD.GetComponent<Rigidbody2D>();
             
+
+            //rb.gravityScale = 0f;
+            bulletD.transform.position = transform.position + new Vector3(7f, 4f, 0);
+            Vector2 dirVec = player.transform.position - transform.position;
+            Vector2 ranVec = new Vector2(Random.Range(-1f, 1f), Random.Range(-10f, 10f));
+            dirVec += ranVec;
+            rba.AddForce(dirVec.normalized * 6, ForceMode2D.Impulse);
+        }
+        
         //curPatternCount++;
         ////패턴이 maxpattenrcount까지 가지 않았을 때 다시 실행
         //if (curPatternCount < maxPatternCount[patternIndex])
@@ -201,9 +223,9 @@ public class BossTwo : MonoBehaviour
         //}
     }
 
-    private Vector2 _targetPosition;
-    public float moveSpeed = 3f;
-    public bool isPatrolling = false;
+    //private Vector2 _targetPosition;
+    //public float moveSpeed = 3f;
+    //public bool isPatrolling = false;
     void DragonRunAttack()
     {
         Debug.Log("DR");
@@ -230,13 +252,13 @@ public class BossTwo : MonoBehaviour
 
     }
 
-    public void Patrol()
-    {
-        float randomX = Random.Range(0f, 7f);
-        _targetPosition = new Vector2(randomX, 0);
-        transform.position = Vector2.Lerp(transform.position, _targetPosition, moveSpeed * Time.deltaTime);
-        //Invoke("DragonRunAttack", 3f);
-    }
+    //public void Patrol()
+    //{
+    //    float randomX = Random.Range(0f, 7f);
+    //    _targetPosition = new Vector2(randomX, 0);
+    //    transform.position = Vector2.Lerp(transform.position, _targetPosition, moveSpeed * Time.deltaTime);
+    //    //Invoke("DragonRunAttack", 3f);
+    //}
 
     public void EnableAttackCollider()
     {
@@ -249,12 +271,12 @@ public class BossTwo : MonoBehaviour
         capsuleCollider.enabled = false;
     }
 
-    public void returnInitialPosition()
-    {
-        float distance = Vector2.Distance(transform.position, initialPosition);
-        rb.velocity = (initialPosition - (Vector2)transform.position).normalized * distance * 1f;
+    //public void returnInitialPosition()
+    //{
+    //    float distance = Vector2.Distance(transform.position, initialPosition);
+    //    rb.velocity = (initialPosition - (Vector2)transform.position).normalized * distance * 1f;
        
-    }
+    //}
     public void Hit(int dmg)
     {
         if (currentHp <= 0)
@@ -272,10 +294,10 @@ public class BossTwo : MonoBehaviour
             Debug.Log("Monster Dead");
 
         }
-        else
-        {
-            anim.SetTrigger("Hit");
-        }
+        //else
+        //{
+        //    anim.SetTrigger("Hit");
+        //}
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
@@ -290,6 +312,12 @@ public class BossTwo : MonoBehaviour
         if (collision.transform.tag == ("PlayerAttackBox"))
         {
             Hit(10); // 임시로 데미지 10함
+            isHit= true;
         }
+    }
+
+    private void ResetColor()
+    {
+        spriteRenderer.color = originalColor;
     }
 }
