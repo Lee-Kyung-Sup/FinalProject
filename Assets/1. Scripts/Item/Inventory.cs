@@ -42,18 +42,29 @@ public class Inventory : MonoBehaviour
 
     public static Inventory instance;
 
+
+
+    //-----------------------------------------------------------------------------------
+
+    public ItemSlot[] GetSlots() {  return slots; } //저장하는 곳에 기억시킴
+
+    [SerializeField] private ItemData[] items;
+
     //public void LoadToInventory(int _itemNumber, string _displayName, string _description)
     //{
     //    for (int i = 0; i < slots.Length; i++)
     //    {
-    //        if (slots[i].displayName == _displayName)
+    //        if (items[i].displayName == _displayName)
     //        {
-    //            AddItem();
+    //            Debug.Log("인벤토리 내 인수비교 이후 출력");
+    //            AddItem(items[i]);
+    //            slots[_itemNumber].AddItem(items[i], _displayName);
     //        }
 
     //    }
     //}
 
+    //-----------------------------------------------------------------------------------
 
     void Awake()
     {

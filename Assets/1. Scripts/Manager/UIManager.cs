@@ -65,13 +65,14 @@ public class UIManager : SingletonBase<UIManager>, IPointerEnterHandler
 
     IEnumerator LoadCoroutine()  //불러오기에 선행되는 대기메서드
     {
-        AsyncOperation operation = SceneManager.LoadSceneAsync("2. GameScene");
+        AsyncOperation operation = SceneManager.LoadSceneAsync("GameScenePJH");
+        //2. GameScene
 
-        while(!operation.isDone)
+        while (!operation.isDone)
         {
             yield return null;
         }
-        //theSaveNLoad = FindObjectOfType<SaveNLoad>();
+        theSaveNLoad = FindObjectOfType<SaveNLoad>();
         theSaveNLoad.LoadData();
         //Destroy(gameObject);
     }

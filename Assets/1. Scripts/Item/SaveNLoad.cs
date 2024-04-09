@@ -11,9 +11,9 @@ public class SaveData
 {
     public Vector3 playerPos;
 
-    //public List<int> itemNumber = new List<int>();
-    //public List<string> displayName = new List<string>();
-    //public List<string> description = new List<string>();
+    public List<int> itemNumber = new List<int>();
+    public List<string> displayName = new List<string>();
+    public List<string> description = new List<string>();
 }
 //[System.Serializable]
 //public class ItemLoad
@@ -51,37 +51,26 @@ public class SaveData
     public void SaveData()
     {
         thePlayer = FindObjectOfType<PlayerController>();
-        //theInventory = FindObjectOfType<Inventory>(); //인벤토리 찾아옴
+        theInventory = FindObjectOfType<Inventory>(); //인벤토리 찾아옴
 
         //---------------------------------------------------------------
         saveData.playerPos = thePlayer.transform.position; //위치값저장
 
-        //ItemSlot[] slots = theInventory.slots;
-        //for(int i=0; i<slots.Length; i++)
-        //{
-        //    if (slots[i].item != null)
-        //    {
-        //        saveData.itemNumber.Add(i);
-        //        saveData.displayName.Add(slots[i].item.displayName);
-        //        saveData.description.Add(slots[i].item.description);
-        //    }
-        //}
+        ItemSlot[] slots = theInventory.GetSlots();
+        for (int i = 0; i < slots.Length; i++)
+        {
+            if (slots[i].item != null)
+            {
+                saveData.itemNumber.Add(i);
+                saveData.displayName.Add(slots[i].item.displayName);
+                saveData.description.Add(slots[i].item.description);
+            }
+        }
 
 
 
         //---------------------------------------------------------------
 
-
-        //List<ItemLoad> itemstoLoad = new List<ItemLoad>();
-        //for(int i = 0; i < inventory.slots.Length; i++)
-        //{
-        //    ItemSlot z = inventory.slots[i];
-        //    if(z.item)
-        //    {
-        //        ItemLoad h = new ItemLoad(z.item.itemNumber, i);
-        //    }
-
-        //}
 
         string json = JsonUtility.ToJson(saveData);
 
@@ -99,12 +88,14 @@ public class SaveData
             saveData = JsonUtility.FromJson<SaveData>(loadJson);
 
             thePlayer = FindObjectOfType<PlayerController>();
-            //theInventory = FindObjectOfType<Inventory>();
+            //theInventory = FindObjectOfType<Inventory>(); //인벤토리 찾기
 
             thePlayer.transform.position = saveData.playerPos;
 
-            //for(int i=0; i<theInventory.slots.Length; i++)
-            //    theInventory.LoadToInventory(saveData.itemNumber[i], saveData.displayName[i]);
+            for(int i=0; i<saveData.displayName.Count; i++)
+            {
+                //theInventory.LoadToInventory(saveData.itemNumber[i], saveData.displayName[i], saveData.description[i]);
+            }
 
 
             Debug.Log("로드 완료");
