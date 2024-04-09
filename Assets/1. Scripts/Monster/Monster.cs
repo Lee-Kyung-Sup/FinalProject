@@ -129,10 +129,6 @@ public class Monster : MonoBehaviour, IsGroundable, IDamageable
         return false;
     }
 
-
-   
-  
-
     //벽체크
     public bool CheckisClif(Vector2 origin, Vector2 direction, float distance, LayerMask layerMask)
     {
@@ -186,14 +182,11 @@ public class Monster : MonoBehaviour, IsGroundable, IDamageable
 
     //특정태그에 따른 충돌 피해
 
-    protected virtual void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision) // 트리거로 데미지 감지
     {
-        if (collision.transform.tag ==("PlayerAttackBox"))
+        if (((1 << collision.gameObject.layer) & (1 << 19)) != 0) // 19 : 플레이어 어택박스 레이어
         {
-            //TakeDamage(1); 
-            
-            // 플레이어가 몬스터의 TakeDamage에
-            //직접적으로 데미지를 전달하기 때문에 요게 필요읍슴
+            //TakeDamage(1);
         }
     }
 

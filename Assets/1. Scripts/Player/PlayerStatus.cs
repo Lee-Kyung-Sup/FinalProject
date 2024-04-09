@@ -29,7 +29,8 @@ public class PlayerStatus : MonoBehaviour, IDamageable
             { AttackTypes.JumpAttack, 3 },
             { AttackTypes.ComboAttack1, 3 },
             { AttackTypes.ComboAttack2, 5 },
-            { AttackTypes.ChargeShot, 3 }
+            { AttackTypes.ChargeShot, 3 },
+            { AttackTypes. DeflectionAttack, 5 },
         };
     }
 

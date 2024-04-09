@@ -7,6 +7,9 @@ public class PlayerDeflectHandler : MonoBehaviour
     [SerializeField] private float deflectPower = 2f;
     [SerializeField] private GameObject deflectEffect;
 
+    PlayerAttacks playerAttacks;
+    PlayerStatus playerStatus;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (((1 << collision.gameObject.layer) & ((1 << 11) | (1 << 12))) != 0) // 11. Projectile  12. EnemyBullet
@@ -27,7 +30,16 @@ public class PlayerDeflectHandler : MonoBehaviour
                 bulletRb.velocity = deflectDirection;
 
                 collision.gameObject.layer = 20; // 플레이어 bullet
-                // 몬스터가 PlayerBullet에 닿을 때 데미지를 주도록 데미지 로직 수정 TODO
+                collision.gameObject.tag = "PlayerAttackBox";
+
+                DeflectBullet deflectBullet = collision.gameObject.GetComponent<DeflectBullet>();
+                if (deflectBullet != null )
+                {
+                    int damage = playerStatus.attackPower[AttackTypes.DeflectionAttack];
+                    deflectBullet.Initialize(AttackTypes.DeflectionAttack, damage);
+                }
+
+                collision.gameObject.GetComponent<IDamageable>()?.TakeDamage(deflectBullet.damage);
             }
         }
     }
