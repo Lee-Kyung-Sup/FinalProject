@@ -30,7 +30,13 @@ public class BossMapEventList
 {
     public Action GiveBossEvent() //Todo
     {
-        return null;
+        switch (MapMaker.Instance.CurMapId())
+        {
+            case 39:
+                return StartOneWayMove;
+            default:
+                return null;
+        }
     }
     void StartOneWayMove()
     {

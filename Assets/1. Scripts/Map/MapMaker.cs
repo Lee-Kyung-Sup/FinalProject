@@ -36,4 +36,8 @@ public class MapMaker : SingletonBase<MapMaker>
         curMap.SetActive(true);
         CameraController.Instance.SetCameraArea(curMap.GetComponent<BoxCollider2D>());
     }
+    public int CurMapId()
+    {
+        return curMapId;
+    }
 }
