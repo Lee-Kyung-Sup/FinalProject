@@ -1,17 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class Bat : Monster
 {
 
     public GameObject player;
-    protected Rigidbody2D rb;
+    
     private bool playerinRange = false;
-    public float detectionRange = 7f;
+    public float detectionRange = 20f;
     private bool canAttack = false;
-    public float attackRange = 3f;
+    public float attackRange = 1f;
     protected CircleCollider2D circleCollider;
+    private SpriteRenderer spriteRenderer;
+
     public enum State
     {
         Idle,
@@ -25,15 +28,17 @@ public class Bat : Monster
     protected override void Awake()
     {
         base.Awake();
-        moveSpeed = 4f;
+        moveSpeed = 5f;
         circleCollider = GetComponent<CircleCollider2D>();
-        rb = GetComponent<Rigidbody2D>();
+        atkCoolTime = 2f;
+        atkCoolTimeCalc = atkCoolTime;
         StartCoroutine(FSM());
     }
 
     public void Start()
     {
         player = GameManager.Instance.Player;
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
     IEnumerator FSM()
     {
@@ -52,21 +57,25 @@ public class Bat : Monster
         {
             currentState = State.Attack;
         }
-        
+        else
+        {
+            currentState = State.Idle;
+        }
     }
     
     IEnumerator Attack()
     {
         yield return null;
-        transform.position = Vector2.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
-        if (canAtk == true)
+        transform.position = Vector2.MoveTowards(transform.position, player.transform.position, moveSpeed * Time.deltaTime);
+        if (canAttack == true)
         {
+            canAttack = false;
             canAtk = false;
             MyAnimSetTrigger(currentState.ToString());
-            rb.velocity = new Vector2(-transform.localScale.x * 14f, 1f);
-            yield return null;
+            rb.velocity = new Vector2(player.transform.localScale.x, player.transform.localScale.y * 1f);
+            yield return Delay500;
+            currentState = State.Attack;
         }
-        
     }
     
     
@@ -78,12 +87,12 @@ public class Bat : Monster
             playerinRange = true;
             if(distancetoPlayer < attackRange)
             {
-                canAtk = true;
+                canAttack = true;
                 
             }
             else
             {
-                canAtk = false;
+                canAttack = false;
             }
         }
         else
@@ -91,8 +100,13 @@ public class Bat : Monster
             playerinRange = false;
         }
 
-        Vector3 direction = player.position = transform.position;
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        if(player.transform.position.x < transform.position.x)
+        {
+            spriteRenderer.flipX = true;
+        }
+        else
+        {
+            spriteRenderer.flipX = false;
+        }
     }
 }
