@@ -114,7 +114,7 @@ public class EnemyMeleeMove : EnemyMeleeGroundState
             return;
         }
         EnemyMelee.SetVelocity(EnemyMelee.moveSpeed * EnemyMelee.facingDir, EnemyMelee.Rigi.velocity.y);
-        if (EnemyMelee.IsWallDetected() || EnemyMelee.IsGroundDetected())
+        if (EnemyMelee.IsWallDetected() || !EnemyMelee.IsGroundDetected())
         {
             EnemyMelee.Flip();
             stateMachine.ChangeState(EnemyMelee.Idle);
