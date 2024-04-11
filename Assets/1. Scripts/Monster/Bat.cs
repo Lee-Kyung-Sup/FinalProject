@@ -30,7 +30,7 @@ public class Bat : Monster
     protected override void Awake()
     {
         base.Awake();
-        moveSpeed = 5f;
+        moveSpeed = 6f;
         currentHp = 100;
         circleCollider = GetComponent<CircleCollider2D>();
         atkCoolTime = 2f;
@@ -95,15 +95,16 @@ public class Bat : Monster
             canAttack = false;
             canAtk = false;
             MyAnimSetTrigger(currentState.ToString());
-            rb.velocity = new Vector2(player.transform.localScale.x, player.transform.localScale.y);
+            rb.velocity = new Vector2(player.transform.localScale.x*2f, player.transform.localScale.y);
             
-            yield return null;
+            yield return Delay500;
             currentState = State.Move;
 
             
         }
         else
-        { 
+        {
+            yield return null;
             currentState = State.Move;
         }
 
