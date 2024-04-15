@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
@@ -11,13 +12,14 @@ public class Bat : Monster
     private bool playerinRange = false;
     public float detectionRange = 20f;
     private bool canAttack = false;
-    public float attackRange = 1f;
+    public float attackRange = 3f;
     protected CircleCollider2D circleCollider;
     private SpriteRenderer spriteRenderer;
 
     public enum State
     {
         Idle,
+        Move,
         Attack
         
     };
@@ -28,7 +30,8 @@ public class Bat : Monster
     protected override void Awake()
     {
         base.Awake();
-        moveSpeed = 5f;
+        moveSpeed = 6f;
+        currentHp = 100;
         circleCollider = GetComponent<CircleCollider2D>();
         atkCoolTime = 2f;
         atkCoolTimeCalc = atkCoolTime;
@@ -48,6 +51,8 @@ public class Bat : Monster
         }
     }
 
+
+
     IEnumerator Idle()
     {
         
@@ -55,7 +60,7 @@ public class Bat : Monster
         yield return Delay500;
         if(playerinRange == true)
         {
-            currentState = State.Attack;
+            currentState = State.Move;
         }
         else
         {
@@ -63,22 +68,49 @@ public class Bat : Monster
         }
     }
     
+    IEnumerator Move()
+    {
+        yield return null;
+        MyAnimSetTrigger(currentState.ToString());
+        transform.position = Vector2.MoveTowards(transform.position, player.transform.position, moveSpeed * Time.deltaTime);
+        if(canAttack == true)
+        {
+            currentState = State.Attack;
+            
+        }
+        else
+        {
+            currentState = State.Move;
+        }
+    }
+
+
+
     IEnumerator Attack()
     {
         yield return null;
-        transform.position = Vector2.MoveTowards(transform.position, player.transform.position, moveSpeed * Time.deltaTime);
+
         if (canAttack == true)
         {
             canAttack = false;
             canAtk = false;
             MyAnimSetTrigger(currentState.ToString());
-            rb.velocity = new Vector2(player.transform.localScale.x, player.transform.localScale.y * 1f);
+            rb.velocity = new Vector2(player.transform.localScale.x*2f, player.transform.localScale.y);
+            
             yield return Delay500;
-            currentState = State.Attack;
+            currentState = State.Move;
+
+            
         }
+        else
+        {
+            yield return null;
+            currentState = State.Move;
+        }
+
     }
-    
-    
+
+
     void Update()
     {
         float distancetoPlayer = Vector2.Distance(transform.position, player.transform.position);

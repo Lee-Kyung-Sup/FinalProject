@@ -299,6 +299,13 @@ public class BossTwo : MonoBehaviour
         //    anim.SetTrigger("Hit");
         //}
     }
+
+
+    public void Destroy()
+    {
+        
+        Destroy(gameObject);
+    }
     void OnTriggerEnter2D(Collider2D collision)
     {
         //if (collision.gameObject.tag == "Ground" &&
