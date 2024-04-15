@@ -11,6 +11,6 @@ public class MonsterSpawner : SingletonBase<MonsterSpawner>
     }
     public GameObject SpawnMonster(OrderMonster order)
     {
-        return Instantiate(monsters.monsterPrefabs[order.monsterIndex], order.pos, Quaternion.identity);
+        return Instantiate(monsters.monsterPrefabs[(int)order.monsterIndex], order.pos, Quaternion.identity);
     }
 }

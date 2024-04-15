@@ -29,6 +29,6 @@ public class CallMonster : MonoBehaviour
 [Serializable]
 public class OrderMonster
 {
-    public int monsterIndex;
+    public Monsters monsterIndex;
     public Vector2 pos;
 }
