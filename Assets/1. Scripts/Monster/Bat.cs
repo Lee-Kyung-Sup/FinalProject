@@ -12,7 +12,7 @@ public class Bat : Monster
     private bool playerinRange = false;
     public float detectionRange = 20f;
     private bool canAttack = false;
-    public float attackRange = 3f;
+    public float attackRange = 1f;
     protected CircleCollider2D circleCollider;
     private SpriteRenderer spriteRenderer;
 
@@ -20,7 +20,7 @@ public class Bat : Monster
     {
         Idle,
         Move,
-        Attack
+        //Attack
         
     };
 
@@ -55,10 +55,10 @@ public class Bat : Monster
 
     IEnumerator Idle()
     {
-        
+
         MyAnimSetTrigger(currentState.ToString());
         yield return Delay500;
-        if(playerinRange == true)
+        if (playerinRange == true)
         {
             currentState = State.Move;
         }
@@ -67,69 +67,73 @@ public class Bat : Monster
             currentState = State.Idle;
         }
     }
-    
+
     IEnumerator Move()
     {
         yield return null;
         MyAnimSetTrigger(currentState.ToString());
-        transform.position = Vector2.MoveTowards(transform.position, player.transform.position, moveSpeed * Time.deltaTime);
-        if(canAttack == true)
-        {
-            currentState = State.Attack;
-            
-        }
-        else
-        {
-            currentState = State.Move;
-        }
+        MoveTo();
+        //transform.position = Vector2.MoveTowards(transform.position, player.transform.position, moveSpeed * Time.deltaTime);
+        currentState = State.Move;
+        
+        
     }
 
-
-
-    IEnumerator Attack()
+    public void MoveTo()
     {
-        yield return null;
-
-        if (canAttack == true)
-        {
-            canAttack = false;
-            canAtk = false;
-            MyAnimSetTrigger(currentState.ToString());
-            rb.velocity = new Vector2(player.transform.localScale.x*2f, player.transform.localScale.y);
-            
-            yield return Delay500;
-            currentState = State.Move;
-
-            
-        }
-        else
-        {
-            yield return null;
-            currentState = State.Move;
-        }
-
+        transform.position = Vector2.MoveTowards(transform.position, player.transform.position, moveSpeed * Time.deltaTime);
     }
 
 
+    //IEnumerator Attack()
+    //{
+    //    yield return null;
+
+    //    if (canAttack == true)
+    //    {
+    //        canAttack = false;
+    //        canAtk = false;
+    //        MyAnimSetTrigger(currentState.ToString());
+    //        rb.velocity = new Vector2(transform.localScale.x*2f, transform.localScale.y);
+
+    //        yield return null;
+    //        currentState = State.Attack;
+
+
+    //    }
+    //    else
+    //    {
+    //        yield return null;
+    //        currentState = State.Move;
+    //    }
+
+    //}
+
+   
     void Update()
     {
+        
+        MyAnimSetTrigger(currentState.ToString());
         float distancetoPlayer = Vector2.Distance(transform.position, player.transform.position);
         if(distancetoPlayer < detectionRange)
         {
             playerinRange = true;
-            if(distancetoPlayer < attackRange)
-            {
-                canAttack = true;
+            MoveTo();
+            currentState = State.Move;
+            //if(distancetoPlayer < attackRange)
+            //{
+            //    canAttack = true;
                 
-            }
-            else
-            {
-                canAttack = false;
-            }
+            //}
+            //else
+            //{
+            //    canAttack = false;
+            //}
         }
         else
         {
             playerinRange = false;
+            currentState = State.Idle;
         }
 
         if(player.transform.position.x < transform.position.x)

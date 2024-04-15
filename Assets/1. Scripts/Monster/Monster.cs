@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.InputSystem.XR.Haptics;
 
 public class Monster : MonoBehaviour, IsGroundable, IDamageable
 {
@@ -173,14 +174,17 @@ public class Monster : MonoBehaviour, IsGroundable, IDamageable
             rb.velocity = Vector2.zero;
             if (transform.position.x > GameManager.Instance.GetPlayerPosition().x) 
             {
+
                 rb.velocity = new Vector2(10f, 0);
+               
             }
             else
             {
                 rb.velocity = new Vector2(-10f, 0);
+                
             }
         }
-       
+        MyAnimSetTrigger("Move");
         hitBoxCollider.SetActive(false);
     }
 
