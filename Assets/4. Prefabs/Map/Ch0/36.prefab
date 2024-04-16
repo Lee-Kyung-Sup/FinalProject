@@ -3389,7 +3389,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsters: 0
-  mapPhase: []
+  mapPhase:
+  - summonMonster:
+    - {fileID: 7574052208653376922, guid: e175f4399e81f7649b5db83a507d4460, type: 3}
+    summonPos:
+    - {x: 2.402872, y: -6.478485, z: 0}
+  - summonMonster:
+    - {fileID: 7365301863307134542, guid: 6c2b4117a4301684d996b9ce3d590954, type: 3}
+    - {fileID: 7365301863307134542, guid: 6c2b4117a4301684d996b9ce3d590954, type: 3}
+    summonPos:
+    - {x: -6.6, y: -6.3, z: 0}
+    - {x: 13.63, y: -6.3, z: 0}
 --- !u!61 &2432080476270063151
 BoxCollider2D:
   m_ObjectHideFlags: 0

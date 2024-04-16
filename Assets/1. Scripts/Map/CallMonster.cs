@@ -30,5 +30,5 @@ public class CallMonster : MonoBehaviour
 public class OrderMonster
 {
     public Monsters monsterIndex;
-    public Vector2 pos;
+    public Vector3 pos;
 }

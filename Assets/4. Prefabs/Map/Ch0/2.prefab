@@ -2755,7 +2755,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   callList:
   - monsterIndex: 0
-    pos: {x: 0, y: 0}
+    pos: {x: 0.52, y: -7.02, z: 0}
+  - monsterIndex: 0
+    pos: {x: -20, y: -4.78, z: 0}
 --- !u!1 &7486010862679609161
 GameObject:
   m_ObjectHideFlags: 0
