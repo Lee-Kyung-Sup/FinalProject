@@ -174,16 +174,18 @@ public class Monster : MonoBehaviour, IsGroundable, IDamageable
             rb.velocity = Vector2.zero;
             if (transform.position.x > GameManager.Instance.GetPlayerPosition().x) 
             {
-
+                Debug.Log("D");
                 rb.velocity = new Vector2(10f, 0);
                
             }
             else
             {
+                Debug.Log("E");
                 rb.velocity = new Vector2(-10f, 0);
                 
             }
         }
+        Debug.Log("F");
         MyAnimSetTrigger("Move");
         hitBoxCollider.SetActive(false);
     }
