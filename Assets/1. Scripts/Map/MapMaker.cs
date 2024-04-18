@@ -5,36 +5,39 @@ using UnityEngine;
 
 public class MapMaker : SingletonBase<MapMaker>
 {
-    public int CurChapterId { get; private set; }
-    [SerializeField] int curMapId = 0;
+    [SerializeField]int curMapId;
     GameObject curMap;
-    MapDatas mapList;
-    PotalMaker potalMaker;
+    MapDatas mapData;
+    GameObject[] mapList;
     public MapEventChecker MapEventCheker { get; private set; }
 
     public BossMapEventList BossMapEvents { get; private set; }
 
     private void Start()
     {
-        mapList = Resources.Load<MapDatas>($"Ch{CurChapterId}MapDatas");
         MapEventCheker = gameObject.AddComponent<MapEventChecker>();
-        potalMaker = gameObject.AddComponent<PotalMaker>();
         BossMapEvents = new BossMapEventList();
-        MakeRoom(curMapId);
-    }
-    public void MakeRoom(int newMap)
-    {
-        Destroy(curMap);
-        curMapId = newMap;
-        curMap = Instantiate(mapList.mapData[newMap].maps);
+        mapData = Resources.Load<MapDatas>("MapData");
+        mapList = new GameObject[mapData.mapPrefabs.Length];
+        for (int i = 0; i < mapData.mapPrefabs.Length; i++)
+        {
+            mapList[i] = Instantiate(mapData.mapPrefabs[i]);
+            mapList[i].SetActive(false);
+        }
+        curMap = mapList[curMapId];
+        curMap.SetActive(true);
         CameraController.Instance.SetCameraArea(curMap.GetComponent<BoxCollider2D>());
-        potalMaker.MakePotal(mapList.mapData[newMap].poter);
     }
-    public void EnterChapterPotal(int goMapid,int chapter)
+    public void EnterPotal(int newMap)
     {
-        curMapId = goMapid;
-        CurChapterId = chapter;
-        mapList = Resources.Load<MapDatas>($"Ch{CurChapterId}MapDatas");
-        MakeRoom(curMapId);
+        curMap.SetActive(false);
+        curMapId = newMap;
+        curMap = mapList[curMapId];
+        curMap.SetActive(true);
+        CameraController.Instance.SetCameraArea(curMap.GetComponent<BoxCollider2D>());
+    }
+    public int CurMapId()
+    {
+        return curMapId;
     }
 }

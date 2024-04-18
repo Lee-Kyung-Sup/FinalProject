@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Potal : PlayerEnterTrigger
 {
-    public int goIndex;
-    public Vector3 targetPos;
+    [SerializeField]int goIndex;
+    [SerializeField]Vector3 targetPos;
     protected override void Awake()
     {
         base.Awake();
@@ -16,7 +16,7 @@ public class Potal : PlayerEnterTrigger
         if (pLayer.value == (pLayer.value | (1 << collision.gameObject.layer))) //ÃÑ¾Ë ¹× ÀÌÆåÆ® Áö¿ì±â need
         {
             CameraController.Instance.CameraOFFON();
-            MapMaker.Instance.MakeRoom(goIndex);
+            MapMaker.Instance.EnterPotal(goIndex);
             collision.transform.position = targetPos;
         }
     }
