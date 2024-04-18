@@ -24,7 +24,7 @@ public class UIManager : SingletonBase<UIManager>, IPointerEnterHandler
     private void Start()
     {
 
-        OnFadeOut();
+        //OnFadeOut();
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -79,44 +79,44 @@ public class UIManager : SingletonBase<UIManager>, IPointerEnterHandler
 
 
     // -------------------------Fade In & Out--------------------------------
-    public void OnFadeOut()
-    {
-        StartCoroutine(FadeOut(1.0f));
-    }
-    public void OnFadeIn()
-    {
-        StartCoroutine(FadeIn(1.0f));
-    }
+    //public void OnFadeOut()
+    //{
+    //    StartCoroutine(FadeOut(1.0f));
+    //}
+    //public void OnFadeIn()
+    //{
+    //    StartCoroutine(FadeIn(1.0f));
+    //}
 
-    private IEnumerator FadeOut(float duration)
-    {
-        float count = 0;
-        Color imageColor = FadeImage.color;
+    //private IEnumerator FadeOut(float duration)
+    //{
+    //    float count = 0;
+    //    Color imageColor = FadeImage.color;
 
-        while ( count < duration)
-        {
-            count += Time.deltaTime;
-            float alphaValue = Mathf.Lerp(1, 0, count/duration);
-            FadeImage.color = new Color(imageColor.r, imageColor.g, imageColor.b, alphaValue);
-            yield return null;
-        }
-        FadeImage.gameObject.SetActive(false);
-    }
+    //    while ( count < duration)
+    //    {
+    //        count += Time.deltaTime;
+    //        float alphaValue = Mathf.Lerp(1, 0, count/duration);
+    //        FadeImage.color = new Color(imageColor.r, imageColor.g, imageColor.b, alphaValue);
+    //        yield return null;
+    //    }
+    //    FadeImage.gameObject.SetActive(false);
+    //}
 
-    private IEnumerator FadeIn(float duration)
-    {
-        FadeImage.gameObject.SetActive(true);
-        float count = 0;
-        Color imageColor = FadeImage.color;
+    //private IEnumerator FadeIn(float duration)
+    //{
+    //    FadeImage.gameObject.SetActive(true);
+    //    float count = 0;
+    //    Color imageColor = FadeImage.color;
 
-        while (count < duration)
-        {
-            count += Time.deltaTime;
-            float alphaValue = Mathf.Lerp(0, 1, count / duration);
-            FadeImage.color = new Color(imageColor.r, imageColor.g, imageColor.b, alphaValue);
-            yield return null;
-        }
-    }
+    //    while (count < duration)
+    //    {
+    //        count += Time.deltaTime;
+    //        float alphaValue = Mathf.Lerp(0, 1, count / duration);
+    //        FadeImage.color = new Color(imageColor.r, imageColor.g, imageColor.b, alphaValue);
+    //        yield return null;
+    //    }
+    //}
 
     // ------------------------------------------------------------------
 

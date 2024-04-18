@@ -56,18 +56,6 @@ public class SaveData
         //---------------------------------------------------------------
         saveData.playerPos = thePlayer.transform.position; //위치값저장
 
-        ItemSlot[] slots = theInventory.GetSlots();
-        for (int i = 0; i < slots.Length; i++)
-        {
-            if (slots[i].item != null)
-            {
-                saveData.itemNumber.Add(i);
-                saveData.displayName.Add(slots[i].item.displayName);
-                saveData.description.Add(slots[i].item.description);
-            }
-        }
-
-
 
         //---------------------------------------------------------------
 
