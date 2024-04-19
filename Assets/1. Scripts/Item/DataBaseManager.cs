@@ -45,7 +45,6 @@ public class DataBaseManager : MonoBehaviour
         itemList.Add(new Item(50001, "사과", "체력을 채워주는 과일", Item.ItemType.Use));
         itemList.Add(new Item(50003, "맥주", "체력과 기력을 채워주는 음료", Item.ItemType.Use));
         itemList.Add(new Item(60001, "장검", "체력과 기력을 깍아주는 무기", Item.ItemType.Equip));
-        itemList.Add(new Item(60002, "도끼", "체력과 기력을 깍아주는 무기", Item.ItemType.Equip));
         itemList.Add(new Item(70001, "흉갑", "체력과 기력을 올려주는 장비", Item.ItemType.Equip));
         itemList.Add(new Item(80001, "원주", "체력과 기력을 올려주는 장비", Item.ItemType.Equip));
     }
