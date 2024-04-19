@@ -80,7 +80,7 @@ public class UIManager : SingletonBase<UIManager>, IPointerEnterHandler
     // -------------------------Fade In & Out--------------------------------
     public void OnFadeOut()
     {
-        StartCoroutine(FadeOut(1.0f));
+        //StartCoroutine(FadeOut(1.0f));
     }
     public void OnFadeIn()
     {
