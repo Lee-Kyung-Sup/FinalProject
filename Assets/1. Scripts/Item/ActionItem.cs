@@ -12,15 +12,7 @@ public class ActionItem : PlayerEnterTrigger
         skillPanelController = FindObjectOfType<SkillPanelController>();
 
         checker = MapMaker.Instance.MapEventCheker;
-        if (!checker.isGet.ContainsKey(actionType))
-        {
-            checker.isGet.Add(actionType, false);
-            return;
-        }
-        if (checker.isGet[actionType])
-        {
-            Destroy(gameObject);
-        }
+
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -28,7 +20,6 @@ public class ActionItem : PlayerEnterTrigger
         {
             //Todo GetUi
             collision.GetComponent<PlayerController>().UnLockAction(actionType);
-            checker.isGet[actionType] = true;
 
 
             if (skillPanelController != null)
