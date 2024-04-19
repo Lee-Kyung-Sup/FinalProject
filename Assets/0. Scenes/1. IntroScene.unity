@@ -8978,7 +8978,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FadeImage: {fileID: 5040509365827921703}
-  soundPanel: {fileID: 855325512}
+  OptionPanel: {fileID: 855325512}
+  theSaveNLoad: {fileID: 0}
 --- !u!1 &333528828370582694
 GameObject:
   m_ObjectHideFlags: 0
@@ -11535,7 +11536,6 @@ RectTransform:
   - {fileID: 3669560903910898256}
   - {fileID: 6757593760831343558}
   - {fileID: 568590928}
-  - {fileID: 1684206843}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

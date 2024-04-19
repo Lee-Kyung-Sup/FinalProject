@@ -42,13 +42,13 @@ public class UIManager : SingletonBase<UIManager>, IPointerEnterHandler
     public void ToggleSoundPanel()
     {
         OptionPanel.SetActive(true);
-        AudioManager.Instance.PlaySFX("Click");
+        //AudioManager.Instance.PlaySFX("Click");
     }
 
     public void CanelSoundPanel()
     {
         OptionPanel.SetActive(false);
-        AudioManager.Instance.PlaySFX("Click");
+        //AudioManager.Instance.PlaySFX("Click");
     }
 
     public void QuitGame()
