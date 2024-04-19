@@ -12,8 +12,18 @@ public class UIManager : SingletonBase<UIManager>, IPointerEnterHandler
     [SerializeField] private Image FadeImage;
     [SerializeField] GameObject OptionPanel;
 
+    public SaveNLoad theSaveNLoad; //ï¿½ï¿½ï¿½ï¿½ï¿½×½ï¿½Æ®
+
+    private void Awake()
+    {
+        theSaveNLoad = GetComponent<SaveNLoad>();
+    }
+
+
+
     private void Start()
     {
+
         OnFadeOut();
     }
 
@@ -43,7 +53,7 @@ public class UIManager : SingletonBase<UIManager>, IPointerEnterHandler
 
     public void QuitGame()
     {
-        Debug.Log("°ÔÀÓ Á¾·á : ºôµå µÈ °ÔÀÓ¿¡¼­ ½ÇÁ¦ Á¾·á µÊ.");
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ : ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ó¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½.");
         Application.Quit();
     }
 
@@ -52,13 +62,30 @@ public class UIManager : SingletonBase<UIManager>, IPointerEnterHandler
         OptionPanel.SetActive(false);
     }
 
+    public void ClickLoad() //ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×½ï¿½Æ®
+    {
+        Debug.Log("ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½");
+        StartCoroutine(LoadCoroutine()); //ï¿½Ò·ï¿½ï¿½ï¿½ï¿½â¿¡ ï¿½ï¿½ï¿½ï¿½Ç´ï¿½ ï¿½ï¿½ï¿½Þ¼ï¿½ï¿½ï¿½
+    }
 
+    IEnumerator LoadCoroutine()  //ï¿½Ò·ï¿½ï¿½ï¿½ï¿½â¿¡ ï¿½ï¿½ï¿½ï¿½Ç´ï¿½ ï¿½ï¿½ï¿½Þ¼ï¿½ï¿½ï¿½
+    {
+        AsyncOperation operation = SceneManager.LoadSceneAsync("2. GameScene");
+
+        while(!operation.isDone)
+        {
+            yield return null;
+        }
+        //theSaveNLoad = FindObjectOfType<SaveNLoad>();
+        theSaveNLoad.LoadData();
+        //Destroy(gameObject);
+    }
 
 
     // -------------------------Fade In & Out--------------------------------
     public void OnFadeOut()
     {
-        StartCoroutine(FadeOut(1.0f));
+        //StartCoroutine(FadeOut(1.0f));
     }
     public void OnFadeIn()
     {

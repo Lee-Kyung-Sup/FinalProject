@@ -3,257 +3,431 @@ using System.Collections.Generic;
 using System.Reflection;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using static UnityEditor.Progress;
+using Unity.Loading;
 
-public class ItemSlot
-{
-    public ItemData item;
-    public int quantity;
-}
+
 
 public class Inventory : MonoBehaviour
 {
-    public ItemSlotUI[] uiSlots;
-    public ItemSlot[] slots;
+    public static Inventory instance;
+    private InventorySlot[] slots; //인벤토리 슬롯들
+    private DataBaseManager theDatabase;
+    private OkOrCancel theOOC;
 
-    public GameObject inventoryWindow;
-    public Transform dropPosition;
+    private List<Item> inventoryItemList; // 플레이어가 소지한 아이템리스트
+    private List<Item> inventoryTabList; // 선택한 탭에 따라 전환되는 아이템리스트
 
-    [Header("Selected Item")]
-    private ItemSlot selectedItem;
-    private int selectedItemIndex;
-    public TextMeshProUGUI selectedItemName;
-    public TextMeshProUGUI selectedItemDescription;
-    public TextMeshProUGUI selectedItemStatNames;
-    public TextMeshProUGUI selectedItemStatValues;
-    public GameObject useButton;
-    public GameObject dropButton;
+    public TextMeshProUGUI Description_Text; //설명
+    public string[] tabDescription; //탭설명
 
-    private int curEquipIndex;
+    public Transform tf; //slot 부모객체
+
+    public GameObject[] selectedTabImages;
+    private int selectedItem; //선택아이템
+    private int selectedTab; //선택된 탭
+
+    private bool activated; //인벤토리 활성화시 true;
+    private bool itemActivated; //아이템 활성화시 true;
+    private bool tabActivated; //탭 활성화시 true;
+    private bool stopKeyInput; //키입력 제한(알림창시)
+    private bool preventExec; //중복실행 제한
+
+    private WaitForSeconds waitTime = new WaitForSeconds(0.01f);
+
+    public GameObject inventoryWindow; // 인벤토리 활성화, 비활성화
+    public GameObject inventoryWindow_OOC; //선택지 활성화, 비활성화
 
     private PlayerController controller;
     private PlayerStatus stat;
 
-    [Header("Events")]
-    public UnityEvent onOpenInventory;
-    public UnityEvent onCloseInventory;
 
-    public static Inventory instance;
     void Awake()
     {
-        instance = this;
         controller = GetComponent<PlayerController>();
         stat = GetComponent<PlayerStatus>();
     }
-    private void Start()
+    void Start()
     {
+        instance = this;
+        theDatabase = FindObjectOfType<DataBaseManager>();
+        theOOC = FindObjectOfType<OkOrCancel>();
         inventoryWindow.SetActive(false);
-        slots = new ItemSlot[uiSlots.Length];
+        inventoryItemList = new List<Item>();
+        inventoryTabList = new List<Item>();
+        slots = tf.GetComponentsInChildren<InventorySlot>();
+        //inventoryItemList.Add(new Item(50001, "사과", "체력을 채워주는 과일", Item.ItemType.Use));
+        //inventoryItemList.Add(new Item(50003, "맥주", "체력과 기력을 채워주는 음료", Item.ItemType.Use));
 
-        for (int i = 0; i < slots.Length; i++)
-        {
-            slots[i] = new ItemSlot();
-            uiSlots[i].index = i;
-            uiSlots[i].Clear();
-        }
-
-        ClearSeletecItemWindow();
     }
 
-    public void OnInventoryButton(InputAction.CallbackContext callbackContext)
+    public void GetAnItem(int _itemID, int _count = 1)
     {
-        if (callbackContext.phase == InputActionPhase.Started)
+        for (int i = 0; i < theDatabase.itemList.Count; i++) //데이터베이스 아이템 검색.
         {
-            Toggle();
-        }
-    }
-
-
-    public void Toggle()
-    {
-        if (inventoryWindow.activeInHierarchy)
-        {
-            inventoryWindow.SetActive(false);
-            onCloseInventory?.Invoke();
-            //controller.ToggleCursor(false);
-        }
-        else
-        {
-            inventoryWindow.SetActive(true);
-            onOpenInventory?.Invoke();
-            //controller.ToggleCursor(true);
-        }
-    }
-
-    public bool IsOpen()
-    {
-        return inventoryWindow.activeInHierarchy;
-    }
-
-    public void AddItem(ItemData item)
-    {
-        if (item.canStack)
-        {
-            ItemSlot slotToStackTo = GetItemStack(item);
-            if (slotToStackTo != null)
+            if (_itemID == theDatabase.itemList[i].itemID) // 데이터베이스에 아이템 발견
             {
-                slotToStackTo.quantity++;
-                UpdateUI();
+                for (int j = 0; j < inventoryItemList.Count; j++) //소지품에 같은 아이템이 있는지 검색.
+                {
+                    if (inventoryItemList[j].itemID == _itemID) //소지품에 같은 아이템이 있다 -> 개수만 증감시켜줌
+                    {
+                        if (inventoryItemList[j].itemType == Item.ItemType.Use)
+                        {
+                            inventoryItemList[j].itemCount += _count;
+                            return;
+                        }
+                        else
+                        {
+                            inventoryItemList.Add(theDatabase.itemList[i]);
+                        }
+                        return;
+                    }
+                }
+                inventoryItemList.Add(theDatabase.itemList[i]); //소지품에 해당 아이템 추가.
+                inventoryItemList[inventoryItemList.Count - 1].itemCount = _count;
                 return;
             }
         }
-
-        ItemSlot emptySlot = GetEmptySlot();
-
-        if (emptySlot != null)
-        {
-            emptySlot.item = item;
-            emptySlot.quantity = 1;
-            UpdateUI();
-            return;
-        }
-
-        ThrowItem(item);
+        Debug.LogError("데이터베이스에 해당 ID값을 가진 아이템이 존재하지 않습니다.");
     }
 
-    void ThrowItem(ItemData item)
-    {
-        Instantiate(item.dropPrefab, dropPosition.position, Quaternion.Euler(Vector3.one * Random.value * 360f));
-    }
-
-    void UpdateUI()
+    public void RemoveSlot()
     {
         for (int i = 0; i < slots.Length; i++)
         {
-            if (slots[i].item != null)
+            slots[i].RemoveItem();
+            slots[i].gameObject.SetActive(false);
+        }
+    } // 인벤토리 슬롯 초기화
+
+    public void ShowTab()
+    {
+        RemoveSlot();
+        SelectedTab();
+    } //탭 활성화
+    public void SelectedTab()
+    {
+        StopAllCoroutines();
+        Color color = selectedTabImages[selectedTab].GetComponent<Image>().color;
+        color.a = 0f;
+        for (int i = 0; i < selectedTabImages.Length; i++)
+        {
+            selectedTabImages[i].GetComponent<Image>().color = color;
+        }
+        Description_Text.text = tabDescription[selectedTab];
+        StartCoroutine(SelectedTabEffectCoroutine());
+    }  //선택된 탭을 제외하고 다른 모든 탭의 컬러 알파값 0으로 조정.
+    IEnumerator SelectedTabEffectCoroutine()
+    {
+        while (tabActivated)
+        {
+            Color color = selectedTabImages[0].GetComponent<Image>().color;
+            while (color.a < 0.5f)
             {
-                uiSlots[i].Set(slots[i]); 
+                color.a += 0.03f;
+                selectedTabImages[selectedTab].GetComponent<Image>().color = color;
+                yield return waitTime;
             }
-            else
+            while (color.a > 0f)
             {
-                uiSlots[i].Clear();
-            }      
+                color.a -= 0.03f;
+                selectedTabImages[selectedTab].GetComponent<Image>().color = color;
+                yield return waitTime;
+            }
+
+            yield return new WaitForSeconds(0.3f);
         }
-    }
-
-    ItemSlot GetItemStack(ItemData item)
+    } // 선택된 탭 반짝임 효과
+    public void ShowItem()
     {
-        for (int i = 0; i < slots.Length; i++)
+        inventoryTabList.Clear();
+        RemoveSlot();
+        selectedItem = 0;
+
+        switch (selectedTab)
         {
-            if (slots[i].item == item && slots[i].quantity < item.maxStackAmount)
-                return slots[i];
-        }
-
-        return null;
-    }
-
-    ItemSlot GetEmptySlot()
-    {
-        for (int i = 0; i < slots.Length; i++)
-        {
-            if (slots[i].item == null)
-                return slots[i];
-        }
-
-        return null;
-    }
-
-    public void SelectItem(int index)
-    {
-        if (slots[index].item == null)
-            return;
-
-        selectedItem = slots[index];
-        selectedItemIndex = index;
-
-        selectedItemName.text = selectedItem.item.displayName;
-        selectedItemDescription.text = selectedItem.item.description;
-
-        selectedItemStatNames.text = string.Empty;
-        selectedItemStatValues.text = string.Empty;
-
-        for (int i = 0; i < selectedItem.item.consumables.Length; i++)
-        {
-            selectedItemStatNames.text += selectedItem.item.consumables[i].type.ToString() + "\n";
-            selectedItemStatValues.text += selectedItem.item.consumables[i].value.ToString() + "\n";
-        }
-
-        useButton.SetActive(selectedItem.item.type == ItemType.Consumable);
-        dropButton.SetActive(true);
-    }
-
-    private void ClearSeletecItemWindow()
-    {
-        selectedItem = null;
-        selectedItemName.text = string.Empty;
-        selectedItemDescription.text = string.Empty;
-
-        selectedItemStatNames.text = string.Empty;
-        selectedItemStatValues.text = string.Empty;
-
-        useButton.SetActive(false);
-        dropButton.SetActive(false);
-    }
-
-    public void OnUseButton()
-    {
-        if (selectedItem.item.type == ItemType.Consumable)
-        {
-            for (int i = 0; i < selectedItem.item.consumables.Length; i++)
-            {
-                switch (selectedItem.item.consumables[i].type)
+            case 0:
+                for (int i = 0; i < inventoryItemList.Count; i++)
                 {
-                    case ConsumableType.Health:
-                        {
-                            stat.UseStamina(selectedItem.item.consumables[i].value); break;
-                        }
-                        
-                    case ConsumableType.Stamina:
-                        {
-                            stat.UseStamina(selectedItem.item.consumables[i].value); break;
-                        }
-                        
+                    if (Item.ItemType.Use == inventoryItemList[i].itemType)
+                    {
+                        inventoryTabList.Add(inventoryItemList[i]);
+                    }
                 }
-            }
-        }
-        RemoveSelectedItem();
-    }
+                break;
 
+            case 1:
+                for (int i = 0; i < inventoryItemList.Count; i++)
+                {
+                    if (Item.ItemType.Equip == inventoryItemList[i].itemType)
+                    {
+                        inventoryTabList.Add(inventoryItemList[i]);
+                    }
+                }
+                break;
 
+            case 2:
+                for (int i = 0; i < inventoryItemList.Count; i++)
+                {
+                    if (Item.ItemType.Quest == inventoryItemList[i].itemType)
+                    {
+                        inventoryTabList.Add(inventoryItemList[i]);
+                    }
+                }
+                break;
 
-    public void OnDropButton()
-    {
-        ThrowItem(selectedItem.item);
-        RemoveSelectedItem();
-    }
+            case 3:
+                for (int i = 0; i < inventoryItemList.Count; i++)
+                {
+                    if (Item.ItemType.ETC == inventoryItemList[i].itemType)
+                    {
+                        inventoryTabList.Add(inventoryItemList[i]);
+                    }
+                }
+                break;
+        } //탭에 따른 아이템 분류 및 인벤토리 탭리스트로 추가
 
-    private void RemoveSelectedItem()
-    {
-        selectedItem.quantity--;
-
-        if (selectedItem.quantity <= 0)
+        for (int i = 0; i < inventoryTabList.Count; i++)
         {
-            if (uiSlots[selectedItemIndex].equipped)
+            slots[i].gameObject.SetActive(true);
+            slots[i].Additem(inventoryTabList[i]);
+        } //인벤토리 탭 리스트의 내용을, 인벤토리 슬롯에 추가
+
+        SelectedItem();
+    } //아이템 활성화 (탭에 맞는 아이템 분류 및 출력
+    public void SelectedItem()
+    {
+        StopAllCoroutines();
+        if (inventoryTabList.Count > 0)
+        {
+            Color color = slots[0].selected_Item.GetComponent<Image>().color;
+            color.a = 0f;
+            for (int i = 0; i < inventoryTabList.Count; i++)
             {
-                
+                slots[i].selected_Item.GetComponent<Image>().color = color;
+            }
+            Description_Text.text = inventoryTabList[selectedItem].itemDescription;
+            StartCoroutine(SelectedItemEffectCoroutine());
+        }
+        else
+        {
+            Description_Text.text = "해당 타입의 아이템을 소유하고 있지 않습니다.";
+        }
+    } // 선택된 아이템 제외한 모든 탭의 컬러 알파값 0으로 조정
+    IEnumerator SelectedItemEffectCoroutine()
+    {
+        while (itemActivated)
+        {
+            Color color = slots[0].GetComponent<Image>().color;
+            while (color.a < 0.5f)
+            {
+                color.a += 0.03f;
+                slots[selectedItem].selected_Item.GetComponent<Image>().color = color;
+                yield return waitTime;
+            }
+            while (color.a > 0f)
+            {
+                color.a -= 0.03f;
+                slots[selectedItem].selected_Item.GetComponent<Image>().color = color;
+                yield return waitTime;
             }
 
-            selectedItem.item = null;
-            ClearSeletecItemWindow();
+            yield return new WaitForSeconds(0.3f);
         }
-
-        UpdateUI();
-    }
-
-    public void RemoveItem(ItemData item)
+    } //선택된 아이템 반짝임 효과.
+    void Update()
     {
+        if (!stopKeyInput)
+        {
+            if (Input.GetKeyDown(KeyCode.I))
+            {
+                activated = !activated;
+                if (activated)
+                {
+                    inventoryWindow.SetActive(true);
+                    selectedTab = 0;
+                    tabActivated = true;
+                    itemActivated = false;
+                    ShowTab();
+                }
+                else
+                {
+                    StopAllCoroutines();
+                    inventoryWindow.SetActive(false);
+                    tabActivated = false;
+                    itemActivated = false;
+                }
 
+
+
+
+            }
+
+            if (activated)
+            {
+                if (tabActivated)
+                {
+                    if (Input.GetKeyDown(KeyCode.RightArrow))
+                    {
+                        if (selectedTab < selectedTabImages.Length - 1)
+                        {
+                            selectedTab++;
+                        }
+                        else
+                        {
+                            selectedTab = 0;
+                            SelectedTab();
+                        }
+
+
+                    }
+                    else if (Input.GetKeyDown(KeyCode.LeftArrow))
+                    {
+                        if (selectedTab > 0)
+                        {
+                            selectedTab--;
+                        }
+                        else
+                        {
+                            selectedTab = selectedTabImages.Length - 1;
+                            SelectedTab();
+                        }
+                    }
+                    else if (Input.GetKeyDown(KeyCode.O))
+                    {
+                        Color color = selectedTabImages[selectedTab].GetComponent<Image>().color;
+                        color.a = 0.25f;
+                        selectedTabImages[selectedTab].GetComponent<Image>().color = color;
+                        itemActivated = true;
+                        tabActivated = false;
+                        preventExec = true;
+                        ShowItem();
+                    }
+                } //탭 활성화시 키입력 처리
+
+                else if (itemActivated)
+                {
+                    if(inventoryTabList.Count > 0)
+                    {
+                        if (Input.GetKeyDown(KeyCode.DownArrow))
+                        {
+                            if (selectedItem < inventoryTabList.Count - 2)
+                            {
+                                selectedItem += 2;
+                            }
+                            else
+                            {
+                                selectedItem %= 2;
+                                SelectedItem();
+                            }
+
+                        }
+                        else if (Input.GetKeyDown(KeyCode.UpArrow))
+                        {
+                            if (selectedItem > 1)
+                            {
+                                selectedItem -= 2;
+                            }
+                            else
+                            {
+                                selectedItem = inventoryTabList.Count - 2 - selectedItem;
+                                SelectedItem();
+                            }
+
+                        }
+                        else if (Input.GetKeyDown(KeyCode.RightArrow))
+                        {
+                            if (selectedItem < inventoryTabList.Count - 1)
+                            {
+                                selectedItem++;
+                            }
+                            else
+                            {
+                                selectedItem = 0;
+                                SelectedItem();
+                            }
+                        }
+                        else if (Input.GetKeyDown(KeyCode.LeftArrow))
+                        {
+                            if (selectedItem > 0)
+                            {
+                                selectedItem--;
+                            }
+                            else
+                            {
+                                selectedItem = inventoryTabList.Count - 1;
+                                SelectedItem();
+                            }
+                        }
+                        else if (Input.GetKeyDown(KeyCode.R) && !preventExec)
+                        {
+                            if (selectedTab == 0) //소모품
+                            {
+                                stopKeyInput = true; //선택지 호출
+                                StartCoroutine(OOCCoroutine());
+                            }
+                            else if (selectedTab == 1)
+                            {
+                                //장비 장착
+                            }
+                            else
+                            {
+                                Debug.Log("소모품선택지 및 장비장착 외의 동작");
+                            }
+                        }
+                    }
+                    if (Input.GetKeyDown(KeyCode.T))
+                    {
+                        StopAllCoroutines();
+                        itemActivated = false;
+                        tabActivated = true;
+                        ShowTab();
+                    }
+
+                } //아이템 활성화시 키입력 처리
+
+                if (Input.GetKeyUp(KeyCode.R))
+                {
+                    preventExec = false;
+                } //중복 실행 방지
+
+            }
+        }
     }
 
-    public bool HasItems(ItemData item, int quantity)
+    IEnumerator OOCCoroutine()
     {
-        return false;
+        inventoryWindow_OOC.SetActive(true);
+        theOOC.ShowTwoChoice("사용", "취소");
+        yield return new WaitUntil(() => !theOOC.activated);
+        if(theOOC.GetResult())
+        {
+            for(int i = 0; i < inventoryTabList.Count; i++)
+            {
+                if (inventoryItemList[i].itemID == inventoryTabList[selectedItem].itemID)
+                {
+                    theDatabase.UseItem(inventoryItemList[i].itemID);
+
+                    if (inventoryItemList[i].itemCount > 1)
+                    {
+                        inventoryItemList[i].itemCount--;
+                    }
+                    else
+                    {
+                        inventoryItemList.RemoveAt(i);
+                    }
+
+                    ShowItem();
+                    break;
+                }
+
+            }
+        }
+        stopKeyInput = false;
+        inventoryWindow_OOC.SetActive(false);
     }
+
 }

@@ -21,3 +21,7 @@ public enum Paction
     Deflect,
     ComboAttack
 }
+public enum Monsters
+{
+    Bear,Frog,Rat,MushRoom,IceGolem,Eagle,Dragon
+}
