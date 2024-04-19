@@ -10,7 +10,7 @@ public class UIManager : SingletonBase<UIManager>, IPointerEnterHandler
 {
     [Header("Options")]
     [SerializeField] private Image FadeImage;
-    [SerializeField] GameObject soundPanel;
+    [SerializeField] GameObject OptionPanel;
 
     private void Start()
     {
@@ -31,13 +31,13 @@ public class UIManager : SingletonBase<UIManager>, IPointerEnterHandler
 
     public void ToggleSoundPanel()
     {
-        soundPanel.SetActive(true);
+        OptionPanel.SetActive(true);
         AudioManager.Instance.PlaySFX("Click");
     }
 
     public void CanelSoundPanel()
     {
-        soundPanel.SetActive(false);
+        OptionPanel.SetActive(false);
         AudioManager.Instance.PlaySFX("Click");
     }
 
@@ -45,6 +45,11 @@ public class UIManager : SingletonBase<UIManager>, IPointerEnterHandler
     {
         Debug.Log("게임 종료 : 빌드 된 게임에서 실제 종료 됨.");
         Application.Quit();
+    }
+
+    public void ExitOption()
+    {
+        OptionPanel.SetActive(false);
     }
 
 
