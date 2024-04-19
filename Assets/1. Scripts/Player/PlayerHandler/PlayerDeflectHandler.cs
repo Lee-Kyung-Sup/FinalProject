@@ -10,6 +10,11 @@ public class PlayerDeflectHandler : MonoBehaviour
     PlayerAttacks playerAttacks;
     PlayerStatus playerStatus;
 
+    void Start()
+    {
+        playerStatus = GetComponent<PlayerStatus>();
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (((1 << collision.gameObject.layer) & ((1 << 11) | (1 << 12))) != 0) // 11. Projectile  12. EnemyBullet
@@ -33,13 +38,14 @@ public class PlayerDeflectHandler : MonoBehaviour
                 collision.gameObject.tag = "PlayerAttackBox";
 
                 DeflectBullet deflectBullet = collision.gameObject.GetComponent<DeflectBullet>();
-                if (deflectBullet != null )
+                if (deflectBullet != null && playerStatus != null)
                 {
                     int damage = playerStatus.attackPower[AttackTypes.DeflectionAttack];
                     deflectBullet.Initialize(AttackTypes.DeflectionAttack, damage);
+                    collision.gameObject.GetComponent<IDamageable>()?.TakeDamage(deflectBullet.damage);
                 }
 
-                collision.gameObject.GetComponent<IDamageable>()?.TakeDamage(deflectBullet.damage);
+
             }
         }
     }

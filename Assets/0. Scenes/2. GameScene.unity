@@ -656,6 +656,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2809566984431749453, guid: 76f0e8123a499ba4dbabb5197d006963, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9209744615055114891, guid: 76f0e8123a499ba4dbabb5197d006963, type: 3}
       propertyPath: m_Name
       value: Canvas_PlayerHuD

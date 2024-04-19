@@ -5,9 +5,12 @@ using UnityEngine;
 public class ActionItem : PlayerEnterTrigger
 {
     [SerializeField] Paction actionType;
+    private SkillPanelController skillPanelController;
     MapEventChecker checker;
     private void Start()
     {
+        skillPanelController = FindObjectOfType<SkillPanelController>();
+
         checker = MapMaker.Instance.MapEventCheker;
         if (!checker.isGet.ContainsKey(actionType))
         {
@@ -26,6 +29,13 @@ public class ActionItem : PlayerEnterTrigger
             //Todo GetUi
             collision.GetComponent<PlayerController>().UnLockAction(actionType);
             checker.isGet[actionType] = true;
+
+
+            if (skillPanelController != null)
+            {
+                skillPanelController.ShowSkillPopup(actionType);
+            }
+
             Destroy(gameObject);
         }
     }
