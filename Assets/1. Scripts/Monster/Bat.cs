@@ -75,14 +75,15 @@ public class Bat : Monster
         MoveTo();
         //transform.position = Vector2.MoveTowards(transform.position, player.transform.position, moveSpeed * Time.deltaTime);
         currentState = State.Move;
-        
-        
+        Debug.Log("C");
+
     }
 
     public void MoveTo()
     {
-        transform.position = Vector2.MoveTowards(transform.position, player.transform.position, moveSpeed * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, player.transform.position - new Vector3(0, 0.2f, 0), moveSpeed * Time.deltaTime);
     }
+    //맞고나서 박쥐속도 조절
 
 
     //IEnumerator Attack()
@@ -123,17 +124,19 @@ public class Bat : Monster
             //if(distancetoPlayer < attackRange)
             //{
             //    canAttack = true;
-                
+
             //}
             //else
             //{
             //    canAttack = false;
             //}
+            Debug.Log("A");
         }
         else
         {
             playerinRange = false;
             currentState = State.Idle;
+            Debug.Log("B");
         }
 
         if(player.transform.position.x < transform.position.x)

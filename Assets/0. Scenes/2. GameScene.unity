@@ -573,7 +573,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59d06293f199e6e499465c7597fd358b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curMapId: 1
+  curMapId: 0
 --- !u!4 &1365856619
 Transform:
   m_ObjectHideFlags: 0
@@ -716,6 +716,10 @@ PrefabInstance:
     - target: {fileID: 2695571774358642644, guid: 76f0e8123a499ba4dbabb5197d006963, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2809566984431749453, guid: 76f0e8123a499ba4dbabb5197d006963, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9209744615055114891, guid: 76f0e8123a499ba4dbabb5197d006963, type: 3}
       propertyPath: m_Name
@@ -1332,7 +1336,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &481802176091063216
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2881,7 +2885,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3764171364027789598
 RectTransform:
   m_ObjectHideFlags: 0

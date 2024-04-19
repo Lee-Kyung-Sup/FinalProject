@@ -66,4 +66,6 @@ public class GameManager : SingletonBase<GameManager>
 
         Time.timeScale = 0;
     }
+
+
 }
