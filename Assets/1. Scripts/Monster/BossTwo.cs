@@ -185,7 +185,7 @@ public class BossTwo : MonoBehaviour
     void DragonAttackB()
     {
        
-        rb.velocity = new Vector2(-14.5f, 2f);
+        rb.velocity = new Vector2(-15f, 2f);
     }
 
     void DragonBurn()
