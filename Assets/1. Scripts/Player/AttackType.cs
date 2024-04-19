@@ -10,6 +10,7 @@ public enum AttackTypes
     JumpAttack,
     ComboAttack1,
     ComboAttack2,
-    ChargeShot
+    ChargeShot,
+    DeflectionAttack
 }
 

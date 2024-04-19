@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4693371757618268236}
   - component: {fileID: 8722959220711392226}
   - component: {fileID: 1192943907300329827}
+  - component: {fileID: 1410506439638053907}
   m_Layer: 12
   m_Name: EnemyBulletA
   m_TagString: EnemyBullet
@@ -163,3 +164,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dmg: 0
   isRotate: 1
+--- !u!114 &1410506439638053907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6049919993356236047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c05dd56f7f3b4e43a9a93bf9434ba43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackType: 0
+  damage: 0

@@ -13,8 +13,6 @@ public interface IDamageable
 }
 public enum Paction
 {
-    MeleeAttack,
-    AirAttack,
     DoubleJump,
     Dash,
     RangeAttack,

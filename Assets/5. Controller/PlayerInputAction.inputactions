@@ -94,6 +94,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Setting",
+                    "type": "Button",
+                    "id": "f679493e-8984-4293-a7cf-246e7ac41d02",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -133,7 +142,7 @@
                 {
                     "name": "",
                     "id": "1a9299dd-7100-45c1-881e-85b41819f505",
-                    "path": "<Keyboard>/z",
+                    "path": "<Keyboard>/shift",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
@@ -166,7 +175,7 @@
                 {
                     "name": "",
                     "id": "be0420f2-18bb-44e3-92cd-7aa7d9d370b6",
-                    "path": "<Keyboard>/x",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
@@ -199,10 +208,10 @@
                 {
                     "name": "",
                     "id": "02863680-705a-49f3-be16-57b8af1019eb",
-                    "path": "<Keyboard>/c",
+                    "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard&Mouse",
                     "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -213,7 +222,7 @@
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard&Mouse",
                     "action": "Swap",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -221,11 +230,22 @@
                 {
                     "name": "",
                     "id": "acbca814-dc1c-4140-ac4d-14ec913fdae6",
-                    "path": "<Keyboard>/v",
+                    "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard&Mouse",
                     "action": "Deflect",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a6cc19fd-fba0-4b0c-8f08-2bec7588f363",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Setting",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

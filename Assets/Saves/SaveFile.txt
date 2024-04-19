@@ -1,1 +1,1 @@
-{"playerPos":{"x":3.7999989986419679,"y":-0.15500015020370484,"z":0.0},"itemNumber":[0,1],"displayName":["사과","맥주"],"description":["체력을 회복합니다.","스테미나를 회복합니다."]}
+{"playerPos":{"x":6.200002670288086,"y":1.4485769271850587,"z":0.0},"itemNumber":[],"displayName":[],"description":[]}

@@ -10,9 +10,9 @@ public class UIManager : SingletonBase<UIManager>, IPointerEnterHandler
 {
     [Header("Options")]
     [SerializeField] private Image FadeImage;
-    [SerializeField] GameObject soundPanel;
+    [SerializeField] GameObject OptionPanel;
 
-    public SaveNLoad theSaveNLoad; //ÀúÀåÅ×½ºÆ®
+    public SaveNLoad theSaveNLoad; //ï¿½ï¿½ï¿½ï¿½ï¿½×½ï¿½Æ®
 
     private void Awake()
     {
@@ -41,29 +41,34 @@ public class UIManager : SingletonBase<UIManager>, IPointerEnterHandler
 
     public void ToggleSoundPanel()
     {
-        soundPanel.SetActive(true);
-        AudioManager.Instance.PlaySFX("Click");
+        OptionPanel.SetActive(true);
+        //AudioManager.Instance.PlaySFX("Click");
     }
 
     public void CanelSoundPanel()
     {
-        soundPanel.SetActive(false);
-        AudioManager.Instance.PlaySFX("Click");
+        OptionPanel.SetActive(false);
+        //AudioManager.Instance.PlaySFX("Click");
     }
 
     public void QuitGame()
     {
-        Debug.Log("°ÔÀÓ Á¾·á : ºôµå µÈ °ÔÀÓ¿¡¼­ ½ÇÁ¦ Á¾·á µÊ.");
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ : ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ó¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½.");
         Application.Quit();
     }
 
-    public void ClickLoad() //ºÒ·¯¿À±â Å×½ºÆ®
+    public void ExitOption()
     {
-        Debug.Log("ºÒ·¯¿À±â");
-        StartCoroutine(LoadCoroutine()); //ºÒ·¯¿À±â¿¡ ¼±ÇàµÇ´Â ´ë±â¸Þ¼­µå
+        OptionPanel.SetActive(false);
     }
 
-    IEnumerator LoadCoroutine()  //ºÒ·¯¿À±â¿¡ ¼±ÇàµÇ´Â ´ë±â¸Þ¼­µå
+    public void ClickLoad() //ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×½ï¿½Æ®
+    {
+        Debug.Log("ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½");
+        StartCoroutine(LoadCoroutine()); //ï¿½Ò·ï¿½ï¿½ï¿½ï¿½â¿¡ ï¿½ï¿½ï¿½ï¿½Ç´ï¿½ ï¿½ï¿½ï¿½Þ¼ï¿½ï¿½ï¿½
+    }
+
+    IEnumerator LoadCoroutine()  //ï¿½Ò·ï¿½ï¿½ï¿½ï¿½â¿¡ ï¿½ï¿½ï¿½ï¿½Ç´ï¿½ ï¿½ï¿½ï¿½Þ¼ï¿½ï¿½ï¿½
     {
         AsyncOperation operation = SceneManager.LoadSceneAsync("2. GameScene");
 

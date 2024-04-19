@@ -28,6 +28,13 @@ public class OneWayMove : MonoBehaviour
             pColl.transform.SetParent(transform);
         }
     }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.TryGetComponent<IsGroundable>(out IsGroundable ound) && !ound.IsGround())
+        {
+            collision.transform.SetParent(null);
+        }
+    }
     void GoBack()
     {
         pColl?.transform.SetParent(null);
