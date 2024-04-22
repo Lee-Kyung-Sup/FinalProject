@@ -283,13 +283,14 @@ public class PlayerAttacks : MonoBehaviour
 
     private IEnumerator MultiHitJumpAttack()
     {
-        int hit = 3; 
+        int hit = 3;
+        WaitForSeconds JumpHitDuration = new WaitForSeconds(0.1f);
         for (int i = 0; i < hit; i++)
         {
             jumpAttackCollider.enabled = true;
-            yield return new WaitForSeconds(0.1f);
+            yield return JumpHitDuration;
             jumpAttackCollider.enabled = false;
-            yield return new WaitForSeconds(0.1f);
+            yield return JumpHitDuration;
         }
 
         canJumpAttack = true;
@@ -299,6 +300,7 @@ public class PlayerAttacks : MonoBehaviour
     {
         if (Time.time - lastDeflectTime >= deflectCooldown && playerStatus.Stamina >= 25)
         {
+            currentAttackType = AttackTypes.DeflectionAttack;
             lastDeflectTime = Time.time;
             playerAnimations.Deflection();
             StartCoroutine(OnDeflectZone());

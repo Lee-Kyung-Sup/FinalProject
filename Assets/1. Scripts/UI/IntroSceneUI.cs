@@ -27,9 +27,10 @@ public class IntroSceneUI : MonoBehaviour, IPointerEnterHandler
         AudioManager.Instance.StopBGM();
         AudioManager.Instance.PlayBGM("FirstChapter");
 
-        SceneManager.LoadScene("GameScenePJH");
+        //SceneManager.LoadScene("GameScenePJH");
+        SceneManager.LoadScene("2. GameScene");
     }
-    //2. GameScene
+    //
 
 
     public void IntroOptions()

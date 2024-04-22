@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     private PlayerAttacks _playerAttacks;
 
     private Vector2 _inputVector; 
-    private bool _isWeaponChange = true; // true 근거리, false 원거리 공격
+    //private bool _isWeaponChange = true; // true 근거리, false 원거리 공격
 
     Dictionary<Paction, bool> lockAction = new Dictionary<Paction, bool>();
     public Dictionary<Paction, bool> LockAction
@@ -36,11 +36,9 @@ public class PlayerController : MonoBehaviour
 
     void InItLockAction()
     {
-        lockAction.Add(Paction.AirAttack,false);
         lockAction.Add(Paction.ChargeShot,false);
         lockAction.Add(Paction.Dash,false);
         lockAction.Add(Paction.DoubleJump,false);
-        lockAction.Add(Paction.MeleeAttack,false);
         lockAction.Add(Paction.RangeAttack,false);
         lockAction.Add(Paction.JumpAttack, false);
         lockAction.Add(Paction.Deflect, false);
@@ -87,45 +85,36 @@ public class PlayerController : MonoBehaviour
 
     public void OnAttack(InputAction.CallbackContext context) // 근접 공격
     {
-        if (context.started && !_isWeaponChange && lockAction[Paction.ChargeShot])
+        if (context.performed)
+        {
+                _playerAttacks.MeleeAttack();
+                //AudioManager.Instance.PlaySFX("Attack"); // 근접공격소리 JHP
+
+            if (!_playerMovement.IsGround() && lockAction[Paction.JumpAttack])
+            {
+                _playerAttacks.JumpAttack();
+            }
+        }
+    }
+
+    public void OnFire(InputAction.CallbackContext context)
+    {
+        if (context.started && lockAction[Paction.RangeAttack])
         {
             _playerAttacks.StartCharging();
         }
 
-        if (context.performed)
+        if (context.performed && lockAction[Paction.RangeAttack])
         {
-            if (!_isWeaponChange && lockAction[Paction.RangeAttack])
-            {
-                _playerAttacks.Fire();
-            }
-            if (_isWeaponChange && lockAction[Paction.MeleeAttack])
-            {
-                _playerAttacks.MeleeAttack();
-                //AudioManager.Instance.PlaySFX("Attack"); // 근접공격소리 JHP
-
-            }
-            if (_isWeaponChange && !_playerMovement.IsGround() && lockAction[Paction.JumpAttack])
-            {
-                _playerAttacks.JumpAttack();
-
-            }
+            _playerAttacks.Fire();
         }
 
-        else if (context.canceled && !_isWeaponChange && lockAction[Paction.ChargeShot])
+        else if (context.canceled && lockAction[Paction.ChargeShot])
         {
-            _playerAttacks.ReleaseCharge(); 
+            _playerAttacks.ReleaseCharge();
         }
     }
 
-    public void OnSwap(InputAction.CallbackContext context) // 근,원거리 공격 스왑
-    {
-        if (context.performed)
-        {
-            // 무기 스왑 알림 GUI TODO
-            _isWeaponChange = !_isWeaponChange;
-            Debug.Log(_isWeaponChange ? "근거리 무기" : "원거리 무기");
-        }
-    }
 
     public void OnDeflect(InputAction.CallbackContext context) // 반사
     {
@@ -159,14 +148,23 @@ public class PlayerController : MonoBehaviour
 
     void TestingOnActions()
     {
-        lockAction[Paction.AirAttack] = true;
         lockAction[Paction.ChargeShot] = true;
         lockAction[Paction.Dash] = true;
         lockAction[Paction.DoubleJump] = true;
-        lockAction[Paction.MeleeAttack] = true;
         lockAction[Paction.RangeAttack] = true;
         lockAction[Paction.JumpAttack] = true;
         lockAction[Paction.Deflect] = true;
         lockAction[Paction.ComboAttack] = true;
     }
+
+
+    //public void OnSwap(InputAction.CallbackContext context) // 근,원거리 공격 스왑
+    //{
+    //    if (context.performed)
+    //    {
+    //        
+    //        _isWeaponChange = !_isWeaponChange;
+    //        Debug.Log(_isWeaponChange ? "근거리 무기" : "원거리 무기");
+    //    }
+    //}
 }

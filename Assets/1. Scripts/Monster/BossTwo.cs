@@ -60,7 +60,7 @@ public class BossTwo : MonoBehaviour
     void OnEnable()
     {
         //Debug.Log("check");
-            currentHp = 100;
+            currentHp = 400;
            // Invoke("Stop", 1);
             //InvokeRepeating("Stop", 1, 1);
         
