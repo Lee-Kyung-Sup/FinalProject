@@ -19,8 +19,8 @@ public class Bat : Monster
     public enum State
     {
         Idle,
-        Move,
-        //Attack
+        Move
+        
         
     };
 

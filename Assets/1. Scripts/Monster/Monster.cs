@@ -182,7 +182,7 @@ public class Monster : MonoBehaviour, IsGroundable, IDamageable
             }
         }
         Debug.Log("F");
-        MyAnimSetTrigger("Move");
+        //MyAnimSetTrigger("Move");
         hitBoxCollider.SetActive(false);
     }
 
