@@ -19,8 +19,8 @@ public class Bat : Monster
     public enum State
     {
         Idle,
-        Move,
-        //Attack
+        Move
+        
         
     };
 
@@ -42,6 +42,7 @@ public class Bat : Monster
     {
         player = GameManager.Instance.Player;
         spriteRenderer = GetComponent<SpriteRenderer>();
+        
     }
     IEnumerator FSM()
     {
@@ -79,9 +80,26 @@ public class Bat : Monster
 
     }
 
+    public void Animmoveto()
+    {
+        StopAllCoroutines();
+        StartCoroutine(Animmove());
+    }
+
+    IEnumerator Animmove()
+    {
+        yield return Delay500;
+        rb.velocity = new Vector2(0, 0);
+        MoveTo();
+        yield break;
+
+    }
     public void MoveTo()
     {
-        transform.position = Vector2.MoveTowards(transform.position, player.transform.position - new Vector3(0, 0.2f, 0), moveSpeed * Time.deltaTime);
+        Debug.Log(rb.velocity);
+       
+        transform.position = Vector2.MoveTowards(transform.position, player.transform.position - new Vector3(0, 0.22f, 0), moveSpeed * Time.deltaTime);
+        Debug.Log("Hitend");
     }
     //맞고나서 박쥐속도 조절
 
@@ -119,7 +137,7 @@ public class Bat : Monster
         if(distancetoPlayer < detectionRange)
         {
             playerinRange = true;
-            MoveTo();
+            //MoveTo();
             currentState = State.Move;
             //if(distancetoPlayer < attackRange)
             //{
