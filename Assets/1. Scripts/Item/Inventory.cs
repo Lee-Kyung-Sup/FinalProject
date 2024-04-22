@@ -37,6 +37,7 @@ public class Inventory : MonoBehaviour
     private bool stopKeyInput; //키입력 제한(알림창시)
     private bool preventExec; //중복실행 제한
 
+    
     private WaitForSeconds waitTime = new WaitForSeconds(0.01f);
 
     public GameObject inventoryWindow; // 인벤토리 활성화, 비활성화
@@ -44,6 +45,18 @@ public class Inventory : MonoBehaviour
 
     private PlayerController controller;
     private PlayerStatus stat;
+
+    public InventorySlot[] GetSlots() { return slots; } //저장을 위한 반환설정
+
+    [SerializeField] private Item[] items; //item클래스에서 일치여부를 비교
+    public void LoadToInven(int _itemID, string _itemName, int _itemCount) //인벤토리에서 불러올 인수
+    {
+        for (int i = 0; i < items.Length; i++)
+        {
+            if (items[i].itemID == _itemID)
+                slots[_itemID].AddItem(items[i], _itemCount);
+        }
+    }
 
 
     void Awake()
@@ -200,7 +213,7 @@ public class Inventory : MonoBehaviour
         for (int i = 0; i < inventoryTabList.Count; i++)
         {
             slots[i].gameObject.SetActive(true);
-            slots[i].Additem(inventoryTabList[i]);
+            slots[i].AddItem(inventoryTabList[i]);
         } //인벤토리 탭 리스트의 내용을, 인벤토리 슬롯에 추가
 
         SelectedItem();

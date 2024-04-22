@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class IntroSceneUI : MonoBehaviour, IPointerEnterHandler
 {
+
+
     void Start()
     {
 
@@ -27,8 +29,8 @@ public class IntroSceneUI : MonoBehaviour, IPointerEnterHandler
         AudioManager.Instance.StopBGM();
         AudioManager.Instance.PlayBGM("FirstChapter");
 
-        //SceneManager.LoadScene("GameScenePJH");
-        SceneManager.LoadScene("2. GameScene");
+        SceneManager.LoadScene("GameScenePJH");
+        //SceneManager.LoadScene("2. GameScene");
     }
     //
 

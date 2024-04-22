@@ -12,12 +12,12 @@ public class UIManager : SingletonBase<UIManager>, IPointerEnterHandler
     [SerializeField] private Image FadeImage;
     [SerializeField] GameObject OptionPanel;
 
-    public SaveNLoad theSaveNLoad; //�����׽�Ʈ
+    //public SaveNLoad theSaveNLoad; //�����׽�Ʈ
 
-    private void Awake()
-    {
-        theSaveNLoad = GetComponent<SaveNLoad>();
-    }
+    //private void Awake()
+    //{
+    //    theSaveNLoad = GetComponent<SaveNLoad>();
+    //}
 
 
 
@@ -53,7 +53,7 @@ public class UIManager : SingletonBase<UIManager>, IPointerEnterHandler
 
     public void QuitGame()
     {
-        Debug.Log("���� ���� : ���� �� ���ӿ��� ���� ���� ��.");
+        Debug.Log("내용소실.");
         Application.Quit();
     }
 
@@ -62,24 +62,27 @@ public class UIManager : SingletonBase<UIManager>, IPointerEnterHandler
         OptionPanel.SetActive(false);
     }
 
-    public void ClickLoad() //�ҷ����� �׽�Ʈ
-    {
-        Debug.Log("�ҷ�����");
-        StartCoroutine(LoadCoroutine()); //�ҷ����⿡ ����Ǵ� ���޼���
-    }
+    //public void ClickLoad() //불러오기 버튼
+    //{
+    //    Debug.Log("로드");
+    //    StartCoroutine(LoadCoroutine());
+    //}
 
-    IEnumerator LoadCoroutine()  //�ҷ����⿡ ����Ǵ� ���޼���
-    {
-        AsyncOperation operation = SceneManager.LoadSceneAsync("2. GameScene");
+    //IEnumerator LoadCoroutine()
+    //{
+    //    AsyncOperation operation = SceneManager.LoadSceneAsync("GameScenePJH");
+    //    //"2. GameScene"
+    //    SceneManager.LoadScene("GameScenePJH");
 
-        while(!operation.isDone)
-        {
-            yield return null;
-        }
-        //theSaveNLoad = FindObjectOfType<SaveNLoad>();
-        theSaveNLoad.LoadData();
-        //Destroy(gameObject);
-    }
+    //    while (!operation.isDone)
+    //    {
+    //        yield return null;
+    //    }
+    //    theSaveNLoad = FindObjectOfType<SaveNLoad>();
+    //    theSaveNLoad.LoadData();
+    //    gameObject.SetActive(false);
+    //    //Destroy(gameObject);
+    //}
 
 
     // -------------------------Fade In & Out--------------------------------
