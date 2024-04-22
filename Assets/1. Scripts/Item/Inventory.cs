@@ -17,6 +17,7 @@ public class Inventory : MonoBehaviour
     private InventorySlot[] slots; //인벤토리 슬롯들
     private DataBaseManager theDatabase;
     private OkOrCancel theOOC;
+    private Equipment theEquip;
 
     private List<Item> inventoryItemList; // 플레이어가 소지한 아이템리스트
     private List<Item> inventoryTabList; // 선택한 탭에 따라 전환되는 아이템리스트
@@ -59,9 +60,15 @@ public class Inventory : MonoBehaviour
         inventoryItemList = new List<Item>();
         inventoryTabList = new List<Item>();
         slots = tf.GetComponentsInChildren<InventorySlot>();
+        theEquip = FindObjectOfType<Equipment>();
         //inventoryItemList.Add(new Item(50001, "사과", "체력을 채워주는 과일", Item.ItemType.Use));
         //inventoryItemList.Add(new Item(50003, "맥주", "체력과 기력을 채워주는 음료", Item.ItemType.Use));
+    }
 
+
+    public void EquipToInventory(Item _item)
+    {
+        inventoryItemList.Add(_item);
     }
 
     public void GetAnItem(int _itemID, int _count = 1)
@@ -366,12 +373,12 @@ public class Inventory : MonoBehaviour
                         {
                             if (selectedTab == 0) //소모품
                             {
-                                stopKeyInput = true; //선택지 호출
-                                StartCoroutine(OOCCoroutine());
+                                StartCoroutine(OOCCoroutine("사용", "취소"));
                             }
                             else if (selectedTab == 1)
                             {
-                                //장비 장착
+                               
+                                StartCoroutine(OOCCoroutine("장착", "취소"));
                             }
                             else
                             {
@@ -398,10 +405,13 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    IEnumerator OOCCoroutine()
+    IEnumerator OOCCoroutine(string _up, string _down)
     {
+        stopKeyInput = true; //선택지 호출
+
         inventoryWindow_OOC.SetActive(true);
-        theOOC.ShowTwoChoice("사용", "취소");
+        theOOC.ShowTwoChoice(_up, _down);
+
         yield return new WaitUntil(() => !theOOC.activated);
         if(theOOC.GetResult())
         {
@@ -409,19 +419,31 @@ public class Inventory : MonoBehaviour
             {
                 if (inventoryItemList[i].itemID == inventoryTabList[selectedItem].itemID)
                 {
-                    theDatabase.UseItem(inventoryItemList[i].itemID);
+                    if(selectedTab == 0)
+                    {
+                        theDatabase.UseItem(inventoryItemList[i].itemID);
 
-                    if (inventoryItemList[i].itemCount > 1)
-                    {
-                        inventoryItemList[i].itemCount--;
+                        if (inventoryItemList[i].itemCount > 1)
+                        {
+                            inventoryItemList[i].itemCount--;
+                        }
+                        else
+                        {
+                            inventoryItemList.RemoveAt(i);
+                        }
+
+                        ShowItem();
+                        break;
                     }
-                    else
+                    else if(selectedTab == 1)
                     {
+                        theEquip.EquipItem(inventoryItemList[i]);
                         inventoryItemList.RemoveAt(i);
+                        ShowItem();
+                        break;
                     }
 
-                    ShowItem();
-                    break;
+
                 }
 
             }
