@@ -119,7 +119,7 @@ public class Bat : Monster
         if(distancetoPlayer < detectionRange)
         {
             playerinRange = true;
-            MoveTo();
+            //MoveTo();
             currentState = State.Move;
             //if(distancetoPlayer < attackRange)
             //{
