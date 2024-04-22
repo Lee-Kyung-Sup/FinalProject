@@ -2712,7 +2712,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2317546482951990234, guid: 1cbd8ac316a87c643843b80a96268fff, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2975558693698371278, guid: 1cbd8ac316a87c643843b80a96268fff, type: 3}
       propertyPath: m_IsActive
@@ -3045,12 +3045,40 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6969065293979814683, guid: 9a686f1f256b09a428723832918c79a3, type: 3}
+      propertyPath: m_Size.x
+      value: 4.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 6969065293979814683, guid: 9a686f1f256b09a428723832918c79a3, type: 3}
+      propertyPath: m_Size.y
+      value: 7.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 6969065293979814683, guid: 9a686f1f256b09a428723832918c79a3, type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6969065293979814683, guid: 9a686f1f256b09a428723832918c79a3, type: 3}
+      propertyPath: m_Offset.x
+      value: 6.82
+      objectReference: {fileID: 0}
+    - target: {fileID: 6969065293979814683, guid: 9a686f1f256b09a428723832918c79a3, type: 3}
+      propertyPath: m_Offset.y
+      value: 4.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6969065293979814683, guid: 9a686f1f256b09a428723832918c79a3, type: 3}
       propertyPath: m_ExcludeLayers.m_Bits
       value: 768
+      objectReference: {fileID: 0}
+    - target: {fileID: 8099914416178234436, guid: 9a686f1f256b09a428723832918c79a3, type: 3}
+      propertyPath: m_Radius
+      value: 3.61
+      objectReference: {fileID: 0}
+    - target: {fileID: 8099914416178234436, guid: 9a686f1f256b09a428723832918c79a3, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 8099914416178234436, guid: 9a686f1f256b09a428723832918c79a3, type: 3}
+      propertyPath: m_Offset.y
+      value: 3.56
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
