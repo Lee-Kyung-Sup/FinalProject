@@ -49,12 +49,12 @@ public class Inventory : MonoBehaviour
     public InventorySlot[] GetSlots() { return slots; } //저장을 위한 반환설정
 
     [SerializeField] private Item[] items; //item클래스에서 일치여부를 비교
-    public void LoadToInven(int _itemID, string _itemName, int _itemCount) //인벤토리에서 불러올 인수
+    public void LoadToInven(int _itemID, string _itemName) //인벤토리에서 불러올 인수
     {
         for (int i = 0; i < items.Length; i++)
         {
             if (items[i].itemID == _itemID)
-                slots[_itemID].AddItem(items[i], _itemCount);
+                slots[_itemID].AddItem(items[i]);
         }
     }
 

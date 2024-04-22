@@ -14,7 +14,7 @@ public class InventorySlot : MonoBehaviour
     public int itemCount;//추가수정
 
     // Start is called before the first frame update
-    public void AddItem(Item _item, int _itemCount = 1)
+    public void AddItem(Item _item)
     {
         itemName_Text.text = _item.itemName;
         //itemCount_Text.text = itemCount.ToString();//추가수정
