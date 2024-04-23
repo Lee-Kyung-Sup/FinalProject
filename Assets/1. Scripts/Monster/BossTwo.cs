@@ -60,7 +60,7 @@ public class BossTwo : MonoBehaviour
     void OnEnable()
     {
         //Debug.Log("check");
-            currentHp = 100;
+            currentHp = 400;
            // Invoke("Stop", 1);
             //InvokeRepeating("Stop", 1, 1);
         
@@ -135,7 +135,7 @@ public class BossTwo : MonoBehaviour
         Debug.Log("DF");
         //드래곤이 불 오브젝트를 발사
         GameObject bulletD = objectManager.MakeObj("BulletBossBT");
-        bulletD.transform.position = transform.position + new Vector3(13f, 2f, 0);
+        bulletD.transform.position = transform.position + new Vector3(9f, 2f, 0);
         Rigidbody2D rb = bulletD.GetComponent<Rigidbody2D>();
         
         rb.AddForce(transform.right * 6, ForceMode2D.Impulse);
