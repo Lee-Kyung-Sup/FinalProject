@@ -30,7 +30,7 @@ public class OneWayMove : MonoBehaviour
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.TryGetComponent<IsGroundable>(out IsGroundable ound))
+        if (transform.root.gameObject.activeInHierarchy && collision.gameObject.TryGetComponent<IsGroundable>(out IsGroundable ound))
         {
             collision.transform.SetParent(null);
         }
