@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,14 +12,17 @@ public class UIManager : SingletonBase<UIManager>, IPointerEnterHandler
     [SerializeField] private Image FadeImage;
     [SerializeField] GameObject OptionPanel;
 
+    public SaveNLoad theSaveNLoad; //�����׽�Ʈ
 
-    private PlayerStatus thePlayerStat; //저장을 위한 추가작성 JHP
-    //private PlayerController thePlayer; //저장을 위한 추가작성 JHP
+    private void Awake()
+    {
+        theSaveNLoad = GetComponent<SaveNLoad>();
+    }
+
 
 
     private void Start()
     {
-
         OnFadeOut();
     }
 
@@ -48,10 +50,13 @@ public class UIManager : SingletonBase<UIManager>, IPointerEnterHandler
         //AudioManager.Instance.PlaySFX("Click");
     }
 
-    public void QuitGame()
+    public void ExitGame()
     {
-        Debug.Log("내용소실.");
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
         Application.Quit();
+#endif
     }
 
     public void ExitOption()
@@ -59,25 +64,30 @@ public class UIManager : SingletonBase<UIManager>, IPointerEnterHandler
         OptionPanel.SetActive(false);
     }
 
-    public void LoadStart() //저장을 위한 추가작성 JHP
+    public void ClickLoad() //�ҷ����� �׽�Ʈ
     {
-        StartCoroutine(LoadWaitCoroutine());
+        Debug.Log("�ҷ�����");
+        StartCoroutine(LoadCoroutine()); //�ҷ����⿡ ����Ǵ� ���޼���
     }
 
-    IEnumerator LoadWaitCoroutine()
+    IEnumerator LoadCoroutine()  //�ҷ����⿡ ����Ǵ� ���޼���
     {
-        yield return new WaitForSeconds(0.5f);
-        thePlayerStat = FindObjectOfType<PlayerStatus>();
+        AsyncOperation operation = SceneManager.LoadSceneAsync("2. GameScene");
+
+        while(!operation.isDone)
+        {
+            yield return null;
+        }
+        //theSaveNLoad = FindObjectOfType<SaveNLoad>();
+        theSaveNLoad.LoadData();
+        //Destroy(gameObject);
     }
-
-    
-
 
 
     // -------------------------Fade In & Out--------------------------------
     public void OnFadeOut()
     {
-        //StartCoroutine(FadeOut(1.0f));
+        StartCoroutine(FadeOut(1.0f));
     }
     public void OnFadeIn()
     {

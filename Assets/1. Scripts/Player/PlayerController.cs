@@ -18,15 +18,17 @@ public class PlayerController : MonoBehaviour
         get { return lockAction; }
     }
 
+
+
     void Awake()
     {
         _playerMovement = GetComponent<PlayerMovement>();
         _playerAttacks = GetComponent<PlayerAttacks>();
 
-        //InItLockAction();
+        InItLockAction();
 
-        //테스트용
-        TestingOnActions();
+  
+        //TestingOnActions();
     }
 
     void FixedUpdate()
@@ -46,7 +48,7 @@ public class PlayerController : MonoBehaviour
     }
     public void OnMove(InputAction.CallbackContext context)
     {
-        //AudioManager.Instance.PlaySFX("Step"); // 걸음소리 JHP
+        
 
         // 입력 벡터를 업데이트
         float inputX = context.ReadValue<Vector2>().x;
@@ -64,12 +66,10 @@ public class PlayerController : MonoBehaviour
             if (!_playerMovement.HasJumped()) 
             {
                 _playerMovement.Jump();
-                //AudioManager.Instance.PlaySFX("Jump"); // 점프소리 JHP
             }
             else if (_playerMovement.HasJumped() && lockAction[Paction.DoubleJump]) 
             {
                 _playerMovement.DoubleJump();
-                //AudioManager.Instance.PlaySFX("Jump"); // 점프소리 JHP
             }
         }
     }
@@ -79,7 +79,6 @@ public class PlayerController : MonoBehaviour
         if (context.performed && lockAction[Paction.Dash]) // 대시 버튼이 눌렸을 때만
         {
             _playerMovement.Dash();
-            //AudioManager.Instance.PlaySFX("Dash"); // 대시소리 JHP
         }
     }
 
@@ -88,7 +87,7 @@ public class PlayerController : MonoBehaviour
         if (context.performed)
         {
                 _playerAttacks.MeleeAttack();
-                //AudioManager.Instance.PlaySFX("Attack"); // 근접공격소리 JHP
+                
 
             if (!_playerMovement.IsGround() && lockAction[Paction.JumpAttack])
             {
