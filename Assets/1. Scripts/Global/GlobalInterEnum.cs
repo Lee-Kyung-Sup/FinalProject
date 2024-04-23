@@ -23,5 +23,5 @@ public enum Paction
 }
 public enum Monsters
 {
-    Bear,Frog,Rat,MushRoom,IceGolem,Eagle,Dragon
+    Bear,Frog,Rat,MushRoom,IceGolem,Eagle,Dragon,Bat
 }
