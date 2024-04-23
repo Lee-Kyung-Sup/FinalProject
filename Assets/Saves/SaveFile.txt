@@ -1,1 +1,1 @@
-{"playerPos":{"x":6.200002670288086,"y":1.4485769271850587,"z":0.0},"itemNumber":[],"displayName":[],"description":[]}
+{"playerPos":{"x":6.3600006103515629,"y":0.33590930700302126,"z":0.0},"itemNumber":[],"displayName":[],"description":[]}

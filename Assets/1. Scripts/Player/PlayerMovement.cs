@@ -43,8 +43,10 @@ public class PlayerMovement : MonoBehaviour, IsGroundable
     private LayerMask groundLayer;
     private LayerMask platformLayer;
 
+    private float walkSoundTimer = 0f;
+    private float walkSoundInterval = 0.5f; 
 
-    // 점프 감지 범위를 올려서 점프중에 감지 안되게
+
 
     void Awake()
     {
@@ -97,19 +99,25 @@ public class PlayerMovement : MonoBehaviour, IsGroundable
         }
     }
 
-    void OnDrawGizmos()
+    //void OnDrawGizmos()
+    //{
+    //    if (groundCheck != null)
+    //    {
+    //        float boxWidth = 1f;
+    //        float boxHeight = 0.2f;
+
+    //        Vector2 boxCenter = groundCheck.position + Vector3.down * boxHeight * 0.5f;
+
+    //        Gizmos.color = Color.red;
+
+    //        Gizmos.DrawWireCube(boxCenter, new Vector3(boxWidth, boxHeight, 1));
+    //    }
+    //}
+
+    void Update()
     {
-        if (groundCheck != null)
-        {
-            float boxWidth = 1f;
-            float boxHeight = 0.2f;
-
-            Vector2 boxCenter = groundCheck.position + Vector3.down * boxHeight * 0.5f;
-
-            Gizmos.color = Color.red;
-
-            Gizmos.DrawWireCube(boxCenter, new Vector3(boxWidth, boxHeight, 1));
-        }
+        if (walkSoundTimer > 0)
+            walkSoundTimer -= Time.deltaTime;
     }
 
 
@@ -136,6 +144,12 @@ public class PlayerMovement : MonoBehaviour, IsGroundable
                 // 방향에 따른 플레이어 스프라이트 전환
                 transform.localScale = new Vector3(inputX > 0 ? 1 : -1, 1, 1);
                 UnFlipPlayerUI();
+
+                if (walkSoundTimer <= 0)
+                {
+                    AudioManager.Instance.PlaySFX("Step");
+                    walkSoundTimer = walkSoundInterval; // 타이머를 재설정
+                }
             }
 
             if (inputX == 0 && isGrounded)
@@ -152,12 +166,14 @@ public class PlayerMovement : MonoBehaviour, IsGroundable
     {
         if (isPressingDown && IsPlatformLayer()) // 아래 방향키를 누르면서 점프 키 + 플랫폼인 경우
         {
+            AudioManager.Instance.PlaySFX("Jump"); // 점프소리 JHP
             DownPlatform();
             return;
         }
 
         if ((isGrounded || isDashing) && jumpCount < playerStatus.MaxJumpCount) // 땅에서 점프
         {
+            AudioManager.Instance.PlaySFX("Jump"); // 점프소리 JHP
             rb.velocity = new Vector2(rb.velocity.x, 0); // 수직 속도 초기화
             rb.AddForce(Vector2.up * playerStatus.JumpPower, ForceMode2D.Impulse);
             
@@ -171,6 +187,7 @@ public class PlayerMovement : MonoBehaviour, IsGroundable
     {
         if ((!isGrounded && hasJumped && jumpCount > 0 && jumpCount < playerStatus.MaxJumpCount && playerStatus.Stamina >= 25))
         {
+            AudioManager.Instance.PlaySFX("Jump"); // 점프소리 JHP
             rb.velocity = new Vector2(rb.velocity.x, 0); // 수직 속도 초기화
             rb.AddForce(Vector2.up * playerStatus.JumpPower, ForceMode2D.Impulse);
 
@@ -190,6 +207,7 @@ public class PlayerMovement : MonoBehaviour, IsGroundable
         if (canDash && !isDashing && playerStatus.Stamina >= 25) 
             // 대쉬가 가능하고 현재 대쉬 중이 아닐 때 + 플레이어 스태미너 25이상
         {
+            AudioManager.Instance.PlaySFX("Dash"); // 대시소리 JHP
             isDashing = true;
 
             gameObject.layer = 18; // 무적 레이어
