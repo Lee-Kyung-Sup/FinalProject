@@ -11501,7 +11501,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Escape Simulator
+  m_text: Escape Dungeon
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d4e329597aed7408784138f55e6a9b8e, type: 2}
   m_sharedMaterial: {fileID: -2800416464551063880, guid: d4e329597aed7408784138f55e6a9b8e, type: 2}
@@ -13683,6 +13683,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abaf5c54dd79bf74590e49834b5afd54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  data:
+    playerX: 0
+    playerY: 0
+    playerZ: 0
+    playerItemInventory: 
+    playerItemInventoryCount: 
+    playerEquipItem: 
+    sceneName: 
+    swList: 
+    swNameList: []
+    varNameList: []
+    varNumberList: []
 --- !u!114 &4901495068828279036
 MonoBehaviour:
   m_ObjectHideFlags: 0
