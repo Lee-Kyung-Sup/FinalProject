@@ -34,21 +34,27 @@ public class DataBaseManager : MonoBehaviour
         {
             case 50001:
                 //thePlayerStat.playerHealth.health++; // 이렇게 작성하면 오류발생
-                Debug.Log("Hp가 1포인트 회복되었습니다.");
+                Debug.Log("체력이 전부 회복되었습니다");
                 break;
             case 50003:
-                Debug.Log("Hp가 3포인트 회복되었습니다.");
+                Debug.Log("스태미너가 회복되었습니다.");
+                break;
+            case 60001:
+                break;
+            case 60101:
+                break;
+            case 60201:
                 break;
         }
     }
 
     void Start()
     {
-        itemList.Add(new Item(50001, "사과", "체력을 채워주는 과일", Item.ItemType.Use));
-        itemList.Add(new Item(50003, "맥주", "체력과 기력을 채워주는 음료", Item.ItemType.Use));
-        itemList.Add(new Item(60001, "장검", "체력과 기력을 깍아주는 무기", Item.ItemType.Equip));
-        itemList.Add(new Item(60201, "흉갑", "체력과 기력을 올려주는 장비", Item.ItemType.Equip));
-        itemList.Add(new Item(60101, "원주", "체력과 기력을 올려주는 장비", Item.ItemType.Equip));
+        itemList.Add(new Item(50001, "금값 사과", "싱싱한 사과, 체력을 전부 회복 시켜줍니다.", Item.ItemType.Use));
+        itemList.Add(new Item(50003, "버터 맥주", "시원한 맥주, 스태미너를 전부 회복 시켜줍니다.", Item.ItemType.Use));
+        itemList.Add(new Item(60001, "강철 검", "날카로운 강철 검, 공격력을 [+1] 올려줍니다.", Item.ItemType.Equip));
+        itemList.Add(new Item(60101, "신속의 장화", "발걸음이 한층 가벼워지는 장화, 스피드를 [+3] 올려줍니다.", Item.ItemType.Equip));
+        itemList.Add(new Item(60201, "용가죽 갑옷", "용의 가죽으로 만든 갑옷, 스태미너를 [+50] 하고, 더욱 빠르게 회복시킵니다.", Item.ItemType.Equip));
     }
 
 }
