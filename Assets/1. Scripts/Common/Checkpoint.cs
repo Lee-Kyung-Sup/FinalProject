@@ -9,14 +9,14 @@ public class Checkpoint : MonoBehaviour
 
     private void Start()
     {
-        theSaveNLoad = UIManager.Instance.theSaveNLoad;
+        theSaveNLoad = FindObjectOfType<SaveNLoad>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            theSaveNLoad.SaveData();
+            theSaveNLoad.CallSave();
             Debug.Log("세이브체크포인트");
         }
         else

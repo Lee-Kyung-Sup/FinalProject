@@ -48,8 +48,6 @@ public class PlayerController : MonoBehaviour
     }
     public void OnMove(InputAction.CallbackContext context)
     {
-        
-
         // 입력 벡터를 업데이트
         float inputX = context.ReadValue<Vector2>().x;
 

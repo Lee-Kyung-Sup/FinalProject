@@ -11,11 +11,15 @@ public class InventorySlot : MonoBehaviour
     public TextMeshProUGUI itemCount_Text;
     public GameObject selected_Item;
 
+    public int itemCount;//추가수정
+
     // Start is called before the first frame update
-    public void Additem(Item _item)
+    public void AddItem(Item _item)
     {
         itemName_Text.text = _item.itemName;
+        //itemCount_Text.text = itemCount.ToString();//추가수정
         icon.sprite = _item.itemIcon;
+
         if (Item.ItemType.Use == _item.itemType)
         {
             if (_item.itemCount > 0)
@@ -27,8 +31,6 @@ public class InventorySlot : MonoBehaviour
                 itemCount_Text.text = "";
             }
         }
-
-
     }
 
     public void RemoveItem()

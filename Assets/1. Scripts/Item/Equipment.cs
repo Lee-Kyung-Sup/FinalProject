@@ -216,14 +216,4 @@ public class Equipment : MonoBehaviour
         inventoryWindow_OOC.SetActive(false);
     }
 
-
-
-
-
-
-
-
-
-
-
 }
