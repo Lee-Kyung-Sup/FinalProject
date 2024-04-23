@@ -82,7 +82,7 @@ public class Bat : Monster
 
     public void Animmoveto()
     {
-        StopAllCoroutines();
+        //StopAllCoroutines();
         StartCoroutine(Animmove());
     }
 
