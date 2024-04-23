@@ -5813,7 +5813,7 @@ MonoBehaviour:
   monsters: 0
   mapPhase:
   - summonMonster:
-    - {fileID: 5047577145452485632, guid: f63def45ca4a39a47b82cd5a9db3cc00, type: 3}
+    - {fileID: 5047577145452485632, guid: c33fd3a0616852143bca46fb6b96ff34, type: 3}
     summonPos:
     - {x: 4.7, y: -8.9, z: 0}
 --- !u!1 &4791863385023567560

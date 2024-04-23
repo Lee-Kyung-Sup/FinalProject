@@ -573,7 +573,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59d06293f199e6e499465c7597fd358b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curMapId: 0
+  curMapId: 35
 --- !u!4 &1365856619
 Transform:
   m_ObjectHideFlags: 0
