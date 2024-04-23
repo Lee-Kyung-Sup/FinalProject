@@ -3517,7 +3517,7 @@ GameObject:
   - component: {fileID: 724516726}
   - component: {fileID: 724516725}
   m_Layer: 0
-  m_Name: RefreshRateDropbox
+  m_Name: RefreshRateDropdown
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3829,7 +3829,7 @@ GameObject:
   m_Component:
   - component: {fileID: 835122195}
   - component: {fileID: 835122194}
-  - component: {fileID: 835122193}
+  - component: {fileID: 835122196}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -3837,26 +3837,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &835122193
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 835122192}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SendPointerHoverToParent: 1
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
-  m_SubmitButton: Submit
-  m_CancelButton: Cancel
-  m_InputActionsPerSecond: 10
-  m_RepeatDelay: 0.5
-  m_ForceModuleActive: 0
 --- !u!114 &835122194
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3887,6 +3867,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &835122196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 835122192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
+  m_MoveRepeatDelay: 0.5
+  m_MoveRepeatRate: 0.1
+  m_XRTrackingOrigin: {fileID: 0}
+  m_ActionsAsset: {fileID: -944628639613478452, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_PointAction: {fileID: -1654692200621890270, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_MoveAction: {fileID: -8784545083839296357, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_SubmitAction: {fileID: 392368643174621059, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_CancelAction: {fileID: 7727032971491509709, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_LeftClickAction: {fileID: 3001919216989983466, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_MiddleClickAction: {fileID: -2185481485913320682, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_RightClickAction: {fileID: -4090225696740746782, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_ScrollWheelAction: {fileID: 6240969308177333660, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_TrackedDevicePositionAction: {fileID: 6564999863303420839, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_TrackedDeviceOrientationAction: {fileID: 7970375526676320489, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_DeselectOnBackgroundClick: 1
+  m_PointerBehavior: 0
+  m_CursorLockBehavior: 0
 --- !u!1 &836224928
 GameObject:
   m_ObjectHideFlags: 0
@@ -6751,7 +6761,19 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4888795804845870541}
+        m_TargetAssemblyTypeName: GraphicOptionSettings, Assembly-CSharp
+        m_MethodName: SetFullScreen
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &1404776514
 GameObject:
@@ -7723,7 +7745,19 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4888795804845870541}
+        m_TargetAssemblyTypeName: GraphicOptionSettings, Assembly-CSharp
+        m_MethodName: SetVSync
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &1592310269
 GameObject:
@@ -8021,7 +8055,11 @@ GameObject:
   - component: {fileID: 1629330206}
   - component: {fileID: 1629330207}
   m_Layer: 0
+<<<<<<< Updated upstream
   m_Name: FullVolumeSlider
+=======
+  m_Name: MasterVolumeSlider
+>>>>>>> Stashed changes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8408,8 +8446,13 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
+<<<<<<< Updated upstream
       - m_Target: {fileID: 8337689877136090514}
         m_TargetAssemblyTypeName: OptionSettings, Assembly-CSharp
+=======
+      - m_Target: {fileID: 4888795804845870541}
+        m_TargetAssemblyTypeName: GraphicOptionSettings, Assembly-CSharp
+>>>>>>> Stashed changes
         m_MethodName: SetResolution
         m_Mode: 3
         m_Arguments:
@@ -13683,6 +13726,108 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abaf5c54dd79bf74590e49834b5afd54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< Updated upstream
+=======
+  data:
+    playerX: 0
+    playerY: 0
+    playerZ: 0
+    playerItemInventory: 
+    playerItemInventoryCount: 
+    playerEquipItem: 
+    sceneName: 
+    swList: 
+    swNameList: []
+    varNameList: []
+    varNumberList: []
+--- !u!114 &4888795804845870540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2099630060137844419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aead9b36b00c04941bdb13273e92053e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  masterVolumeSlider: {fileID: 1629330207}
+  bgmVolumeSlider: {fileID: 1286824259}
+  sfxVolumeSlider: {fileID: 88321419}
+  masterVolumeToggle: {fileID: 868790650}
+  bgmVolumeToggle: {fileID: 175750527}
+  sfxVolumeToggle: {fileID: 1718598816}
+--- !u!114 &4888795804845870541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2099630060137844419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57a5df4ccf816cb499d4e410fcdd3755, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resolutionDropdown: {fileID: 1711721944}
+  refreshRateDropdown: {fileID: 724516725}
+  fullscreenToggle: {fileID: 1396316190}
+  vSyncToggle: {fileID: 1580374463}
+--- !u!114 &4888795804845870542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2099630060137844419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96fc15ee5a335aa42bb36f1d6ccde4a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillPanel: {fileID: 910131228}
+  videoPlayer: {fileID: 433932673}
+  skillTitleText: {fileID: 457917567}
+  skillDescriptionText: {fileID: 1014502851}
+  videoClips:
+  - {fileID: 32900000, guid: cece0d5fb863e49429882586c8a146a5, type: 3}
+  - {fileID: 32900000, guid: ff9e5f5fd192e0348bd347d2a1228f8f, type: 3}
+  - {fileID: 32900000, guid: c4434be75e4dd18448800d8ce79c7fcd, type: 3}
+  - {fileID: 32900000, guid: 7ac228912b4b2bd4f814550fd72cfdf9, type: 3}
+  - {fileID: 32900000, guid: e865a068fa52c3e4aa67ed9143539aa5, type: 3}
+  - {fileID: 32900000, guid: f8fe7822ae8c8ff42a0b8a4534fbebad, type: 3}
+  - {fileID: 32900000, guid: e5fa8d4f9ab5b784fa31b78fc31887af, type: 3}
+  skillTitles:
+  - "\uB354\uBE14 \uC810\uD504"
+  - "\uB300\uC2DC"
+  - "\uC6D0\uAC70\uB9AC \uACF5\uACA9"
+  - "\uCC28\uC9C0 \uC0F7"
+  - "\uC810\uD504 \uACF5\uACA9"
+  - "\uBC18\uC0AC"
+  - "\uCF64\uBCF4 \uACF5\uACA9"
+  skillDescriptions:
+  - "'Shift' \uD0A4\uB97C \uB20C\uB7EC \uB300\uC2DC\uB97C \uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.
+    \uC801\uC774\uB098 \uC801\uC758 \uD0C4\uD658\uC744 \uD1B5\uACFC \uD560 \uC218
+    \uC788\uC2B5\uB2C8\uB2E4. \uACF5\uC911\uC5D0\uC11C\uB3C4 \uC0AC\uC6A9 \uAC00\uB2A5\uD558\uBA70
+    \uC2A4\uD0DC\uBBF8\uB108\uB97C \uC18C\uBAA8\uD569\uB2C8\uB2E4."
+  - "\uACF5\uC911\uC5D0\uC11C 'Space'\uB97C \uB20C\uB7EC \uCD94\uAC00 \uC810\uD504\uB97C
+    \uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4. n\uC2A4\uD0DC\uBBF8\uB108\uB97C \uC18C\uBAA8\uD569\uB2C8\uB2E4."
+  - "'F' \uB97C \uB20C\uB7EC \uC6D0\uAC70\uB9AC \uACF5\uACA9\uC744 \uD560 \uC218
+    \uC788\uC2B5\uB2C8\uB2E4. n\uACF5\uC911\uC5D0\uC11C\uB3C4 \uAC00\uB2A5\uD569\uB2C8\uB2E4."
+  - "'F'\uB97C \uB204\uB974\uACE0 \uC788\uC73C\uBA74, \uBAB8\uC774 \uBC1D\uAC8C \uBE5B\uB098\uBA74\uC11C
+    \uAC15\uB825\uD55C \uCC28\uC9C0\uC0F7\uC744 \uC3E0 \uC218 \uC788\uC2B5\uB2C8\uB2E4.
+    n\uC801\uC744 \uAD00\uD1B5\uD558\uBA70 \uC2A4\uD0DC\uBBF8\uB108\uB97C \uC18C\uBAA8\uD569\uB2C8\uB2E4."
+  - "\uACF5\uC911\uC5D0\uC11C 'D'\uB97C \uB20C\uB7EC \uC810\uD504 \uACF5\uACA9\uC744
+    \uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4. n\uC5EC\uB7EC \uBC88 \uC801\uC911\uD558\uBA70
+    \uC2A4\uD0DC\uBBF8\uB108\uB97C \uC18C\uBAA8\uD569\uB2C8\uB2E4."
+  - "'S' \uD0A4\uB97C \uB20C\uB7EC \uC9E7\uC740 \uC2DC\uAC04\uB3D9\uC548 \uC801\uC758
+    \uD22C\uC0AC\uCCB4\uB97C \uBC18\uC0AC \uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.
+    n\uC2A4\uD0DC\uBBF8\uB108\uB97C \uC18C\uBAA8\uD569\uB2C8\uB2E4.n"
+  - "'D' \uD0A4\uB97C \uB20C\uB7EC \uAC15\uB825\uD55C \uADFC\uAC70\uB9AC \uCF64\uBCF4
+    \uACF5\uACA9\uC774 \uAC00\uB2A5\uD574\uC9D1\uB2C8\uB2E4. n\uB9C8\uC9C0\uB9C9
+    3\uD0C0 \uACF5\uACA9\uC740 \uC2A4\uD0DC\uBBF8\uB108\uB97C \uC18C\uBAA8\uD569\uB2C8\uB2E4."
+>>>>>>> Stashed changes
 --- !u!114 &4901495068828279036
 MonoBehaviour:
   m_ObjectHideFlags: 0

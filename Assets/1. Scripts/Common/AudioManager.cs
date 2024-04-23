@@ -62,24 +62,28 @@ public class AudioManager : MonoBehaviour
 
     }
 
+    public void BGMVolume(float volume)
+    {
+        Debug.Log("BGMVolume ¸Þ¼Òµå ½ÇÇàµÊ. º¼·ý ¼³Á¤: " + volume);
+        bgmSource.volume = volume;
+    }
+
+    public void SFXVolume(float volume)
+    {
+        Debug.Log("SFXVolume ¸Þ¼Òµå ½ÇÇàµÊ. º¼·ý ¼³Á¤: " + volume);
+        sfxSource.volume = volume;
+    }
+
     public void ToggleBGM()
     {
         bgmSource.mute = !bgmSource.mute;
+        Debug.Log("BGM ¹ÂÆ® »óÅÂ: " + bgmSource.mute);
     }
 
     public void ToggleSFX()
     {
         sfxSource.mute = !sfxSource.mute;
-    }
-
-    public void BGMVolume(float volume)
-    {
-       bgmSource.volume = volume;
-    }
-
-    public void SFXVolume(float volume)
-    {
-        sfxSource.volume = volume;
+        Debug.Log("SFX ¹ÂÆ® »óÅÂ: " + sfxSource.mute);
     }
 
     public void StopBGM()
