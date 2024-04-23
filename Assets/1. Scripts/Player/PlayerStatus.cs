@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.LowLevel;
 using UnityEngine.UI;
 
 
@@ -38,7 +39,7 @@ public class PlayerStatus : MonoBehaviour, IDamageable
     private PlayerAnimations playerAnimations;
     private PlayerMovement playerMovement;
     private PlayerUI playerUI;
-
+    private SaveNLoad theSaveNLoad;//저장을 위한 추가작성 JHP
     [Header("Components")]
     [SerializeField] private SpriteRenderer spriteRenderer;
 
@@ -64,7 +65,7 @@ public class PlayerStatus : MonoBehaviour, IDamageable
     public int MaxJumpCount => maxJumpCount;
     public float Stamina => stamina;
 
-
+    public string currentSceneName; //저장을 위한 추가작성 JHP
 
     void Start()
     {
@@ -74,7 +75,7 @@ public class PlayerStatus : MonoBehaviour, IDamageable
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         playerMovement = GetComponent<PlayerMovement>();
         playerAnimations = GetComponent<PlayerAnimations>();
-
+        theSaveNLoad = FindObjectOfType<SaveNLoad>(); //저장을 위한 추가작성 JHP
         lastStaminaUseTime = Time.time;
         maxStamina = stamina;
     }
@@ -89,6 +90,15 @@ public class PlayerStatus : MonoBehaviour, IDamageable
 
         float Stamina = Mathf.Lerp(playerUI.staminaUI.value, maxStamina, Time.deltaTime * 10);
         playerUI.UpdateStaminaUI(Stamina);
+
+        if(Input.GetKeyDown(KeyCode.F5))//저장을 위한 추가작성 JHP
+        {
+            theSaveNLoad.CallSave();
+        }
+        if (Input.GetKeyDown(KeyCode.F9))//저장을 위한 추가작성 JHP
+        {
+            theSaveNLoad.CallLoad();
+        }
     }
 
     public virtual void TakeDamage(int damage)

@@ -14,6 +14,9 @@ public class UIManager : SingletonBase<UIManager>, IPointerEnterHandler
 
     public SaveNLoad theSaveNLoad; //�����׽�Ʈ
 
+    private PlayerStatus thePlayerStat; //저장을 위한 추가작성 JHP
+    //private PlayerController thePlayer; //저장을 위한 추가작성 JHP
+
     private void Awake()
     {
         theSaveNLoad = GetComponent<SaveNLoad>();
@@ -64,24 +67,35 @@ public class UIManager : SingletonBase<UIManager>, IPointerEnterHandler
         OptionPanel.SetActive(false);
     }
 
-    public void ClickLoad() //�ҷ����� �׽�Ʈ
+    //public void ClickLoad() //�ҷ����� �׽�Ʈ
+    //{
+    //    Debug.Log("�ҷ�����");
+    //    StartCoroutine(LoadCoroutine()); //�ҷ����⿡ ����Ǵ� ���޼���
+    //}
+
+    public void LoadStart() //저장을 위한 추가작성 JHP
     {
-        Debug.Log("�ҷ�����");
-        StartCoroutine(LoadCoroutine()); //�ҷ����⿡ ����Ǵ� ���޼���
+        StartCoroutine(LoadWaitCoroutine());
     }
 
-    IEnumerator LoadCoroutine()  //�ҷ����⿡ ����Ǵ� ���޼���
+    IEnumerator LoadWaitCoroutine()
     {
-        AsyncOperation operation = SceneManager.LoadSceneAsync("2. GameScene");
-
-        while(!operation.isDone)
-        {
-            yield return null;
-        }
-        //theSaveNLoad = FindObjectOfType<SaveNLoad>();
-        theSaveNLoad.LoadData();
-        //Destroy(gameObject);
+        yield return new WaitForSeconds(0.5f);
+        thePlayerStat = FindObjectOfType<PlayerStatus>();
     }
+
+    //IEnumerator LoadCoroutine()  //�ҷ����⿡ ����Ǵ� ���޼���
+    //{
+    //    AsyncOperation operation = SceneManager.LoadSceneAsync("2. GameScene");
+
+    //    while(!operation.isDone)
+    //    {
+    //        yield return null;
+    //    }
+    //    //theSaveNLoad = FindObjectOfType<SaveNLoad>();
+    //    theSaveNLoad.LoadData();
+    //    //Destroy(gameObject);
+    //}
 
 
     // -------------------------Fade In & Out--------------------------------

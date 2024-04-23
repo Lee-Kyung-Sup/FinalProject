@@ -62,15 +62,15 @@ public class Boss : MonoBehaviour
         //patternIndex = patternIndex == 3 ? 0 : patternIndex + 1;
         
         
-            if (currentHp > 70)
+            if (currentHp > 350)
             {
                 patternIndex = 0; // 체력이 70 이상이면 패턴 0 실행
             }
-            else if (currentHp > 40)
+            else if (currentHp >150)
             {
                 patternIndex = 1; // 체력이 40 이상이면 패턴 1 실행
             }
-            else if (currentHp > 10)
+            else if (currentHp > 50)
             {
                 patternIndex = 2; // 체력이 10이상이면 패턴 2 실행
             }

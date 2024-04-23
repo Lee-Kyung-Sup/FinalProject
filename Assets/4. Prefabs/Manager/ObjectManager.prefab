@@ -24,13 +24,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6036764167039011150}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.930126, y: -0.81843185, z: 0.024037361}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8278129739452003932
 MonoBehaviour:
@@ -51,7 +51,7 @@ MonoBehaviour:
   PlayerJumpHitEffectPrefab: {fileID: 5024009746357069194, guid: ec3f674830402cc45bce805cf6493db7, type: 3}
   PlayerDeflectEffectPrefab: {fileID: 8460667080445658512, guid: ba8e712051900cb46866634ab919de23, type: 3}
   bulletBossAPrefab: {fileID: 6049919993356236047, guid: 72e2d474acd7ae443839e2ebe967738d, type: 3}
-  bulletBossBTPrefab: {fileID: 8236698002141129757, guid: 13313f4135099c04fae3f986e4aa9bc2, type: 3}
+  bulletBossBTPrefab: {fileID: 873063626532917793, guid: 9c89b61571611ff4d9c704a827af129b, type: 3}
   enemyBPrefab: {fileID: 2355385529216811586, guid: e9f6260a3fc5198478a65982e7a9409d, type: 3}
-  enemyBTPrefab: {fileID: 6358674297495471827, guid: 9a686f1f256b09a428723832918c79a3, type: 3}
+  enemyBTPrefab: {fileID: 5047577145452485632, guid: c33fd3a0616852143bca46fb6b96ff34, type: 3}
   frogBulletPrefab: {fileID: 502197329397440078, guid: 3ff540c205fd498428596d1f570577a5, type: 3}
