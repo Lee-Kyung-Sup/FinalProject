@@ -8055,11 +8055,7 @@ GameObject:
   - component: {fileID: 1629330206}
   - component: {fileID: 1629330207}
   m_Layer: 0
-<<<<<<< Updated upstream
-  m_Name: FullVolumeSlider
-=======
   m_Name: MasterVolumeSlider
->>>>>>> Stashed changes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8446,13 +8442,8 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-<<<<<<< Updated upstream
-      - m_Target: {fileID: 8337689877136090514}
-        m_TargetAssemblyTypeName: OptionSettings, Assembly-CSharp
-=======
       - m_Target: {fileID: 4888795804845870541}
         m_TargetAssemblyTypeName: GraphicOptionSettings, Assembly-CSharp
->>>>>>> Stashed changes
         m_MethodName: SetResolution
         m_Mode: 3
         m_Arguments:
@@ -13726,8 +13717,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abaf5c54dd79bf74590e49834b5afd54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< Updated upstream
-=======
   data:
     playerX: 0
     playerY: 0
@@ -13827,7 +13816,6 @@ MonoBehaviour:
   - "'D' \uD0A4\uB97C \uB20C\uB7EC \uAC15\uB825\uD55C \uADFC\uAC70\uB9AC \uCF64\uBCF4
     \uACF5\uACA9\uC774 \uAC00\uB2A5\uD574\uC9D1\uB2C8\uB2E4. n\uB9C8\uC9C0\uB9C9
     3\uD0C0 \uACF5\uACA9\uC740 \uC2A4\uD0DC\uBBF8\uB108\uB97C \uC18C\uBAA8\uD569\uB2C8\uB2E4."
->>>>>>> Stashed changes
 --- !u!114 &4901495068828279036
 MonoBehaviour:
   m_ObjectHideFlags: 0
