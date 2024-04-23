@@ -27,7 +27,7 @@ public class PlayerAttacks : MonoBehaviour
     private bool isFullCharge = false;
 
     [Header("Melee Attack Parameter")]
-    [SerializeField] private float attackDelay = 0.2f;
+    [SerializeField] private float attackDelay = 0.1f;
     [SerializeField] private float comboDelay = 0.5f;
     private int attackSequence = 0;
     private float attackTimer = 0f;
@@ -205,6 +205,7 @@ public class PlayerAttacks : MonoBehaviour
             switch (attackSequence)
             {
                 case 0:
+                    AudioManager.Instance.PlaySFX("Attack"); // 근접공격소리 JHP
                     currentAttackType = AttackTypes.MeleeAttack;
                     PerformAttack(AttackTypes.MeleeAttack, meleeAttackCollider);
                     playerAnimations.Attacking();
@@ -214,6 +215,7 @@ public class PlayerAttacks : MonoBehaviour
                 case 1:
                     if (_playerController.LockAction[Paction.ComboAttack])
                     {
+                        AudioManager.Instance.PlaySFX("Attack");
                         currentAttackType = AttackTypes.ComboAttack1;
                         PerformAttack(AttackTypes.ComboAttack1, meleeAttackCollider_2);
                         playerAnimations.Attacking2();
@@ -229,6 +231,7 @@ public class PlayerAttacks : MonoBehaviour
                 case 2:
                     if (playerStatus.Stamina >= 25 && _playerController.LockAction[Paction.ComboAttack])
                     {
+                        AudioManager.Instance.PlaySFX("Attack");
                         currentAttackType = AttackTypes.ComboAttack2;
                         PerformAttack(AttackTypes.ComboAttack2, meleeAttackCollider_2);
                         playerAnimations.Attacking3();

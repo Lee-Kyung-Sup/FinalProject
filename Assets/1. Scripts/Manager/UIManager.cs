@@ -23,7 +23,6 @@ public class UIManager : SingletonBase<UIManager>, IPointerEnterHandler
 
     private void Start()
     {
-
         OnFadeOut();
     }
 
@@ -51,10 +50,13 @@ public class UIManager : SingletonBase<UIManager>, IPointerEnterHandler
         //AudioManager.Instance.PlaySFX("Click");
     }
 
-    public void QuitGame()
+    public void ExitGame()
     {
-        Debug.Log("���� ���� : ���� �� ���ӿ��� ���� ���� ��.");
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
         Application.Quit();
+#endif
     }
 
     public void ExitOption()
@@ -85,7 +87,7 @@ public class UIManager : SingletonBase<UIManager>, IPointerEnterHandler
     // -------------------------Fade In & Out--------------------------------
     public void OnFadeOut()
     {
-        //StartCoroutine(FadeOut(1.0f));
+        StartCoroutine(FadeOut(1.0f));
     }
     public void OnFadeIn()
     {

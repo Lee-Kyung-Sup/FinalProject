@@ -14,19 +14,19 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/0. Scenes/3. LastScene.unity
     guid: 5af8bdee8bb3d5c4bad3e6673e6696d7
-  - enabled: 1
+  - enabled: 0
     path: Assets/0. Scenes/LKSScene.unity
     guid: 28f4b901d79361749945852c13a71cf1
-  - enabled: 1
+  - enabled: 0
     path: Assets/0. Scenes/Map.unity
     guid: a6c3b30315681ba42a60cc3f3f1c47ef
-  - enabled: 1
+  - enabled: 0
     path: Assets/0. Scenes/WJJScene.unity
     guid: a4144f1a5f42ea148a52d6cbf304217b
-  - enabled: 1
+  - enabled: 0
     path: Assets/0. Scenes/GameScenePJH.unity
-    guid: 48eb37c94d9e235489f2edc10a382fed
-  - enabled: 1
+    guid: 637c377021da3a64990cbfa1b1f90456
+  - enabled: 0
     path: Assets/0. Scenes/LoadingScene.unity
     guid: 23c683074ef1e7149b8aa6d37927c121
   m_configObjects: {}
