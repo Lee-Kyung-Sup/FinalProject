@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,13 +13,9 @@ public class UIManager : SingletonBase<UIManager>, IPointerEnterHandler
     [SerializeField] private Image FadeImage;
     [SerializeField] GameObject OptionPanel;
 
-    //public SaveNLoad theSaveNLoad; //�����׽�Ʈ
 
-    //private void Awake()
-    //{
-    //    theSaveNLoad = GetComponent<SaveNLoad>();
-    //}
-
+    private PlayerStatus thePlayerStat; //저장을 위한 추가작성 JHP
+    //private PlayerController thePlayer; //저장을 위한 추가작성 JHP
 
 
     private void Start()
@@ -62,27 +59,19 @@ public class UIManager : SingletonBase<UIManager>, IPointerEnterHandler
         OptionPanel.SetActive(false);
     }
 
-    //public void ClickLoad() //불러오기 버튼
-    //{
-    //    Debug.Log("로드");
-    //    StartCoroutine(LoadCoroutine());
-    //}
+    public void LoadStart() //저장을 위한 추가작성 JHP
+    {
+        StartCoroutine(LoadWaitCoroutine());
+    }
 
-    //IEnumerator LoadCoroutine()
-    //{
-    //    AsyncOperation operation = SceneManager.LoadSceneAsync("GameScenePJH");
-    //    //"2. GameScene"
-    //    SceneManager.LoadScene("GameScenePJH");
+    IEnumerator LoadWaitCoroutine()
+    {
+        yield return new WaitForSeconds(0.5f);
+        thePlayerStat = FindObjectOfType<PlayerStatus>();
+    }
 
-    //    while (!operation.isDone)
-    //    {
-    //        yield return null;
-    //    }
-    //    theSaveNLoad = FindObjectOfType<SaveNLoad>();
-    //    theSaveNLoad.LoadData();
-    //    gameObject.SetActive(false);
-    //    //Destroy(gameObject);
-    //}
+    
+
 
 
     // -------------------------Fade In & Out--------------------------------

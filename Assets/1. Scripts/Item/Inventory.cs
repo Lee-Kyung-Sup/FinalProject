@@ -78,6 +78,15 @@ public class Inventory : MonoBehaviour
         //inventoryItemList.Add(new Item(50003, "맥주", "체력과 기력을 채워주는 음료", Item.ItemType.Use));
     }
 
+    public List<Item> SaveItem()
+    {
+        return inventoryItemList;
+    }
+
+    public void LoadItem(List<Item> _itemList)
+    {
+        inventoryItemList = _itemList;
+    }
 
     public void EquipToInventory(Item _item)
     {
