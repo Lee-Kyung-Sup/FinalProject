@@ -135,7 +135,7 @@ public class BossTwo : MonoBehaviour
         Debug.Log("DF");
         //드래곤이 불 오브젝트를 발사
         GameObject bulletD = objectManager.MakeObj("BulletBossBT");
-        bulletD.transform.position = transform.position + new Vector3(9f, 2f, 0);
+        bulletD.transform.position = transform.position + new Vector3(9f, 1f, 0);
         Rigidbody2D rb = bulletD.GetComponent<Rigidbody2D>();
         
         rb.AddForce(transform.right * 6, ForceMode2D.Impulse);
