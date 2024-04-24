@@ -69,12 +69,12 @@ public class UIManager : SingletonBase<UIManager>, IPointerEnterHandler
 
     public void LoadStart() //저장을 위한 추가작성 JHP
     {
-        theSaveNLoad.CallLoad(); //재확인
         StartCoroutine(LoadWaitCoroutine());
     }
 
     IEnumerator LoadWaitCoroutine()
     {
+        theSaveNLoad.CallLoad(); //재확인
         yield return new WaitForSeconds(0.5f);
         thePlayerStat = FindObjectOfType<PlayerStatus>();
     }
