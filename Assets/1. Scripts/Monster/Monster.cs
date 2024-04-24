@@ -1,7 +1,7 @@
 using System.Collections;
-using UnityEditor.SceneManagement;
+
 using UnityEngine;
-using UnityEngine.InputSystem.XR.Haptics;
+
 
 public class Monster : MonoBehaviour, IsGroundable, IDamageable
 {
