@@ -3802,9 +3802,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4888795804845870539}
-        m_TargetAssemblyTypeName: SaveNLoad, Assembly-CSharp
-        m_MethodName: CallLoad
+      - m_Target: {fileID: 331660277625686906}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: LoadStart
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

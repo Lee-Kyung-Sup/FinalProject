@@ -15,7 +15,6 @@ public class UIManager : SingletonBase<UIManager>, IPointerEnterHandler
     public SaveNLoad theSaveNLoad; //�����׽�Ʈ
 
     private PlayerStatus thePlayerStat; //저장을 위한 추가작성 JHP
-    //private PlayerController thePlayer; //저장을 위한 추가작성 JHP
 
     private void Awake()
     {
@@ -67,14 +66,10 @@ public class UIManager : SingletonBase<UIManager>, IPointerEnterHandler
         OptionPanel.SetActive(false);
     }
 
-    //public void ClickLoad() //�ҷ����� �׽�Ʈ
-    //{
-    //    Debug.Log("�ҷ�����");
-    //    StartCoroutine(LoadCoroutine()); //�ҷ����⿡ ����Ǵ� ���޼���
-    //}
 
     public void LoadStart() //저장을 위한 추가작성 JHP
     {
+        theSaveNLoad.CallLoad(); //재확인
         StartCoroutine(LoadWaitCoroutine());
     }
 
@@ -84,18 +79,7 @@ public class UIManager : SingletonBase<UIManager>, IPointerEnterHandler
         thePlayerStat = FindObjectOfType<PlayerStatus>();
     }
 
-    //IEnumerator LoadCoroutine()  //�ҷ����⿡ ����Ǵ� ���޼���
-    //{
-    //    AsyncOperation operation = SceneManager.LoadSceneAsync("2. GameScene");
 
-    //    while(!operation.isDone)
-    //    {
-    //        yield return null;
-    //    }
-    //    //theSaveNLoad = FindObjectOfType<SaveNLoad>();
-    //    theSaveNLoad.LoadData();
-    //    //Destroy(gameObject);
-    //}
 
 
     // -------------------------Fade In & Out--------------------------------
