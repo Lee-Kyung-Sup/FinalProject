@@ -11,7 +11,7 @@ public class UIManager : SingletonBase<UIManager>, IPointerEnterHandler
     [Header("Options")]
     [SerializeField] private Image fadeImage;
     [SerializeField] private GameObject optionPanel;
-    [SerializeField] private GameObject escOptionPanel;
+    public GameObject escOptionPanel;
 
     public SaveNLoad theSaveNLoad; //�����׽�Ʈ
 

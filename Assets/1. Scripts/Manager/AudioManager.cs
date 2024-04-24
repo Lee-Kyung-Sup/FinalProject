@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.EventSystems;
 
-public class AudioManager : MonoBehaviour
+public class AudioManager : MonoBehaviour, IPointerEnterHandler
 {
     public static AudioManager Instance;
 
@@ -26,6 +27,11 @@ public class AudioManager : MonoBehaviour
     private void Start()
     {
         
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        AudioManager.Instance.PlaySFX("Cursor");
     }
 
 

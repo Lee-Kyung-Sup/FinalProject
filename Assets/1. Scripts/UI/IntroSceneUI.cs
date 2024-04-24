@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
-public class IntroSceneUI : MonoBehaviour, IPointerEnterHandler
+public class IntroSceneUI : MonoBehaviour
 {
     [SerializeField] GameObject startPanel;
     [SerializeField] GameObject loadGamePanel;
@@ -20,11 +20,6 @@ public class IntroSceneUI : MonoBehaviour, IPointerEnterHandler
     void Update()
     {
 
-    }
-
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        AudioManager.Instance.PlaySFX("Cursor");
     }
 
     public void StartOption()
