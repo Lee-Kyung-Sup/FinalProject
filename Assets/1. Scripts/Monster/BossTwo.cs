@@ -316,9 +316,9 @@ public class BossTwo : MonoBehaviour, IDamageable
         //    //transform.rotation = Quaternion.identity;
         //}
        
-        if (collision.transform.tag == ("PlayerAttackBox"))
+        if (((1 << collision.gameObject.layer) & (1 << 19) | (1 << 20)) != 0) // 19 : 플레이어 어택박스 레이어 , 20: 플레이어 불렛
         {
-            //Hit(10); // 임시로 데미지 10함
+            //Hit(10); // 임시 데미지
             isHit= true;
         }
     }
