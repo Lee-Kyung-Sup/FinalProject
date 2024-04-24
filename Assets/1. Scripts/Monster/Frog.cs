@@ -20,7 +20,7 @@ public class Frog : Monster
     public float bulletLifetime = 2f;
     public ObjectManager objectManager;
     public GameObject player;
-    WaitForSeconds Delay5000 = new WaitForSeconds(5f);
+    WaitForSeconds Delay3000 = new WaitForSeconds(3f);
 
     protected override void Awake()
     {
@@ -75,7 +75,7 @@ public class Frog : Monster
         //{
         //    //MonsterFlip();
         //}
-        yield return Delay5000;
+        yield return Delay3000;
         currentState = State.Run;
 
     }
@@ -199,12 +199,12 @@ public class Frog : Monster
         //}
 
         GameObject bulletClone = objectManager.MakeObj("frogBullet");
-        bulletClone.transform.position = transform.position + Vector3.right * 1f;
+        bulletClone.transform.position = transform.position;
 
         Rigidbody2D rbf = bulletClone.GetComponent<Rigidbody2D>();
 
         Vector2 dirVec = player.transform.position - transform.position;
-        rbf.AddForce(dirVec * 3, ForceMode2D.Impulse);
+        rbf.AddForce(dirVec * 6, ForceMode2D.Impulse);
         //    GameObject bulletClone = Instantiate(bullet, genPoint.position, transform.rotation);
 
         //    bulletClone.GetComponent<Rigidbody2D>().velocity = transform.right * -transform.localScale.x * 10f;
