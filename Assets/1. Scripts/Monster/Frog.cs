@@ -17,7 +17,8 @@ public class Frog : Monster
     public Transform[] wallCheck;
     public Transform genPoint;
     public GameObject bullet;
-    public float bulletLifetime = 3f;
+    public float bulletLifetime = 2f;
+    public ObjectManager objectManager;
 
     WaitForSeconds Delay5000 = new WaitForSeconds(5f);
 
@@ -182,7 +183,7 @@ public class Frog : Monster
 
     }
 
-    private List<GameObject> frogbullet = new List<GameObject>();
+    //private List<GameObject> frogbullet = new List<GameObject>();
     public void Fire()
     {
         //GameObject bulletClone = ObjectManager.Instance.MakeObj("FrogBullet"); 
@@ -192,21 +193,24 @@ public class Frog : Monster
         //    bulletClone.transform.rotation = Quaternion.identity;
         //}
 
-        GameObject bulletClone = Instantiate(bullet, genPoint.position, transform.rotation);
+        GameObject bulletClone = ObjectManager.MakeObj("frogBullet");
 
-        bulletClone.GetComponent<Rigidbody2D>().velocity = transform.right * -transform.localScale.x * 10f;
-        bulletClone.transform.localScale = new Vector2(transform.localScale.x, 1f);
-        frogbullet.Add(bulletClone);
 
-        StartCoroutine(DestroyBulletAfterTime(bulletClone));
-    }
+    //    GameObject bulletClone = Instantiate(bullet, genPoint.position, transform.rotation);
 
-    IEnumerator DestroyBulletAfterTime(GameObject bullet)
-    {
-        yield return new WaitForSeconds(bulletLifetime);
-        Destroy(bullet);
-        frogbullet.Remove(bullet);
-    }
+    //    bulletClone.GetComponent<Rigidbody2D>().velocity = transform.right * -transform.localScale.x * 10f;
+    //    bulletClone.transform.localScale = new Vector2(transform.localScale.x, 1f);
+    //    frogbullet.Add(bulletClone);
+
+    //    StartCoroutine(DestroyBulletAfterTime(bulletClone));
+    //}
+
+    //IEnumerator DestroyBulletAfterTime(GameObject bullet)
+    //{
+    //    yield return new WaitForSeconds(bulletLifetime);
+    //    Destroy(bullet);
+    //    frogbullet.Remove(bullet);
+    //}
 
     //protected override void OnTriggerEnter2D(Collider2D collision)
     //{
