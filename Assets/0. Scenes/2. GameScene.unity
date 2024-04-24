@@ -4935,6 +4935,10 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 16
       objectReference: {fileID: 0}
+    - target: {fileID: 1360410190396740173, guid: 5ea784b956f4a564ea1a6ea255629d76, type: 3}
+      propertyPath: currentSceneName
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2059343590561200954, guid: 5ea784b956f4a564ea1a6ea255629d76, type: 3}
       propertyPath: m_SortingOrder
       value: 16
