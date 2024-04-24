@@ -54,7 +54,7 @@ public class SaveNLoad : MonoBehaviour
         theInven = FindObjectOfType<Inventory>();
 
         data.playerX = thePlayer.transform.position.x;
-        data.playerY = thePlayer.transform.position.y;
+        data.playerY = thePlayer.transform.position.y + 3; //맵 끼임 방지를 위한 y좌표값 3 더하기
         data.playerZ = thePlayer.transform.position.z;
 
         data.sceneName = thePlayerStat.currentSceneName;
@@ -116,7 +116,7 @@ public class SaveNLoad : MonoBehaviour
 
             thePlayerStat.currentSceneName = data.sceneName;
 
-            vector.Set(data.playerX, data.playerY, data.playerZ);
+            vector.Set(data.playerX, data.playerY + 3, data.playerZ); //맵 끼임 방지를 위한 y좌표값 3 더하기
             thePlayer.transform.position = vector;
 
             theDatabase.var = data.varNumberList.ToArray();
