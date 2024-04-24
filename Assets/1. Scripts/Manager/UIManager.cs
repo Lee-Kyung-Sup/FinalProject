@@ -9,8 +9,9 @@ using UnityEngine.UI;
 public class UIManager : SingletonBase<UIManager>, IPointerEnterHandler
 {
     [Header("Options")]
-    [SerializeField] private Image FadeImage;
-    [SerializeField] GameObject OptionPanel;
+    [SerializeField] private Image fadeImage;
+    [SerializeField] private GameObject optionPanel;
+    [SerializeField] private GameObject escOptionPanel;
 
     public SaveNLoad theSaveNLoad; //�����׽�Ʈ
 
@@ -22,11 +23,17 @@ public class UIManager : SingletonBase<UIManager>, IPointerEnterHandler
         theSaveNLoad = GetComponent<SaveNLoad>();
     }
 
-
-
     private void Start()
     {
-        OnFadeOut();
+        
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            escOptionPanel.SetActive(!escOptionPanel.activeSelf);
+        }
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -38,20 +45,56 @@ public class UIManager : SingletonBase<UIManager>, IPointerEnterHandler
 
     public void OpenOptions()
     {
-        ToggleSoundPanel();
+        optionPanel.SetActive(true);
+        AudioManager.Instance.PlaySFX("Click");
     }
 
-    public void ToggleSoundPanel()
+    public void StartGame()
     {
-        OptionPanel.SetActive(true);
-        //AudioManager.Instance.PlaySFX("Click");
+        AudioManager.Instance.PlaySFX("Click");
+        AudioManager.Instance.StopBGM();
+        AudioManager.Instance.PlayBGM("FirstChapter");
+
+        StartCoroutine(LoadSceneWithFadeIn());
+
+        //SceneManager.LoadScene("GameScenePJH");
+        //SceneManager.LoadScene("2. GameScene");
     }
 
-    public void CanelSoundPanel()
+    private IEnumerator LoadSceneWithFadeIn()
     {
-        OptionPanel.SetActive(false);
-        //AudioManager.Instance.PlaySFX("Click");
+        UIManager.Instance.OnFadeIn();
+        yield return new WaitForSeconds(1.0f);
+
+        AsyncOperation operation = SceneManager.LoadSceneAsync("2. GameScene");
+
+        while (!operation.isDone)
+        {
+            yield return null;
+        }
     }
+
+    public void ReturnToMainScene()
+    {
+        AudioManager.Instance.PlaySFX("Click");
+        AudioManager.Instance.StopBGM();
+        StartCoroutine(LoadMainSceneWithFadeIn());
+    }
+
+    private IEnumerator LoadMainSceneWithFadeIn()
+    {
+        escOptionPanel.SetActive(false);
+        UIManager.Instance.OnFadeIn();
+        yield return new WaitForSeconds(1.0f);
+
+        AsyncOperation operation = SceneManager.LoadSceneAsync("1. IntroScene");
+
+        while (!operation.isDone)
+        {
+            yield return null;
+        }
+    }
+
 
     public void ExitGame()
     {
@@ -64,7 +107,12 @@ public class UIManager : SingletonBase<UIManager>, IPointerEnterHandler
 
     public void ExitOption()
     {
-        OptionPanel.SetActive(false);
+        optionPanel.SetActive(false);
+    }
+
+    public void ExitEscOption()
+    {
+        escOptionPanel.SetActive(false);
     }
 
     //public void ClickLoad() //�ҷ����� �׽�Ʈ
@@ -111,29 +159,29 @@ public class UIManager : SingletonBase<UIManager>, IPointerEnterHandler
     private IEnumerator FadeOut(float duration)
     {
         float count = 0;
-        Color imageColor = FadeImage.color;
+        Color imageColor = fadeImage.color;
 
         while ( count < duration)
         {
             count += Time.deltaTime;
             float alphaValue = Mathf.Lerp(1, 0, count/duration);
-            FadeImage.color = new Color(imageColor.r, imageColor.g, imageColor.b, alphaValue);
+            fadeImage.color = new Color(imageColor.r, imageColor.g, imageColor.b, alphaValue);
             yield return null;
         }
-        FadeImage.gameObject.SetActive(false);
+        fadeImage.gameObject.SetActive(false);
     }
 
     private IEnumerator FadeIn(float duration)
     {
-        FadeImage.gameObject.SetActive(true);
+        fadeImage.gameObject.SetActive(true);
         float count = 0;
-        Color imageColor = FadeImage.color;
+        Color imageColor = fadeImage.color;
 
         while (count < duration)
         {
             count += Time.deltaTime;
             float alphaValue = Mathf.Lerp(0, 1, count / duration);
-            FadeImage.color = new Color(imageColor.r, imageColor.g, imageColor.b, alphaValue);
+            fadeImage.color = new Color(imageColor.r, imageColor.g, imageColor.b, alphaValue);
             yield return null;
         }
     }
