@@ -13,7 +13,8 @@ public class IntroSceneUI : MonoBehaviour, IPointerEnterHandler
 
     void Start()
     {
-
+        UIManager.Instance.OnFadeOut();
+        AudioManager.Instance.PlayBGM("Intro");
     }
 
     void Update()

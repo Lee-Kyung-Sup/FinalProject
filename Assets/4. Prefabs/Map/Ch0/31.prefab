@@ -148,6 +148,10 @@ MonoBehaviour:
     pos: {x: 31.93, y: 1.24, z: 0}
   - monsterIndex: 1
     pos: {x: 39.83, y: 1.24, z: 0}
+  - monsterIndex: 7
+    pos: {x: 15.72, y: 6.2, z: 0}
+  - monsterIndex: 7
+    pos: {x: 57.24, y: 4.06, z: 0}
 --- !u!1 &5007333836734547934
 GameObject:
   m_ObjectHideFlags: 0

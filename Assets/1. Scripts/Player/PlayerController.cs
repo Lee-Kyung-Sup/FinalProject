@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour
         // 입력 벡터를 업데이트
         float inputX = context.ReadValue<Vector2>().x;
 
-        if (Keyboard.current.aKey.isPressed == true && Keyboard.current.dKey.isPressed == true)
+        if (Keyboard.current.leftArrowKey.isPressed == true && Keyboard.current.rightArrowKey.isPressed == true)
             return; // 방향키 동시 입력 시 먼저 누른 방향 우선 이동
  
         _inputVector = new Vector2(inputX, 0);

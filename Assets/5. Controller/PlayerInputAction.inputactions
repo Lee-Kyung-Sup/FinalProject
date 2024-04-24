@@ -94,15 +94,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
-                },
-                {
-                    "name": "Setting",
-                    "type": "Button",
-                    "id": "f679493e-8984-4293-a7cf-246e7ac41d02",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -235,17 +226,6 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Deflect",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "a6cc19fd-fba0-4b0c-8f08-2bec7588f363",
-                    "path": "<Keyboard>/escape",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "Setting",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
