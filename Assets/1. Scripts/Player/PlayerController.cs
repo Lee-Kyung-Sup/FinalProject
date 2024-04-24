@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
         InItLockAction();
 
   
-        //TestingOnActions();
+        TestingOnActions();
     }
 
     void FixedUpdate()
@@ -96,7 +96,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnFire(InputAction.CallbackContext context)
     {
-        if (context.started && lockAction[Paction.RangeAttack])
+        if (context.started && lockAction[Paction.ChargeShot])
         {
             _playerAttacks.StartCharging();
         }
