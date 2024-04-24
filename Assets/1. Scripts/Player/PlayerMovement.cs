@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour, IsGroundable
     [Header("Jump Parameters")]
     private int jumpCount = 0;
     private bool isGrounded = false;
-    private bool hasJumped = false; 
+    private bool hasJumped = false;
 
     [Header("Dash Parameters")]
     [SerializeField] private float dashPower = 24f;
@@ -44,7 +44,9 @@ public class PlayerMovement : MonoBehaviour, IsGroundable
     private LayerMask platformLayer;
 
     private float walkSoundTimer = 0f;
-    private float walkSoundInterval = 0.5f; 
+    private float walkSoundInterval = 0.5f;
+
+    private bool hasTouchedPlatform = false;
 
 
 
@@ -176,7 +178,7 @@ public class PlayerMovement : MonoBehaviour, IsGroundable
             AudioManager.Instance.PlaySFX("Jump"); // 점프소리 JHP
             rb.velocity = new Vector2(rb.velocity.x, 0); // 수직 속도 초기화
             rb.AddForce(Vector2.up * playerStatus.JumpPower, ForceMode2D.Impulse);
-            
+
             jumpCount++; // 점프 횟수 증가 (첫 번째 점프)
             hasJumped = true;
             playerAnimations.Jumping();
@@ -204,8 +206,8 @@ public class PlayerMovement : MonoBehaviour, IsGroundable
 
     public void Dash()
     {
-        if (canDash && !isDashing && playerStatus.Stamina >= 25) 
-            // 대쉬가 가능하고 현재 대쉬 중이 아닐 때 + 플레이어 스태미너 25이상
+        if (canDash && !isDashing && playerStatus.Stamina >= 25)
+        // 대쉬가 가능하고 현재 대쉬 중이 아닐 때 + 플레이어 스태미너 25이상
         {
             AudioManager.Instance.PlaySFX("Dash"); // 대시소리 JHP
             isDashing = true;
@@ -298,4 +300,15 @@ public class PlayerMovement : MonoBehaviour, IsGroundable
         isKnockedBack = false;
     }
 
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Platform")) 
+        {
+            if (!hasTouchedPlatform)
+            {
+                FindObjectOfType<SkillPanelController>().ShowSkillPopup(7);
+                hasTouchedPlatform = true;
+            }
+        }
+    }
 }
