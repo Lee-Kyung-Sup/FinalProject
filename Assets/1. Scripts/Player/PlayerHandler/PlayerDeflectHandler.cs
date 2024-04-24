@@ -45,7 +45,6 @@ public class PlayerDeflectHandler : MonoBehaviour
                     collision.gameObject.GetComponent<IDamageable>()?.TakeDamage(deflectBullet.damage);
                 }
 
-
             }
         }
     }

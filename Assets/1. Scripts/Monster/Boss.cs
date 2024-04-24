@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class Boss : MonoBehaviour
+public class Boss : MonoBehaviour, IDamageable
 {
     public string enemyName;
     public float speed;
@@ -35,7 +35,7 @@ public class Boss : MonoBehaviour
     {
         if(enemyName == "B")
         {
-            currentHp = 400;
+            currentHp = 100;
             Invoke("Stop", 1);
             //InvokeRepeating("Stop", 1, 1);
         }
@@ -294,7 +294,7 @@ public class Boss : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void Hit(int dmg)
+    public void TakeDamage(int dmg)
     {
         if(currentHp <= 0)
         {
@@ -327,7 +327,6 @@ public class Boss : MonoBehaviour
         }
         if (collision.transform.tag == ("PlayerAttackBox"))
         {
-            Hit(10); // 임시로 데미지 10함
         }
     }
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class BossTwo : MonoBehaviour
+public class BossTwo : MonoBehaviour, IDamageable
 {
     public string enemyName;
     public float speed;
@@ -277,7 +277,7 @@ public class BossTwo : MonoBehaviour
     //    rb.velocity = (initialPosition - (Vector2)transform.position).normalized * distance * 1f;
        
     //}
-    public void Hit(int dmg)
+    public void TakeDamage(int dmg)
     {
         if (currentHp <= 0)
         {
@@ -318,7 +318,7 @@ public class BossTwo : MonoBehaviour
        
         if (collision.transform.tag == ("PlayerAttackBox"))
         {
-            Hit(10); // 임시로 데미지 10함
+            //Hit(10); // 임시로 데미지 10함
             isHit= true;
         }
     }

@@ -192,7 +192,7 @@ public class Monster : MonoBehaviour, IsGroundable, IDamageable
     {
         if (((1 << collision.gameObject.layer) & (1 << 19)) != 0) // 19 : 플레이어 어택박스 레이어
         {
-            //TakeDamage(1);
+            
         }
     }
 
