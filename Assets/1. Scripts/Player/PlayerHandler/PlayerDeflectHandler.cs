@@ -17,7 +17,7 @@ public class PlayerDeflectHandler : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (((1 << collision.gameObject.layer) & ((1 << 11) | (1 << 12))) != 0) // 11. Projectile  12. EnemyBullet
+        if (((1 << collision.gameObject.layer) & ((1 << 12))) != 0) // 12. EnemyBullet
         {
             Rigidbody2D bulletRb = collision.GetComponent<Rigidbody2D>();
 
@@ -47,6 +47,8 @@ public class PlayerDeflectHandler : MonoBehaviour
                     int damage = playerStatus.attackPower[AttackTypes.DeflectionAttack];
                     deflectBullet.Initialize(AttackTypes.DeflectionAttack, damage);
                 }
+
+                AudioManager.Instance.PlaySFX("DeflectHit");
             }
         }
     }

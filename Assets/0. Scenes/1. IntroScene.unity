@@ -11537,7 +11537,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -12711,48 +12711,50 @@ MonoBehaviour:
   - name: SecondBoss
     clip: {fileID: 0}
   sfxSounds:
+  - name: Click
+    clip: {fileID: 8300000, guid: e24133a7595a2c8408af8d73f0289779, type: 3}
+  - name: Cursor
+    clip: {fileID: 8300000, guid: f888a0d0523353a409482f2415bfc054, type: 3}
+  - name: Victory
+    clip: {fileID: 8300000, guid: a2b51b225bf36d84d8229678edb7762e, type: 3}
+  - name: GameOver
+    clip: {fileID: 8300000, guid: fe3018dbfd00f04429fa5b0feab4ac61, type: 3}
+  - name: Hunt
+    clip: {fileID: 0}
+  - name: Get
+    clip: {fileID: 8300000, guid: 3701591439d62044eb2ec54a4a8ad4d5, type: 3}
   - name: Step
     clip: {fileID: 8300000, guid: 8aad32fd1dd148d438ce57e2b2a30581, type: 3}
   - name: Jump
     clip: {fileID: 8300000, guid: c294067150bcdec469a9d9aa63c146dc, type: 3}
   - name: Dash
-    clip: {fileID: 8300000, guid: 13182107f288fdc47a11f9216c8f062b, type: 3}
+    clip: {fileID: 8300000, guid: 391cc9682082e5a4a9ef0503f89c2847, type: 3}
   - name: Attack
-    clip: {fileID: 8300000, guid: 80151380c0f818243b66a78ef69c9fcd, type: 3}
-  - name: RangeAttack
-    clip: {fileID: 8300000, guid: 24252664d1f41c140864d611ea092c18, type: 3}
-  - name: Get
-    clip: {fileID: 8300000, guid: 3701591439d62044eb2ec54a4a8ad4d5, type: 3}
-  - name: Hunt
-    clip: {fileID: 0}
-  - name: GameOver
-    clip: {fileID: 8300000, guid: fe3018dbfd00f04429fa5b0feab4ac61, type: 3}
-  - name: Victory
-    clip: {fileID: 8300000, guid: a2b51b225bf36d84d8229678edb7762e, type: 3}
-  - name: Cursor
-    clip: {fileID: 8300000, guid: f888a0d0523353a409482f2415bfc054, type: 3}
-  - name: Click
-    clip: {fileID: 8300000, guid: e24133a7595a2c8408af8d73f0289779, type: 3}
+    clip: {fileID: 8300000, guid: 50ab2af47dd365e41b759a07104af85d, type: 3}
   - name: Attack2
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 9e8e34faf1791f3469d1b43cdc6930e6, type: 3}
   - name: Attack3
-    clip: {fileID: 8300000, guid: c7dfaade8a16d6f4e953914319840ee9, type: 3}
+    clip: {fileID: 8300000, guid: 266a92e55f9f1e9479901516da66f8e8, type: 3}
+  - name: RangeAttack
+    clip: {fileID: 8300000, guid: 836b0dea87a01b844a6eeac282ab11d4, type: 3}
   - name: JumpAttack
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 0a277d874bea7f94b97db28871cd6fdd, type: 3}
   - name: Charging
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: a84eb0420ab8b194380d97a02241c480, type: 3}
   - name: ChargeShot
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: c7dfaade8a16d6f4e953914319840ee9, type: 3}
   - name: Deflect
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 2f3a5af21ca2fae4faacea66ecbee551, type: 3}
   - name: MeleeHit
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 804d44c55d6e2ab42a520853a56a949b, type: 3}
   - name: RangeHit
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: b39d6403d15218f45aaa986b8f4f8b15, type: 3}
+  - name: DeflectHit
+    clip: {fileID: 8300000, guid: 24eb59f3be8fddd4a8befa1ebe9276b9, type: 3}
   - name: OnDamaged
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 377c418b53943c943a01d02e28443517, type: 3}
   - name: Death
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 04d81822a361f444b96b6ff2df262c38, type: 3}
   bgmSource: {fileID: 119980553390703012}
   sfxSource: {fileID: 8262140667995928085}
 --- !u!1 &2097760720368908233
@@ -16380,7 +16382,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 0
   Mute: 0

@@ -41,6 +41,7 @@ public class DeflectBullet : MonoBehaviour
             if (damageable != null)
             {
                 damageable.TakeDamage(damage);
+                AudioManager.Instance.PlaySFX("RangeHit");
             }
             ResetToEnemyBullet();
         }
