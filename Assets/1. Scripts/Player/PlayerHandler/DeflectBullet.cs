@@ -1,19 +1,51 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class DeflectBullet : MonoBehaviour
 {
     public AttackTypes attackType;
     public int damage;
+    private Coroutine timeoutCoroutine;
 
     public void Initialize(AttackTypes attackType, int damage)
     {
         this.attackType = attackType;
         this.damage = damage;
+
+        if (timeoutCoroutine != null)
+        {
+            StopCoroutine(timeoutCoroutine);
+        }
+
+        timeoutCoroutine = StartCoroutine(ResetAfterDelay(5f));
     }
+
+    private IEnumerator ResetAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        ResetToEnemyBullet();
+        Debug.Log("적 투사체 자동 리턴");
+    }
+
+    public void ResetToEnemyBullet() // 적 투사체 복구 메서드
+    {
+        gameObject.layer = 12; // EnemyBullet 레이어로 복구
+        gameObject.SetActive(false);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (((1 << collision.gameObject.layer) & (1 << 7)) != 0) // 7: 몬스터
+        {
+            IDamageable damageable = collision.GetComponent<IDamageable>();
+            if (damageable != null)
+            {
+                damageable.TakeDamage(damage);
+            }
+            ResetToEnemyBullet();
+        }
+    }
+}
 
     //private void OnTriggerEnter2D(Collider2D collision)
     //{
@@ -47,4 +79,4 @@ public class DeflectBullet : MonoBehaviour
     //    Vector3 directionToCollision = (collisionColliderCenter - bulletColliderCenter).normalized;
     //    return collisionColliderCenter - directionToCollision * 0.2f; // 효과 위치를 약간 조정
     //}
-}
+

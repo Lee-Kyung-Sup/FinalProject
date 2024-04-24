@@ -318,8 +318,12 @@ public class BossTwo : MonoBehaviour, IDamageable
        
         if (((1 << collision.gameObject.layer) & (1 << 19) | (1 << 20)) != 0) // 19 : 플레이어 어택박스 레이어 , 20: 플레이어 불렛
         {
-            //Hit(10); // 임시 데미지
-            isHit= true;
+            DeflectBullet deflectBullet = collision.GetComponent<DeflectBullet>();
+            if (deflectBullet != null)
+            {
+                TakeDamage(deflectBullet.damage);
+            }
+            isHit = true;
         }
     }
 

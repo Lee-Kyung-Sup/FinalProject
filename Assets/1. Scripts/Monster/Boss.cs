@@ -246,10 +246,10 @@ public class Boss : MonoBehaviour, IDamageable
         {
             
             Vector3 thisScale = transform.localScale;
-            Debug.Log(bossDir);
+            //Debug.Log(bossDir);
             if (bossDir)
             {
-                Debug.Log("b");
+                //Debug.Log("b");
                 thisScale.x = -Mathf.Abs(thisScale.x);
 
             }
@@ -264,10 +264,10 @@ public class Boss : MonoBehaviour, IDamageable
         else
         {
             Vector3 thisScale = transform.localScale;
-            Debug.Log(bossDir);
+            //Debug.Log(bossDir);
             if (!bossDir)
             {
-                Debug.Log("b");
+                //Debug.Log("b");
                 thisScale.x = -Mathf.Abs(thisScale.x);
 
             }
@@ -300,6 +300,7 @@ public class Boss : MonoBehaviour, IDamageable
         {
             return;
         }
+        Debug.Log($"받은 데미지 : {dmg}");
         currentHp -= dmg;
 
         if (currentHp <= 0 && enemyName =="B")
@@ -325,9 +326,13 @@ public class Boss : MonoBehaviour, IDamageable
             gameObject.SetActive(false);
             transform.rotation = Quaternion.identity;
         }
-        if (((1 << collision.gameObject.layer) & (1 << 19) | (1 << 20)) != 0) // 19 : 플레이어 어택박스 레이어 , 20: 플레이어 불렛
+        if (((1 << collision.gameObject.layer) | (1 << 19) |(1 << 20)) != 0) // 19 : 플레이어 어택박스 레이어 , 20: 플레이어 불렛
         {
-
+            DeflectBullet deflectBullet = collision.GetComponent<DeflectBullet>();
+            if (deflectBullet != null)
+            {
+                TakeDamage(deflectBullet.damage);
+            }
         }
     }
 

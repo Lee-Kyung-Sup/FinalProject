@@ -12,6 +12,8 @@ TagManager:
   - EnemyBullet
   - PlayerAttackBox
   - FieldItem
+  - Deflect
+  - PlayerObject
   layers:
   - Default
   - TransparentFX

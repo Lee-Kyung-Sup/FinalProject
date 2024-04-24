@@ -21,6 +21,10 @@ public class Bullet : MonoBehaviour
     {
         if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "Player")
         {
+            if (gameObject.layer == 20)
+            {
+                gameObject.layer = 12;
+            }
             gameObject.SetActive(false);
         }
     }

@@ -23,6 +23,10 @@ public class PlayerDeflectHandler : MonoBehaviour
 
             if(bulletRb != null )
             {
+                Vector3 scale = collision.transform.localScale;
+                scale.x *= -1;
+                collision.transform.localScale = scale;
+
                 GameObject effect = ObjectManager.Instance.MakeObj("PlayerDeflectEffect"); // 풀에서 이펙트 가져옴
                 if (effect != null)
                 {
@@ -35,16 +39,14 @@ public class PlayerDeflectHandler : MonoBehaviour
                 bulletRb.velocity = deflectDirection;
 
                 collision.gameObject.layer = 20; // 플레이어 bullet
-                collision.gameObject.tag = "PlayerAttackBox";
+                //collision.gameObject.tag = "PlayerAttackBox";
 
                 DeflectBullet deflectBullet = collision.gameObject.GetComponent<DeflectBullet>();
                 if (deflectBullet != null && playerStatus != null)
                 {
                     int damage = playerStatus.attackPower[AttackTypes.DeflectionAttack];
                     deflectBullet.Initialize(AttackTypes.DeflectionAttack, damage);
-                    collision.gameObject.GetComponent<IDamageable>()?.TakeDamage(deflectBullet.damage);
                 }
-
             }
         }
     }
