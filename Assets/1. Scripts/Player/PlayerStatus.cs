@@ -70,7 +70,7 @@ public class PlayerStatus : MonoBehaviour, IDamageable
     void Start()
     {
         StatInit();
-
+        currentSceneName = "2. GameScene";
         playerUI = FindObjectOfType<PlayerUI>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         playerMovement = GetComponent<PlayerMovement>();

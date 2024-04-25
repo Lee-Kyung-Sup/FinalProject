@@ -71,7 +71,7 @@ public class UIManager : SingletonBase<UIManager>, IPointerEnterHandler
         {
             yield return null;
         }
-
+        MapMaker.Instance.StartMake();
         //theSaveNLoad = FindObjectOfType<SaveNLoad>(); //추가작성
         //theSaveNLoad.CallLoad();
     }

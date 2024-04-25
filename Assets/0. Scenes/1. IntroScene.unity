@@ -12892,8 +12892,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8733877023748560347}
-        m_TargetAssemblyTypeName: IntroSceneUI, Assembly-CSharp
+      - m_Target: {fileID: 331660277625686906}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: StartGame
         m_Mode: 1
         m_Arguments:
@@ -16114,8 +16114,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8733877023748560347}
-        m_TargetAssemblyTypeName: IntroSceneUI, Assembly-CSharp
+      - m_Target: {fileID: 331660277625686906}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: StartGame
         m_Mode: 1
         m_Arguments:

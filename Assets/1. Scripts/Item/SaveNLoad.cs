@@ -3,6 +3,7 @@ using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine.SceneManagement;
+using System.Collections;
 //using System.Security.Cryptography;
 //using Unity.VisualScripting;
 
@@ -55,7 +56,7 @@ public class SaveNLoad : MonoBehaviour
         data.playerY = thePlayer.transform.position.y; //맵 끼임 방지를 위한 y좌표값 3 더하기
         data.playerZ = thePlayer.transform.position.z;
 
-        //data.sceneName = thePlayerStat.currentSceneName;
+        data.sceneName = thePlayerStat.currentSceneName;
 
         Debug.Log("기초 데이터 성공");
 
@@ -103,21 +104,28 @@ public class SaveNLoad : MonoBehaviour
     }
     public void CallLoad()
     {
+
+        StartCoroutine(Te());
+        
+    }
+
+
+    IEnumerator Te()
+    {
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Open(Application.dataPath + "/SaveFile.dat", FileMode.Open);
 
-        if(file != null && file.Length > 0 )
+        if (file != null && file.Length > 0)
         {
             data = (Data)bf.Deserialize(file);
-
+            SceneManager.LoadScene(data.sceneName);
+            yield return null;
             theDatabase = FindObjectOfType<DataBaseManager>();
             thePlayerStat = FindObjectOfType<PlayerStatus>();
             theEquip = FindObjectOfType<Equipment>();
             theInven = FindObjectOfType<Inventory>();
 
-            //thePlayerStat.currentSceneName = data.sceneName;
-
-            vector.Set(data.playerX, data.playerY, data.playerZ);
+            thePlayerStat.transform.position = new Vector3(data.playerX, data.playerY, data.playerZ);
 
             theDatabase.var = data.varNumberList.ToArray();
             theDatabase.var_name = data.varNameList.ToArray();
@@ -126,7 +134,7 @@ public class SaveNLoad : MonoBehaviour
 
             for (int i = 0; i < theEquip.equipItemPack.Length; i++)
             {
-                for(int x = 0; x < theDatabase.itemList.Count; x++)
+                for (int x = 0; x < theDatabase.itemList.Count; x++)
                 {
                     if (data.playerEquipItem[i] == theDatabase.itemList[x].itemID)
                     {
@@ -152,7 +160,7 @@ public class SaveNLoad : MonoBehaviour
                 }
             }
 
-            for(int i = 0; i < data.playerItemInventoryCount.Count; i++)
+            for (int i = 0; i < data.playerItemInventoryCount.Count; i++)
             {
                 itemList[i].itemCount = data.playerItemInventoryCount[i];
             }
@@ -160,11 +168,9 @@ public class SaveNLoad : MonoBehaviour
             theInven.LoadItem(itemList);
 
 
-            UIManager theGM = FindObjectOfType<UIManager>();
-            theGM.LoadStart();
-
-            //SceneManager.LoadScene(data.sceneName);
-            MapMaker.Instance.curMapId = data.mapNumber;
+            //UIManager theGM = FindObjectOfType<UIManager>();
+            //theGM.LoadStart();
+            MapMaker.Instance.StartMake(data.mapNumber);
         }
         else
         {
@@ -173,13 +179,7 @@ public class SaveNLoad : MonoBehaviour
 
         file.Close();
 
-
-
-        
     }
-
-
-
 
 
 
