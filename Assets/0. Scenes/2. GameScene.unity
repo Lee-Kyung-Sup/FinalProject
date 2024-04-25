@@ -1145,7 +1145,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8402167034448964666, guid: d6fefdd2f8ac8fc4a9667a5bc6a5b240, type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 8402167034448964666, guid: d6fefdd2f8ac8fc4a9667a5bc6a5b240, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2951,7 +2951,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7113148863447231974, guid: 41f8c19ab2c5d4e4e95b25e22bcc20fd, type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 7113148863447231974, guid: 41f8c19ab2c5d4e4e95b25e22bcc20fd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3875,7 +3875,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59d06293f199e6e499465c7597fd358b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curMapId: 23
+  curMapId: 0
 --- !u!4 &1365856619
 Transform:
   m_ObjectHideFlags: 0

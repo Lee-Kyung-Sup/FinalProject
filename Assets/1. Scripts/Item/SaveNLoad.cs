@@ -120,7 +120,6 @@ public class SaveNLoad : MonoBehaviour
             thePlayerStat.currentSceneName = data.sceneName;
 
             vector.Set(data.playerX, data.playerY, data.playerZ);
-            MapMaker.Instance.curMapId = data.mapNumber;
 
             theDatabase.var = data.varNumberList.ToArray();
             theDatabase.var_name = data.varNameList.ToArray();
@@ -167,6 +166,7 @@ public class SaveNLoad : MonoBehaviour
             theGM.LoadStart();
 
             SceneManager.LoadScene(data.sceneName);
+            MapMaker.Instance.curMapId = data.mapNumber;
         }
         else
         {
