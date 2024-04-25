@@ -65,7 +65,7 @@ public class PlayerStatus : MonoBehaviour, IDamageable
     public int MaxJumpCount => maxJumpCount;
     public float Stamina => stamina;
 
-    public string currentSceneName; //저장을 위한 추가작성 JHP
+    public string currentSceneName = "2. GameScene"; //저장을 위한 추가작성 JHP
 
     void Start()
     {
