@@ -46,8 +46,8 @@ public class PlayerStatus : MonoBehaviour, IDamageable
     [Header("Stats Parameter")]
     public Stat playerHealth;
     [SerializeField] private float stamina = 100;
-    [SerializeField] private float staminaRecoveryRate = 100;
-    [SerializeField] private float staminaRecoveryDelay = 1f;
+    [SerializeField] private float staminaRecoveryRate = 50;
+    [SerializeField] private float staminaRecoveryDelay = 0.5f;
 
     private float lastStaminaUseTime;
     private float maxStamina;
@@ -105,6 +105,7 @@ public class PlayerStatus : MonoBehaviour, IDamageable
     {
         if (isDamaged) return;
 
+        AudioManager.Instance.PlaySFX("OnDamaged");
         OnInvincible();
         isDamaged = true;
         playerAnimations.GetHit();
@@ -113,6 +114,7 @@ public class PlayerStatus : MonoBehaviour, IDamageable
 
         if (playerHealth.health <= 0)
         {
+            AudioManager.Instance.PlaySFX("Death");
             PlayerDead();
         }
         StartCoroutine(ResetDamage()); // 일정 시간 후에 isDamaged 리셋
@@ -184,12 +186,10 @@ public class PlayerStatus : MonoBehaviour, IDamageable
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
-        if (((1 << collision.gameObject.layer) & ((1 << 7) | (1 << 12))) != 0) // 7. 몬스터 ,  12. 에네미 불렛
+        if (((1 << collision.gameObject.layer) & ((1 << 7)  |(1 << 12))) != 0) // 7. 몬스터 ,  12. 에네미 불렛
         { 
-
             TakeDamage(1);
             playerMovement.OnKnockback(collision.transform.position);
-
         }
     }
 }

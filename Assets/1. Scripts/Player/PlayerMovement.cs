@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour, IsGroundable
     [Header("Jump Parameters")]
     private int jumpCount = 0;
     private bool isGrounded = false;
-    private bool hasJumped = false; 
+    private bool hasJumped = false;
 
     [Header("Dash Parameters")]
     [SerializeField] private float dashPower = 24f;
@@ -44,7 +44,9 @@ public class PlayerMovement : MonoBehaviour, IsGroundable
     private LayerMask platformLayer;
 
     private float walkSoundTimer = 0f;
-    private float walkSoundInterval = 0.5f; 
+    private float walkSoundInterval = 0.6f;
+
+    private bool hasTouchedPlatform = false;
 
 
 
@@ -145,10 +147,11 @@ public class PlayerMovement : MonoBehaviour, IsGroundable
                 transform.localScale = new Vector3(inputX > 0 ? 1 : -1, 1, 1);
                 UnFlipPlayerUI();
 
-                if (walkSoundTimer <= 0)
+                // 이동 중이고, 땅에 있을 때만
+                if (isGrounded && walkSoundTimer <= 0)
                 {
                     AudioManager.Instance.PlaySFX("Step");
-                    walkSoundTimer = walkSoundInterval; // 타이머를 재설정
+                    walkSoundTimer = walkSoundInterval; 
                 }
             }
 
@@ -176,7 +179,7 @@ public class PlayerMovement : MonoBehaviour, IsGroundable
             AudioManager.Instance.PlaySFX("Jump"); // 점프소리 JHP
             rb.velocity = new Vector2(rb.velocity.x, 0); // 수직 속도 초기화
             rb.AddForce(Vector2.up * playerStatus.JumpPower, ForceMode2D.Impulse);
-            
+
             jumpCount++; // 점프 횟수 증가 (첫 번째 점프)
             hasJumped = true;
             playerAnimations.Jumping();
@@ -204,8 +207,8 @@ public class PlayerMovement : MonoBehaviour, IsGroundable
 
     public void Dash()
     {
-        if (canDash && !isDashing && playerStatus.Stamina >= 25) 
-            // 대쉬가 가능하고 현재 대쉬 중이 아닐 때 + 플레이어 스태미너 25이상
+        if (canDash && !isDashing && playerStatus.Stamina >= 30)
+        // 대쉬가 가능하고 현재 대쉬 중이 아닐 때 + 플레이어 스태미너 30이상
         {
             AudioManager.Instance.PlaySFX("Dash"); // 대시소리 JHP
             isDashing = true;
@@ -221,7 +224,7 @@ public class PlayerMovement : MonoBehaviour, IsGroundable
             tr.emitting = true; // 대쉬 효과 
             rb.velocity = new Vector2(transform.localScale.x * dashPower, rb.velocity.y);
 
-            playerStatus.UseStamina(25); // 스태미너 사용
+            playerStatus.UseStamina(30); // 스태미너 사용
             StartCoroutine(DashCooldown()); // 대쉬 쿨다운 코루틴
         }
     }
@@ -298,4 +301,15 @@ public class PlayerMovement : MonoBehaviour, IsGroundable
         isKnockedBack = false;
     }
 
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Platform")) 
+        {
+            if (!hasTouchedPlatform)
+            {
+                FindObjectOfType<SkillPanelController>().ShowSkillPopup(7);
+                hasTouchedPlatform = true;
+            }
+        }
+    }
 }

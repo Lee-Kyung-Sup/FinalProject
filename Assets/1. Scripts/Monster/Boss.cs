@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class Boss : MonoBehaviour
+public class Boss : MonoBehaviour, IDamageable
 {
     public string enemyName;
     public float speed;
@@ -35,7 +35,7 @@ public class Boss : MonoBehaviour
     {
         if(enemyName == "B")
         {
-            currentHp = 400;
+            currentHp = 100;
             Invoke("Stop", 1);
             //InvokeRepeating("Stop", 1, 1);
         }
@@ -246,10 +246,10 @@ public class Boss : MonoBehaviour
         {
             
             Vector3 thisScale = transform.localScale;
-            Debug.Log(bossDir);
+            //Debug.Log(bossDir);
             if (bossDir)
             {
-                Debug.Log("b");
+                //Debug.Log("b");
                 thisScale.x = -Mathf.Abs(thisScale.x);
 
             }
@@ -264,10 +264,10 @@ public class Boss : MonoBehaviour
         else
         {
             Vector3 thisScale = transform.localScale;
-            Debug.Log(bossDir);
+            //Debug.Log(bossDir);
             if (!bossDir)
             {
-                Debug.Log("b");
+                //Debug.Log("b");
                 thisScale.x = -Mathf.Abs(thisScale.x);
 
             }
@@ -294,12 +294,13 @@ public class Boss : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void Hit(int dmg)
+    public void TakeDamage(int dmg)
     {
         if(currentHp <= 0)
         {
             return;
         }
+        Debug.Log($"받은 데미지 : {dmg}");
         currentHp -= dmg;
 
         if (currentHp <= 0 && enemyName =="B")
@@ -325,9 +326,13 @@ public class Boss : MonoBehaviour
             gameObject.SetActive(false);
             transform.rotation = Quaternion.identity;
         }
-        if (collision.transform.tag == ("PlayerAttackBox"))
+        if (((1 << collision.gameObject.layer) | (1 << 19) |(1 << 20)) != 0) // 19 : 플레이어 어택박스 레이어 , 20: 플레이어 불렛
         {
-            Hit(10); // 임시로 데미지 10함
+            DeflectBullet deflectBullet = collision.GetComponent<DeflectBullet>();
+            if (deflectBullet != null)
+            {
+                TakeDamage(deflectBullet.damage);
+            }
         }
     }
 

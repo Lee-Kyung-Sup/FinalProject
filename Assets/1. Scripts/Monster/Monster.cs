@@ -1,7 +1,7 @@
 using System.Collections;
-using UnityEditor.SceneManagement;
+
 using UnityEngine;
-using UnityEngine.InputSystem.XR.Haptics;
+
 
 public class Monster : MonoBehaviour, IsGroundable, IDamageable
 {
@@ -190,9 +190,13 @@ public class Monster : MonoBehaviour, IsGroundable, IDamageable
 
     protected virtual void OnTriggerEnter2D(Collider2D collision) // 트리거로 데미지 감지
     {
-        if (((1 << collision.gameObject.layer) & (1 << 19)) != 0) // 19 : 플레이어 어택박스 레이어
+        if (((1 << collision.gameObject.layer) & (1 << 19) | (1 << 20)) != 0) // 19 : 플레이어 어택박스 레이어 , 20: 플레이어 불렛
         {
-            //TakeDamage(1);
+            DeflectBullet deflectBullet = collision.GetComponent<DeflectBullet>();
+            if (deflectBullet != null)
+            {
+                TakeDamage(deflectBullet.damage);
+            }
         }
     }
 

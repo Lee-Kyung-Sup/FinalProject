@@ -89,6 +89,7 @@ public class PlayerRangeAttackHandler : MonoBehaviour
         int damage = playerStatus.attackPower[attackType];
         collision.gameObject.GetComponent<IDamageable>()?.TakeDamage(damage);
 
+        AudioManager.Instance.PlaySFX("RangeHit");
         Debug.Log($"{collision.gameObject.name}에게 {attackType} 공격 {damage}의 데미지");
     }
 
