@@ -55,7 +55,7 @@ public class SaveNLoad : MonoBehaviour
         data.playerY = thePlayer.transform.position.y; //맵 끼임 방지를 위한 y좌표값 3 더하기
         data.playerZ = thePlayer.transform.position.z;
 
-        data.sceneName = thePlayerStat.currentSceneName;
+        //data.sceneName = thePlayerStat.currentSceneName;
 
         Debug.Log("기초 데이터 성공");
 
@@ -115,7 +115,7 @@ public class SaveNLoad : MonoBehaviour
             theEquip = FindObjectOfType<Equipment>();
             theInven = FindObjectOfType<Inventory>();
 
-            thePlayerStat.currentSceneName = data.sceneName;
+            //thePlayerStat.currentSceneName = data.sceneName;
 
             vector.Set(data.playerX, data.playerY, data.playerZ);
 
@@ -163,7 +163,7 @@ public class SaveNLoad : MonoBehaviour
             UIManager theGM = FindObjectOfType<UIManager>();
             theGM.LoadStart();
 
-            SceneManager.LoadScene(data.sceneName);
+            //SceneManager.LoadScene(data.sceneName);
             MapMaker.Instance.curMapId = data.mapNumber;
         }
         else
