@@ -65,9 +65,7 @@ public class UIManager : SingletonBase<UIManager>, IPointerEnterHandler
 
         AsyncOperation operation = SceneManager.LoadSceneAsync("2. GameScene");
     }
-
-
-
+    
     public void LoadGame()
     {
         AudioManager.Instance.PlaySFX("Click");
@@ -91,9 +89,9 @@ public class UIManager : SingletonBase<UIManager>, IPointerEnterHandler
         //{
         //    yield return null;
         //}
-
-        theSaveNLoad = FindObjectOfType<SaveNLoad>(); //추가작성
-        theSaveNLoad.CallLoad();
+        MapMaker.Instance.StartMake();
+        //theSaveNLoad = FindObjectOfType<SaveNLoad>(); //추가작성
+        //theSaveNLoad.CallLoad();
     }
 
     public void ReturnToMainScene()

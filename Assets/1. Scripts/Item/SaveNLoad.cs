@@ -3,6 +3,7 @@ using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine.SceneManagement;
+using System.Collections;
 //using System.Security.Cryptography;
 //using Unity.VisualScripting;
 
@@ -21,7 +22,7 @@ public class SaveNLoad : MonoBehaviour
         public List<int> playerEquipItem;
 
         public string sceneName;
-        public int mapNumber;//¸Ê¹Þ¾Æ¿À±â
+        public int mapNumber;//ï¿½Ê¹Þ¾Æ¿ï¿½ï¿½ï¿½
 
         public List<bool> swList;
         public List<string> swNameList;
@@ -52,14 +53,14 @@ public class SaveNLoad : MonoBehaviour
         data.mapNumber = MapMaker.Instance.curMapId;
 
         data.playerX = thePlayer.transform.position.x;
-        data.playerY = thePlayer.transform.position.y; //¸Ê ³¢ÀÓ ¹æÁö¸¦ À§ÇÑ yÁÂÇ¥°ª 3 ´õÇÏ±â
+        data.playerY = thePlayer.transform.position.y; //ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ yï¿½ï¿½Ç¥ï¿½ï¿½ 3 ï¿½ï¿½ï¿½Ï±ï¿½
         data.playerZ = thePlayer.transform.position.z;
 
-        //data.sceneName = thePlayerStat.currentSceneName;
+        data.sceneName = thePlayerStat.currentSceneName;
 
-        Debug.Log("±âÃÊ µ¥ÀÌÅÍ ¼º°ø");
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 
-        data.playerItemInventory.Clear(); //·Îµå»óÅÂ¿¡¼­ ÀúÀåÇÏ¿© Áßº¹À¸·Î ÀÎÇÑ ¾ÆÀÌÅÛ º¹»ç ¹æÁö
+        data.playerItemInventory.Clear(); //ï¿½Îµï¿½ï¿½ï¿½Â¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ßºï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         data.playerItemInventoryCount.Clear();
         data.playerEquipItem.Clear();
 
@@ -78,7 +79,7 @@ public class SaveNLoad : MonoBehaviour
 
         for(int i = 0; i < itemList.Count; i++)
         {
-            Debug.Log("ÀÎº¥Åä¸®ÀÇ ¾ÆÀÌÅÛ ÀúÀå ¿Ï·á :" + itemList[i].itemID);
+            Debug.Log("ï¿½Îºï¿½ï¿½ä¸®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½ :" + itemList[i].itemID);
             data.playerItemInventory.Add(itemList[i].itemID);
             data.playerItemInventoryCount.Add(itemList[i].itemCount);
         }
@@ -86,7 +87,7 @@ public class SaveNLoad : MonoBehaviour
         for(int i = 0; i < theEquip.equipItemPack.Length; i++)
         {
             data.playerEquipItem.Add(theEquip.equipItemPack[i].itemID);
-            Debug.Log("ÀåÂøµÈ ¾ÆÀÌÅÛ ÀúÀå ¿Ï·á : " + theEquip.equipItemPack[i].itemID);
+            Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½ : " + theEquip.equipItemPack[i].itemID);
         }
 
 
@@ -97,27 +98,34 @@ public class SaveNLoad : MonoBehaviour
         bf.Serialize(file, data);
         file.Close();
 
-        Debug.Log(Application.dataPath + "ÀÇ À§Ä¡¿¡ ÀúÀåÇß½À´Ï´Ù.");
+        Debug.Log(Application.dataPath + "ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½.");
 
 
     }
     public void CallLoad()
     {
+
+        StartCoroutine(Te());
+        
+    }
+
+
+    IEnumerator Te()
+    {
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Open(Application.dataPath + "/SaveFile.dat", FileMode.Open);
 
-        if(file != null && file.Length > 0 )
+        if (file != null && file.Length > 0)
         {
             data = (Data)bf.Deserialize(file);
-
+            SceneManager.LoadScene(data.sceneName);
+            yield return null;
             theDatabase = FindObjectOfType<DataBaseManager>();
             thePlayerStat = FindObjectOfType<PlayerStatus>();
             theEquip = FindObjectOfType<Equipment>();
             theInven = FindObjectOfType<Inventory>();
 
-            //thePlayerStat.currentSceneName = data.sceneName;
-
-            vector.Set(data.playerX, data.playerY, data.playerZ);
+            thePlayerStat.transform.position = new Vector3(data.playerX, data.playerY, data.playerZ);
 
             theDatabase.var = data.varNumberList.ToArray();
             theDatabase.var_name = data.varNameList.ToArray();
@@ -126,12 +134,12 @@ public class SaveNLoad : MonoBehaviour
 
             for (int i = 0; i < theEquip.equipItemPack.Length; i++)
             {
-                for(int x = 0; x < theDatabase.itemList.Count; x++)
+                for (int x = 0; x < theDatabase.itemList.Count; x++)
                 {
                     if (data.playerEquipItem[i] == theDatabase.itemList[x].itemID)
                     {
                         theEquip.equipItemPack[i] = theDatabase.itemList[x];
-                        Debug.Log("ÀåÂøµÈ ¾ÆÀÌÅÛÀ» ·ÎµåÇß½À´Ï´Ù :" + theEquip.equipItemPack[i].itemID);
+                        Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½ :" + theEquip.equipItemPack[i].itemID);
                         break;
                     }
                 }
@@ -146,13 +154,13 @@ public class SaveNLoad : MonoBehaviour
                     if (data.playerItemInventory[i] == theDatabase.itemList[x].itemID)
                     {
                         itemList.Add(theDatabase.itemList[x]);
-                        Debug.Log("ÀÎº¥Åä¸® ¾ÆÀÌÅÛÀ» ·ÎµåÇß½À´Ï´Ù :" + theDatabase.itemList[x].itemID);
+                        Debug.Log("ï¿½Îºï¿½ï¿½ä¸® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½ :" + theDatabase.itemList[x].itemID);
                         break;
                     }
                 }
             }
 
-            for(int i = 0; i < data.playerItemInventoryCount.Count; i++)
+            for (int i = 0; i < data.playerItemInventoryCount.Count; i++)
             {
                 itemList[i].itemCount = data.playerItemInventoryCount[i];
             }
@@ -160,26 +168,18 @@ public class SaveNLoad : MonoBehaviour
             theInven.LoadItem(itemList);
 
 
-            UIManager theGM = FindObjectOfType<UIManager>();
-            theGM.LoadStart();
-
-            SceneManager.LoadScene(data.sceneName);
-            MapMaker.Instance.curMapId = data.mapNumber;
+            //UIManager theGM = FindObjectOfType<UIManager>();
+            //theGM.LoadStart();
+            MapMaker.Instance.StartMake(data.mapNumber);
         }
         else
         {
-            Debug.Log("ÀúÀåµÈ ¼¼ÀÌºê ÆÄÀÏÀÌ ¾ø½À´Ï´Ù.");
+            Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
         }
 
         file.Close();
 
-
-
-        
     }
-
-
-
 
 
 
