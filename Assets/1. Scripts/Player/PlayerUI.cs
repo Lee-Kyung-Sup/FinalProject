@@ -46,6 +46,7 @@ public class PlayerUI : MonoBehaviour
         Time.timeScale = 1;
         gameOverUI.SetActive(false);
         SceneManager.LoadScene("2. GameScene");
+        MapMaker.Instance.StartMake();
     }
 }
 
