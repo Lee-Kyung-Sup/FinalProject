@@ -117,7 +117,6 @@ public class UIManager : SingletonBase<UIManager>, IPointerEnterHandler
         escOptionPanel.SetActive(false);
     }
 
-
     public void LoadStart() //저장을 위한 추가작성 JHP
     {
         StartCoroutine(LoadWaitCoroutine());
