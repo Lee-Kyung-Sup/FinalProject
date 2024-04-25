@@ -64,6 +64,8 @@ public class UIManager : SingletonBase<UIManager>, IPointerEnterHandler
         yield return new WaitForSeconds(1.0f);
 
         AsyncOperation operation = SceneManager.LoadSceneAsync("2. GameScene");
+
+        MapMaker.Instance.StartMake();
     }
     
     public void LoadGame()
