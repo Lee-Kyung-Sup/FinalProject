@@ -2092,6 +2092,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abaf5c54dd79bf74590e49834b5afd54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  data:
+    playerX: 0
+    playerY: 0
+    playerZ: 0
+    playerItemInventory: 
+    playerItemInventoryCount: 
+    playerEquipItem: 
+    sceneName: 
+    swList: 
+    swNameList: []
+    varNameList: []
+    varNumberList: []
 --- !u!4 &552354037
 Transform:
   m_ObjectHideFlags: 0
@@ -11077,7 +11089,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputField: {fileID: 4155397901339863216}
   Information: {fileID: 3538617640154233321}
-  SelectCharacter: {fileID: 0}
   characterSprite: {fileID: 4370612417885517323}
 --- !u!114 &5262610374249179053
 MonoBehaviour:
@@ -14231,7 +14242,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputField: {fileID: 1846725771886880864}
   Information: {fileID: 1229943191016749369}
-  SelectCharacter: {fileID: 0}
   characterSprite: {fileID: 2066479295464634075}
 --- !u!114 &7566785621470750589
 MonoBehaviour:

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static UnityEditor.Progress;
+using static UnityEngine.Rendering.DebugUI;
 
 public class DataBaseManager : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class DataBaseManager : MonoBehaviour
             DontDestroyOnLoad(this.gameObject);
             Instance = this;
         }
+
+
     } //싱글톤
     private PlayerStatus thePlayerStat;
 
@@ -33,11 +36,11 @@ public class DataBaseManager : MonoBehaviour
         switch(_itemID)
         {
             case 50001:
-                //thePlayerStat.playerHealth.health++; // 이렇게 작성하면 오류발생
                 Debug.Log("체력이 전부 회복되었습니다");
                 break;
             case 50003:
                 Debug.Log("스태미너가 회복되었습니다.");
+
                 break;
             case 60001:
                 break;
