@@ -62,7 +62,7 @@ public class Boss : MonoBehaviour, IDamageable
         //patternIndex = patternIndex == 3 ? 0 : patternIndex + 1;
         
         
-            if (currentHp > 200)
+            if (currentHp > 150)
             {
                 patternIndex = 0; // 체력이 70 이상이면 패턴 0 실행
             }
