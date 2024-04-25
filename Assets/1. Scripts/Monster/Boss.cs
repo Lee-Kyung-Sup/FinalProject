@@ -116,7 +116,7 @@ public class Boss : MonoBehaviour, IDamageable
         
         Vector2 dirVec = player.transform.position - transform.position;
 
-        rbR.AddForce(dirVec * 3, ForceMode2D.Impulse);
+        rbR.AddForce(dirVec * 2, ForceMode2D.Impulse);
         //rbL.AddForce(dirVec * 3, ForceMode2D.Impulse);
       
         curPatternCount++;
