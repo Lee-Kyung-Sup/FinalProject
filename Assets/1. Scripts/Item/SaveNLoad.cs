@@ -38,15 +38,11 @@ public class SaveNLoad : MonoBehaviour
     private DataBaseManager theDatabase;
     private Inventory theInven;
     private Equipment theEquip;
-    private MapMaker themap; //맵받아오기
+
 
     public Data data;
     private Vector3 vector;
 
-    public void SaveData()
-    {
-        thePlayer = FindObjectOfType<PlayerController>();
-    }
 
     public void CallSave()
     { 
@@ -55,10 +51,10 @@ public class SaveNLoad : MonoBehaviour
         thePlayerStat = FindObjectOfType<PlayerStatus>();
         theEquip = FindObjectOfType<Equipment>();
         theInven = FindObjectOfType<Inventory>();
-        themap = FindObjectOfType<MapMaker>(); //맵받아오기
+        data.mapNumber = MapMaker.Instance.curMapId;
 
         data.playerX = thePlayer.transform.position.x;
-        data.playerY = thePlayer.transform.position.y + 3; //맵 끼임 방지를 위한 y좌표값 3 더하기
+        data.playerY = thePlayer.transform.position.y; //맵 끼임 방지를 위한 y좌표값 3 더하기
         data.playerZ = thePlayer.transform.position.z;
 
         data.sceneName = thePlayerStat.currentSceneName;
@@ -94,10 +90,8 @@ public class SaveNLoad : MonoBehaviour
             data.playerEquipItem.Add(theEquip.equipItemPack[i].itemID);
             Debug.Log("장착된 아이템 저장 완료 : " + theEquip.equipItemPack[i].itemID);
         }
-        //----------------------------------------------------------- //맵받아오기
 
 
-        //-----------------------------------------------------------
 
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.dataPath + "/SaveFile.dat");
@@ -119,15 +113,14 @@ public class SaveNLoad : MonoBehaviour
             data = (Data)bf.Deserialize(file);
 
             theDatabase = FindObjectOfType<DataBaseManager>();
-            thePlayer = FindObjectOfType<PlayerController>();
             thePlayerStat = FindObjectOfType<PlayerStatus>();
             theEquip = FindObjectOfType<Equipment>();
             theInven = FindObjectOfType<Inventory>();
 
             thePlayerStat.currentSceneName = data.sceneName;
 
-            vector.Set(data.playerX, data.playerY + 3, data.playerZ); //맵 끼임 방지를 위한 y좌표값 3 더하기
-            thePlayer.transform.position = vector;
+            vector.Set(data.playerX, data.playerY, data.playerZ);
+            MapMaker.Instance.curMapId = data.mapNumber;
 
             theDatabase.var = data.varNumberList.ToArray();
             theDatabase.var_name = data.varNameList.ToArray();
