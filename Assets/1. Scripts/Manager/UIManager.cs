@@ -64,6 +64,11 @@ public class UIManager : SingletonBase<UIManager>, IPointerEnterHandler
         yield return new WaitForSeconds(1.0f);
 
         AsyncOperation operation = SceneManager.LoadSceneAsync("2. GameScene");
+        while (!operation.isDone)
+        {
+            yield return null;
+        }
+        MapMaker.Instance.StartMake();
     }
     
     public void LoadGame()
@@ -85,13 +90,12 @@ public class UIManager : SingletonBase<UIManager>, IPointerEnterHandler
 
         AsyncOperation operation = SceneManager.LoadSceneAsync("2. GameScene");
 
-        //while (!operation.isDone)
-        //{
-        //    yield return null;
-        //}
-        MapMaker.Instance.StartMake();
-        //theSaveNLoad = FindObjectOfType<SaveNLoad>(); //추가작성
-        //theSaveNLoad.CallLoad();
+        while (!operation.isDone)
+        {
+            yield return null;
+        }
+        theSaveNLoad = FindObjectOfType<SaveNLoad>(); //추가작성
+        theSaveNLoad.CallLoad();
     }
 
     public void ReturnToMainScene()
