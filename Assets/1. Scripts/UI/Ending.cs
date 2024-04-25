@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Ending : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class Ending : MonoBehaviour
         Invoke("congratsMent", 2f);
         Invoke("congratsCancel", 5f);
         Invoke("endCredit", 10f);
+        Invoke("introScene", 23f);
     }
 
     void congratsMent()
@@ -26,6 +28,15 @@ public class Ending : MonoBehaviour
     {
         credit.SetActive(true);
     }
+
+    void introScene()
+    {
+        SceneManager.LoadScene("1. IntroScene");
+
+    }
+
+    
+
 
 
 
