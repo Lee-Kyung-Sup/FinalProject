@@ -1,10 +1,8 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine.SceneManagement;
-using UnityEditor.U2D.Aseprite;
 //using System.Security.Cryptography;
 //using Unity.VisualScripting;
 
@@ -22,8 +20,8 @@ public class SaveNLoad : MonoBehaviour
         public List<int> playerItemInventoryCount;
         public List<int> playerEquipItem;
 
-        //public string sceneName;
-        //public int mapNumber;//맵받아오기
+        public string sceneName;
+        public int mapNumber;//맵받아오기
 
         public List<bool> swList;
         public List<string> swNameList;
@@ -34,7 +32,7 @@ public class SaveNLoad : MonoBehaviour
     }
 
     private PlayerController thePlayer;
-    //private PlayerStatus thePlayerStat;
+    private PlayerStatus thePlayerStat;
     private DataBaseManager theDatabase;
     private Inventory theInven;
     private Equipment theEquip;
@@ -48,16 +46,16 @@ public class SaveNLoad : MonoBehaviour
     { 
         theDatabase = FindObjectOfType<DataBaseManager>();
         thePlayer = FindObjectOfType<PlayerController>();
-        //thePlayerStat = FindObjectOfType<PlayerStatus>();
+        thePlayerStat = FindObjectOfType<PlayerStatus>();
         theEquip = FindObjectOfType<Equipment>();
         theInven = FindObjectOfType<Inventory>();
-        //data.mapNumber = MapMaker.Instance.curMapId; //맵받아오기
+        data.mapNumber = MapMaker.Instance.curMapId;
 
         data.playerX = thePlayer.transform.position.x;
-        data.playerY = thePlayer.transform.position.y;
+        data.playerY = thePlayer.transform.position.y; //맵 끼임 방지를 위한 y좌표값 3 더하기
         data.playerZ = thePlayer.transform.position.z;
 
-        //data.sceneName = thePlayerStat.currentSceneName;
+        data.sceneName = thePlayerStat.currentSceneName;
 
         Debug.Log("기초 데이터 성공");
 
@@ -101,10 +99,10 @@ public class SaveNLoad : MonoBehaviour
 
         Debug.Log(Application.dataPath + "의 위치에 저장했습니다.");
 
+
     }
     public void CallLoad()
     {
-
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Open(Application.dataPath + "/SaveFile.dat", FileMode.Open);
 
@@ -113,14 +111,13 @@ public class SaveNLoad : MonoBehaviour
             data = (Data)bf.Deserialize(file);
 
             theDatabase = FindObjectOfType<DataBaseManager>();
-            //thePlayerStat = FindObjectOfType<PlayerStatus>();
+            thePlayerStat = FindObjectOfType<PlayerStatus>();
             theEquip = FindObjectOfType<Equipment>();
             theInven = FindObjectOfType<Inventory>();
 
-            //thePlayerStat.currentSceneName = data.sceneName;
+            thePlayerStat.currentSceneName = data.sceneName;
 
             vector.Set(data.playerX, data.playerY, data.playerZ);
-            //MapMaker.Instance.curMapId = data.mapNumber; //맵받아오기
 
             theDatabase.var = data.varNumberList.ToArray();
             theDatabase.var_name = data.varNameList.ToArray();
@@ -166,7 +163,8 @@ public class SaveNLoad : MonoBehaviour
             UIManager theGM = FindObjectOfType<UIManager>();
             theGM.LoadStart();
 
-            //SceneManager.LoadScene("2. GameScene");
+            SceneManager.LoadScene(data.sceneName);
+            MapMaker.Instance.curMapId = data.mapNumber;
         }
         else
         {
@@ -175,5 +173,15 @@ public class SaveNLoad : MonoBehaviour
 
         file.Close();
 
+
+
+        
     }
+
+
+
+
+
+
+
 }

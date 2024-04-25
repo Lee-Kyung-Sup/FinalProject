@@ -887,6 +887,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: item_FirstSword
       objectReference: {fileID: 0}
+    - target: {fileID: 2986062699811146934, guid: 1a0882552561d8b489ae5604cf1fbb54, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7441126031565152144, guid: 1a0882552561d8b489ae5604cf1fbb54, type: 3}
       propertyPath: m_RootOrder
       value: 10
@@ -3875,7 +3879,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59d06293f199e6e499465c7597fd358b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curMapId: 23
+  curMapId: 35
 --- !u!4 &1365856619
 Transform:
   m_ObjectHideFlags: 0

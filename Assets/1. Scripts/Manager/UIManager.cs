@@ -72,8 +72,8 @@ public class UIManager : SingletonBase<UIManager>, IPointerEnterHandler
             yield return null;
         }
 
-        theSaveNLoad = FindObjectOfType<SaveNLoad>(); //추가작성
-        theSaveNLoad.CallLoad();
+        //theSaveNLoad = FindObjectOfType<SaveNLoad>(); //추가작성
+        //theSaveNLoad.CallLoad();
     }
 
     public void ReturnToMainScene()
@@ -125,9 +125,14 @@ public class UIManager : SingletonBase<UIManager>, IPointerEnterHandler
 
     IEnumerator LoadWaitCoroutine()
     {
+        //UIManager.Instance.OnFadeIn();
+        yield return new WaitForSeconds(1.0f);
+
         theSaveNLoad.CallLoad(); //재확인
         yield return new WaitForSeconds(0.5f);
         thePlayerStat = FindObjectOfType<PlayerStatus>();
+
+        //UIManager.Instance.OnFadeOut();
     }
 
 

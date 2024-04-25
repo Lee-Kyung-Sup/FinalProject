@@ -7,10 +7,13 @@ public class DeflectBullet : MonoBehaviour
     public int damage;
     private Coroutine timeoutCoroutine;
 
+    public bool isReflected = false;
+
     public void Initialize(AttackTypes attackType, int damage)
     {
         this.attackType = attackType;
         this.damage = damage;
+        isReflected = true;
 
         if (timeoutCoroutine != null)
         {
@@ -29,6 +32,13 @@ public class DeflectBullet : MonoBehaviour
 
     public void ResetToEnemyBullet() // 적 투사체 복구 메서드
     {
+        if (isReflected)
+        {
+            Vector3 scale = transform.localScale;
+            scale.x *= -1;
+            transform.localScale = scale; // scale 반전 해제
+            isReflected = false;
+        }
         gameObject.layer = 12; // EnemyBullet 레이어로 복구
         gameObject.SetActive(false);
     }
