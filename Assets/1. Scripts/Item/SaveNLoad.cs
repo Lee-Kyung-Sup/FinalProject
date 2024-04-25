@@ -4,6 +4,7 @@ using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine.SceneManagement;
+using UnityEditor.U2D.Aseprite;
 //using System.Security.Cryptography;
 //using Unity.VisualScripting;
 
@@ -22,6 +23,7 @@ public class SaveNLoad : MonoBehaviour
         public List<int> playerEquipItem;
 
         public string sceneName;
+        public int mapNumber;//맵받아오기
 
         public List<bool> swList;
         public List<string> swNameList;
@@ -36,6 +38,7 @@ public class SaveNLoad : MonoBehaviour
     private DataBaseManager theDatabase;
     private Inventory theInven;
     private Equipment theEquip;
+    private MapMaker themap; //맵받아오기
 
     public Data data;
     private Vector3 vector;
@@ -52,6 +55,7 @@ public class SaveNLoad : MonoBehaviour
         thePlayerStat = FindObjectOfType<PlayerStatus>();
         theEquip = FindObjectOfType<Equipment>();
         theInven = FindObjectOfType<Inventory>();
+        themap = FindObjectOfType<MapMaker>(); //맵받아오기
 
         data.playerX = thePlayer.transform.position.x;
         data.playerY = thePlayer.transform.position.y + 3; //맵 끼임 방지를 위한 y좌표값 3 더하기
@@ -90,6 +94,10 @@ public class SaveNLoad : MonoBehaviour
             data.playerEquipItem.Add(theEquip.equipItemPack[i].itemID);
             Debug.Log("장착된 아이템 저장 완료 : " + theEquip.equipItemPack[i].itemID);
         }
+        //----------------------------------------------------------- //맵받아오기
+
+
+        //-----------------------------------------------------------
 
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.dataPath + "/SaveFile.dat");
@@ -98,6 +106,8 @@ public class SaveNLoad : MonoBehaviour
         file.Close();
 
         Debug.Log(Application.dataPath + "의 위치에 저장했습니다.");
+
+
     }
     public void CallLoad()
     {
