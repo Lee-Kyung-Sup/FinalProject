@@ -23,9 +23,24 @@ public class Bullet : MonoBehaviour
         {
             if (gameObject.layer == 20)
             {
-                gameObject.layer = 12;
+                if (collision.gameObject.tag == "Ground")
+                {
+                    ResetToEnemyBullet();
+                }
             }
             gameObject.SetActive(false);
         }
+    }
+
+    private void ResetToEnemyBullet()
+    {
+        if (GetComponent<DeflectBullet>().isReflected)
+        {
+            Vector3 scale = transform.localScale;
+            scale.x *= -1;
+            transform.localScale = scale;
+            GetComponent<DeflectBullet>().isReflected = false;
+        }
+        gameObject.layer = 12;
     }
 }
