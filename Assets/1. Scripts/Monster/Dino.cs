@@ -25,7 +25,7 @@ public class Dino : Monster
         base.Awake();
         moveSpeed = 3f;
         jumpPower = 10f;
-        currentHp = 6;
+        currentHp = 40;
         atkCoolTime = 3f;
         atkCoolTimeCalc = atkCoolTime;
 

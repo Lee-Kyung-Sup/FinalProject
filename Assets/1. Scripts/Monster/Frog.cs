@@ -27,7 +27,7 @@ public class Frog : Monster
         base.Awake();
         moveSpeed = 1f;
         jumpPower = 15f;
-        currentHp = 4;
+        currentHp = 30;
         atkCoolTime = 3f;
         atkCoolTimeCalc = atkCoolTime;
 

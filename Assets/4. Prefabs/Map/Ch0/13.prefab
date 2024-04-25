@@ -130,7 +130,7 @@ Transform:
   - {fileID: 2847378151628112137}
   - {fileID: 5959346878938720997}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &2453572082999923107
 BoxCollider2D:
@@ -192,6 +192,8 @@ MonoBehaviour:
   callList:
   - monsterIndex: 2
     pos: {x: 16.7, y: -30.28, z: 0}
+  - monsterIndex: 1
+    pos: {x: 4.8, y: -6.3, z: 0}
 --- !u!1 &3537010809644154359
 GameObject:
   m_ObjectHideFlags: 0

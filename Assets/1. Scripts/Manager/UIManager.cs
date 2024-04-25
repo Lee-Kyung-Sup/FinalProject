@@ -40,6 +40,12 @@ public class UIManager : SingletonBase<UIManager>, IPointerEnterHandler
         AudioManager.Instance.PlaySFX("Cursor");
     }
 
+    public void LoadGameSceneWithStartMake()
+    {
+        SceneManager.LoadScene("2. GameScene");
+        //MapMaker.Instance.StartMake();
+    }
+
     // --------------------------------------------------------------
 
     public void OpenOptions()
@@ -68,7 +74,7 @@ public class UIManager : SingletonBase<UIManager>, IPointerEnterHandler
         {
             yield return null;
         }
-        MapMaker.Instance.StartMake();
+        //MapMaker.Instance.StartMake();
     }
     
     public void LoadGame()

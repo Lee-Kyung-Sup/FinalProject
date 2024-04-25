@@ -14,6 +14,7 @@ public class Bunny : Monster
         base.Awake();
         moveSpeed = 2f;
         jumpPower = 15f;
+        currentHp = 20;
     }
 
     protected void GroundCheck()

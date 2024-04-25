@@ -11,7 +11,7 @@ public class Bat : Monster
     
     private bool playerinRange = false;
     public float detectionRange = 20f;
-    private bool canAttack = false;
+    //private bool canAttack = false;
     public float attackRange = 1f;
     protected CircleCollider2D circleCollider;
     private SpriteRenderer spriteRenderer;
@@ -20,8 +20,7 @@ public class Bat : Monster
     {
         Idle,
         Move
-        
-        
+
     };
 
     public State currentState = State.Idle;

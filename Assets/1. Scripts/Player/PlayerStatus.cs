@@ -25,13 +25,13 @@ public class PlayerStatus : MonoBehaviour, IDamageable
 
         attackPower = new Dictionary<AttackTypes, int>
         {
-            { AttackTypes.MeleeAttack, 3 },
-            { AttackTypes.RangeAttack, 1 },
-            { AttackTypes.JumpAttack, 3 },
-            { AttackTypes.ComboAttack1, 3 },
-            { AttackTypes.ComboAttack2, 5 },
-            { AttackTypes.ChargeShot, 3 },
-            { AttackTypes. DeflectionAttack, 5 },
+            { AttackTypes.MeleeAttack, 5 },
+            { AttackTypes.RangeAttack, 2 },
+            { AttackTypes.JumpAttack, 4 },
+            { AttackTypes.ComboAttack1, 6 },
+            { AttackTypes.ComboAttack2, 10 },
+            { AttackTypes.ChargeShot, 4 },
+            { AttackTypes. DeflectionAttack, 10 },
         };
     }
 

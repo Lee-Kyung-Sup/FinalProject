@@ -8,6 +8,7 @@ public class GameSceneUI : MonoBehaviour
 
     void Start()
     {
+        MapMaker.Instance.StartMake();
         UIManager.Instance.OnFadeOut();
         EscButton.onClick.AddListener(ToggleEscPanel);
     }

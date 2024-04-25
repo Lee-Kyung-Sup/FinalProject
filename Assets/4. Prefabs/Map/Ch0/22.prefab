@@ -7236,6 +7236,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4703752661656826374}
   - component: {fileID: 2077115403286554631}
+  - component: {fileID: 7979310684090462148}
   m_Layer: 0
   m_Name: 22
   m_TagString: Untagged
@@ -7259,7 +7260,7 @@ Transform:
   - {fileID: 6245606999240861254}
   - {fileID: 278584580777635621}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &2077115403286554631
 BoxCollider2D:
@@ -7306,6 +7307,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 30.22268, y: 20.54287}
   m_EdgeRadius: 0
+--- !u!114 &7979310684090462148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 955281361747328329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7910bd3512917584c9db0e41d03e086e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  callList:
+  - monsterIndex: 7
+    pos: {x: -10, y: -4, z: 0}
 --- !u!1 &2333414805400203274
 GameObject:
   m_ObjectHideFlags: 0

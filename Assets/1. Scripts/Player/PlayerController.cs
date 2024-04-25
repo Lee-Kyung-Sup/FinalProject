@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
         InItLockAction();
 
   
-        TestingOnActions();
+        //TestingOnActions();
     }
 
     void FixedUpdate()
