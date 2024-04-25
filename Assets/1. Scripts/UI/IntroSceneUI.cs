@@ -8,7 +8,6 @@ using UnityEngine.SceneManagement;
 public class IntroSceneUI : MonoBehaviour
 {
     [SerializeField] GameObject startPanel;
-    [SerializeField] GameObject loadGamePanel;
     [SerializeField] GameObject CharacterMenu;
 
     void Start()
@@ -48,31 +47,6 @@ public class IntroSceneUI : MonoBehaviour
         CharacterMenu.SetActive(true);
     }
 
-
-    public void StartGame()
-    {
-        AudioManager.Instance.PlaySFX("Click");
-        AudioManager.Instance.StopBGM();
-        AudioManager.Instance.PlayBGM("FirstChapter");
-
-        StartCoroutine(LoadSceneWithFadeIn());
-
-        //SceneManager.LoadScene("GameScenePJH");
-        //SceneManager.LoadScene("2. GameScene");
-    }
-
-    private IEnumerator LoadSceneWithFadeIn()
-    {
-        UIManager.Instance.OnFadeIn(); 
-        yield return new WaitForSeconds(1.0f); 
-
-        AsyncOperation operation = SceneManager.LoadSceneAsync("2. GameScene");
-
-        //while (!operation.isdone)
-        //{
-        //    yield return null;
-        //}
-    }
 
     public void IntroOptions()
     {
