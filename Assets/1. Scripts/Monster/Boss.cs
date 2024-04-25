@@ -35,7 +35,7 @@ public class Boss : MonoBehaviour, IDamageable
     {
         if(enemyName == "B")
         {
-            currentHp = 100;
+            currentHp = 200;
             Invoke("Stop", 1);
             //InvokeRepeating("Stop", 1, 1);
         }
@@ -62,11 +62,11 @@ public class Boss : MonoBehaviour, IDamageable
         //patternIndex = patternIndex == 3 ? 0 : patternIndex + 1;
         
         
-            if (currentHp > 350)
+            if (currentHp > 150)
             {
                 patternIndex = 0; // 체력이 70 이상이면 패턴 0 실행
             }
-            else if (currentHp >150)
+            else if (currentHp >100)
             {
                 patternIndex = 1; // 체력이 40 이상이면 패턴 1 실행
             }
@@ -116,7 +116,7 @@ public class Boss : MonoBehaviour, IDamageable
         
         Vector2 dirVec = player.transform.position - transform.position;
 
-        rbR.AddForce(dirVec * 3, ForceMode2D.Impulse);
+        rbR.AddForce(dirVec * 2, ForceMode2D.Impulse);
         //rbL.AddForce(dirVec * 3, ForceMode2D.Impulse);
       
         curPatternCount++;

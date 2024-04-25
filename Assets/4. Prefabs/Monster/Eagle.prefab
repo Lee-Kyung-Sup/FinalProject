@@ -185,7 +185,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: B
   speed: 2
-  currentHp: 100
+  currentHp: 400
   sprites: []
   bossDir: 0
   maxShotDelay: 1
