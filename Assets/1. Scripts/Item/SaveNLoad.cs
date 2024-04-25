@@ -163,7 +163,7 @@ public class SaveNLoad : MonoBehaviour
             UIManager theGM = FindObjectOfType<UIManager>();
             theGM.LoadStart();
 
-            //SceneManager.LoadScene(data.sceneName);
+            SceneManager.LoadScene(data.sceneName);
             MapMaker.Instance.curMapId = data.mapNumber;
         }
         else

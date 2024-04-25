@@ -48,6 +48,7 @@ public class UIManager : SingletonBase<UIManager>, IPointerEnterHandler
         AudioManager.Instance.PlaySFX("Click");
     }
 
+
     public void StartGame()
     {
         AudioManager.Instance.PlaySFX("Click");
@@ -55,9 +56,6 @@ public class UIManager : SingletonBase<UIManager>, IPointerEnterHandler
         AudioManager.Instance.PlayBGM("FirstChapter");
 
         StartCoroutine(LoadSceneWithFadeIn());
-
-        //SceneManager.LoadScene("GameScenePJH");
-        //SceneManager.LoadScene("2. GameScene");
     }
 
     private IEnumerator LoadSceneWithFadeIn()
@@ -66,14 +64,36 @@ public class UIManager : SingletonBase<UIManager>, IPointerEnterHandler
         yield return new WaitForSeconds(1.0f);
 
         AsyncOperation operation = SceneManager.LoadSceneAsync("2. GameScene");
+    }
 
-        while (!operation.isDone)
-        {
-            yield return null;
-        }
 
-        //theSaveNLoad = FindObjectOfType<SaveNLoad>(); //추가작성
-        //theSaveNLoad.CallLoad();
+
+    public void LoadGame()
+    {
+        AudioManager.Instance.PlaySFX("Click");
+        AudioManager.Instance.StopBGM();
+        AudioManager.Instance.PlayBGM("FirstChapter");
+
+        StartCoroutine(LoadGameSceneWithFadeIn());
+
+        //SceneManager.LoadScene("GameScenePJH");
+        //SceneManager.LoadScene("2. GameScene");
+    }
+
+    private IEnumerator LoadGameSceneWithFadeIn()
+    {
+        UIManager.Instance.OnFadeIn();
+        yield return new WaitForSeconds(1.0f);
+
+        AsyncOperation operation = SceneManager.LoadSceneAsync("2. GameScene");
+
+        //while (!operation.isDone)
+        //{
+        //    yield return null;
+        //}
+
+        theSaveNLoad = FindObjectOfType<SaveNLoad>(); //추가작성
+        theSaveNLoad.CallLoad();
     }
 
     public void ReturnToMainScene()
@@ -117,6 +137,7 @@ public class UIManager : SingletonBase<UIManager>, IPointerEnterHandler
         escOptionPanel.SetActive(false);
     }
 
+
     public void LoadStart() //저장을 위한 추가작성 JHP
     {
         StartCoroutine(LoadWaitCoroutine());
@@ -124,14 +145,9 @@ public class UIManager : SingletonBase<UIManager>, IPointerEnterHandler
 
     IEnumerator LoadWaitCoroutine()
     {
-        //UIManager.Instance.OnFadeIn();
-        yield return new WaitForSeconds(1.0f);
-
         theSaveNLoad.CallLoad(); //재확인
         yield return new WaitForSeconds(0.5f);
         thePlayerStat = FindObjectOfType<PlayerStatus>();
-
-        //UIManager.Instance.OnFadeOut();
     }
 
 

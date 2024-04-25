@@ -68,10 +68,10 @@ public class IntroSceneUI : MonoBehaviour
 
         AsyncOperation operation = SceneManager.LoadSceneAsync("2. GameScene");
 
-        while (!operation.isDone)
-        {
-            yield return null;
-        }
+        //while (!operation.isdone)
+        //{
+        //    yield return null;
+        //}
     }
 
     public void IntroOptions()
