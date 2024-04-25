@@ -71,6 +71,9 @@ public class UIManager : SingletonBase<UIManager>, IPointerEnterHandler
         {
             yield return null;
         }
+
+        theSaveNLoad = FindObjectOfType<SaveNLoad>(); //추가작성
+        theSaveNLoad.CallLoad();
     }
 
     public void ReturnToMainScene()
