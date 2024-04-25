@@ -11,12 +11,11 @@ public class UIManager : SingletonBase<UIManager>, IPointerEnterHandler
     [Header("Options")]
     [SerializeField] private Image fadeImage;
     [SerializeField] private GameObject optionPanel;
-    [SerializeField] private GameObject escOptionPanel;
+    public GameObject escOptionPanel;
 
     public SaveNLoad theSaveNLoad; //�����׽�Ʈ
 
     private PlayerStatus thePlayerStat; //저장을 위한 추가작성 JHP
-    //private PlayerController thePlayer; //저장을 위한 추가작성 JHP
 
     private void Awake()
     {
@@ -72,6 +71,9 @@ public class UIManager : SingletonBase<UIManager>, IPointerEnterHandler
         {
             yield return null;
         }
+
+        theSaveNLoad = FindObjectOfType<SaveNLoad>(); //추가작성
+        theSaveNLoad.CallLoad();
     }
 
     public void ReturnToMainScene()
@@ -115,11 +117,6 @@ public class UIManager : SingletonBase<UIManager>, IPointerEnterHandler
         escOptionPanel.SetActive(false);
     }
 
-    //public void ClickLoad() //�ҷ����� �׽�Ʈ
-    //{
-    //    Debug.Log("�ҷ�����");
-    //    StartCoroutine(LoadCoroutine()); //�ҷ����⿡ ����Ǵ� ���޼���
-    //}
 
     public void LoadStart() //저장을 위한 추가작성 JHP
     {
@@ -128,22 +125,12 @@ public class UIManager : SingletonBase<UIManager>, IPointerEnterHandler
 
     IEnumerator LoadWaitCoroutine()
     {
+        theSaveNLoad.CallLoad(); //재확인
         yield return new WaitForSeconds(0.5f);
         thePlayerStat = FindObjectOfType<PlayerStatus>();
     }
 
-    //IEnumerator LoadCoroutine()  //�ҷ����⿡ ����Ǵ� ���޼���
-    //{
-    //    AsyncOperation operation = SceneManager.LoadSceneAsync("2. GameScene");
 
-    //    while(!operation.isDone)
-    //    {
-    //        yield return null;
-    //    }
-    //    //theSaveNLoad = FindObjectOfType<SaveNLoad>();
-    //    theSaveNLoad.LoadData();
-    //    //Destroy(gameObject);
-    //}
 
 
     // -------------------------Fade In & Out--------------------------------

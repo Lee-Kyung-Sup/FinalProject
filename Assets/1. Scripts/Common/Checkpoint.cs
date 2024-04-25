@@ -21,7 +21,7 @@ public class Checkpoint : MonoBehaviour
         }
         else
         {
-            Debug.Log("세이브실패");
+            //Debug.Log("세이브실패");
         }
     }
 

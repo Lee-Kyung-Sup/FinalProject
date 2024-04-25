@@ -25,6 +25,7 @@ public class PlayerAttacks : MonoBehaviour
     private float chargeTime = 0f;
     private bool isCharging = false;
     private bool isFullCharge = false;
+    private bool hasStartedCharging = false;
 
     [Header("Melee Attack Parameter")]
     [SerializeField] private float attackDelay = 0.1f;
@@ -95,11 +96,18 @@ public class PlayerAttacks : MonoBehaviour
         {
             chargeTime += Time.deltaTime;
 
-            if (chargeTime > 0.15f)
+            if (chargeTime > 0.15f && !hasStartedCharging)
             {
-                playerAnimations.Charging(true); // 충전 애니메이션 시작
+                playerAnimations.Charging(true); // 충전 애니메이션 
+                AudioManager.Instance.PlaySFX("Charging");
+                hasStartedCharging = true; // 차징 시작 상태
             }
         }
+        else
+        {
+            hasStartedCharging = false; // 차징 끝
+        }
+
         if (isCharging && !isFullCharge && chargeTime >= maxChargeTime)
         {
             isFullCharge = true;
@@ -113,6 +121,7 @@ public class PlayerAttacks : MonoBehaviour
     {
         if (Time.time - lastFireTime >= fireDelay)
         {
+            AudioManager.Instance.PlaySFX("RangeAttack");
             currentAttackType = AttackTypes.RangeAttack;
             CreateBullet("PlayerBullet", ShotPower, false);
         }
@@ -120,9 +129,11 @@ public class PlayerAttacks : MonoBehaviour
 
     public void ChargeShot()
     {
-        currentAttackType = AttackTypes.ChargeShot;
-        playerAnimations.FireEffect();
-        CreateBullet("PlayerChargeBullet", ChargeShotPower, true);
+            AudioManager.Instance.PlaySFX("ChargeShot");
+            currentAttackType = AttackTypes.ChargeShot;
+            playerAnimations.FireEffect();
+            CreateBullet("PlayerChargeBullet", ChargeShotPower, true);
+            playerStatus.UseStamina(30); 
     }
 
 
@@ -215,7 +226,7 @@ public class PlayerAttacks : MonoBehaviour
                 case 1:
                     if (_playerController.LockAction[Paction.ComboAttack])
                     {
-                        AudioManager.Instance.PlaySFX("Attack");
+                        AudioManager.Instance.PlaySFX("Attack2");
                         currentAttackType = AttackTypes.ComboAttack1;
                         PerformAttack(AttackTypes.ComboAttack1, meleeAttackCollider_2);
                         playerAnimations.Attacking2();
@@ -229,9 +240,9 @@ public class PlayerAttacks : MonoBehaviour
                     }
                     break;
                 case 2:
-                    if (playerStatus.Stamina >= 25 && _playerController.LockAction[Paction.ComboAttack])
+                    if (playerStatus.Stamina >= 30 && _playerController.LockAction[Paction.ComboAttack])
                     {
-                        AudioManager.Instance.PlaySFX("Attack");
+                        AudioManager.Instance.PlaySFX("Attack3");
                         currentAttackType = AttackTypes.ComboAttack2;
                         PerformAttack(AttackTypes.ComboAttack2, meleeAttackCollider_2);
                         playerAnimations.Attacking3();
@@ -239,7 +250,7 @@ public class PlayerAttacks : MonoBehaviour
                         attackSequence = 0;
                         attackTimer = attackDelay; // 기본 공격으로 돌아가기 전 딜레이
 
-                        playerStatus.UseStamina(25);
+                        playerStatus.UseStamina(30);
                     }
                     else
                     {
@@ -268,14 +279,15 @@ public class PlayerAttacks : MonoBehaviour
 
     public void JumpAttack()
     {
-        if (canJumpAttack && !playerMovement.IsGround() && playerStatus.Stamina >= 25)
+        if (canJumpAttack && !playerMovement.IsGround() && playerStatus.Stamina >= 30)
         {
+            AudioManager.Instance.PlaySFX("JumpAttack");
             jumpAttackCollider.enabled = true;
-
+            
             currentAttackType = AttackTypes.JumpAttack;
 
             canJumpAttack = false;
-            playerStatus.UseStamina(25);
+            playerStatus.UseStamina(30);
 
             StartCoroutine(MultiHitJumpAttack());
 
@@ -301,13 +313,14 @@ public class PlayerAttacks : MonoBehaviour
 
     public void Deflect()
     {
-        if (Time.time - lastDeflectTime >= deflectCooldown && playerStatus.Stamina >= 25)
+        if (Time.time - lastDeflectTime >= deflectCooldown && playerStatus.Stamina >= 50)
         {
+            AudioManager.Instance.PlaySFX("Deflect");
             currentAttackType = AttackTypes.DeflectionAttack;
             lastDeflectTime = Time.time;
             playerAnimations.Deflection();
             StartCoroutine(OnDeflectZone());
-            playerStatus.UseStamina(25);
+            playerStatus.UseStamina(50);
         }
     }
 

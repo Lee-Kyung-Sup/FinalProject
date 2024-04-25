@@ -6,83 +6,48 @@ using UnityEngine.UI;
 
 public class SoundOptionSettings : MonoBehaviour
 {
-    [SerializeField] private Slider masterVolumeSlider;
-    [SerializeField] private Slider bgmVolumeSlider;
-    [SerializeField] private Slider sfxVolumeSlider;
-    [SerializeField] private Toggle masterVolumeToggle;
-    [SerializeField] private Toggle bgmVolumeToggle;
-    [SerializeField] private Toggle sfxVolumeToggle;
+    public AudioSource bgmAudioSource;
+    public AudioSource sfxAudioSource;
 
-    private AudioManager audioManager;
+    public Slider bgmVolumeSlider;
+    public Slider sfxVolumeSlider;
+
+    public Toggle bgmVolumeToggle;
+    public Toggle sfxVolumeToggle;
 
     void Start()
     {
-        audioManager = AudioManager.Instance;
+        bgmVolumeSlider.value = bgmAudioSource.volume;
+        sfxVolumeSlider.value = sfxAudioSource.volume;
+        bgmVolumeToggle.isOn = bgmAudioSource.volume > 0;
+        sfxVolumeToggle.isOn = sfxAudioSource.volume > 0;
 
-        // ÃÊ±â º¼·ý, Åä±Û »óÅÂ ¼³Á¤
-        UpdateUIWithSoundSettings();
+        bgmVolumeSlider.onValueChanged.AddListener(HandleBgmVolumeSlider);
+        sfxVolumeSlider.onValueChanged.AddListener(HandleSfxVolumeSlider);
+        bgmVolumeToggle.onValueChanged.AddListener(HandleBgmToggle);
+        sfxVolumeToggle.onValueChanged.AddListener(HandleSfxToggle);
     }
 
-    public void UpdateUIWithSoundSettings()
+    void HandleBgmVolumeSlider(float volume)
     {
-        masterVolumeSlider.value = AudioListener.volume;
-        bgmVolumeSlider.value = audioManager.bgmSource.volume;
-        sfxVolumeSlider.value = audioManager.sfxSource.volume;
-
-        masterVolumeToggle.isOn = AudioListener.volume > 0;
-        bgmVolumeToggle.isOn = !audioManager.bgmSource.mute;
-        sfxVolumeToggle.isOn = !audioManager.sfxSource.mute;
+        bgmAudioSource.volume = volume;
+        bgmVolumeToggle.isOn = volume > 0;
     }
 
-    public void SetMasterVolume(float volume)
+    void HandleSfxVolumeSlider(float volume)
     {
-        Debug.Log("SetMasterVolume È£ÃâµÊ. º¼·ý °ª: " + volume);
-        AudioListener.volume = volume;
-        UpdateToggleStates();
+        sfxAudioSource.volume = volume;
+        sfxVolumeToggle.isOn = volume > 0;
     }
 
-    public void SetBGMVolume(float volume)
+    void HandleBgmToggle(bool isOn)
     {
-        Debug.Log("SetBGMVolume È£ÃâµÊ. º¼·ý °ª: " + volume);
-        audioManager.BGMVolume(volume);
+        bgmAudioSource.volume = isOn ? bgmVolumeSlider.value : 0;
     }
 
-    public void SetSFXVolume(float volume)
+    void HandleSfxToggle(bool isOn)
     {
-        Debug.Log("SetSFXVolume È£ÃâµÊ. º¼·ý °ª: " + volume);
-        audioManager.SFXVolume(volume);
-    }
-
-    public void ToggleMasterVolume(bool isOn)
-    {
-        Debug.Log("ToggleMasterVolume È£ÃâµÊ. »óÅÂ: " + isOn);
-        AudioListener.volume = isOn ? 1.0f : 0f;
-        UpdateSliderValues();
-    }
-
-    public void ToggleBGM(bool isOn)
-    {
-        Debug.Log("ToggleBGM È£ÃâµÊ. »óÅÂ: " + isOn);
-        audioManager.ToggleBGM();
-    }
-
-    public void ToggleSFX(bool isOn)
-    {
-        Debug.Log("ToggleSFX È£ÃâµÊ. »óÅÂ: " + isOn);
-        audioManager.ToggleSFX();
-    }
-
-    private void UpdateSliderValues()
-    {
-        masterVolumeSlider.value = AudioListener.volume;
-        bgmVolumeSlider.value = audioManager.bgmSource.volume;
-        sfxVolumeSlider.value = audioManager.sfxSource.volume;
-    }
-
-    private void UpdateToggleStates()
-    {
-        masterVolumeToggle.isOn = AudioListener.volume > 0;
-        bgmVolumeToggle.isOn = !audioManager.bgmSource.mute;
-        sfxVolumeToggle.isOn = !audioManager.sfxSource.mute;
+        sfxAudioSource.volume = isOn ? sfxVolumeSlider.value : 0;
     }
 }
+

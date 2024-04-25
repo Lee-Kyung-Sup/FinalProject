@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -41,13 +38,12 @@ public class PlayerUI : MonoBehaviour
     public void OnGameOverUI()
     {
         gameOverUI.SetActive(true);
-        //AudioManager.Instance.PlaySFX("GameOver");
+        AudioManager.Instance.PlaySFX("GameOver");
     }
 
     public void RetryGame()
     {
         Time.timeScale = 1;
-        //AudioManager.Instance.PlayBGM("FirstChapter"); // 점프소리 JHP
         gameOverUI.SetActive(false);
         SceneManager.LoadScene("2. GameScene");
     }

@@ -26,55 +26,37 @@ public class SkillPanelController : MonoBehaviour
 
     public void ShowSkillPopup(Paction actionType)
     {
+        int index = (int)actionType; // Paction을 인덱스로 변환
+        if (index >= 0 && index < videoClips.Count)
+        {
+            Time.timeScale = 0f;
+            skillPanel.SetActive(true);
 
+            videoPlayer.clip = videoClips[index];
+            skillDescriptionText.text = skillDescriptions[index];
+            skillTitleText.text = skillTitles[index];
+
+            videoPlayer.Play();
+        }
+    }
+
+    public void ShowSkillPopup(int index) // 위와 변수만 다름, 메서드 오버로딩 
+    {
         Time.timeScale = 0f;
 
         skillPanel.SetActive(true);
 
-
-        switch (actionType)
+        if (index >= 0 && index < videoClips.Count)
         {
-            case Paction.DoubleJump:
-                videoPlayer.clip = videoClips[0];
-                skillDescriptionText.text = skillDescriptions[0];
-                skillTitleText.text = skillTitles[0];
-                break;
-            case Paction.Dash:
-                videoPlayer.clip = videoClips[1];
-                skillDescriptionText.text = skillDescriptions[1];
-                skillTitleText.text = skillTitles[1];
-                break;
-            case Paction.RangeAttack:
-                videoPlayer.clip = videoClips[2];
-                skillDescriptionText.text = skillDescriptions[2];
-                skillTitleText.text = skillTitles[2];
-                break;
-            case Paction.ChargeShot:
-                videoPlayer.clip = videoClips[3];
-                skillDescriptionText.text = skillDescriptions[3];
-                skillTitleText.text = skillTitles[3];
-                break;
-            case Paction.JumpAttack:
-                videoPlayer.clip = videoClips[4];
-                skillDescriptionText.text = skillDescriptions[4];
-                skillTitleText.text = skillTitles[4];
-                break;
-            case Paction.Deflect:
-                videoPlayer.clip = videoClips[5];
-                skillDescriptionText.text = skillDescriptions[5];
-                skillTitleText.text = skillTitles[5];
-                break;
-            case Paction.ComboAttack:
-                videoPlayer.clip = videoClips[6];
-                skillDescriptionText.text = skillDescriptions[6];
-                skillTitleText.text = skillTitles[6];
-                break;
+            Time.timeScale = 0f; // 게임 일시정지
+            skillPanel.SetActive(true); // 스킬 패널 활성화
 
-            default:
-                break;
+            videoPlayer.clip = videoClips[index];
+            skillDescriptionText.text = skillDescriptions[index];
+            skillTitleText.text = skillTitles[index];
+
+            videoPlayer.Play(); // 비디오 재생
         }
-
-        videoPlayer.Play();
     }
 
     public void CloseSkillPanel()

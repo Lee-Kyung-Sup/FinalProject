@@ -168,7 +168,7 @@ public class ObjectManager : MonoBehaviour
             case "BulletBossBT":
                 targetPool = bulletBossBT;
                 break;
-            case "FrogBullet":
+            case "frogBullet":
                 targetPool = frogBullet;
                 break;
         }   

@@ -164,7 +164,6 @@ public class SaveNLoad : MonoBehaviour
             theGM.LoadStart();
 
             SceneManager.LoadScene(data.sceneName);
-            //
         }
         else
         {

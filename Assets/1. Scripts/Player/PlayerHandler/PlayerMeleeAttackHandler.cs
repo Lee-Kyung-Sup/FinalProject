@@ -36,9 +36,11 @@ public class PlayerMeleeAttackHandler : MonoBehaviour
             {
                 case AttackTypes.MeleeAttack:
                     effectType = "PlayerMeleeHit";
+                    AudioManager.Instance.PlaySFX("MeleeHit");
                     break;
                 case AttackTypes.JumpAttack:
                     effectType = "PlayerJumpHit";
+                    AudioManager.Instance.PlaySFX("MeleeHit");
                     break;
             }
 

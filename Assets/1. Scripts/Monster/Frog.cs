@@ -17,9 +17,10 @@ public class Frog : Monster
     public Transform[] wallCheck;
     public Transform genPoint;
     public GameObject bullet;
-    public float bulletLifetime = 3f;
-
-    WaitForSeconds Delay5000 = new WaitForSeconds(5f);
+    public float bulletLifetime = 2f;
+    public ObjectManager objectManager;
+    public GameObject player;
+    WaitForSeconds Delay3000 = new WaitForSeconds(3f);
 
     protected override void Awake()
     {
@@ -33,6 +34,11 @@ public class Frog : Monster
         StartCoroutine(FSM());
     }
 
+    protected void Start()
+    {
+        player = GameManager.Instance.Player;
+        objectManager = ObjectManager.Instance;
+    }
     //바닥에 닿았는지 아닌지 체크
     protected void GroundCheck()
     {
@@ -53,7 +59,7 @@ public class Frog : Monster
     }
     IEnumerator FSM()
     {
-        while (currentHp >=0)
+        while (currentHp >= 0)
         {
             yield return StartCoroutine(currentState.ToString());
         }
@@ -63,27 +69,27 @@ public class Frog : Monster
     IEnumerator Idle()
     {
         yield return null;
-        
+
         MyAnimSetTrigger(currentState.ToString());
-        if (Random.value > 0.5f)
-        {
-            //MonsterFlip();
-        }
-        yield return Delay5000;
+        //if (Random.value > 0.5f)
+        //{
+        //    //MonsterFlip();
+        //}
+        yield return Delay3000;
         currentState = State.Run;
-      
+
     }
 
-        IEnumerator Run()
+    IEnumerator Run()
     {
         yield return null;
         float runTime = Random.Range(2f, 3f);
-        
+
         while (runTime > 0)
         {
             MyAnimSetTrigger(currentState.ToString());
             runTime -= Time.deltaTime;
-            
+
             if (!base.Hit)
             {
                 rb.velocity = new Vector2(-transform.localScale.x * moveSpeed, rb.velocity.y);
@@ -158,7 +164,7 @@ public class Frog : Monster
         canAtk = false;
         rb.velocity = new Vector2(0, jumpPower);
         MyAnimSetTrigger(currentState.ToString());
-        
+
 
         yield return null;
         currentState = State.Idle;
@@ -169,7 +175,7 @@ public class Frog : Monster
     //    yield return null;
 
     //    TakeDamage(1);
-       
+
     //    yield return null;
     //    currentState = State.Idle;
     //}
@@ -178,11 +184,11 @@ public class Frog : Monster
     {
         yield return null;
 
-        
+
 
     }
 
-    private List<GameObject> frogbullet = new List<GameObject>();
+    //private List<GameObject> frogbullet = new List<GameObject>();
     public void Fire()
     {
         //GameObject bulletClone = ObjectManager.Instance.MakeObj("FrogBullet"); 
@@ -192,38 +198,46 @@ public class Frog : Monster
         //    bulletClone.transform.rotation = Quaternion.identity;
         //}
 
-        GameObject bulletClone = Instantiate(bullet, genPoint.position, transform.rotation);
+        GameObject bulletClone = objectManager.MakeObj("frogBullet");
+        bulletClone.transform.position = transform.position;
 
-        bulletClone.GetComponent<Rigidbody2D>().velocity = transform.right * -transform.localScale.x * 10f;
-        bulletClone.transform.localScale = new Vector2(transform.localScale.x, 1f);
-        frogbullet.Add(bulletClone);
+        Rigidbody2D rbf = bulletClone.GetComponent<Rigidbody2D>();
 
-        StartCoroutine(DestroyBulletAfterTime(bulletClone));
+        Vector2 dirVec = player.transform.position - transform.position;
+        rbf.AddForce(dirVec * 6, ForceMode2D.Impulse);
+        //    GameObject bulletClone = Instantiate(bullet, genPoint.position, transform.rotation);
+
+        //    bulletClone.GetComponent<Rigidbody2D>().velocity = transform.right * -transform.localScale.x * 10f;
+        //    bulletClone.transform.localScale = new Vector2(transform.localScale.x, 1f);
+        //    frogbullet.Add(bulletClone);
+
+        //    StartCoroutine(DestroyBulletAfterTime(bulletClone));
+        //}
+
+        //IEnumerator DestroyBulletAfterTime(GameObject bullet)
+        //{
+        //    yield return new WaitForSeconds(bulletLifetime);
+        //    Destroy(bullet);
+        //    frogbullet.Remove(bullet);
+        //}
+
+        //protected override void OnTriggerEnter2D(Collider2D collision)
+        //{
+        //    base.OnTriggerEnter2D(collision);
+        //    if (collision.transform.tag == ("Player"))
+        //    {
+        //        Destroy(bullet);
+        //    }
+        //}
+        ////몬스터 데미지 받기
+        //public override void TakeDamage(int dam)
+        //{
+        //    currentHp -= dam;
+        //    isHit = true;
+        //    MyAnimSetTrigger("Hit");
+        //    //() 죽거나 넉백일경우 코드구현하기
+        //    hitBoxCollider.SetActive(false);
+        //}
     }
-
-    IEnumerator DestroyBulletAfterTime(GameObject bullet)
-    {
-        yield return new WaitForSeconds(bulletLifetime);
-        Destroy(bullet);
-        frogbullet.Remove(bullet);
-    }
-
-    //protected override void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    base.OnTriggerEnter2D(collision);
-    //    if (collision.transform.tag == ("Player"))
-    //    {
-    //        Destroy(bullet);
-    //    }
-    //}
-    ////몬스터 데미지 받기
-    //public override void TakeDamage(int dam)
-    //{
-    //    currentHp -= dam;
-    //    isHit = true;
-    //    MyAnimSetTrigger("Hit");
-    //    //() 죽거나 넉백일경우 코드구현하기
-    //    hitBoxCollider.SetActive(false);
-    //}
 }
 

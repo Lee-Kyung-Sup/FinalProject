@@ -163,8 +163,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a2f9544d51ae5c498d61ad2c6d8253f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dmg: 0
-  isAttack: 1
 --- !u!95 &7501431081320855645
 Animator:
   serializedVersion: 5
@@ -199,4 +197,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackType: 0
-  damage: 0
+  damage: 5

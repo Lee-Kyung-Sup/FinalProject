@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class BossTwo : MonoBehaviour
+public class BossTwo : MonoBehaviour, IDamageable
 {
     public string enemyName;
     public float speed;
@@ -135,7 +135,7 @@ public class BossTwo : MonoBehaviour
         Debug.Log("DF");
         //드래곤이 불 오브젝트를 발사
         GameObject bulletD = objectManager.MakeObj("BulletBossBT");
-        bulletD.transform.position = transform.position + new Vector3(9f, 2f, 0);
+        bulletD.transform.position = transform.position + new Vector3(9f, 1f, 0);
         Rigidbody2D rb = bulletD.GetComponent<Rigidbody2D>();
         
         rb.AddForce(transform.right * 6, ForceMode2D.Impulse);
@@ -277,7 +277,7 @@ public class BossTwo : MonoBehaviour
     //    rb.velocity = (initialPosition - (Vector2)transform.position).normalized * distance * 1f;
        
     //}
-    public void Hit(int dmg)
+    public void TakeDamage(int dmg)
     {
         if (currentHp <= 0)
         {
@@ -316,10 +316,14 @@ public class BossTwo : MonoBehaviour
         //    //transform.rotation = Quaternion.identity;
         //}
        
-        if (collision.transform.tag == ("PlayerAttackBox"))
+        if (((1 << collision.gameObject.layer) & (1 << 19) | (1 << 20)) != 0) // 19 : 플레이어 어택박스 레이어 , 20: 플레이어 불렛
         {
-            Hit(10); // 임시로 데미지 10함
-            isHit= true;
+            DeflectBullet deflectBullet = collision.GetComponent<DeflectBullet>();
+            if (deflectBullet != null)
+            {
+                TakeDamage(deflectBullet.damage);
+            }
+            isHit = true;
         }
     }
 

@@ -6,40 +6,80 @@ using UnityEngine.UI;
 
 public class GraphicOptionSettings : MonoBehaviour
 {
-    [SerializeField] private TMP_Dropdown resolutionDropdown;
-    [SerializeField] private TMP_Dropdown refreshRateDropdown;
-    [SerializeField] private Toggle fullscreenToggle;
-    [SerializeField] private Toggle vSyncToggle;
+    [SerializeField] private TMP_Dropdown resolutionDropdown; // 해상도 설정 드롭다운
+    [SerializeField] private TMP_Dropdown setFrameDropdown; // 프레임 설정 드롭다운
 
-    private List<Resolution> resolutions;
-    private List<int> refreshRates = new List<int>();
+    [SerializeField] private Toggle fullScreenToggle;
+    [SerializeField] private Toggle vSyncToggle;
+    [SerializeField] private Toggle showFrameToggle;
+
+    [SerializeField] private TextMeshProUGUI showFPS_Txt; // FPS 값 표시 텍스트
+
+    private List<Resolution> allowedResolutions = new List<Resolution>()
+    {
+        new Resolution { width = 640, height = 360 },
+        new Resolution { width = 800, height = 450 },
+        new Resolution { width = 864, height = 486 },
+        new Resolution { width = 960, height = 540 },
+        new Resolution { width = 1024, height = 576 },
+        new Resolution { width = 1152, height = 648 },
+        new Resolution { width = 1280, height = 720 },
+        new Resolution { width = 1366, height = 768 },
+        new Resolution { width = 1600, height = 900 },
+        new Resolution { width = 1920, height = 1080 },
+        new Resolution { width = 2048, height = 1152 },
+        new Resolution { width = 2560, height = 1440 }
+    };
+
+    private float fpsUpdateInterval = 0.5f; // 0.5초 마다 fps 텍스트 갱신
+    private float fpsUpdateTime = 0;
 
     void Start()
     {
-        // 해상도 설정 초기화
-        InitializeResolutionSettings();
-        InitializeRefreshRateSettings(); // 주사율 설정 초기화
-
-        // 창 모드 설정 초기화
-        fullscreenToggle.isOn = Screen.fullScreen;
-
-        // 수직 동기화 설정 초기화
-        vSyncToggle.isOn = QualitySettings.vSyncCount > 0;
+        SetupResolutions();
+        SetupToggles();
+        SetupFrameRateOptions();
     }
 
-    private void InitializeResolutionSettings()
+    void Update()
     {
-        resolutions = new List<Resolution>(Screen.resolutions);
+        if (showFrameToggle.isOn)
+        {
+            if (Time.unscaledTime > fpsUpdateTime)
+            {
+                ShowFPS();
+                fpsUpdateTime = Time.unscaledTime + fpsUpdateInterval;
+            }
+        }
+        else
+        {
+            showFPS_Txt.gameObject.SetActive(false);
+        }
+    }
+
+    private void ShowFPS()
+    {
+        // Time.unscaledDeltaTime -> 실제 시간 기준, 타임 스케일에 영향 안받음
+
+        float fps = 1f / Time.unscaledDeltaTime; // 이전 프레임의 시간으로 초당 프레임 수(FPS) 구하기
+        showFPS_Txt.text = $"FPS: {Mathf.RoundToInt(fps)}"; // 반올림
+
+        showFPS_Txt.gameObject.SetActive(true);
+    }
+
+
+    private void SetupResolutions()
+    {
         resolutionDropdown.ClearOptions();
         List<string> options = new List<string>();
         int currentResolutionIndex = 0;
 
-        for (int i = 0; i < resolutions.Count; i++)
+        for (int i = 0; i < allowedResolutions.Count; i++)
         {
-            string option = resolutions[i].width + " x " + resolutions[i].height;
+            Resolution res = allowedResolutions[i];
+            string option = $"{res.width} x {res.height}";
             options.Add(option);
-            if (resolutions[i].width == Screen.currentResolution.width &&
-                resolutions[i].height == Screen.currentResolution.height)
+            if (res.width == 1920 && res.height == 1080)
             {
                 currentResolutionIndex = i;
             }
@@ -48,49 +88,40 @@ public class GraphicOptionSettings : MonoBehaviour
         resolutionDropdown.AddOptions(options);
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
+        ApplyGraphicsSettings(); // 초기 설정 적용
     }
 
-    private void InitializeRefreshRateSettings()
+    private void SetupToggles()
     {
-        refreshRateDropdown.ClearOptions();
-
-        // 현재 설정 가능한 모든 해상도에서 주사율 목록 생성
-        foreach (Resolution res in Screen.resolutions)
-        {
-            if (!refreshRates.Contains(res.refreshRate))
-            {
-                refreshRates.Add(res.refreshRate);
-            }
-        }
-
-        refreshRateDropdown.AddOptions(refreshRates.ConvertAll<string>(rate => rate.ToString() + " Hz"));
-
-        refreshRateDropdown.value = refreshRates.IndexOf(Screen.currentResolution.refreshRate);
-        refreshRateDropdown.RefreshShownValue();
+        fullScreenToggle.isOn = true; // 전체 화면 기본 On
+        vSyncToggle.isOn = false; // 수직 동기화 기본 Off
     }
 
-    public void SetResolution(int resolutionIndex)
+    private void SetupFrameRateOptions()
     {
-        Resolution resolution = resolutions[resolutionIndex];
-        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+        List<string> frameOptions = new List<string> { "30", "60", "144", "165", "240" };
+        setFrameDropdown.ClearOptions();
+        setFrameDropdown.AddOptions(frameOptions);
+        setFrameDropdown.value = 2;  // 기본 프레임 144 인덱스
+        setFrameDropdown.RefreshShownValue();
+        OnFrameRateChange();  // 초기 프레임 설정
     }
 
-    public void SetFullScreen(bool isFullScreen)
+    public void OnFrameRateChange()
     {
-        Screen.fullScreen = isFullScreen;
+        string selectedOption = setFrameDropdown.options[setFrameDropdown.value].text;
+        Application.targetFrameRate = int.Parse(selectedOption);
     }
 
-    public void SetVSync(bool isVSync)
+
+    public void ApplyGraphicsSettings()
     {
-        QualitySettings.vSyncCount = isVSync ? 1 : 0;
-    }
+        Resolution selectedResolution = allowedResolutions[resolutionDropdown.value]; // 해상도 설정
+        Screen.SetResolution(selectedResolution.width, selectedResolution.height, fullScreenToggle.isOn);
 
-    public void SetRefreshRate(int refreshRateIndex)
-    {
-        int selectedRefreshRate = refreshRates[refreshRateIndex];
-        Resolution currentResolution = Screen.currentResolution;
-        Screen.SetResolution(currentResolution.width, currentResolution.height, Screen.fullScreen, selectedRefreshRate);
-    }
+        QualitySettings.vSyncCount = vSyncToggle.isOn ? 1 : 0; // 수직 동기 On/OFF
 
+        OnFrameRateChange();  // 프레임 제한 재설정
+    }
 }
 
