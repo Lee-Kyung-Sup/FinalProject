@@ -61,6 +61,9 @@ public class GameManager : SingletonBase<GameManager>
 
         Time.timeScale = 0;
     }
-
-
+    [SerializeField] int startMapId;
+    public void MapMake()
+    {
+        MapMaker.Instance.StartMake(startMapId);
+    }
 }
