@@ -14946,6 +14946,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerAnimator: {fileID: 0}
   PlayerName: {fileID: 0}
+  startMapId: 0
 --- !u!114 &7609429034621880072
 MonoBehaviour:
   m_ObjectHideFlags: 0
