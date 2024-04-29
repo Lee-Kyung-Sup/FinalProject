@@ -21,7 +21,7 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
     flipGreenChannel: 0
-  isReadable: 0
+  isReadable: 1
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 2
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -69,7 +69,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 4096
+    maxTextureSize: 16384
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 2
@@ -509,7 +509,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Keyboard Letters and Symbols_19
+      name: D_Key
       rect:
         serializedVersion: 2
         x: 48
@@ -551,7 +551,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Keyboard Letters and Symbols_21
+      name: F_key
       rect:
         serializedVersion: 2
         x: 80
@@ -614,7 +614,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Keyboard Letters and Symbols_24
+      name: I_key
       rect:
         serializedVersion: 2
         x: 0
@@ -824,7 +824,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Keyboard Letters and Symbols_34
+      name: S_Key
       rect:
         serializedVersion: 2
         x: 32
@@ -2392,8 +2392,11 @@ TextureImporter:
       A_Key_Press: -532717367
       C_Key: -952508898
       C_Key_Press: 1080811171
+      D_Key: -1538920744
       Down_Arrow_Key: -1850131865
       Down_Arrow_Key2: -1978598707
+      F_key: -226587921
+      I_key: 588593224
       Keyboard Letters and Symbols_10: 1065745080
       Keyboard Letters and Symbols_100: 605959167
       Keyboard Letters and Symbols_101: 304335100
@@ -2409,12 +2412,9 @@ TextureImporter:
       Keyboard Letters and Symbols_14: -71629914
       Keyboard Letters and Symbols_15: 1772041575
       Keyboard Letters and Symbols_17: 765390273
-      Keyboard Letters and Symbols_19: -1538920744
       Keyboard Letters and Symbols_20: -127790465
-      Keyboard Letters and Symbols_21: -226587921
       Keyboard Letters and Symbols_22: 100809244
       Keyboard Letters and Symbols_23: -1449761797
-      Keyboard Letters and Symbols_24: 588593224
       Keyboard Letters and Symbols_25: -1801477946
       Keyboard Letters and Symbols_26: -1752027041
       Keyboard Letters and Symbols_27: -1959839386
@@ -2424,7 +2424,6 @@ TextureImporter:
       Keyboard Letters and Symbols_31: -2061074203
       Keyboard Letters and Symbols_32: -952898597
       Keyboard Letters and Symbols_33: -901663422
-      Keyboard Letters and Symbols_34: -1725098021
       Keyboard Letters and Symbols_35: 1662439607
       Keyboard Letters and Symbols_36: -1201226666
       Keyboard Letters and Symbols_38: 1033542988
@@ -2488,6 +2487,7 @@ TextureImporter:
       Left_Arrow_Key2: -988683306
       Right_Arrow_Key: 1200506295
       Right_Arrow_Key2: 491458075
+      S_Key: -1725098021
       Up_Arrow_Key: 1202214966
       Up_Arrow_Key2: -300063489
       V_Key: -729108425
